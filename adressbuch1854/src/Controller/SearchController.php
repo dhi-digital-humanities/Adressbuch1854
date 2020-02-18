@@ -29,7 +29,7 @@ class SearchController extends AppController
         $this->set(compact('persons'));
     }*/
 	
-	public function search(){
+	public function results(){
 		
 		//$format = $this->request->getQuery('format');
 		$name = $this->request->getQuery('name');
