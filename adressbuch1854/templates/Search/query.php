@@ -107,7 +107,7 @@
 				<?php
 					
 					echo $this->Form->label('ldh_rank', __('Rang der Légion d\'Honneur'));
-					echo $this->Form->select('ldh_rank', $optionsRank);
+					echo $this->Form->select('ldh_rank', $optionsRank, ['empty' => true]);
 					
 					echo $this->Form->label('institut', __('Mitglied des Institut de France?').' (de l\'Institut)');
 					echo $this->Form->radio('institut', [['value' => True, 'text' => __('Ja')], ['value' => False, 'text' => __('Nein')]]);
