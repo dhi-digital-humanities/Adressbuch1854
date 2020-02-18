@@ -80,7 +80,6 @@
 				<?php
                     echo $this->Form->control('surname', ['label' => __('Name')]);
                     echo $this->Form->control('first_name', ['label' => __('Vorname')]);
-                    
 					echo $this->Form->control('company', ['label' => __('Firmenname')]);
                 ?>
 				</div>
@@ -88,15 +87,28 @@
 				<h5 class="heading"><?= __('Beruf')?></h5>
 				<?php
 					echo $this->Form->control('profession_verbatim', ['label' => __('Beruf')]);
+					
 					echo $this->Form->label('prof_categories.name', __('Kategorie'));
 					echo $this->Form->select('prof_categories.name', $optionsCat, ['empty' => true]);
+					
+					echo $this->Form->label('bold', __('Hat das Adressbuch vorabonniert?'));
+					echo $this->Form->radio('bold', [[True => __('Ja')], [False => __('Nein')]]);
+					
+					echo $this->Form->label('advert', __('Hat einen Eintrag in der Geschäftsliste?'));
+					echo $this->Form->radio('advert', [[True => __('Ja')], [False => __('Nein')]]);
 				?>
 				</div>
 				<div class="form content persAttributes">
 				<h5 class="heading"><?= __('Persönliche Merkmale')?></h5>
 				<?php
+					echo $this->Form->label('gender', __('Geschlecht'));
+					echo $this->Form->radio('gender', [['M' => __('Männlich')], ['F' => __('weiblich')]]);
+					
 					echo $this->Form->label('ldh_ranks.ranks', __('Rang der Légion d\'Honneur'));
 					echo $this->Form->select('ldh_ranks.ranks', $optionsRank, ['empty' => true]);
+					
+					echo $this->Form->label('de_l_institut', __('Mitglied des Institut de France?').' (de l\'Institut)');
+					echo $this->Form->radio('de_l_institut', [[True => __('Ja')], [False => __('Nein')]]);
                     
 					echo $this->Form->label('social_statuses.status', __('Sozialer Stand'));
 					echo $this->Form->select('social_statuses.status', $optionsSoc, ['empty' => true]);
