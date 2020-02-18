@@ -73,5 +73,18 @@ class SearchController extends AppController
 			$this->set('_serialize', ['persons']);
 		}*/
 	}
+	
+	public function query(){
+			$ranks = $this->Persons->LdhRanks->find();
+			$socialStatuses = $this->Persons->SocialStatuses->find();
+			$militaryStatuses = $this->Persons->MilitaryStatuses->find();
+			$occupationStatuses = $this->Persons->OccupationStatuses->find();
+			$arrondissements = $this->Persons->Addresses->Streets->Arrondissements->find();
+			$categories = $this->Persons->ProfCategories->find();
+			$persons = $this->Persons->find();
+			
+			$this->set(compact('categories', 'persons','ranks', 'socialStatuses', 'militaryStatuses', 'occupationStatuses', 'arrondissements'));
+	}
+
 
 }
