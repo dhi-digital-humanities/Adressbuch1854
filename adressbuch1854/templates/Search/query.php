@@ -110,7 +110,7 @@
 					echo $this->Form->select('ldh_rank', $optionsRank, ['empty' => true]);
 					
 					echo $this->Form->label('institut', __('Mitglied des Institut de France?').' (de l\'Institut)');
-					echo $this->Form->radio('institut', [['value' => True, 'text' => __('Ja')], ['value' => False, 'text' => __('Nein')]]);
+					echo $this->Form->radio('institut', [['value' => '1', 'text' => __('Ja')], ['value' => '0', 'text' => __('Nein')]]);
                     
 					echo $this->Form->label('soc_stat', __('Sozialer Stand'));
 					echo $this->Form->select('soc_stat', $optionsSoc, ['empty' => true]);
@@ -122,10 +122,10 @@
 					echo $this->Form->select('occ_stat', $optionsOcc, ['empty' => true]);
 					
 					echo $this->Form->label('bold', __('Hat das Adressbuch vorabonniert?').' '.__('(im Buch fett gedruckt)'));
-					echo $this->Form->radio('bold', [['value' => True, 'text' => __('Ja')], ['value' => False, 'text' => __('Nein')]]);
+					echo $this->Form->radio('bold', [['value' => '1', 'text' => __('Ja')], ['value' => '0', 'text' => __('Nein')]]);
 					
 					echo $this->Form->label('advert', __('Hat einen Eintrag in der Geschäftsliste?'));
-					echo $this->Form->radio('advert', [['value' => True, 'text' => __('Ja')], ['value' => False, 'text' => __('Nein')]]);
+					echo $this->Form->radio('advert', [['value' => '1', 'text' => __('Ja')], ['value' => '0', 'text' => __('Nein')]]);
 				?>
 				</div>
             </fieldset>
