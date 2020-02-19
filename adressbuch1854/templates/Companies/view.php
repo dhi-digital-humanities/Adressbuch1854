@@ -20,8 +20,28 @@
                     <td><?= h($company->name) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Specification Verbatim') ?></th>
+                    <td><?= h($company->specification_verbatim) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Profession Verbatim') ?></th>
+                    <td><?= h($company->profession_verbatim) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Prof Category') ?></th>
                     <td><?= $company->has('prof_category') ? $this->Html->link($company->prof_category->name, ['controller' => 'ProfCategories', 'action' => 'view', $company->prof_category->id]) : '' ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Notable Commercant') ?></th>
+                    <td><?= $company->notable_commercant ? __('Yes') : __('No'); ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Bold') ?></th>
+                    <td><?= $company->bold ? __('Yes') : __('No'); ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Advert') ?></th>
+                    <td><?= $company->advert ? __('Yes') : __('No'); ?></td>
                 </tr>
             </table>
             <div class="related">
