@@ -31,7 +31,6 @@ class SearchController extends AppController
 	
 	public function results(){
 		
-		
         $queryP = $this->Persons->find()->contain([
 			'LdhRanks',
 			'MilitaryStatuses',
@@ -52,99 +51,142 @@ class SearchController extends AppController
 			'ProfCategories'
 		]);
 		
+		// Check
 		$name = $this->request->getQuery('name');
 		if(!empty($name)){
 			$queryP->where(['persons.surname LIKE' => '%'.$name.'%']);
 			$queryC->where(['companies.name LIKE' => '%'.$name.'%']);
 		}
 		
+		//Check
 		$prof = $this->request->getQuery('prof');
 		if(!empty($prof)){
 			$queryP->where(['persons.profession_verbatim LIKE' => '%'.$prof.'%']);
-			// Zuerst Model ändern: Attribut profession_verbatim für companies einfügen!
-			//$queryC->where(['companies.profession_verbatim LIKE' => '%'.$prof.'%']);
+			$queryC->where(['companies.profession_verbatim LIKE' => '%'.$prof.'%']);
 		}
 		
+		// Problem: Wie kann ich ein Objekt finden mit der Bedingung, das mindestens eines seiner vielen zugeordneten Objekte einen bestimmten String enthält?
+		// Lösung: Cake matching() statt where() benutzen
+		// Check
 		$street = $this->request->getQuery('street');
 		if(!empty($street)){
-			$queryP->where(['persons.addresses.street.name LIKE' => '%'.$street.'%']);
-			$queryC->where(['companies.addresses.street.name LIKE' => '%'.$street.'%']);
+			$queryP->matching('Addresses.Streets', function($q) use ($street){
+					return $q->where(['OR' => [
+					['Streets.name_old_clean LIKE' => '%'.$street.'%'],
+					['Streets.name_new LIKE' => '%'.$street.'%']
+					]]);
+				}
+			);
+			$queryC->matching('Addresses.Streets', function($q) use ($street){
+					return $q->where(['OR' => [
+					['Streets.name_old_clean LIKE' => '%'.$street.'%'],
+					['Streets.name_new LIKE' => '%'.$street.'%']
+					]]);
+				}
+			);
 		}
 		
+		//Check
 		$profCat = $this->request->getQuery('prof_cat');
 		if(!empty($profCat)){
-			$queryP->where(['persons.prof_cat_id =' => $profCat]);
-			$queryC->where(['companies.prof_cat_id =' => $profCat]);
+			$queryP->where(['persons.prof_category_id' => $profCat]);
+			$queryC->where(['companies.prof_category_id' => $profCat]);
 		}
 		
-		$arrs = [$this->request->getQuery('arr_new'), $this->request->getQuery('arr_old')];
+		//Check
+		$arrs = [];
+		$arrOld = $this->request->getQuery('arr_old');
+		$arrNew = $this->request->getQuery('arr_new');
+		if(!empty($arrOld)){
+			array_push($arrs, intval($arrOld));
+		}
+		if(!empty($arrNew)){
+			array_push($arrs, intval($arrNew));
+		}
 		foreach($arrs as $arr){
-			if(!empty($arr)){
-				$queryP->where(['persons.addresses.street.arrondissements.id =' => $arr]);
-				$queryC->where(['companies.addresses.street.arrondissements.id =' => $arr]);
-			}
+			$queryP->matching('Addresses.Streets.Arrondissements', function ($q) use ($arr){
+				return $q->where(['Arrondissements.id' => $arr]);
+			});
+			$queryC->matching('Addresses.Streets.Arrondissements', function ($q) use ($arr){
+				return $q->where(['Arrondissements.id' => $arr]);
+			});
 		}
 		
+		//Check
 		$firstName = $this->request->getQuery('first_name');
-		if(!empty($name)){
+		if(!empty($firstName)){
 			$queryP->where(['persons.first_name LIKE' => '%'.$firstName.'%']);
 		}
 		
+		//Check
 		$ldh = $this->request->getQuery('ldh_rank');
 		if(!empty($ldh)){
 			$queryP->where(['ldh_rank_id' => $ldh]);
 		}
 		
+		/*Problem: Cake FormHelper baut bei Radio Buttons einen preset Value in das die Boxen umgebende Checkbox-Element ein, das immer mitgesendet wird
+		* daher gibt es in der Query-URL "institut=", wenn keine Box ausgewählt ist, und "institut=&institut=1", wenn ein Wert ausgewählt ist.
+		* -> nicht schön, beeinträchtigt die Funktion aber nicht
+		*/
+		//Check
 		$gender = $this->request->getQuery('gender');
 		if(!empty($gender)){
 			$queryP->where([strtolower('gender') => $gender]);
 		}
 		
+		/* 
+		* Achtung bei Booleans: Eine !empty-Überprüfung ist erstens nicht nötig (da in der if/elseif-Schleife abgeprüft wird, ob der Parameter einen bestimmten
+		* Wert hat, und zweitens leider nicht möglich, da der String '0' als empty erkannt wird.
+		*/
+		//Check
 		$bold = $this->request->getQuery('bold');
-		if(!empty($bold)){
-			if(boolval($bold)){
-				$queryP->where(['bold >' => 0]);
-			} else {
-				$queryP->where(['bold <' => 1]);				
-			}
+		if($bold == '1'){
+			$queryP->where(['bold' => true]);
+		} elseif ($bold == '0'){
+			$queryP->where(['bold' => false]);				
 		}
 		
+		// Check
 		$advert = $this->request->getQuery('advert');
-		if(!empty($advert)){
-			if(boolval($advert)){
-				$queryP->where(['advert >' => 0]);
-			} else {
-				$queryP->where(['advert <' => 1]);				
-			}
+		if($advert == '1'){
+			$queryP->where(['advert' => true]);
+		} elseif ($advert == '0'){
+			$queryP->where(['advert' => false]);				
 		}
 		
+		//Check
 		$dlI = $this->request->getQuery('institut');
-		if(!empty($dlI)){
-			if(boolval($dlI)){
-				$queryP->where(['dlI >' => 0]);
-			} else {
-				$queryP->where(['dlI <' => 1]);				
-			}
+		if($dlI == '1'){
+			$queryP->where(['de_l_institut' => true]);
+		} elseif($dlI == '0') {
+			$queryP->where(['de_l_institut' => false]);
 		}
 		
+		//Check
 		$soc = $this->request->getQuery('soc_stat');
 		if(!empty($soc)){
-			$queryP->where(['persons.social_status_id =' => $soc]);
+			$queryP->where(['persons.social_status_id' => $soc]);
 		}
 		
+		//Check
 		$mil = $this->request->getQuery('mil_stat');
 		if(!empty($mil)){
-			$queryP->where(['persons.military_status_id =' => $mil]);
+			$queryP->where(['persons.military_status_id' => $mil]);
 		}
 		
+		//Check
 		$occup = $this->request->getQuery('occ_stat');
 		if(!empty($occup)){
-			$queryP->where(['persons.occupation_status_id =' => $occup]);
+			$queryP->where(['persons.occupation_status_id' => $occup]);
 		}
 		
-		if(empty($name) && empty($street) && empty($prof) && empty($profCat) && empty($arrs)){
+		//Check
+		if(empty($name) && empty($street) && empty($prof) && empty($profCat) && count($arrs)==0){
 			$queryC->where(['companies.id =' => 0]);
 		}
+		
+		$queryP->order(['persons.surname' => 'ASC']);
+		$queryC->order(['companies.name' => 'ASC']);
 		
 		$persons = $this->paginate($queryP);
 		$companies = $this->paginate($queryC);
