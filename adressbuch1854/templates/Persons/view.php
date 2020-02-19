@@ -118,13 +118,23 @@
                     <table>
                         <tr>
                             <th><?= __('Name') ?></th>
+							<th><?= __('Profession Verbatim') ?></th>
+							<th><?= __('Specification Verbatim') ?></th>
                             <th><?= __('Prof Category') ?></th>
+							<th><?= __('Notable Commercant') ?></th>
+							<th><?= __('Bold') ?></th>
+							<th><?= __('Advert') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($person->companies as $companies) : ?>
                         <tr>
                             <td><?= h($companies->name) ?></td>
+                            <td><?= h($companies->profession_verbatim) ?></td>
+							<td><?= h($companies->specification_verbatim) ?></td>
                             <td><?= h($companies->prof_category->name) ?></td>
+							<td><?= $companies->notable_commercant ? __('Yes') : __('No'); ?></td>
+							<td><?= $companies->bold ? __('Yes') : __('No'); ?></td>
+							<td><?= $companies->advert ? __('Yes') : __('No'); ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'Companies', 'action' => 'view', $companies->id]) ?>
                             </td>
