@@ -63,7 +63,24 @@
 <div class="row">
     <aside class="column">
         <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
+            <h4 class="heading"><?= __('Seitennavigation') ?></h4>
+			
+			<div class="search form content">
+				<?= $this->Form->create(null, ['type' => 'get', 'url' => '/search/results']) ?>
+				<fieldset>
+					<legend><?= __('Freitextsuche') ?></legend>
+					<?php
+						// set parameter for search type to "simple"
+						echo $this->Form->hidden('type', ['value' => 'simp']);
+						echo $this->Form->control('text', ['maxlength' => 256, 'label' => false]);
+					?>
+				</fieldset>
+				<?= $this->Form->button(__('Search')) ?>
+				<?= $this->Form->end() ?>
+				Hinweis: Die Freitextsuche sucht nach den Feldern (Nach)Name, Vorname, Berufsbezeichnung,
+				Anmerkungen zur Person/zum Unternehmen, alter und neuer Straßenname sowie Anmerkungen zur Adresse.
+				Für genauere Abfragen nutzen Sie bitte die erweiterte Suche.
+			</div>
         </div>
     </aside>
     <div class="column-responsive column-80">
@@ -73,14 +90,18 @@
 			mit den bereits eingegebenen Suchparametern bei Sprung von search.php zu query.php:
 			$this->Form->setValueSources('query'])-->
             <fieldset>
-                <legend><?= __('Search for a person') ?></legend>
+                <legend><?= __('Erweiterte Suche') ?></legend>
+				<?php
+					// set parameter for search type to "detailed"
+					echo $this->Form->hidden('type', ['value' => 'det']);
+				?>
                 <div class="form content names">
 				<h5 class="heading"><?= __('Personen- oder Firmenname')?></h5>
 				<?php
                     echo $this->Form->control('name', ['label' => __('Name')]);
                     echo $this->Form->control('first_name', ['label' => __('Vorname')]);
 					echo $this->Form->label('gender', __('Geschlecht'));
-					echo $this->Form->radio('gender', [['value' => 'm', 'text' => __('Männlich')], ['value' => 'f', 'text' => __('weiblich')]]);
+					echo $this->Form->radio('gender', [['value' => 'm', 'text' => __('Männlich')], ['value' => 'f', 'text' => __('weiblich')]], ['hiddenField' => false]);
                 ?>
 				</div>
 				<div class="form content profession">
@@ -110,7 +131,7 @@
 					echo $this->Form->select('ldh_rank', $optionsRank, ['empty' => true]);
 					
 					echo $this->Form->label('institut', __('Mitglied des Institut de France?').' (de l\'Institut)');
-					echo $this->Form->radio('institut', [['value' => '1', 'text' => __('Ja')], ['value' => '0', 'text' => __('Nein')]]);
+					echo $this->Form->radio('institut', [['value' => '1', 'text' => __('Ja')], ['value' => '0', 'text' => __('Nein')]], ['hiddenField' => false]);
                     
 					echo $this->Form->label('soc_stat', __('Sozialer Stand'));
 					echo $this->Form->select('soc_stat', $optionsSoc, ['empty' => true]);
@@ -122,10 +143,10 @@
 					echo $this->Form->select('occ_stat', $optionsOcc, ['empty' => true]);
 					
 					echo $this->Form->label('bold', __('Hat das Adressbuch vorabonniert?').' '.__('(im Buch fett gedruckt)'));
-					echo $this->Form->radio('bold', [['value' => '1', 'text' => __('Ja')], ['value' => '0', 'text' => __('Nein')]]);
+					echo $this->Form->radio('bold', [['value' => '1', 'text' => __('Ja')], ['value' => '0', 'text' => __('Nein')]], ['hiddenField' => false]);
 					
 					echo $this->Form->label('advert', __('Hat einen Eintrag in der Geschäftsliste?'));
-					echo $this->Form->radio('advert', [['value' => '1', 'text' => __('Ja')], ['value' => '0', 'text' => __('Nein')]]);
+					echo $this->Form->radio('advert', [['value' => '1', 'text' => __('Ja')], ['value' => '0', 'text' => __('Nein')]], ['hiddenField' => false]);
 				?>
 				</div>
             </fieldset>

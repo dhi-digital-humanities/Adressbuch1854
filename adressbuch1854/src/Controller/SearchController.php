@@ -51,137 +51,13 @@ class SearchController extends AppController
 			'ProfCategories'
 		]);
 		
-		// Check
-		$name = $this->request->getQuery('name');
-		if(!empty($name)){
-			$queryP->where(['persons.surname LIKE' => '%'.$name.'%']);
-			$queryC->where(['companies.name LIKE' => '%'.$name.'%']);
-		}
-		
-		//Check
-		$prof = $this->request->getQuery('prof');
-		if(!empty($prof)){
-			$queryP->where(['persons.profession_verbatim LIKE' => '%'.$prof.'%']);
-			$queryC->where(['companies.profession_verbatim LIKE' => '%'.$prof.'%']);
-		}
-		
-		// Problem: Wie kann ich ein Objekt finden mit der Bedingung, das mindestens eines seiner vielen zugeordneten Objekte einen bestimmten String enthält?
-		// Lösung: Cake matching() statt where() benutzen
-		// Check
-		$street = $this->request->getQuery('street');
-		if(!empty($street)){
-			$queryP->matching('Addresses.Streets', function($q) use ($street){
-					return $q->where(['OR' => [
-					['Streets.name_old_clean LIKE' => '%'.$street.'%'],
-					['Streets.name_new LIKE' => '%'.$street.'%']
-					]]);
-				}
-			);
-			$queryC->matching('Addresses.Streets', function($q) use ($street){
-					return $q->where(['OR' => [
-					['Streets.name_old_clean LIKE' => '%'.$street.'%'],
-					['Streets.name_new LIKE' => '%'.$street.'%']
-					]]);
-				}
-			);
-		}
-		
-		//Check
-		$profCat = $this->request->getQuery('prof_cat');
-		if(!empty($profCat)){
-			$queryP->where(['persons.prof_category_id' => $profCat]);
-			$queryC->where(['companies.prof_category_id' => $profCat]);
-		}
-		
-		//Check
-		$arrs = [];
-		$arrOld = $this->request->getQuery('arr_old');
-		$arrNew = $this->request->getQuery('arr_new');
-		if(!empty($arrOld)){
-			array_push($arrs, intval($arrOld));
-		}
-		if(!empty($arrNew)){
-			array_push($arrs, intval($arrNew));
-		}
-		foreach($arrs as $arr){
-			$queryP->matching('Addresses.Streets.Arrondissements', function ($q) use ($arr){
-				return $q->where(['Arrondissements.id' => $arr]);
-			});
-			$queryC->matching('Addresses.Streets.Arrondissements', function ($q) use ($arr){
-				return $q->where(['Arrondissements.id' => $arr]);
-			});
-		}
-		
-		//Check
-		$firstName = $this->request->getQuery('first_name');
-		if(!empty($firstName)){
-			$queryP->where(['persons.first_name LIKE' => '%'.$firstName.'%']);
-		}
-		
-		//Check
-		$ldh = $this->request->getQuery('ldh_rank');
-		if(!empty($ldh)){
-			$queryP->where(['ldh_rank_id' => $ldh]);
-		}
-		
-		/*Problem: Cake FormHelper baut bei Radio Buttons einen preset Value in das die Boxen umgebende Checkbox-Element ein, das immer mitgesendet wird
-		* daher gibt es in der Query-URL "institut=", wenn keine Box ausgewählt ist, und "institut=&institut=1", wenn ein Wert ausgewählt ist.
-		* -> nicht schön, beeinträchtigt die Funktion aber nicht
-		*/
-		//Check
-		$gender = $this->request->getQuery('gender');
-		if(!empty($gender)){
-			$queryP->where([strtolower('gender') => $gender]);
-		}
-		
-		/* 
-		* Achtung bei Booleans: Eine !empty-Überprüfung ist erstens nicht nötig (da in der if/elseif-Schleife abgeprüft wird, ob der Parameter einen bestimmten
-		* Wert hat, und zweitens leider nicht möglich, da der String '0' als empty erkannt wird.
-		*/
-		//Check
-		$bold = $this->request->getQuery('bold');
-		if($bold == '1'){
-			$queryP->where(['bold' => true]);
-		} elseif ($bold == '0'){
-			$queryP->where(['bold' => false]);				
-		}
-		
-		// Check
-		$advert = $this->request->getQuery('advert');
-		if($advert == '1'){
-			$queryP->where(['advert' => true]);
-		} elseif ($advert == '0'){
-			$queryP->where(['advert' => false]);				
-		}
-		
-		//Check
-		$dlI = $this->request->getQuery('institut');
-		if($dlI == '1'){
-			$queryP->where(['de_l_institut' => true]);
-		} elseif($dlI == '0') {
-			$queryP->where(['de_l_institut' => false]);
-		}
-		
-		//Check
-		$soc = $this->request->getQuery('soc_stat');
-		if(!empty($soc)){
-			$queryP->where(['persons.social_status_id' => $soc]);
-		}
-		
-		//Check
-		$mil = $this->request->getQuery('mil_stat');
-		if(!empty($mil)){
-			$queryP->where(['persons.military_status_id' => $mil]);
-		}
-		
-		//Check
-		$occup = $this->request->getQuery('occ_stat');
-		if(!empty($occup)){
-			$queryP->where(['persons.occupation_status_id' => $occup]);
-		}
-		
-		//Check
-		if(empty($name) && empty($street) && empty($prof) && empty($profCat) && count($arrs)==0){
+		$type = $this->request->getQuery('type');
+		if($type == 'simp'){
+			$this->simpleSearch($queryP, $queryC);
+		} elseif($type == 'det'){
+			$this->detailedSearch($queryP, $queryC);
+		} else{
+			$queryP->where(['persons.id =' => 0]);
 			$queryC->where(['companies.id =' => 0]);
 		}
 		
@@ -199,22 +75,223 @@ class SearchController extends AppController
 		}*/
 	}
 	
-	/*
-	private function simpleSearch(&$queryP, &$queryC){
-		$text = $this->request->getQuery('text');
-		$tokens = explode(' ', $text);
+	private function detailedSearch(&$queryP, &$queryC){
+				
+		$name = $this->request->getQuery('name');
+		$prof = $this->request->getQuery('prof');
+		$street = $this->request->getQuery('street');
+		$profCat = $this->request->getQuery('prof_cat');
+		$arrOld = $this->request->getQuery('arr_old');
+		$arrNew = $this->request->getQuery('arr_new');
+		$bold = $this->request->getQuery('bold');
+		$advert = $this->request->getQuery('advert');
 		
-		//addresses.streets.name und addresses.address_specification_verbatim absuchen
+		$firstName = $this->request->getQuery('first_name');
+		$dlI = $this->request->getQuery('institut');
+		$ldh = $this->request->getQuery('ldh_rank');
+		$gender = $this->request->getQuery('gender');
+		$soc = $this->request->getQuery('soc_stat');
+		$mil = $this->request->getQuery('mil_stat');
+		$occup = $this->request->getQuery('occ_stat');
+		
+		
+		// TODO: Nur für Company checken und stattdessen das Form nicht abschicken, wenn _alle_ Felder leer sind?
+		// Dabei könnte ein Problem sein, dass das hidden Input field "type" ja nie empty ist.
+		// Checking if all values for company or person are empty and empty the entire query object
+		if(empty($name.$street.$prof.$profCat.$arrOld.$arrNew) && $bold === null && $advert === null){
+			$queryC->where(['companies.id' => 0]);
+			if(empty($firstName.$soc.$mil.$occup.$ldh) && $dlI === null && $gender === null){
+				$queryP->where(['persons.id' => 0]);
+				return;
+			}
+		}
+		
+		// Query for $name (surname of persons/name of companies)
+		if(!empty($name)){
+			$queryP->where(['persons.surname LIKE' => '%'.$name.'%']);
+			$queryC->where(['companies.name LIKE' => '%'.$name.'%']);
+		}
+		
+		// Query for $prof (given profession of a person or company)
+		if(!empty($prof)){
+			$queryP->where(['persons.profession_verbatim LIKE' => '%'.$prof.'%']);
+			$queryC->where(['companies.profession_verbatim LIKE' => '%'.$prof.'%']);
+		}
+		
+		// Query for $street (a person or company, that has at least one associated Street that contains the given String as old or new street name)
+		if(!empty($street)){
+			$queryP->matching('Addresses.Streets', function($q) use ($street){
+					return $q->where(['OR' => [
+					['Streets.name_old_clean LIKE' => '%'.$street.'%'],
+					['Streets.name_new LIKE' => '%'.$street.'%']
+					]]);
+				}
+			);
+			$queryC->matching('Addresses.Streets', function($q) use ($street){
+					return $q->where(['OR' => [
+					['Streets.name_old_clean LIKE' => '%'.$street.'%'],
+					['Streets.name_new LIKE' => '%'.$street.'%']
+					]]);
+				}
+			);
+		}
+		
+		//Query for $profCat (profession category of person/company)
+		if(!empty($profCat)){
+			$queryP->where(['persons.prof_category_id' => $profCat]);
+			$queryC->where(['companies.prof_category_id' => $profCat]);
+		}
+		
+		//Query for $arrOld/$arrNew (a person or company, that has at least one associated street that lies at least partially within the given arrondissement)
+		$arrs = [];
+		if(!empty($arrOld)){
+			array_push($arrs, intval($arrOld));
+		}
+		if(!empty($arrNew)){
+			array_push($arrs, intval($arrNew));
+		}
+		foreach($arrs as $arr){
+			$queryP->matching('Addresses.Streets.Arrondissements', function ($q) use ($arr){
+				return $q->where(['Arrondissements.id' => $arr]);
+			});
+			$queryC->matching('Addresses.Streets.Arrondissements', function ($q) use ($arr){
+				return $q->where(['Arrondissements.id' => $arr]);
+			});
+		}
+		
+		// Query for $bold (the fact, that a person's/company's name is written bold in the address book)
+		if($bold == '1'){
+			$queryP->where(['bold' => true]);
+			$queryC->where(['bold' => true]);
+		} elseif ($bold == '0'){
+			$queryP->where(['bold' => false]);	
+			$queryC->where(['bold' => true]);			
+		}
+		
+		// Query for $advert (the fact, that a person's/company's name appears in the entreprise list of the address book)
+		if($advert == '1'){
+			$queryP->where(['advert' => true]);
+			$queryC->where(['advert' => true]);
+		} elseif ($advert == '0'){
+			$queryP->where(['advert' => false]);
+			$queryC->where(['advert' => false]);				
+		}
+		
+		/* Queries that only concern persons */
+		
+		//Query for $firstName (first name of person)
+		if(!empty($firstName)){
+			$queryP->where(['persons.first_name LIKE' => '%'.$firstName.'%']);
+		}
+		
+		// Query for $dlI (the fact, that a person is marked "de l'Institut" in the address book)
+		if($dlI == '1'){
+			$queryP->where(['de_l_institut' => true]);
+		} elseif($dlI == '0') {
+			$queryP->where(['de_l_institut' => false]);
+		}
+		
+		//Query for $ldh (a person's rank in the Légion d'Honneur)
+		if(!empty($ldh)){
+			$queryP->where(['ldh_rank_id' => $ldh]);
+		}
+
+		//Query for $gender (a person's gender)
+		if(!empty($gender)){
+			$queryP->where([strtolower('gender') => $gender]);
+		}
+		
+		// Query for $soc (the social status of a person)
+		if(!empty($soc)){
+			$queryP->where(['persons.social_status_id' => $soc]);
+		}
+		
+		// Query for $mil (the military status of a person)
+		if(!empty($mil)){
+			$queryP->where(['persons.military_status_id' => $mil]);
+		}
+		
+		// Query for $occup (the occupational status of a person)
+		if(!empty($occup)){
+			$queryP->where(['persons.occupation_status_id' => $occup]);
+		}
+		
+	}
+	
+	private function simpleSearch(&$queryP, &$queryC){
+		
+		$text = $this->request->getQuery('text');
+		
+		// check if the submitted form input is contains word characters. If not, empty the query objects
+		if(preg_match('/\w/', $text) === 0){
+			$queryP->where(['persons.id' => 0]);
+			$queryC->where(['companies.id' => 0]);
+			return;
+		}
+		
+		// split the text around any number of commas, points and whitespaces
+		$tokens = preg_split('/[,.\s]+/', $text);
+			
+		// Problem: wird union() eingesetzt, hängt sich die Funktion auf, so dass das timeout greift und eine Fehlerseite des Browsers erscheint
+		// (der Fehler wird nicht von Cake abgefangen). Dies passiert sowohl, wenn die union() nach der verfeinerten Query als auch davor aufgerufen
+		// wird (siehe auskommentierten Code vor der Schleife. Nimmt man ihn aus dem Kommentar heraus und setzt dafür die Loop-Schleife als Kommentar,
+		// geschieht dasselbe Problem). Nutzt man die Methode append() der Klasse Collections, dann funktioniert zwar die Vereinigung der beiden
+		// Query-Objekte, doch man erhält ein Objekt vom Typ Collections und nicht Query zurück.
+		// --> Entweder das union-Problem lösen oder statt zwei verschiedener Abfragen matching() und where() mit einem großen OR-Ausdruck zusammenbringen.
+		
+		/*$queryPAddr = $queryP->where(['persons.surname' => 'Müller']);
+		$queryPAttr = $queryP->where(['persons.surname' => 'Weidmann']);;
+		// different columns??? kann durch matching kommen, aber ist hier ja noch nicht der Fall...
+		$queryP=$queryPAttr->union($queryPAddr);
+		$queryP->where(['persons.surname' => 'Weidmann']);*/
+		
+		// for each token
 		foreach($tokens as $token){
 			
-			$queryP->where(['OR' => [['persons.surname' => $token],
+			// assign the original query object to two distinct objects that will be refined seperately
+			$queryPAddr = $queryP;
+			$queryPAttr = $queryP;
+			
+			// search for persons that contain the current token in either one of the specified data base fields
+			$queryPAttr->where(['OR' => [['persons.surname' => $token],
 				['persons.first_name' => $token],
+				['persons.title' => $token],
 				['persons.profession_verbatim' => $token],
 				['persons.specification_verbatim' => $token],
 				['persons.name_predicate' => $token]]]);
+			$queryPAddr->innerJoinWith('Addresses.Streets', function($q) use ($token){
+					return $q->where(['OR' => [
+					['Streets.name_old_clean LIKE' => '%'.$token.'%'],
+					['Streets.name_new LIKE' => '%'.$token.'%'],
+					['Addresses.address_specification_verbatim LIKE' => '%'.$token.'%']
+					]]);
+				});			
+				
+			// make the union of all perons that contain the $token in any of the previously queried fields so that the
+			// the next loop will only affect this resulting subset of the original query object
+			$queryPAttr->union($queryPAddr);
+			
+			// repeat the procedure for the companies query object
+			$queryCAddr = $queryC;
+			$queryCAttr = $queryC;
+		
+			$queryCAttr->where(['OR' => [
+				['companies.name' => $token],
+				['companies.profession_verbatim' => $token],
+				['companies.specification_verbatim' => $token]
+			]]);
+			$queryCAddr->matching('Addresses.Streets', function($q) use ($token){
+				return $q->where(['OR' => [
+				['Addresses.Streets.name_old_clean LIKE' => '%'.$token.'%'],
+				['Addresses.Streets.name_new LIKE' => '%'.$token.'%'],
+				['Addresses.address_specification_verbatim LIKE' => '%'.$token.'%']
+				]]);
+			});	
+
+			$queryC = $queryCAttr->union($queryCAddr);
 		}
+		
 	}
-	*/
 	
 	public function query(){
 			$ranks = $this->Persons->LdhRanks->find();
