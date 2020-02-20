@@ -10,6 +10,7 @@ class SearchController extends AppController
 		parent::initialize();
 		$this->loadModel('Persons');
 		$this->loadModel('Companies');
+		$this->loadComponent('RequestHandler');
 	}
 	
     /**
@@ -28,10 +29,8 @@ class SearchController extends AppController
 
         $this->set(compact('persons'));
     }*/
-	
-	public function results(){
-		
-        $queryP = $this->Persons->find()->contain([
+	private function getPersonAll(){
+		$query = $this->Persons->find()->contain([
 			'LdhRanks',
 			'MilitaryStatuses',
 			'SocialStatuses',
@@ -43,7 +42,11 @@ class SearchController extends AppController
 			'Companies'
 		]);
 		
-		$queryC = $this->Companies->find()->contain([
+		return $query;
+	}
+	
+	private function getCompanyAll(){
+		$query = $this->Companies->find()->contain([
 			'Persons',
 			'Addresses.Streets.Arrondissements',
 			'ExternalReferences.ReferenceTypes',
@@ -51,22 +54,34 @@ class SearchController extends AppController
 			'ProfCategories'
 		]);
 		
+		return $query;
+	}
+	
+	
+	public function results(){
+		
+        $queryP = $this->getPersonAll();
+		$queryC = $this->getCompanyAll();
+		
 		$type = $this->request->getQuery('type');
 		if($type == 'simp'){
 			$this->simpleSearch($queryP, $queryC);
 		} elseif($type == 'det'){
 			$this->detailedSearch($queryP, $queryC);
 		} else{
-			$queryP->where(['persons.id =' => 0]);
-			$queryC->where(['companies.id =' => 0]);
+			$queryP->where(['persons.id' => 0]);
+			$queryC->where(['companies.id' => 0]);
 		}
 		
 		$queryP->order(['persons.surname' => 'ASC']);
 		$queryC->order(['companies.name' => 'ASC']);
 		
 		$persons = $this->paginate($queryP);
-		$companies = $this->paginate($queryC);
-        $this->set(compact('persons', 'companies'));
+		$companies = $this->paginate($queryC);		
+		
+		$params = $this->request->getQuery();
+		
+        $this->set(compact('persons', 'companies', 'params'));
 		
 		//$format = $this->request->getQuery('format');
 		/*if(!empty($format)){
@@ -74,6 +89,48 @@ class SearchController extends AppController
 			$this->set('_serialize', ['persons']);
 		}*/
 	}
+	
+	public function export($format = ''){
+		$format = strtolower($format);
+
+        // Format to view mapping
+        $formats = [
+          'xml' => 'Xml',
+          'json' => 'Json',
+        ];
+
+        // Error on unknown type
+        if (!isset($formats[$format])) {
+            throw new NotFoundException(__('Unknown format.'));
+        }
+
+        // Set Out Format View
+        $this->viewBuilder()->setClassName($formats[$format]);
+
+        // Get data
+        //$persons = $this->getPersonAll();
+		//$companies = $this->getCompanyAll();
+		$persons= $this->request->getData('persons');
+		$companies= $this->request->getData('companies');
+		
+		/*$type = $this->request->getQuery('type');
+		if($type == 'simp'){
+			$this->simpleSearch($persons, $companies);
+		} elseif($type == 'det'){
+			$this->detailedSearch($persons, $companies);
+		} else{
+			$persons->where(['persons.id' => 0]);
+			$companies->where(['companies.id' => 0]);
+		}*/
+
+        // Set Data View
+        $this->set(compact('persons', 'companies'));
+        $this->viewBuilder()->setOption('serialize', ['persons']);
+        $this->viewBuilder()->setOption('serialize', ['companies']);
+
+        // Set Force Download
+        return $this->response->withDownload('Adressbuch1854_search_results-' . date('YmdHis') . '.' . $format);
+    }
 	
 	private function detailedSearch(&$queryP, &$queryC){
 				
@@ -239,6 +296,7 @@ class SearchController extends AppController
 		// search for persons/companies that contain the current token in either one of the specified data base fields
 		foreach($tokens as $token){
 			
+			// TODO: Abfangen, dass Addresses = null sein kann
 			$queryP
 				->leftJoinWith('Addresses')
 				->leftJoinWith('Addresses.Streets')

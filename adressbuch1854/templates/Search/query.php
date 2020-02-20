@@ -77,9 +77,9 @@
 				</fieldset>
 				<?= $this->Form->button(__('Search')) ?>
 				<?= $this->Form->end() ?>
-				Hinweis: Die Freitextsuche sucht nach den Feldern (Nach)Name, Vorname, Berufsbezeichnung,
+				<!--Hinweis: Die Freitextsuche sucht nach den Feldern (Nach)Name, Vorname, Berufsbezeichnung,
 				Anmerkungen zur Person/zum Unternehmen, alter und neuer Straßenname sowie Anmerkungen zur Adresse.
-				Für genauere Abfragen nutzen Sie bitte die erweiterte Suche.
+				Für genauere Abfragen nutzen Sie bitte die erweiterte Suche.-->
 			</div>
         </div>
     </aside>

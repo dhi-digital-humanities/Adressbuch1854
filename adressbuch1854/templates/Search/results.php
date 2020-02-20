@@ -5,7 +5,6 @@
  */
 ?>
 <div class="persons index content">
-    <?= $this->Html->link(__('New Person'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <h3><?= __('Persons') ?></h3>
     <div class="table-responsive">
         <table>
@@ -53,7 +52,6 @@
                     <td><?= $person->has('prof_category') ? $this->Html->link($person->prof_category->name, ['controller' => 'ProfCategories', 'action' => 'view', $person->prof_category->id]) : '' ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $person->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $person->id]) ?>
                         <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $person->id], ['confirm' => __('Are you sure you want to delete # {0}?', $person->id)]) ?>
                     </td>
                 </tr>
@@ -73,7 +71,6 @@
     </div>
 </div>
 <div class="companies index content">
-    <?= $this->Html->link(__('New Company'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <h3><?= __('Companies') ?></h3>
     <div class="table-responsive">
         <table>
@@ -95,8 +92,6 @@
                     <td><?= $company->has('prof_category') ? $this->Html->link($company->prof_category->name, ['controller' => 'ProfCategories', 'action' => 'view', $company->prof_category->id]) : '' ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $company->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $company->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $company->id], ['confirm' => __('Are you sure you want to delete # {0}?', $company->id)]) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
@@ -113,4 +108,9 @@
         </ul>
         <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
     </div>
+	<div class="export">
+	<h4>Ergebnisse exportieren</h4>
+	<?= $this->Form->postButton('Json', ['controller' => 'Search', 'action' => 'export/json', 'data' => ['persons' => $persons, 'companies' => $companies]])?>
+	<?= $this->Form->postButton('XML', ['controller' => 'Search', 'action' => 'export/xml', 'data' => ['persons' => $persons, 'companies' => $companies]])?>
+	</div>
 </div>
