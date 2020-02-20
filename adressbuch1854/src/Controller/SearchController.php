@@ -218,6 +218,9 @@ class SearchController extends AppController
 		
 	}
 	
+	// TODO: Interessant: Die einfache Suche findet Personen, denen mindestens eine Straße mit dem Suchterm zugeordnet ist. Gibt man jedoch zwei
+	// unterschiedliche Straßen an, die auch beide einer Person zugeordnet sind, so wird die Person nicht gefunden.
+	
 	private function simpleSearch(&$queryP, &$queryC){
 		
 		$text = $this->request->getQuery('text');
@@ -231,64 +234,43 @@ class SearchController extends AppController
 		
 		// split the text around any number of commas, points and whitespaces
 		$tokens = preg_split('/[,.\s]+/', $text);
-			
-		// Problem: wird union() eingesetzt, hängt sich die Funktion auf, so dass das timeout greift und eine Fehlerseite des Browsers erscheint
-		// (der Fehler wird nicht von Cake abgefangen). Dies passiert sowohl, wenn die union() nach der verfeinerten Query als auch davor aufgerufen
-		// wird (siehe auskommentierten Code vor der Schleife. Nimmt man ihn aus dem Kommentar heraus und setzt dafür die Loop-Schleife als Kommentar,
-		// geschieht dasselbe Problem). Nutzt man die Methode append() der Klasse Collections, dann funktioniert zwar die Vereinigung der beiden
-		// Query-Objekte, doch man erhält ein Objekt vom Typ Collections und nicht Query zurück.
-		// --> Entweder das union-Problem lösen oder statt zwei verschiedener Abfragen matching() und where() mit einem großen OR-Ausdruck zusammenbringen.
 		
-		/*$queryPAddr = $queryP->where(['persons.surname' => 'Müller']);
-		$queryPAttr = $queryP->where(['persons.surname' => 'Weidmann']);;
-		// different columns??? kann durch matching kommen, aber ist hier ja noch nicht der Fall...
-		$queryP=$queryPAttr->union($queryPAddr);
-		$queryP->where(['persons.surname' => 'Weidmann']);*/
-		
-		// for each token
+		// for each token 
+		// search for persons/companies that contain the current token in either one of the specified data base fields
 		foreach($tokens as $token){
 			
-			// assign the original query object to two distinct objects that will be refined seperately
-			$queryPAddr = $queryP;
-			$queryPAttr = $queryP;
-			
-			// search for persons that contain the current token in either one of the specified data base fields
-			$queryPAttr->where(['OR' => [['persons.surname' => $token],
-				['persons.first_name' => $token],
-				['persons.title' => $token],
-				['persons.profession_verbatim' => $token],
-				['persons.specification_verbatim' => $token],
-				['persons.name_predicate' => $token]]]);
-			$queryPAddr->innerJoinWith('Addresses.Streets', function($q) use ($token){
-					return $q->where(['OR' => [
-					['Streets.name_old_clean LIKE' => '%'.$token.'%'],
-					['Streets.name_new LIKE' => '%'.$token.'%'],
-					['Addresses.address_specification_verbatim LIKE' => '%'.$token.'%']
-					]]);
-				});			
+			$queryP
+				->leftJoinWith('Addresses')
+				->leftJoinWith('Addresses.Streets')
+				->where([
+					'OR' => [
+						['Persons.surname LIKE' => '%'.$token.'%'],
+						['Persons.first_name LIKE' => '%'.$token.'%'],
+						['Persons.title LIKE' => '%'.$token.'%'],
+						['Persons.profession_verbatim LIKE' => '%'.$token.'%'],
+						['Persons.specification_verbatim LIKE' => '%'.$token.'%'],
+						['Persons.name_predicate LIKE' => '%'.$token.'%'],
+						['Streets.name_old_clean LIKE' => '%'.$token.'%'],
+						['Streets.name_new LIKE' => '%'.$token.'%'],
+						['Addresses.address_specification_verbatim LIKE' => '%'.$token.'%']
+					]
+				])
+				->group('Persons.id');
 				
-			// make the union of all perons that contain the $token in any of the previously queried fields so that the
-			// the next loop will only affect this resulting subset of the original query object
-			$queryPAttr->union($queryPAddr);
-			
-			// repeat the procedure for the companies query object
-			$queryCAddr = $queryC;
-			$queryCAttr = $queryC;
-		
-			$queryCAttr->where(['OR' => [
-				['companies.name' => $token],
-				['companies.profession_verbatim' => $token],
-				['companies.specification_verbatim' => $token]
-			]]);
-			$queryCAddr->matching('Addresses.Streets', function($q) use ($token){
-				return $q->where(['OR' => [
-				['Addresses.Streets.name_old_clean LIKE' => '%'.$token.'%'],
-				['Addresses.Streets.name_new LIKE' => '%'.$token.'%'],
-				['Addresses.address_specification_verbatim LIKE' => '%'.$token.'%']
-				]]);
-			});	
-
-			$queryC = $queryCAttr->union($queryCAddr);
+			$queryC
+				->leftJoinWith('Addresses')
+				->leftJoinWith('Addresses.Streets')
+				->where([
+					'OR' => [
+						['Companies.name LIKE' => '%'.$token.'%'],
+						['Companies.profession_verbatim LIKE' => '%'.$token.'%'],
+						['Companies.specification_verbatim LIKE' => '%'.$token.'%'],
+						['Streets.name_old_clean LIKE' => '%'.$token.'%'],
+						['Streets.name_new LIKE' => '%'.$token.'%'],
+						['Addresses.address_specification_verbatim LIKE' => '%'.$token.'%']
+					]
+				])
+				->group('Companies.id');
 		}
 		
 	}
