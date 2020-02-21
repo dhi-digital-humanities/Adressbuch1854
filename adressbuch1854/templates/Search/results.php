@@ -4,58 +4,103 @@
  * @var \App\Model\Entity\Person[]|\Cake\Collection\CollectionInterface $persons
  */
 ?>
+<h2><?= __('Ergebnisse für Ihre Suche:') ?></h2>
 <div class="persons index content">
-    <h3><?= __('Persons') ?></h3>
+    <h3><?= __('Personen') ?></h3>
     <div class="table-responsive">
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('surname') ?></th>
-                    <th><?= $this->Paginator->sort('first_name') ?></th>
-                    <th><?= $this->Paginator->sort('gender') ?></th>
-                    <th><?= $this->Paginator->sort('title') ?></th>
-                    <th><?= $this->Paginator->sort('name_predicate') ?></th>
-                    <th><?= $this->Paginator->sort('specification_verbatim') ?></th>
-                    <th><?= $this->Paginator->sort('profession_verbatim') ?></th>
-                    <th><?= $this->Paginator->sort('de_l_institut') ?></th>
-                    <th><?= $this->Paginator->sort('notable_commercant') ?></th>
-                    <th><?= $this->Paginator->sort('bold') ?></th>
-                    <th><?= $this->Paginator->sort('advert') ?></th>
-                    <th><?= $this->Paginator->sort('ldh_rank_id') ?></th>
-                    <th><?= $this->Paginator->sort('military_status_id') ?></th>
-                    <th><?= $this->Paginator->sort('social_status_id') ?></th>
-                    <th><?= $this->Paginator->sort('occupation_status_id') ?></th>
-                    <th><?= $this->Paginator->sort('prof_category_id') ?></th>
-                    <th class="actions"><?= __('Actions') ?></th>
+                    <th><?= $this->Paginator->sort(__('Nr')) ?></th>
+                    <th><?= $this->Paginator->sort('surname', __('Name'), ['model' => 'Persons']) ?></th>
+                    <th><?= __('Anmerkungen') ?></th>
+                    <th><?= $this->Paginator->sort(__('Beruf')) ?></th>
+					<th><?= $this->Paginator->sort(__('Adresse(n)')) ?></th>
+                    <th><?= __('Sonstige Merkmale') ?></th>
+                    <th><?= __('Kategorien') ?></th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($persons as $person): ?>
+                <?php
+				$countNo = 1;
+				foreach ($persons as $person): ?>
+				<?php
+					$name = '';
+					if(!empty($person->title)){
+						$name.=h($person->title).' ';
+					}
+					if(!empty($person->name_predicate)){
+						$name.=h($person->name_predicate).' ';
+					}
+					$name.=h($person->surname);
+					if(!empty($person->first_name)){
+						$name.=', '.h($person->first_name);
+					}
+					
+					$cats = [];
+					if($person->has('prof_category')){
+						array_push($cats, $person->prof_category->name);
+					}
+					if($person->has('social_status') && $person->social_status->status != 'Commoner'){
+						array_push($cats, $person->social_status->status);
+					}
+					if($person->has('occupation_status') && $person->occupation_status->status != 'Active'){
+						array_push($cats, $person->occupation_status->status);
+					}
+					if($person->has('military_status') && $person->military_status->status != 'Civil'){
+						array_push($cats, $person->military_status->status);
+					}
+					
+					$plus = [];
+					if($person->has('ldh_rank')){
+						array_push($plus, $person->ldh_rank->rank);
+					}
+					if($person->de_l_institut){
+						array_push($plus, '(de l\'Institut)');
+					}
+					if($person->bold){
+						array_push($plus, __('Vorab-Abonnent'));
+					}
+					if($person->notable_commercant){
+						array_push($plus, 'Notable Commerçant');
+					}
+					if($person->advert){
+						array_push($plus, __('mit Geschäftseintrag'));
+					}
+				?>
                 <tr>
-                    <td><?= $this->Number->format($person->id) ?></td>
-                    <td><?= h($person->surname) ?></td>
-                    <td><?= h($person->first_name) ?></td>
-                    <td><?= h($person->gender) ?></td>
-                    <td><?= h($person->title) ?></td>
-                    <td><?= h($person->name_predicate) ?></td>
+                    <td><?= $this->Number->format($countNo)?></td>
+                    <td><?= $this->Html->link($name, ['controller' => 'Persons', 'action' => 'view', $person->id]);$name ?></td>
                     <td><?= h($person->specification_verbatim) ?></td>
                     <td><?= h($person->profession_verbatim) ?></td>
-                    <td><?= h($person->de_l_institut) ?></td>
-                    <td><?= h($person->notable_commercant) ?></td>
-                    <td><?= h($person->bold) ?></td>
-                    <td><?= h($person->advert) ?></td>
-                    <td><?= $person->has('ldh_rank') ? $this->Html->link($person->ldh_rank->id, ['controller' => 'LdhRanks', 'action' => 'view', $person->ldh_rank->id]) : '' ?></td>
-                    <td><?= $person->has('military_status') ? $this->Html->link($person->military_status->id, ['controller' => 'MilitaryStatuses', 'action' => 'view', $person->military_status->id]) : '' ?></td>
-                    <td><?= $person->has('social_status') ? $this->Html->link($person->social_status->id, ['controller' => 'SocialStatuses', 'action' => 'view', $person->social_status->id]) : '' ?></td>
-                    <td><?= $person->has('occupation_status') ? $this->Html->link($person->occupation_status->id, ['controller' => 'OccupationStatuses', 'action' => 'view', $person->occupation_status->id]) : '' ?></td>
-                    <td><?= $person->has('prof_category') ? $this->Html->link($person->prof_category->name, ['controller' => 'ProfCategories', 'action' => 'view', $person->prof_category->id]) : '' ?></td>
-                    <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $person->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $person->id], ['confirm' => __('Are you sure you want to delete # {0}?', $person->id)]) ?>
-                    </td>
+					<td><?php
+						if (!empty($person->addresses)){
+							foreach ($person->addresses as $address){
+								$streetOld = h($address->street->name_old_clean);
+								$streetNew = h($address->street->name_new);
+								$street;
+								if($streetOld === $streetNew){
+									$street = $streetOld;
+								} else {
+									$street = $streetOld.' ('.$streetNew.')';
+								}
+								$housNo = h($address->houseno);
+								if(!empty($address->houseno_specification)){
+									$housNo.=' '.h($address->houseno_specification);
+								}
+								
+								echo $this->Html->link($street, ['controller' => 'Streets', 'action' => 'view', $address->street->id]);
+								echo ' '.$housNo.'<br>';
+							}
+						
+						}
+					?></td>
+                    <td><?= implode(', ', $plus)?></td>
+                    <td><?= implode(', ', $cats)?></td>
                 </tr>
-                <?php endforeach; ?>
+                <?php 
+				$countNo++;
+				endforeach; ?>
             </tbody>
         </table>
     </div>
@@ -71,30 +116,74 @@
     </div>
 </div>
 <div class="companies index content">
-    <h3><?= __('Companies') ?></h3>
+    <h3><?= __('Unternehmen') ?></h3>
     <div class="table-responsive">
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('name') ?></th>
-                    <th><?= $this->Paginator->sort('profession_verbatim') ?></th>
-                    <th><?= $this->Paginator->sort('prof_category_id') ?></th>
-                    <th class="actions"><?= __('Actions') ?></th>
+                    <th><?= $this->Paginator->sort(__('Nr')) ?></th>
+                    <th><?= $this->Paginator->sort(__('Name')) ?></th>
+                    <th><?= __('Anmerkungen') ?></th>
+                    <th><?= $this->Paginator->sort(__('Beruf')) ?></th>
+					<th><?= $this->Paginator->sort(__('Adresse(n)')) ?></th>
+                    <th><?= __('Sonstige Merkmale') ?></th>
+                    <th><?= __('Kategorien') ?></th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($companies as $company): ?>
+                <?php
+					$countNo = 1;
+					foreach ($companies as $company): ?>
+				<?php
+					$cats = [];
+					if($company->has('prof_category')){
+						array_push($cats, $person->prof_category->name);
+					}
+					
+					$plus = [];
+					if($company->bold){
+						array_push($plus, __('Vorab-Abonnent'));
+					}
+					if($company->notable_commercant){
+						array_push($plus, 'Notable Commerçant');
+					}
+					if($company->advert){
+						array_push($plus, __('mit Geschäftseintrag'));
+					}
+				?>
                 <tr>
-                    <td><?= $this->Number->format($company->id) ?></td>
-                    <td><?= h($company->name) ?></td>
+                    <td><?= $this->Number->format($countNo) ?></td>
+                    <td><?= $this->Html->link(h($company->name), ['controller' => 'Companies', 'action' => 'view', $company->id]) ?></td>
+					<td><?= h($company->specification_verbatim) ?></td>
 					<td><?= h($company->profession_verbatim) ?></td>
-                    <td><?= $company->has('prof_category') ? $this->Html->link($company->prof_category->name, ['controller' => 'ProfCategories', 'action' => 'view', $company->prof_category->id]) : '' ?></td>
-                    <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $company->id]) ?>
-                    </td>
+                    <td><?php
+						if (!empty($company->addresses)){
+							foreach ($company->addresses as $address){
+								$streetOld = h($address->street->name_old_clean);
+								$streetNew = h($address->street->name_new);
+								$street;
+								if($streetOld === $streetNew){
+									$street = $streetOld;
+								} else {
+									$street = $streetOld.' ('.$streetNew.')';
+								}
+								$housNo = h($address->houseno);
+								if(!empty($address->houseno_specification)){
+									$housNo.=' '.h($address->houseno_specification);
+								}
+								
+								echo $this->Html->link($street, ['controller' => 'Streets', 'action' => 'view', $address->street->id]);
+								echo ' '.$housNo.'<br>';
+							}
+						}
+					?></td>
+                    <td><?= implode(', ', $plus)?></td>
+                    <td><?= implode(', ', $cats)?></td>
                 </tr>
-                <?php endforeach; ?>
+                <?php 
+					$countNo++;
+					endforeach;
+				?>
             </tbody>
         </table>
     </div>
