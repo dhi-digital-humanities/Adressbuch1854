@@ -4,18 +4,31 @@
  * @var \App\Model\Entity\Person[]|\Cake\Collection\CollectionInterface $persons
  */
 ?>
-<h2><?= __('Ergebnisse für Ihre Suche:') ?></h2>
+<h2><?= __('Ergebnisse') ?></h2>
+<?php echo __('Für Ihre Suchafrage wurden ').
+	$this->Paginator->counter(__('{{count}} Person(en)'), ['model' => 'Persons']).
+	' und '.
+	$this->Paginator->counter(__('{{count}} Unternehmen'), ['model' => 'Companies']).
+	' gefunden:';	
+?>
+
+<?php if (!$persons->isEmpty()) : ?>
 <div class="persons index content">
     <h3><?= __('Personen') ?></h3>
     <div class="table-responsive">
+		<!-- TODO: $this->Paginator->limitControl([10 => 10, 25 => 25, 50 => 50]) 
+		-> für Ergebnisanzeige? -->
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort(__('Nr')) ?></th>
-                    <th><?= $this->Paginator->sort('surname', __('Name'), ['model' => 'Persons']) ?></th>
+					<!-- TODO: mit Paginator->sort() Sortierung nach Spalten ermöglichen?
+						Geht vielleicht nur mit korrekten Modelnamen, nicht mit zusammengesetzten
+						Dingen wie Name oder Adresse -->
+                    <th><?= __('Nr') ?></th>
+                    <th><?= __('Name') ?></th>
                     <th><?= __('Anmerkungen') ?></th>
-                    <th><?= $this->Paginator->sort(__('Beruf')) ?></th>
-					<th><?= $this->Paginator->sort(__('Adresse(n)')) ?></th>
+                    <th><?= __('Beruf') ?></th>
+					<th><?= __('Adresse(n)') ?></th>
                     <th><?= __('Sonstige Merkmale') ?></th>
                     <th><?= __('Kategorien') ?></th>
                 </tr>
@@ -106,15 +119,17 @@
     </div>
     <div class="paginator">
         <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->first('<< ' . __('Anfang')) ?>
+            <?= $this->Paginator->prev('< ' . __('zurück')) ?>
             <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
+            <?= $this->Paginator->next(__('vor') . ' >') ?>
+            <?= $this->Paginator->last(__('Ende') . ' >>') ?>
         </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+        <p><?= $this->Paginator->counter(__('Seite {{page}} von {{pages}}, zeige {{current}} Person(en) von {{count}}'), ['model' => 'Persons']) ?></p>
     </div>
 </div>
+<?php endif; ?>
+<?php if (!$companies->isEmpty()) : ?>
 <div class="companies index content">
     <h3><?= __('Unternehmen') ?></h3>
     <div class="table-responsive">
@@ -137,7 +152,7 @@
 				<?php
 					$cats = [];
 					if($company->has('prof_category')){
-						array_push($cats, $person->prof_category->name);
+						array_push($cats, $company->prof_category->name);
 					}
 					
 					$plus = [];
@@ -162,11 +177,13 @@
 								$streetOld = h($address->street->name_old_clean);
 								$streetNew = h($address->street->name_new);
 								$street;
+								
 								if($streetOld === $streetNew){
 									$street = $streetOld;
 								} else {
 									$street = $streetOld.' ('.$streetNew.')';
 								}
+								
 								$housNo = h($address->houseno);
 								if(!empty($address->houseno_specification)){
 									$housNo.=' '.h($address->houseno_specification);
@@ -189,15 +206,17 @@
     </div>
     <div class="paginator">
         <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->first('<< ' . __('Anfang')) ?>
+            <?= $this->Paginator->prev('< ' . __('zurück')) ?>
             <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
+            <?= $this->Paginator->next(__('vor') . ' >') ?>
+            <?= $this->Paginator->last(__('Ende') . ' >>') ?>
         </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+        <p><?= $this->Paginator->counter(__('Seite {{page}} von {{pages}}, zeige {{current}} Unternehmen von {{count}}'), ['model' => 'Companies']) ?></p>
     </div>
-	<div class="export">
+</div>
+<?php endif; ?>
+<div class="export content">
 	<h4>Ergebnisse exportieren</h4>
 	<?= $this->Form->postButton('Json', ['controller' => 'Search', 'action' => 'export/json', 'data' => ['persons' => $persons, 'companies' => $companies]])?>
 	<?= $this->Form->postButton('XML', ['controller' => 'Search', 'action' => 'export/xml', 'data' => ['persons' => $persons, 'companies' => $companies]])?>
@@ -205,5 +224,4 @@
 	<h4> Gesamte Datenbank exportieren</h4>
 	<?= $this->Form->postButton('SQL', ['controller' => 'Search', 'action' => 'export/sql', 'data' => ['persons' => $persons, 'companies' => $companies]])?>
 	<?= $this->Form->postButton('CSV', ['controller' => 'Search', 'action' => 'export/csv', 'data' => ['persons' => $persons, 'companies' => $companies]])?>
-	</div>
 </div>

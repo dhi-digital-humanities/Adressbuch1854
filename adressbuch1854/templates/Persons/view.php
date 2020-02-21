@@ -166,6 +166,9 @@
                                 <?= $this->Html->link(__('View'), ['controller' => 'ExternalReferences', 'action' => 'view', $externalReferences->id]) ?>
                             </td>
                         </tr>
+						<?php if(true){
+							echo 'EINE SCHLEIFE!';
+						}?>
                         <?php endforeach; ?>
                     </table>
                 </div>
