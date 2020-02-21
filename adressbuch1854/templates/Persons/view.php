@@ -3,6 +3,41 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Person $person
  */
+	$name = '';
+	if(!empty($person->title)){
+		$name.=h($person->title).' ';
+	}
+	if(!empty($person->name_predicate)){
+		$name.=h($person->name_predicate).' ';
+	}
+	$name.=h($person->surname);
+	if(!empty($person->first_name)){
+		$name.=', '.h($person->first_name);
+	}
+	
+	$pageRefs = [];
+	foreach($person->original_references as $ref){
+		$pageRef = 'S. ';
+		$begP = $ref->begin_page_no;
+		$endP = $ref->end_page_no;
+		if($endP != null){
+			$pageRef .= $begP.'-'.$endP;
+		} else {
+			$pageRef .= $begP;
+		}
+		if($begP >= 9 && $begP <=18){
+			$pageRef .= ' '.__('(Geschäftsliste)');
+		}
+		array_push($pageRefs, $pageRef);
+	}
+	
+	$titles = [];
+	if(!empty($person->title)){
+		array_push($titles, $person->title);
+	}
+	if($person->de_l_institut){
+		array_push($titles, 'de l\'Institut');
+	}	
 ?>
 <div class="row">
     <aside class="column">
@@ -13,71 +48,81 @@
     </aside>
     <div class="column-responsive column-80">
         <div class="persons view content">
-            <h3><?= h($person->title) ?></h3>
+            <h3><?= h($name) ?></h3>
+			<?= __('Eintrag im Buch auf ').implode(' und ', $pageRefs).'.'?>
             <table>
                 <tr>
-                    <th><?= __('Surname') ?></th>
-                    <td><?= h($person->surname) ?></td>
+                    <th><?= __('Nachame') ?></th>
+                    <td><?= h($person->name_predicate).' '.h($person->surname) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('First Name') ?></th>
+                    <th><?= __('Vorname') ?></th>
                     <td><?= h($person->first_name) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Gender') ?></th>
-                    <td><?= h($person->gender) ?></td>
+                    <th><?= __('Geschlecht') ?></th>
+                    <td><?php
+						if($person->gender === 'M'){
+							echo 'Männlich';
+						} elseif ($person->gender === 'F'){
+							echo 'Weiblich';
+						} else {
+							echo 'Nicht bekannt';
+						} ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Title') ?></th>
-                    <td><?= h($person->title) ?></td>
+                    <th><?= __('Titel') ?></th>
+                    <td><?= implode(', ', $titles)?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Name Predicate') ?></th>
-                    <td><?= h($person->name_predicate) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Specification Verbatim') ?></th>
+                    <th><?= __('Anmerkungen wörtlich') ?></th>
                     <td><?= h($person->specification_verbatim) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Profession Verbatim') ?></th>
+                    <th><?= __('Beruf') ?></th>
                     <td><?= h($person->profession_verbatim) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Ldh Rank') ?></th>
-                    <td><?= $person->has('ldh_rank') ? $this->Html->link($person->ldh_rank->rank, ['controller' => 'LdhRanks', 'action' => 'view', $person->ldh_rank->id]) : '' ?></td>
+                    <th><?= __('Berufskategorie') ?></th>
+                    <td><?= $person->has('prof_category') ? $person->prof_category->name : '' ?></td>
+                </tr>
+				<?php if($person->has('ldh_rank')) : ?>
+                <tr>
+                    <th><?= __('Rang der Légion d\'Honneur') ?></th>
+                    <td><?= $person->ldh_rank->rank ?></td>
+                </tr>
+				<?php endif;?>
+                <tr>
+                    <th><?= __('Sonstige Kategorien') ?></th>
+                    <td>
+						<table>
+							<tr>
+								<th><?= __('Stand')?></th>
+								<th><?= __('Militärischer Status')?></th>
+								<th><?= __('Beruflicher Status')?></th>
+							</tr>
+							<tr>
+								<td><?=$person->social_status->status?></td>
+								<td><?=$person->military_status->status?></td>
+								<td><?=$person->occupation_status->status?></td>
+							</tr>
+						</table>
                 </tr>
                 <tr>
-                    <th><?= __('Military Status') ?></th>
-                    <td><?= $person->has('military_status') ? $this->Html->link($person->military_status->status, ['controller' => 'MilitaryStatuses', 'action' => 'view', $person->military_status->id]) : '' ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Social Status') ?></th>
-                    <td><?= $person->has('social_status') ? $this->Html->link($person->social_status->status, ['controller' => 'SocialStatuses', 'action' => 'view', $person->social_status->id]) : '' ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Occupation Status') ?></th>
-                    <td><?= $person->has('occupation_status') ? $this->Html->link($person->occupation_status->status, ['controller' => 'OccupationStatuses', 'action' => 'view', $person->occupation_status->id]) : '' ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Prof Category') ?></th>
-                    <td><?= $person->has('prof_category') ? $this->Html->link($person->prof_category->name, ['controller' => 'ProfCategories', 'action' => 'view', $person->prof_category->id]) : '' ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('De L Institut') ?></th>
-                    <td><?= $person->de_l_institut ? __('Yes') : __('No'); ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Notable Commercant') ?></th>
-                    <td><?= $person->notable_commercant ? __('Yes') : __('No'); ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Bold') ?></th>
-                    <td><?= $person->bold ? __('Yes') : __('No'); ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Advert') ?></th>
-                    <td><?= $person->advert ? __('Yes') : __('No'); ?></td>
+                    <th><?= __('Sonstige Merkmale') ?></th>
+                    <td>
+						<table>
+							<tr>
+								<th><?= __('Vorab-Abonnent (fett)')?></th>
+								<th><?= __('Notable Commerçant [NC]')?></th>
+								<th><?= __('In Geschäftsliste')?></th>
+							</tr>
+							<tr>
+								<td><?=$person->bold ? __('Ja') : __('Nein');?></td>
+								<td><?=$person->notable_commercant ? __('Ja') : __('Nein');?></td>
+								<td><?=$person->advert ? __('Ja') : __('Nein');?></td>
+							</tr>
+						</table>
                 </tr>
             </table>
             <div class="related">
