@@ -2,10 +2,12 @@
 declare(strict_types=1);
 
 namespace App\Controller;
+use App\Controller\AppController;
+use Cake\Http\Exception\NotFoundException;
+
 
 class SearchController extends AppController
 {
-	
 	public function initialize() : void {
 		parent::initialize();
 		$this->loadModel('Persons');
@@ -91,45 +93,72 @@ class SearchController extends AppController
 	}
 	
 	public function export($format = ''){
+			
+		$sqlFilePath = '';
+		$csvFilePath = '';
+	
 		$format = strtolower($format);
 
         // Format to view mapping
         $formats = [
           'xml' => 'Xml',
           'json' => 'Json',
+          'sql' => 'SQL',
+          'csv' => 'CSV',
         ];
 
         // Error on unknown type
         if (!isset($formats[$format])) {
             throw new NotFoundException(__('Unknown format.'));
         }
-
-        // Set Out Format View
-        $this->viewBuilder()->setClassName($formats[$format]);
-
-        // Get data
-        //$persons = $this->getPersonAll();
-		//$companies = $this->getCompanyAll();
-		$persons= $this->request->getData('persons');
-		$companies= $this->request->getData('companies');
 		
-		/*$type = $this->request->getQuery('type');
-		if($type == 'simp'){
-			$this->simpleSearch($persons, $companies);
-		} elseif($type == 'det'){
-			$this->detailedSearch($persons, $companies);
-		} else{
-			$persons->where(['persons.id' => 0]);
-			$companies->where(['companies.id' => 0]);
-		}*/
+		switch($format){
+			case 'sql':
+				// Set Download of file
+				$this->response = $this->response->withCharset('UTF-8');
+				return $this->response->withFile($sqlFilePath, ['download' => true, 'name' => 'Adressbuch1854_complete.sql']);
+				break;
+			case 'csv':
+				// Set Download of file
+				$this->response = $this->response->withCharset('UTF-8');
+				return $this->response->withFile($csvFilePath, ['download' => true, 'name' => 'Adressbuch1854_complete.csv']);
+				break;
+			case 'json':
+				// No break. Will cause json to have the same code as xml.
+			case 'xml':
+			
+				// Set Out Format View
+				$this->viewBuilder()->setClassName($formats[$format]);
 
-        // Set Data View
-        $this->set(compact('persons', 'companies'));
-        $this->viewBuilder()->setOption('serialize', ['persons']);
-        $this->viewBuilder()->setOption('serialize', ['companies']);
+				// Frage: wie die Parameter der Suche übergeben?
+				// Get data
+				$persons = $this->getPersonAll();
+				$companies = $this->getCompanyAll();
+				//$persons= $this->request->getData('persons');
+				//$companies= $this->request->getData('companies');
+				
+				/*$type = $this->request->getQuery('type');
+				if($type == 'simp'){
+					$this->simpleSearch($persons, $companies);
+				} elseif($type == 'det'){
+					$this->detailedSearch($persons, $companies);
+				} else{
+					$persons->where(['persons.id' => 0]);
+					$companies->where(['companies.id' => 0]);
+				}*/
 
-        // Set Force Download
-        return $this->response->withDownload('Adressbuch1854_search_results-' . date('YmdHis') . '.' . $format);
+				// Set Data View
+				$this->set(compact('persons', 'companies'));
+				$this->viewBuilder()->setOption('serialize', ['persons', 'companies']);
+
+				// Problem: wird durch diese Controller-Action eine View gerendert, so wird der Json bzw. XML-Code korrekt angezeigt.
+				// Nutzt man die Browser-eigene Download-Funktion in Firefox, so erhält man die passende Datei dazu als Download.
+				// Wird keine view gerendert sondern withDownload() genutzt, so ist die als response gesendete Datei leer.
+				// Set Force Download
+				$this->response = $this->response->withCharset('UTF-8');
+				return $this->response->withDownload('Adressbuch1854_search_results-' . date('YmdHis') . '.' . $format);
+		}
+		
     }
 	
 	private function detailedSearch(&$queryP, &$queryC){

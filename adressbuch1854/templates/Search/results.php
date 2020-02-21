@@ -112,5 +112,9 @@
 	<h4>Ergebnisse exportieren</h4>
 	<?= $this->Form->postButton('Json', ['controller' => 'Search', 'action' => 'export/json', 'data' => ['persons' => $persons, 'companies' => $companies]])?>
 	<?= $this->Form->postButton('XML', ['controller' => 'Search', 'action' => 'export/xml', 'data' => ['persons' => $persons, 'companies' => $companies]])?>
+	...oder...
+	<h4> Gesamte Datenbank exportieren</h4>
+	<?= $this->Form->postButton('SQL', ['controller' => 'Search', 'action' => 'export/sql', 'data' => ['persons' => $persons, 'companies' => $companies]])?>
+	<?= $this->Form->postButton('CSV', ['controller' => 'Search', 'action' => 'export/csv', 'data' => ['persons' => $persons, 'companies' => $companies]])?>
 	</div>
 </div>
