@@ -44,7 +44,8 @@ class PersonsController extends AppController
 			'OccupationStatuses',
 			'ProfCategories',
 			'Addresses.Streets.Arrondissements',
-			'Companies',
+			'Companies.ProfCategories',
+			'Companies.Addresses.Streets',
 			'ExternalReferences.ReferenceTypes',
 			'OriginalReferences'],
         ]);

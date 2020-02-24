@@ -34,7 +34,16 @@ class ArrondissementsController extends AppController
     public function view($id = null)
     {
         $arrondissement = $this->Arrondissements->get($id, [
-            'contain' => ['Streets'],
+            'contain' => [
+				'Streets.Addresses.Companies.ProfCategories',
+				'Streets.Addresses.Persons.ProfCategories',
+				'Streets.Addresses.Persons.MilitaryStatuses',
+				'Streets.Addresses.Persons.OccupationStatuses',
+				'Streets.Addresses.Persons.SocialStatuses',
+				'Streets.Addresses.Persons.LdhRanks',
+				'Streets.Addresses.Persons.Addresses.Streets',
+				'Streets.Addresses.Companies.Addresses.Streets'
+			],
         ]);
 
         $this->set('arrondissement', $arrondissement);

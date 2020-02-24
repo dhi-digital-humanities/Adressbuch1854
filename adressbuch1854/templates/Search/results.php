@@ -83,7 +83,7 @@
 				?>
                 <tr>
                     <td><?= $this->Number->format($countNo)?></td>
-                    <td><?= $this->Html->link($name, ['controller' => 'Persons', 'action' => 'view', $person->id]);$name ?></td>
+                    <td><?= $this->Html->link($name, ['controller' => 'Persons', 'action' => 'view', $person->id]) ?></td>
                     <td><?= h($person->specification_verbatim) ?></td>
                     <td><?= h($person->profession_verbatim) ?></td>
 					<td><?php
@@ -103,9 +103,11 @@
 								}
 								
 								echo $this->Html->link($street, ['controller' => 'Streets', 'action' => 'view', $address->street->id]);
-								echo ' '.$housNo.'<br>';
+								
+								echo ' '.$housNo;
+								
+								echo '<br>';
 							}
-						
 						}
 					?></td>
                     <td><?= implode(', ', $plus)?></td>
@@ -171,9 +173,8 @@
                     <td><?= $this->Html->link(h($company->name), ['controller' => 'Companies', 'action' => 'view', $company->id]) ?></td>
 					<td><?= h($company->specification_verbatim) ?></td>
 					<td><?= h($company->profession_verbatim) ?></td>
-                    <td><?php
-						if (!empty($company->addresses)){
-							foreach ($company->addresses as $address){
+                    <td><?php if (!empty($company->addresses)):?>
+						<?php foreach ($company->addresses as $address){
 								$streetOld = h($address->street->name_old_clean);
 								$streetNew = h($address->street->name_new);
 								$street;
@@ -190,10 +191,10 @@
 								}
 								
 								echo $this->Html->link($street, ['controller' => 'Streets', 'action' => 'view', $address->street->id]);
-								echo ' '.$housNo.'<br>';
-							}
-						}
-					?></td>
+								echo ' '.$housNo;
+						}?>
+						<?php endif; ?>
+					</td>
                     <td><?= implode(', ', $plus)?></td>
                     <td><?= implode(', ', $cats)?></td>
                 </tr>

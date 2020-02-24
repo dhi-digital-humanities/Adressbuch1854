@@ -34,10 +34,24 @@ class StreetsController extends AppController
     public function view($id = null)
     {
         $street = $this->Streets->get($id, [
-            'contain' => ['Arrondissements', 'Addresses'],
+            'contain' => [
+            'Arrondissements'],
         ]);
+		
+		$sameStreets = $this->Streets->find()->contain([
+            'Arrondissements',
+			'Addresses.Persons.LdhRanks',
+			'Addresses.Persons.MilitaryStatuses',
+			'Addresses.Persons.SocialStatuses',
+			'Addresses.Persons.OccupationStatuses',
+			'Addresses.Persons.ProfCategories',
+			'Addresses.Persons.Addresses.Streets',
+			'Addresses.Companies.Addresses.Streets',
+			'Addresses.Companies.ProfCategories'],
+		);
+		$sameStreets->where(['name_old_clean' => $street->name_old_clean]);
 
-        $this->set('street', $street);
+		$this->set(compact('street', 'sameStreets'));
     }
 
     /**

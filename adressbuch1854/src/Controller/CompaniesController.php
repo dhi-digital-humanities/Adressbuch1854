@@ -42,7 +42,11 @@ class CompaniesController extends AppController
 			'Addresses.Streets.Arrondissements',
 			'ExternalReferences.ReferenceTypes',
 			'OriginalReferences',
-			'Persons'],
+			'Persons.ProfCategories',
+			'Persons.SocialStatuses',
+			'Persons.MilitaryStatuses',
+			'Persons.OccupationStatuses',
+			'Persons.Addresses.Streets']
         ]);
 
         $this->set('company', $company);
