@@ -49,7 +49,7 @@
     <div class="column-responsive column-80">
         <div class="persons view content">
             <h3><?= h($name) ?></h3>
-			<?= __('Eintrag im Buch auf ').implode(' und ', $pageRefs).'.'?>
+			<?= !empty($pageRefs) ? __('Eintrag im Buch auf ').implode(' und ', $pageRefs).'.' : ''?>
             <table>
                 <tr>
                     <th><?= __('Nachame') ?></th>

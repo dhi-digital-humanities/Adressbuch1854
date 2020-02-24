@@ -33,90 +33,40 @@ class StreetsController extends AppController
      */
     public function view($id = null)
     {
+		$this->loadModel('Persons');
+		$this->loadModel('Companies');
+		
         $street = $this->Streets->get($id, [
             'contain' => [
             'Arrondissements'],
         ]);
 		
-		$sameStreets = $this->Streets->find()->contain([
-            'Arrondissements',
-			'Addresses.Persons.LdhRanks',
-			'Addresses.Persons.MilitaryStatuses',
-			'Addresses.Persons.SocialStatuses',
-			'Addresses.Persons.OccupationStatuses',
-			'Addresses.Persons.ProfCategories',
-			'Addresses.Persons.Addresses.Streets',
-			'Addresses.Companies.Addresses.Streets',
-			'Addresses.Companies.ProfCategories'],
-		);
-		$sameStreets->where(['name_old_clean' => $street->name_old_clean]);
+		$oldName = $street->name_old_clean;
+		
+		$sameStreets = $this->Streets->find()->where(['name_old_clean' => $oldName]);
+		
+		$persons = $this->Persons->find()->contain([
+			'LdhRanks',
+			'MilitaryStatuses',
+			'SocialStatuses',
+			'OccupationStatuses',
+			'ProfCategories',
+			'Addresses.Streets']);
+			
+		$persons->matching('Addresses.Streets', function($q) use ($oldName){
+					return $q->where(['Streets.name_old_clean LIKE' => $oldName]);
+				})
+				->distinct(['Persons.id']);
+			
+		$companies = $this->Companies->find()->contain([
+			'Addresses.Streets',
+			'ProfCategories']);
+			
+		$companies->matching('Addresses.Streets', function($q) use ($oldName){
+					return $q->where(['Streets.name_old_clean LIKE' => $oldName]);
+				})
+				->distinct(['Companies.id']);
 
-		$this->set(compact('street', 'sameStreets'));
-    }
-
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-     */
-    public function add()
-    {
-        $street = $this->Streets->newEmptyEntity();
-        if ($this->request->is('post')) {
-            $street = $this->Streets->patchEntity($street, $this->request->getData());
-            if ($this->Streets->save($street)) {
-                $this->Flash->success(__('The street has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The street could not be saved. Please, try again.'));
-        }
-        $arrondissements = $this->Streets->Arrondissements->find('list', ['limit' => 200]);
-        $this->set(compact('street', 'arrondissements'));
-    }
-
-    /**
-     * Edit method
-     *
-     * @param string|null $id Street id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function edit($id = null)
-    {
-        $street = $this->Streets->get($id, [
-            'contain' => ['Arrondissements'],
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $street = $this->Streets->patchEntity($street, $this->request->getData());
-            if ($this->Streets->save($street)) {
-                $this->Flash->success(__('The street has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The street could not be saved. Please, try again.'));
-        }
-        $arrondissements = $this->Streets->Arrondissements->find('list', ['limit' => 200]);
-        $this->set(compact('street', 'arrondissements'));
-    }
-
-    /**
-     * Delete method
-     *
-     * @param string|null $id Street id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function delete($id = null)
-    {
-        $this->request->allowMethod(['post', 'delete']);
-        $street = $this->Streets->get($id);
-        if ($this->Streets->delete($street)) {
-            $this->Flash->success(__('The street has been deleted.'));
-        } else {
-            $this->Flash->error(__('The street could not be deleted. Please, try again.'));
-        }
-
-        return $this->redirect(['action' => 'index']);
+		$this->set(compact('street', 'sameStreets', 'companies', 'persons'));
     }
 }

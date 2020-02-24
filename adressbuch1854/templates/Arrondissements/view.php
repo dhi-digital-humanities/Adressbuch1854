@@ -10,28 +10,10 @@
 	$type = $arrondissement->type;
 	$no = $arrondissement->no;
 	if($no == 1){
-		$noStr = $no.'ier ('.$type.')';
+		$noStr = $no.'ier Arrondissement ('.$type.')';
 	} else {
-		$noStr = $no.'ième ('.$type.')';
+		$noStr = $no.'ième Arrondissement ('.$type.')';
 	}
-	
-	$persons = [];
-	$companies = [];
-	foreach($arrondissement->streets as $str){
-		foreach($str->addresses as $addr){
-			if($addr->persons != null){
-				foreach($addr->persons as $person){
-					array_push($persons, $person);
-				}
-			} elseif($addr->companies != null) {
-				foreach($addr->companies as $company){
-					array_push($companies, $company);
-				}
-			}
-		}
-	}
-	$persons = new Collection($persons);
-	$companies = new Collection($companies);
 ?>
 <div class="row">
     <aside class="column">
@@ -58,7 +40,7 @@
                     <td><?= $arrondissement->postcode ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Insee Citycode') ?></th>
+                    <th><?= __('INSEE Citycode') ?></th>
                     <td><?= $arrondissement->insee_citycode ?></td>
                 </tr>
 				<?php endif; ?>

@@ -30,7 +30,7 @@
     <div class="column-responsive column-80">
         <div class="companies view content">
             <h3><?= h($company->name) ?></h3>
-			<?=	__('Eintrag im Buch auf ').implode(' und ', $pageRefs).'.' ?>
+			<?=	!empty($pageRefs) ? __('Eintrag im Buch auf ').implode(' und ', $pageRefs).'.' : '' ?>
             <table>
                 <tr>
                     <th><?= __('Name') ?></th>
@@ -128,8 +128,8 @@
 						</tr>
                         <?php foreach ($company->persons as $person) : ?>
                         <?php
-							if(!empty($person->title)){
 							$name = '';
+							if(!empty($person->title)){
 								$name.=h($person->title).' ';
 							}
 							if(!empty($person->name_predicate)){

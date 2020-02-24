@@ -20,24 +20,6 @@
 		}
 	}
 	
-	$persons = [];
-	$companies = [];
-	foreach($sameStreets as $str){
-		foreach($str->addresses as $addr){
-			if($addr->persons != null){
-				foreach($addr->persons as $person){
-					array_push($persons, $person);
-				}
-			} elseif($addr->companies != null) {
-				foreach($addr->companies as $company){
-					array_push($companies, $company);
-				}
-			}
-		}
-	}
-	$persons = new Collection($persons);
-	$companies = new Collection($companies);
-	
 ?>
 <div class="row">
     <aside class="column">
@@ -92,8 +74,8 @@
 						</tr>
                         <?php foreach ($persons as $person) : ?>
                         <?php
-							if(!empty($person->title)){
 							$name = '';
+							if(!empty($person->title)){
 								$name.=h($person->title).' ';
 							}
 							if(!empty($person->name_predicate)){
