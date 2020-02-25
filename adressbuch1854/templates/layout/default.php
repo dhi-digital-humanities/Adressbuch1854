@@ -14,7 +14,7 @@
  * @var \App\View\AppView $this
  */
 
-$cakeDescription = 'CakePHP: the rapid development php framework';
+$description = 'Adressbuch 1854';
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,10 +22,10 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-        <?= $cakeDescription ?>:
+        <?= $description ?>:
         <?= $this->fetch('title') ?>
     </title>
-    <?= $this->Html->meta('icon') ?>
+    <?= $this->Html->meta('favicon.jpg', '../../webroot/favicon.jpg', ['type' => 'icon']) ?>
 
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.css">
@@ -36,16 +36,35 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
+    <?= $this->Html->css('addr.general.css') ?>
 </head>
 <body>
+	<header>
+        <div class="wrapper-item">
+			<!-- todo: Link ändern -->
+            <a id="title-logo" href="../Pages">Adressbuch der Deutschen in Paris von 1854</a>
+        </div>
+		<div class="wrapper-item search form" id="simp-search">
+			<?= $this->Form->create(null, ['type' => 'get', 'url' => '/search/results']) ?>
+			<fieldset class="simp-search-item">
+				<?php
+					// set parameter for search type to "simple"
+					echo $this->Form->hidden('type', ['value' => 'simp']);
+					echo $this->Form->control('text', ['maxlength' => 256, 'label' => false, 'placeholder' => __('Freitextsuche')]);
+				?>
+			</fieldset>
+			<?= $this->Form->button(__('Los'), ['class' => 'simp-search-item']) ?>
+			<?= $this->Form->end() ?>
+			<!--Hinweis: Die Freitextsuche sucht nach den Feldern (Nach)Name, Vorname, Berufsbezeichnung,
+			Anmerkungen zur Person/zum Unternehmen, alter und neuer Straßenname sowie Anmerkungen zur Adresse.
+			Für genauere Abfragen nutzen Sie bitte die erweiterte Suche.-->
+		</div>
+	</header>
     <nav class="top-nav">
-        <div class="top-nav-title">
-            <a href="/"><span>Cake</span>PHP</a>
-        </div>
-        <div class="top-nav-links">
-            <a target="_blank" href="https://book.cakephp.org/4/">Documentation</a>
-            <a target="_blank" href="https://api.cakephp.org/4/">API</a>
-        </div>
+		<?= $this->Html->link(__('Suche'), ['controller' => 'Search', 'action' => 'query'], ['class' => 'top-nav-item']) ?>
+		<?= $this->Html->link(__('Das Adressbuch'), ['controller' => 'Pages', 'action' => 'addressbook'], ['class' => 'top-nav-item']) ?>
+		<?= $this->Html->link(__('Das Projekt'), ['controller' => 'Pages', 'action' => 'project'], ['class' => 'top-nav-item']) ?>
+		<?= $this->Html->link(__('Links und Publikationen'), ['controller' => 'Pages', 'action' => 'publications'], ['class' => 'top-nav-item']) ?>
     </nav>
     <main class="main">
         <div class="container">
@@ -54,6 +73,10 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         </div>
     </main>
     <footer>
+		<a target="_blank" href="https://www.dhi-paris.fr/">
+			<img class='wrapper-item' id="dhi-logo" src="../../webroot/img/logo-dhi.png" alt="Logo DHIP" width="75" height="37" />
+		</a>
+		<?= $this->Html->link(__('Impressum'), ['controller' => 'Pages', 'action' => 'credits'], ['class' => 'wrapper-item', 'id' => 'credits']) ?>		
     </footer>
 </body>
 </html>

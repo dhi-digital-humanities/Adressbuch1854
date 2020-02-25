@@ -21,12 +21,7 @@
 	}
 ?>
 <div class="row">
-    <aside class="column">
-        <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('List Companies'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-        </div>
-    </aside>
+    <?= $this->element('sideNav', ['mapBox' => true])?>
     <div class="column-responsive column-80">
         <div class="companies view content">
             <h3><?= h($company->name) ?></h3>

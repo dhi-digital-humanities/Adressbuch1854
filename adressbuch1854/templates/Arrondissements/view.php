@@ -16,12 +16,7 @@
 	}
 ?>
 <div class="row">
-    <aside class="column">
-        <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('List Arrondissements'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-        </div>
-    </aside>
+    <?= $this->element('sideNav', ['mapBox' => false])?>
     <div class="column-responsive column-80">
         <div class="arrondissements view content">
             <h3><?= h($noStr) ?></h3>
@@ -60,8 +55,8 @@
 						</tr>
                         <?php foreach ($persons as $person) : ?>
                         <?php
-							if(!empty($person->title)){
 							$name = '';
+							if(!empty($person->title)){
 								$name.=h($person->title).' ';
 							}
 							if(!empty($person->name_predicate)){
@@ -210,4 +205,7 @@
 			<?php endif; ?>
         </div>
     </div>
+</div>
+<div id="mapBox" onload="initializeMap('multiView')">
+	Dies ist ein Platzhalter-Div für die Karte.
 </div>
