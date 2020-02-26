@@ -33,6 +33,15 @@ class ArrondissementsController extends AppController
      */
     public function view($id = null)
     {
+		$format = $this->request->getQuery('format');
+		if($format != null){
+			$format = strtolower($format);
+		}
+		
+		$formats = [
+          'xml' => 'Xml',
+          'json' => 'Json'
+        ];
 		
 		$this->loadModel('Persons');
 		$this->loadModel('Companies');
@@ -62,5 +71,23 @@ class ArrondissementsController extends AppController
 				->distinct(['Companies.id']);
 
         $this->set(compact('arrondissement', 'companies', 'persons'));
+		
+		
+		if(isset($formats[$format])){
+					
+			$this->viewBuilder()->setClassName($formats[$format]);
+			$this->viewBuilder()->setOption('serialize', ['arrondissement', 'companies', 'persons']);
+			//serialize-Fehler beim XML
+			
+			// Problem: wird durch diese Controller-Action eine View gerendert, so wird der Json bzw. XML-Code korrekt angezeigt.
+			// Nutzt man die Browser-eigene Download-Funktion in Firefox, so erhält man die passende Datei dazu als Download.
+			// Wird keine view gerendert sondern withDownload() genutzt, so ist die als response gesendete Datei leer.
+			// Set Force Download
+			/*if($this->request->getQuery('down') === 'true'){						
+				$this->response = $this->response->withCharset('UTF-8');
+				return $this->response->withDownload('Adressbuch1854_P-'.$id.'.'.$format);
+			}*/
+			
+		}
     }
 }

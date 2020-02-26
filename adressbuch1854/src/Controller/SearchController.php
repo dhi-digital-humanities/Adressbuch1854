@@ -92,12 +92,12 @@ class SearchController extends AppController
 		}*/
 	}
 	
-	public function export($format = ''){
+	public function export(){
 			
-		$sqlFilePath = '';
-		$csvFilePath = '';
+		$sqlFilePath = '../../resources/Adressbuch_1854_all.csv';
+		$csvFilePath = '../../resources/Adressbuch_1854_all.sql';
 	
-		$format = strtolower($format);
+		$format = strtolower($this->request->getQuery('format'));
 
         // Format to view mapping
         $formats = [
@@ -137,7 +137,7 @@ class SearchController extends AppController
 				//$persons= $this->request->getData('persons');
 				//$companies= $this->request->getData('companies');
 				
-				/*$type = $this->request->getQuery('type');
+				$type = $this->request->getQuery('type');
 				if($type == 'simp'){
 					$this->simpleSearch($persons, $companies);
 				} elseif($type == 'det'){
@@ -145,7 +145,7 @@ class SearchController extends AppController
 				} else{
 					$persons->where(['persons.id' => 0]);
 					$companies->where(['companies.id' => 0]);
-				}*/
+				}
 
 				// Set Data View
 				$this->set(compact('persons', 'companies'));
@@ -155,8 +155,8 @@ class SearchController extends AppController
 				// Nutzt man die Browser-eigene Download-Funktion in Firefox, so erhält man die passende Datei dazu als Download.
 				// Wird keine view gerendert sondern withDownload() genutzt, so ist die als response gesendete Datei leer.
 				// Set Force Download
-				$this->response = $this->response->withCharset('UTF-8');
-				return $this->response->withDownload('Adressbuch1854_search_results-' . date('YmdHis') . '.' . $format);
+				/*$this->response = $this->response->withCharset('UTF-8');
+				return $this->response->withDownload('Adressbuch1854_search_results-' . date('YmdHis') . '.' . $format);*/
 		}
 		
     }
