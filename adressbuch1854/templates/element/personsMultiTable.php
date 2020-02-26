@@ -26,7 +26,9 @@ if(!isset($addrAsList)){
 			<th><?= __('Sonstige Merkmale') ?></th>
 			<th><?= __('Kategorien') ?></th>
 		</tr>
-		<?php foreach ($persons as $person) : ?>
+		<?php 
+		$countNo = 1;
+		foreach ($persons as $person) : ?>
 		<?php
 			$name = '';
 			if(!empty($person->title)){
@@ -86,6 +88,8 @@ if(!isset($addrAsList)){
 			<td><?= implode(', ', $plus)?></td>
 			<td><?= implode(', ', $cats)?></td>
 		</tr>
-		<?php endforeach; ?>
+		<?php 
+		$countNo++;
+		endforeach; ?>
 	</table>
 </div>

@@ -19,6 +19,7 @@
 		}
 		array_push($pageRefs, $pageRef);
 	}
+	
 ?>
 <div class="row">
     <?= $this->element('sideNav', ['mapBox' => true])?>
@@ -106,9 +107,7 @@
                 </div>
             </div>
             <?php endif; ?>
-			<div class='citation'>
-				Zitierhinweis: <?php echo 'Hier wird ein passender Zitierhinweis erscheinen.'?>
-			</div>
         </div>
+		<?= $this->element('citation', ['id' => $company->id, 'type' => 'C', 'title' => $company->name, 'url' => $this->request->getUri()])?>
     </div>
 </div>
