@@ -12,6 +12,8 @@ if(!isset($count)){
 if(!isset($addrAsList)){
 	$addrAsList=false;
 }
+
+$this->Html->css('multiTable.css');
 ?>
 
 <div class="table-responsive">
@@ -52,15 +54,15 @@ if(!isset($addrAsList)){
 			<td><?= $this->Number->format($countNo)?></td>
 			<?php endif;?>
 			<td><?= $this->Html->link(h($company->name), ['controller' => 'Companies', 'action' => 'view', $company->id]) ?></td>
-			<td><?= h($company->specification_verbatim) ?></td>
+			<td class="small-width"><?= h($company->specification_verbatim) ?></td>
 			<td><?= h($company->profession_verbatim) ?></td>
 			<td><?php
 				if (!empty($company->addresses)){
 					echo $this->element('addressList', ['addresses' => $company->addresses, 'list' => $addrAsList]);
 				}
 			?></td>
-			<td><?= implode(', ', $plus)?></td>
-			<td><?= implode(', ', $cats)?></td>
+			<td class="middle-width"><?= implode(', ', $plus)?></td>
+			<td class="middle-width"><?= implode(', ', $cats)?></td>
 		</tr>
 		<?php 
 			$countNo++;

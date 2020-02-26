@@ -2,49 +2,57 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Arrondissement[]|\Cake\Collection\CollectionInterface $arrondissements
+ 
+ $limit = the number of items displayed per page
  */
+ 
+ $limit=20;
 ?>
 <div class="arrondissements index content">
-    <?= $this->Html->link(__('New Arrondissement'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <h3><?= __('Arrondissements') ?></h3>
     <div class="table-responsive">
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('no') ?></th>
-                    <th><?= $this->Paginator->sort('insee_citycode') ?></th>
-                    <th><?= $this->Paginator->sort('type') ?></th>
-                    <th><?= $this->Paginator->sort('postcode') ?></th>
-                    <th class="actions"><?= __('Actions') ?></th>
+                    <th><?= __('Nr') ?></th>
+                    <th><?= __('Arrondissement') ?></th>
+                    <th><?= __('Typ') ?></th>
+                    <th><?= __('Postleitzahl') ?></th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($arrondissements as $arrondissement): ?>
+                <?php
+					$countNo = 1;
+					foreach ($arrondissements as $arrondissement): ?>
+				<?php				
+				$noStr;
+				$no = $arrondissement->no;
+				if($no == 1){
+					$noStr = $no.'ier';
+				} else {
+					$noStr = $no.'ième';
+				}
+				?>
                 <tr>
-                    <td><?= $this->Number->format($arrondissement->id) ?></td>
-                    <td><?= $this->Number->format($arrondissement->no) ?></td>
-                    <td><?= $this->Number->format($arrondissement->insee_citycode) ?></td>
-                    <td><?= h($arrondissement->type) ?></td>
-                    <td><?= $this->Number->format($arrondissement->postcode) ?></td>
-                    <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $arrondissement->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $arrondissement->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $arrondissement->id], ['confirm' => __('Are you sure you want to delete # {0}?', $arrondissement->id)]) ?>
-                    </td>
+                    <td><?= $this->Number->format($countNo) ?></td>
+                    <td><?= $this->Html->link($noStr, ['action' => 'view', $arrondissement->id]) ?></td>
+                    <td><?= $arrondissement->type == 'pre1860' ? 'Vor 1860' : 'Nach 1860' ?></td>
+                    <td><?= $arrondissement->postcode ?></td>
                 </tr>
-                <?php endforeach; ?>
+                <?php
+				$countNo++;
+				endforeach; ?>
             </tbody>
         </table>
     </div>
     <div class="paginator">
         <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->first('<< ' . __('Anfang')) ?>
+            <?= $this->Paginator->prev('< ' . __('zurück')) ?>
             <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
+            <?= $this->Paginator->next(__('vor') . ' >') ?>
+            <?= $this->Paginator->last(__('Ende') . ' >>') ?>
         </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+        <p><?= $this->Paginator->counter(__('Seite {{page}} von {{pages}}, zeige {{current}} Arrondissement(s) von {{count}}')) ?></p>
     </div>
 </div>

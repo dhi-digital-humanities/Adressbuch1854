@@ -77,35 +77,7 @@
             </div>
             <?php endif; ?>
 			<?php if (!empty($company->external_references)) : ?>
-            <div class="related">
-                <h4><?= __('Literatur- und Quellenhinweise') ?></h4>
-                <div class="table-responsive">
-                    <table>
-                        <tr>
-							<th><?= __('Nr') ?></th>
-                            <th><?= __('Literatur/Quelle') ?></th>
-                            <th><?= __('Kurzbeschreibung') ?></th>
-                        </tr>
-                        <?php
-							$countNo = 1;
-							foreach ($company->external_references as $externalReference) : ?>
-                        <tr>
-							<td><?= $this->Number->format($countNo) ?></td>
-                            <td><?php 
-								if(!empty($externalReference->link)){
-									echo $this->Html->link(h($externalReference->reference), $externalReference->link, ['target' => 'new']);
-								} else {
-									echo h($externalReference->reference);
-								}
-								?></td>
-                            <td><?= h($externalReference->short_description) ?></td>
-                        </tr>
-                        <?php
-							$countNo++;
-							endforeach; ?>
-                    </table>
-                </div>
-            </div>
+				<?= $this->element('externalReferenceMultiTable', ['externalReferences' => $company->external_references])?>
             <?php endif; ?>
         </div>
 		<?= $this->element('citation', ['id' => $company->id, 'type' => 'C', 'title' => $company->name, 'url' => $this->request->getUri()])?>

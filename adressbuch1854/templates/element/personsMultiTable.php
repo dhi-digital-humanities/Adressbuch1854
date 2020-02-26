@@ -12,6 +12,8 @@ if(!isset($count)){
 if(!isset($addrAsList)){
 	$addrAsList=false;
 }
+
+$this->Html->css('multiTable.css');
 ?>
 <div class="table-responsive">
 	<table>
@@ -20,11 +22,11 @@ if(!isset($addrAsList)){
 			<th><?= __('Nr') ?></th>
 			<?php endif;?>
 			<th><?= __('Name') ?></th>
-			<th><?= __('Anmerkungen') ?></th>
+			<th class="small-width"><?= __('Anmerkungen') ?></th>
 			<th><?= __('Beruf') ?></th>
 			<th><?= __('Adresse(n)') ?></th>
-			<th><?= __('Sonstige Merkmale') ?></th>
-			<th><?= __('Kategorien') ?></th>
+			<th class="middle-width"><?= __('Sonstige Merkmale') ?></th>
+			<th class="middle-width"><?= __('Kategorien') ?></th>
 		</tr>
 		<?php 
 		$countNo = 1;
@@ -78,15 +80,15 @@ if(!isset($addrAsList)){
 			<td><?= $this->Number->format($countNo)?></td>
 			<?php endif;?>
 			<td><?= $this->Html->link($name, ['controller' => 'Persons', 'action' => 'view', $person->id]) ?></td>
-			<td><?= h($person->specification_verbatim) ?></td>
+			<td class="small-width"><?= h($person->specification_verbatim) ?></td>
 			<td><?= h($person->profession_verbatim) ?></td>
 			<td><?php
 				if (!empty($person->addresses)){
 					echo $this->element('addressList', ['addresses' => $person->addresses, 'list' => $addrAsList]);
 				}
 			?></td>
-			<td><?= implode(', ', $plus)?></td>
-			<td><?= implode(', ', $cats)?></td>
+			<td class="middle-width"><?= implode(', ', $plus)?></td>
+			<td class="middle-width"><?= implode(', ', $cats)?></td>
 		</tr>
 		<?php 
 		$countNo++;

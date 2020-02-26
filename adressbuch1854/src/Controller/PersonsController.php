@@ -20,7 +20,7 @@ class PersonsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['LdhRanks', 'MilitaryStatuses', 'SocialStatuses', 'OccupationStatuses', 'ProfCategories'],
+            'contain' => ['LdhRanks', 'MilitaryStatuses', 'SocialStatuses', 'OccupationStatuses', 'ProfCategories', 'Addresses.Streets'],
         ];
         $persons = $this->paginate($this->Persons);
 

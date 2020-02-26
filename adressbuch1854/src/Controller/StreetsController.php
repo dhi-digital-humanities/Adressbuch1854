@@ -19,7 +19,10 @@ class StreetsController extends AppController
      */
     public function index()
     {
-        $streets = $this->paginate($this->Streets);
+		
+		// Take only distinct streets (don't count each orthographical variety as own street)
+        $streets = $this->Streets->find()->contain(['Arrondissements'])->where(['id >' => 0])->distinct(['name_old_clean']);
+		$this->paginate($streets);
 
         $this->set(compact('streets'));
     }
