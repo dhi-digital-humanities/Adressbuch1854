@@ -18,6 +18,10 @@
 	display: inline;
 }
 
+#showallheading {
+	margin-bottom: 0;
+}
+
 #exportheading {
 	margin-top: 30px;
 	margin-bottom: 0;
@@ -27,6 +31,6 @@
 	float: left;
 }
 
-/*.left {
+/*.right {
 	float: right;
 }*/
