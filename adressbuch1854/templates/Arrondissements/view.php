@@ -16,7 +16,7 @@
 	}
 ?>
 <div class="row">
-    <?= $this->element('sideNav', ['mapBox' => false])?>
+    <?= $this->element('sideNav', ['mapBox' => false, 'export' => 'all'])?>
     <div class="column-responsive column-80">
         <div class="arrondissements view content">
             <h3><?= h($noStr) ?></h3>
@@ -42,14 +42,18 @@
             </table>
 			<?php if(!$persons->isEmpty()): ?>
             <div class="related">
-                <h4><?= __('Personen in diesem Arrondissement') ?></h4>
-				<?= $this->element('personsMultiTable', ['persons' => $persons])?>
+                <details>
+					<?= '<summary title="'.__('Klicken für Details').'"><h4>'.__('Personen in diesem Arrondissement').'</h4></summary>' ?>
+					<?= $this->element('personsMultiTable', ['persons' => $persons])?>
+				</details>
             </div>
 			<?php endif; ?>
 			<?php if(!$companies->isEmpty()): ?>
             <div class="related">
-                <h4><?= __('Unternehmen in diesem Arrondissement') ?></h4>
-				<?= $this->element('companiesMultiTable', ['companies' => $companies])?>
+                <details>
+					<?= '<summary title="'.__('Klicken für Details').'"><h4>'.__('Unternehmen in diesem Arrondissement').'</h4></summary>' ?>
+					<?= $this->element('companiesMultiTable', ['companies' => $companies])?>
+				</details>
             </div>
 			<?php endif; ?>
         </div>

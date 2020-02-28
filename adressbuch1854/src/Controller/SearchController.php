@@ -93,9 +93,10 @@ class SearchController extends AppController
 	}
 	
 	public function export(){
-			
-		$sqlFilePath = '../../resources/Adressbuch_1854_all.csv';
-		$csvFilePath = '../../resources/Adressbuch_1854_all.sql';
+		
+		// paths relative to webroot
+		$sqlFilePath = 'download/Adressbuch_1854_all.sql';
+		$csvFilePath = 'download/Adressbuch_1854_all.csv';
 	
 		$format = strtolower($this->request->getQuery('format'));
 
@@ -148,8 +149,8 @@ class SearchController extends AppController
 				}
 
 				// Set Data View
-				$this->set(compact('persons', 'companies'));
 				$this->viewBuilder()->setOption('serialize', ['persons', 'companies']);
+				$this->set(compact('persons', 'companies'));
 
 				// Problem: wird durch diese Controller-Action eine View gerendert, so wird der Json bzw. XML-Code korrekt angezeigt.
 				// Nutzt man die Browser-eigene Download-Funktion in Firefox, so erhält man die passende Datei dazu als Download.

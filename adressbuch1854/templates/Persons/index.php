@@ -4,71 +4,27 @@
  * @var \App\Model\Entity\Person[]|\Cake\Collection\CollectionInterface $persons
  */
 ?>
-<div class="persons index content">
-    <?= $this->Html->link(__('New Person'), ['action' => 'add'], ['class' => 'button float-right']) ?>
-    <h3><?= __('Persons') ?></h3>
-    <div class="table-responsive">
-        <table>
-            <thead>
-                <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('surname') ?></th>
-                    <th><?= $this->Paginator->sort('first_name') ?></th>
-                    <th><?= $this->Paginator->sort('gender') ?></th>
-                    <th><?= $this->Paginator->sort('title') ?></th>
-                    <th><?= $this->Paginator->sort('name_predicate') ?></th>
-                    <th><?= $this->Paginator->sort('specification_verbatim') ?></th>
-                    <th><?= $this->Paginator->sort('profession_verbatim') ?></th>
-                    <th><?= $this->Paginator->sort('de_l_institut') ?></th>
-                    <th><?= $this->Paginator->sort('notable_commercant') ?></th>
-                    <th><?= $this->Paginator->sort('bold') ?></th>
-                    <th><?= $this->Paginator->sort('advert') ?></th>
-                    <th><?= $this->Paginator->sort('ldh_rank_id') ?></th>
-                    <th><?= $this->Paginator->sort('military_status_id') ?></th>
-                    <th><?= $this->Paginator->sort('social_status_id') ?></th>
-                    <th><?= $this->Paginator->sort('occupation_status_id') ?></th>
-                    <th><?= $this->Paginator->sort('prof_category_id') ?></th>
-                    <th class="actions"><?= __('Actions') ?></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($persons as $person): ?>
-                <tr>
-                    <td><?= $this->Number->format($person->id) ?></td>
-                    <td><?= h($person->surname) ?></td>
-                    <td><?= h($person->first_name) ?></td>
-                    <td><?= h($person->gender) ?></td>
-                    <td><?= h($person->title) ?></td>
-                    <td><?= h($person->name_predicate) ?></td>
-                    <td><?= h($person->specification_verbatim) ?></td>
-                    <td><?= h($person->profession_verbatim) ?></td>
-                    <td><?= h($person->de_l_institut) ?></td>
-                    <td><?= h($person->notable_commercant) ?></td>
-                    <td><?= h($person->bold) ?></td>
-                    <td><?= h($person->advert) ?></td>
-                    <td><?= $person->has('ldh_rank') ? $this->Html->link($person->ldh_rank->id, ['controller' => 'LdhRanks', 'action' => 'view', $person->ldh_rank->id]) : '' ?></td>
-                    <td><?= $person->has('military_status') ? $this->Html->link($person->military_status->id, ['controller' => 'MilitaryStatuses', 'action' => 'view', $person->military_status->id]) : '' ?></td>
-                    <td><?= $person->has('social_status') ? $this->Html->link($person->social_status->id, ['controller' => 'SocialStatuses', 'action' => 'view', $person->social_status->id]) : '' ?></td>
-                    <td><?= $person->has('occupation_status') ? $this->Html->link($person->occupation_status->id, ['controller' => 'OccupationStatuses', 'action' => 'view', $person->occupation_status->id]) : '' ?></td>
-                    <td><?= $person->has('prof_category') ? $this->Html->link($person->prof_category->name, ['controller' => 'ProfCategories', 'action' => 'view', $person->prof_category->id]) : '' ?></td>
-                    <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $person->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $person->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $person->id], ['confirm' => __('Are you sure you want to delete # {0}?', $person->id)]) ?>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    </div>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+<div class="row">
+    <?= $this->element('sideNav', ['mapBox' => false, 'export' => 'all'])?>
+    <div class="column-responsive column-80">
+		<div class="content">
+			<h3><?= __('Personen') ?></h3>
+			<?= $this->element('personsMultiTable', ['count' => true, 'persons' => $persons])?>
+			<div class="paginator">
+				<ul class="pagination">
+					<?= $this->Paginator->first('<< ' . __('Anfang')) ?>
+					<?= $this->Paginator->prev('< ' . __('zurück')) ?>
+					<?= $this->Paginator->numbers() ?>
+					<?= $this->Paginator->next(__('vor') . ' >') ?>
+					<?= $this->Paginator->last(__('Ende') . ' >>') ?>
+				</ul>
+				<p><?= $this->Paginator->counter(__('Seite {{page}} von {{pages}}, zeige {{current}} Person(en) von {{count}}')) ?></p>
+			</div>
+		</div>
+		<div class="bigMap">
+			<div id="mapBox" class="content" onload="initializeMap(true)">
+				<?= $this->Html->script('map_paris_leaflet.js') ?>
+			</div>
+		</div>
     </div>
 </div>

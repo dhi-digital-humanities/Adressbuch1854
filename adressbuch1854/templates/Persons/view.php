@@ -40,12 +40,7 @@
 	}	
 ?>
 <div class="row">
-    <aside class="column">
-        <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('List Persons'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-        </div>
-    </aside>
+    <?= $this->element('sideNav', ['mapBox' => true, 'export' => 'all'])?>
     <div class="column-responsive column-80">
         <div class="persons view content">
             <h3><?= h($name) ?></h3>
@@ -90,46 +85,7 @@
 					<th><?=__('Adresse(n)')?></th>
 					<td>
 					<?php if (!empty($person->addresses)) : ?>
-						<ul>
-							<?php foreach($person->addresses as $address): ?>
-							<?php
-								$streetOld = h($address->street->name_old_clean);
-								$streetNew = h($address->street->name_new);
-								$street;
-								if($streetOld === $streetNew){
-									$street = $streetOld;
-								} else {
-									$street = $streetOld.' ('.$streetNew.')';
-								}
-								
-								$housNo = h($address->houseno);
-								if(!empty($address->houseno_specification)){
-									$housNo.=' '.h($address->houseno_specification);
-								}
-								
-								$spec = h($address->address_specification_verbatim);
-													
-								$lat = $address->geo_lat;
-								$long = $address->geo_long;
-							?>
-							<li>
-								<?php
-									echo $this->Html->link($street, ['controller' => 'Streets', 'action' => 'view', $address->street->id]);
-									
-									echo ' '.$housNo;
-									
-									if(!empty($spec)){
-										echo ', '.$spec;
-									}
-									
-									/* Sollen die Geokoordinaten hier gezeigt werden (wenn vorhanden)? Dann diesen Code entkommentieren.
-									if(!empty($long) && !empty($lat )){
-										echo '<br>'.__('Geokoordinaten').': '.$lat.', '.$long.' '.__('(lat/long)');
-									}*/
-								?>
-							</li>
-							<?php endforeach; ?>
-						</ul>
+						<?= $this->element('addressList', ['addresses' => $person->addresses, 'list' => true]) ?>
 					<?php endif; ?>
 					</td>
 				</tr>
@@ -176,107 +132,21 @@
             </table>
             <?php if (!empty($person->companies)) : ?>
             <div class="related">
-                <h4><?= __('Assoziierte Unternehmen') ?></h4>
-                <div class="table-responsive">
-                    <table>
-                        <tr>
-							<th><?= __('Name') ?></th>
-							<th><?= __('Anmerkungen') ?></th>
-							<th><?= __('Beruf') ?></th>
-							<th><?= __('Adresse(n)') ?></th>
-							<th><?= __('Sonstige Merkmale') ?></th>
-							<th><?= __('Kategorien') ?></th>
-                        </tr>
-						<?php
-						foreach ($person->companies as $company): ?>
-						<?php
-							$cats = [];
-							if($company->has('prof_category')){
-								array_push($cats, $company->prof_category->name);
-							}
-							
-							$plus = [];
-							if($company->bold){
-								array_push($plus, __('Vorab-Abonnent'));
-							}
-							if($company->notable_commercant){
-								array_push($plus, 'Notable Commerçant');
-							}
-							if($company->advert){
-								array_push($plus, __('mit Geschäftseintrag'));
-							}
-						?>
-						<tr>
-							<td><?= $this->Html->link(h($company->name), ['controller' => 'Companies', 'action' => 'view', $company->id]) ?></td>
-							<td><?= h($company->specification_verbatim) ?></td>
-							<td><?= h($company->profession_verbatim) ?></td>
-							<td><?php
-								if (!empty($company->addresses)){
-									foreach ($company->addresses as $address){
-										$streetOld = h($address->street->name_old_clean);
-										$streetNew = h($address->street->name_new);
-										$street;
-										
-										if($streetOld === $streetNew){
-											$street = $streetOld;
-										} else {
-											$street = $streetOld.' ('.$streetNew.')';
-										}
-										
-										$housNo = h($address->houseno);
-										if(!empty($address->houseno_specification)){
-											$housNo.=' '.h($address->houseno_specification);
-										}
-										
-										echo $this->Html->link($street, ['controller' => 'Streets', 'action' => 'view', $address->street->id]);
-										echo ' '.$housNo.'<br>';
-									}
-								}
-							?></td>
-							<td><?= implode(', ', $plus)?></td>
-							<td><?= implode(', ', $cats)?></td>
-						</tr>
-						<?php 
-							endforeach;
-						?>
-                    </table>
-                </div>
+                <details>
+				<?= '<summary title="'.__('Klicken für Details').'"><h4>'.__('Assoziierte Unternehmen').'</h4></summary>' ?>
+					<?= $this->element('companiesMultiTable', ['companies' => $person->companies])?>
+				</details>
             </div>
             <?php endif; ?>
-            <?php if (!empty($person->external_references)) : ?>
-            <div class="related">
-                <h4><?= __('Literatur- und Quellenhinweise') ?></h4>
-                <div class="table-responsive">
-                    <table>
-                        <tr>
-							<th><?= __('Nr') ?></th>
-                            <th><?= __('Literatur/Quelle') ?></th>
-                            <th><?= __('Kurzbeschreibung') ?></th>
-                        </tr>
-                        <?php
-							$countNo = 1;
-							foreach ($person->external_references as $externalReference) : ?>
-                        <tr>
-							<td><?= $this->Number->format($countNo) ?></td>
-                            <td><?php 
-								if(!empty($externalReference->link)){
-									echo $this->Html->link(h($externalReference->reference), $externalReference->link, ['target' => 'new']);
-								} else {
-									echo h($externalReference->reference);
-								}
-								?></td>
-                            <td><?= h($externalReference->short_description) ?></td>
-                        </tr>
-                        <?php
-							$countNo++;
-							endforeach; ?>
-                    </table>
-                </div>
-            </div>
-            <?php endif; ?>
-			<div class='citation'>
-				Zitierhinweis: <?php echo 'Hier wird ein passender Zitierhinweis erscheinen.'?>
+			<?php if (!empty($person->external_references)) : ?>
+			<div class="related">
+                <details>
+					<?= '<summary title="'.__('Klicken für Details').'"><h4>'.__('Literatur- und Quellenhinweise').'</h4></summary>' ?>
+					<?= $this->element('externalReferenceMultiTable', ['externalReferences' => $person->external_references])?>
+				</details>
 			</div>
+            <?php endif; ?>
         </div>
+		<?= $this->element('citation', ['id' => $person->id, 'type' => 'P', 'title' => $name, 'url' => $this->request->getUri()])?>
     </div>
 </div>

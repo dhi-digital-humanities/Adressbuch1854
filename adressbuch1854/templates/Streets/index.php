@@ -4,49 +4,74 @@
  * @var \App\Model\Entity\Street[]|\Cake\Collection\CollectionInterface $streets
  */
 ?>
-<div class="streets index content">
-    <?= $this->Html->link(__('New Street'), ['action' => 'add'], ['class' => 'button float-right']) ?>
-    <h3><?= __('Streets') ?></h3>
-    <div class="table-responsive">
-        <table>
-            <thead>
-                <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('name_old_verbatim') ?></th>
-                    <th><?= $this->Paginator->sort('name_old_clean') ?></th>
-                    <th><?= $this->Paginator->sort('name_new') ?></th>
-                    <th><?= $this->Paginator->sort('geo_long') ?></th>
-                    <th><?= $this->Paginator->sort('geo_lat') ?></th>
-                    <th class="actions"><?= __('Actions') ?></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($streets as $street): ?>
-                <tr>
-                    <td><?= $this->Number->format($street->id) ?></td>
-                    <td><?= h($street->name_old_verbatim) ?></td>
-                    <td><?= h($street->name_old_clean) ?></td>
-                    <td><?= h($street->name_new) ?></td>
-                    <td><?= $this->Number->format($street->geo_long) ?></td>
-                    <td><?= $this->Number->format($street->geo_lat) ?></td>
-                    <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $street->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $street->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $street->id], ['confirm' => __('Are you sure you want to delete # {0}?', $street->id)]) ?>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    </div>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
-    </div>
+<div class="row">
+    <?= $this->element('sideNav', ['mapBox' => false, 'export' => 'all'])?>
+    <div class="column-responsive column-80">
+		<div class="content">
+			<h3><?= __('Straßen') ?></h3>
+			<div class="table-responsive">
+				<table>
+					<thead>
+						<tr>
+							<th><?= __('Nr') ?></th>
+							<th><?= __('Name alt') ?></th>
+							<th><?= __('Name heute') ?></th>
+							<th><?= __('Arrondissements') ?></th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php 
+						$countNo = 1;
+						foreach ($streets as $street): ?>
+						<?php
+							$arrsOld = [];
+							$arrsNew = [];
+							foreach($street->arrondissements as $arr){
+								if($arr->type === 'pre1860'){
+									array_push($arrsOld, $this->Html->link($arr->no, ['controller' => 'Arrondissements', 'action' => 'view', $arr->id]));
+								} else {
+									array_push($arrsNew, $this->Html->link($arr->no, ['controller' => 'Arrondissements', 'action' => 'view', $arr->id]));
+								}
+							}
+						?>
+						<tr>
+							<td><?= $this->Number->format($countNo) ?></td>
+							<td><?= $this->Html->link(h($street->name_old_clean), ['action' => 'view', $street->id]) ?></td>
+							<td><?= h($street->name_new) ?></td>
+							<td>
+								<table>
+									<tr>
+										<th><?= __('Vor 1860')?></th>
+										<th><?= __('Nach 1860')?></th>
+									</tr>
+									<tr>
+										<th><?= implode(', ', $arrsOld) ?></th>
+										<th><?= implode(', ', $arrsNew) ?></th>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<?php
+						$countNo++;
+						endforeach; ?>
+					</tbody>
+				</table>
+			</div>
+			<div class="paginator">
+				<ul class="pagination">
+					<?= $this->Paginator->first('<< ' . __('Anfang')) ?>
+					<?= $this->Paginator->prev('< ' . __('zurück')) ?>
+					<?= $this->Paginator->numbers() ?>
+					<?= $this->Paginator->next(__('vor') . ' >') ?>
+					<?= $this->Paginator->last(__('Ende') . ' >>') ?>
+				</ul>
+				<p><?= $this->Paginator->counter(__('Seite {{page}} von {{pages}}, zeige {{current}} Straße(n) von {{count}}')) ?></p>
+			</div>
+		</div>
+		<div class="bigMap">
+			<div id="mapBox" class="content" onload="initializeMap(true)">
+				<?= $this->Html->script('map_paris_leaflet.js') ?>
+			</div>
+		</div>
+	</div>
 </div>

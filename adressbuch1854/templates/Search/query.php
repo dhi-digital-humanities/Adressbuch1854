@@ -61,28 +61,7 @@
 	}
 ?>
 <div class="row">
-    <aside class="column">
-        <div class="side-nav">
-            <h4 class="heading"><?= __('Seitennavigation') ?></h4>
-			
-			<div class="search form content">
-				<?= $this->Form->create(null, ['type' => 'get', 'url' => '/search/results']) ?>
-				<fieldset>
-					<legend><?= __('Freitextsuche') ?></legend>
-					<?php
-						// set parameter for search type to "simple"
-						echo $this->Form->hidden('type', ['value' => 'simp']);
-						echo $this->Form->control('text', ['maxlength' => 256, 'label' => false]);
-					?>
-				</fieldset>
-				<?= $this->Form->button(__('Search')) ?>
-				<?= $this->Form->end() ?>
-				<!--Hinweis: Die Freitextsuche sucht nach den Feldern (Nach)Name, Vorname, Berufsbezeichnung,
-				Anmerkungen zur Person/zum Unternehmen, alter und neuer Straßenname sowie Anmerkungen zur Adresse.
-				Für genauere Abfragen nutzen Sie bitte die erweiterte Suche.-->
-			</div>
-        </div>
-    </aside>
+    <?= $this->element('sideNav', ['mapBox' => false, 'export' => 'none'])?>
     <div class="column-responsive column-80">
         <div class="search form content">
             <?= $this->Form->create($persons, ['type' => 'get', 'url' => '/search/results']) ?>
@@ -152,11 +131,8 @@
             </fieldset>
 			<?= $this->Form->button(__('Search')) ?>
             <?= $this->Form->end() ?>
-			Tipp: Falls Ihre Suche nicht die gewünschten Ergebnisse liefert, versuchen Sie erneut mit weniger Eingaben zu suchen. Probieren Sie auch verschiedene
-			Schreibweisen von Straßen- und Personennamen aus und suchen Sie zunächst ohne Vornamen, da diese im Buch häufig nicht vorhanden oder stark abgekürzt sind.
-			<!-- Hier eine Info hin wie "Probieren Sie verschiedene Schreibweisen der Namen aus. Wenn Sie nach einer Person suchen,
-			und bei Eingabe des Namens und Vornamens keine Ergebnisse erhalten, suchen Sie zunächst ohne Vornamen. Meist sind die Vornamen im
-			Adressbuch nicht vorhanden / nur mit einem Buchstaben abgkürzt.-->
+			<?= __('Tipp: Falls Ihre Suche nicht die gewünschten Ergebnisse liefert, versuchen Sie erneut mit weniger Eingaben zu suchen. Probieren Sie auch verschiedene
+			Schreibweisen von Straßen- und Personennamen aus und suchen Sie zunächst ohne Vornamen, da diese im Buch häufig nicht vorhanden oder stark abgekürzt sind.', 'Suchhinweis')?>
         </div>
     </div>
 </div>

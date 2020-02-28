@@ -4,6 +4,8 @@
  * @var \App\Model\Entity\Company $company
  */
  
+ $this->Html->css('view');
+ 
 	$pageRefs = [];
 	foreach($company->original_references as $ref){
 		$pageRef = 'S. ';
@@ -22,7 +24,7 @@
 	
 ?>
 <div class="row">
-    <?= $this->element('sideNav', ['mapBox' => true])?>
+    <?= $this->element('sideNav', ['mapBox' => true, 'export' => 'all'])?>
     <div class="column-responsive column-80">
         <div class="companies view content">
             <h3><?= h($company->name) ?></h3>
@@ -72,13 +74,20 @@
             </table>
             <?php if (!empty($company->persons)) : ?>
 			<div class="related">
-                <h4><?= __('Assoziierte Personen') ?></h4>							
-				<?= $this->element('personsMultiTable', ['persons' => $company->persons])?>
+                <details>
+					<?= '<summary title="'.__('Klicken für Details').'"><h4>'.__('Assoziierte Personen').'</h4></summary>' ?>
+					<?= $this->element('personsMultiTable', ['persons' => $company->persons])?>
+				</details>
             </div>
             <?php endif; ?>
-			<?php if (!empty($company->external_references)) : ?>
-				<?= $this->element('externalReferenceMultiTable', ['externalReferences' => $company->external_references])?>
-            <?php endif; ?>
+			<?php if (!empty($company->external_references)) : ?>			
+			<div class="related">
+                <details>
+					<?= '<summary title="'.__('Klicken für Details').'"><h4>'.__('Literatur- und Quellenhinweise').'</h4></summary>' ?>
+					<?= $this->element('externalReferenceMultiTable', ['externalReferences' => $company->external_references])?>
+				</details>
+			</div>
+			<?php endif; ?>
         </div>
 		<?= $this->element('citation', ['id' => $company->id, 'type' => 'C', 'title' => $company->name, 'url' => $this->request->getUri()])?>
     </div>
