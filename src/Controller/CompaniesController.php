@@ -20,8 +20,12 @@ class CompaniesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['ProfCategories', 'Addresses.Streets'],
+            'contain' => [
+                'ProfCategories',
+                'Addresses.Streets'
+            ],
         ];
+
         $companies = $this->paginate($this->Companies);
 
         $this->set(compact('companies'));
@@ -36,47 +40,22 @@ class CompaniesController extends AppController
      */
     public function view($id = null)
     {
-		$format = $this->request->getQuery('format');
-		if($format != null){
-			$format = strtolower($format);
-		}
-		
-		$formats = [
-          'xml' => 'Xml',
-          'json' => 'Json'
-        ];
-		
-		
+        if(!$id) return $this->redirect(['action' => 'index']);
+
         $company = $this->Companies->get($id, [
             'contain' => [
-			'ProfCategories',
-			'Addresses.Streets.Arrondissements',
-			'ExternalReferences.ReferenceTypes',
-			'OriginalReferences',
-			'Persons.ProfCategories',
-			'Persons.SocialStatuses',
-			'Persons.MilitaryStatuses',
-			'Persons.OccupationStatuses',
-			'Persons.Addresses.Streets']
+                'ProfCategories',
+                'Addresses.Streets.Arrondissements',
+                'ExternalReferences.ReferenceTypes',
+                'OriginalReferences',
+                'Persons.ProfCategories',
+                'Persons.SocialStatuses',
+                'Persons.MilitaryStatuses',
+                'Persons.OccupationStatuses',
+                'Persons.Addresses.Streets'
+            ]
         ]);
 
         $this->set(compact('company'));
-		
-		if(isset($formats[$format])){
-					
-			$this->viewBuilder()->setClassName($formats[$format]);
-			$this->viewBuilder()->setOption('serialize', ['company']);
-			//serialize-Fehler beim XML
-			
-			// Problem: wird durch diese Controller-Action eine View gerendert, so wird der Json bzw. XML-Code korrekt angezeigt.
-			// Nutzt man die Browser-eigene Download-Funktion in Firefox, so erhält man die passende Datei dazu als Download.
-			// Wird keine view gerendert sondern withDownload() genutzt, so ist die als response gesendete Datei leer.
-			// Set Force Download
-			/*if($this->request->getQuery('down') === 'true'){						
-				$this->response = $this->response->withCharset('UTF-8');
-				return $this->response->withDownload('Adressbuch1854_C-'.$id.'.'.$format);
-			}*/
-			
-		}
     }
 }

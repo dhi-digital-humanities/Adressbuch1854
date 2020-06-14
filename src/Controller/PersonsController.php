@@ -22,8 +22,16 @@ class PersonsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['LdhRanks', 'MilitaryStatuses', 'SocialStatuses', 'OccupationStatuses', 'ProfCategories', 'Addresses.Streets'],
+            'contain' => [
+                'LdhRanks',
+                'MilitaryStatuses',
+                'SocialStatuses',
+                'OccupationStatuses',
+                'ProfCategories',
+                'Addresses.Streets'
+            ],
         ];
+
         $persons = $this->paginate($this->Persons);
 
         $this->set(compact('persons'));
@@ -38,59 +46,23 @@ class PersonsController extends AppController
      */
     public function view($id = null)
     {
-		$format = $this->request->getQuery('format');
-		if($format != null){
-			$format = strtolower($format);
-		}
-		
-		$formats = [
-          'xml' => 'Xml',
-          'json' => 'Json'
-        ];
-		
+        if(!$id) return $this->redirect(['action' => 'index']);
+
         $person = $this->Persons->get($id, [
             'contain' => [
-			'LdhRanks',
-			'MilitaryStatuses',
-			'SocialStatuses',
-			'OccupationStatuses',
-			'ProfCategories',
-			'Addresses.Streets.Arrondissements',
-			'Companies.ProfCategories',
-			'Companies.Addresses.Streets',
-			'ExternalReferences.ReferenceTypes',
-			'OriginalReferences'],
+                'LdhRanks',
+                'MilitaryStatuses',
+                'SocialStatuses',
+                'OccupationStatuses',
+                'ProfCategories',
+                'Addresses.Streets.Arrondissements',
+                'Companies.ProfCategories',
+                'Companies.Addresses.Streets',
+                'ExternalReferences.ReferenceTypes',
+                'OriginalReferences'
+            ]
         ]);
-		
+
         $this->set(compact('person'));
-		
-		if(isset($formats[$format])){
-					
-			$this->viewBuilder()->setClassName($formats[$format]);
-			$this->viewBuilder()->setOption('serialize', ['person']);
-
-			//serialize-Fehler beim XML
-			
-			// Problem: wird durch diese Controller-Action eine View gerendert, so wird der Json bzw. XML-Code korrekt angezeigt.
-			// Nutzt man die Browser-eigene Download-Funktion in Firefox, so erhält man die passende Datei dazu als Download.
-			// Wird keine view gerendert sondern withDownload() genutzt, so ist die als response gesendete Datei leer.
-			// Set Force Download
-			if($this->request->getQuery('down') === 'true'){						
-				$this->response = $this->response->withCharset('UTF-8');
-				
-				// Macht genau dasselbe wie withDownload (ist nur eine convenience-method). Funktioniert dementsprechend auch nicht.
-				// https://scrutinizer-ci.com/g/cakephp/cakephp/code-structure/master/operation/Cake%5CHttp%5CResponse%3A%3AwithDownload
-				//$this->response = $this->response->withHeader('Content-Disposition', 'attachment; filename="Adressbuch1854_P-'.$id.'.'.$format.'"');
-				
-				//$this->response = $this->response->withHeader('Content-Type', 'application/'.$format);
-				
-				// aufgrund dieses Beitrags (https://discourse.cakephp.org/t/file-uploads-occasionally-result-in-empty-files/966) habe ich auch
-				// max_execution_time und memory_limit in den php.ini files des Rechners und des Servers gechecked. Beide absolut in Ordnung.
-				//return $this->response->withDownload('Adressbuch1854_P-'.$id.'.'.$format);
-			}
-			
-		}
-
-		
     }
 }

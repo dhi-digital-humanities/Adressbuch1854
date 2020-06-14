@@ -33,61 +33,41 @@ class ArrondissementsController extends AppController
      */
     public function view($id = null)
     {
-		$format = $this->request->getQuery('format');
-		if($format != null){
-			$format = strtolower($format);
-		}
-		
-		$formats = [
-          'xml' => 'Xml',
-          'json' => 'Json'
-        ];
-		
-		$this->loadModel('Persons');
+        if(!$id) return $this->redirect(['action' => 'index']);
+
+        $this->loadModel('Persons');
 		$this->loadModel('Companies');
-		
+
         $arrondissement = $this->Arrondissements->get($id);
-		
-		$persons = $this->Persons->find()->contain([
-			'LdhRanks',
-			'MilitaryStatuses',
-			'SocialStatuses',
-			'OccupationStatuses',
-			'ProfCategories',
-			'Addresses.Streets']);
-		
+
+        $persons = $this->Persons->find()
+            ->contain([
+                'LdhRanks',
+                'MilitaryStatuses',
+                'SocialStatuses',
+                'OccupationStatuses',
+                'ProfCategories',
+                'Addresses.Streets'
+            ]);
+
 		// use distinct to avoid doubled persons (some persons may have different addresses with
 		// the same arrondissement and may therefore be selected mutiple times)
-		$persons->leftJoinWith('Addresses.Streets.Arrondissements')
-				->where(['Arrondissements.id' => $id])
-				->distinct(['Persons.id']);
-			
-		$companies = $this->Companies->find()->contain([
-			'Addresses.Streets',
-			'ProfCategories']);
-			
-		$companies->leftJoinWith('Addresses.Streets.Arrondissements')
-				->where(['Arrondissements.id' => $id])
-				->distinct(['Companies.id']);
+        $persons
+            ->leftJoinWith('Addresses.Streets.Arrondissements')
+			->where(['Arrondissements.id' => $id])
+			->distinct(['Persons.id']);
 
-        $this->set(compact('arrondissement', 'companies', 'persons'));
-		
-		
-		if(isset($formats[$format])){
-					
-			$this->viewBuilder()->setClassName($formats[$format]);
-			$this->viewBuilder()->setOption('serialize', ['arrondissement', 'companies', 'persons']);
-			//serialize-Fehler beim XML
-			
-			// Problem: wird durch diese Controller-Action eine View gerendert, so wird der Json bzw. XML-Code korrekt angezeigt.
-			// Nutzt man die Browser-eigene Download-Funktion in Firefox, so erhält man die passende Datei dazu als Download.
-			// Wird keine view gerendert sondern withDownload() genutzt, so ist die als response gesendete Datei leer.
-			// Set Force Download
-			/*if($this->request->getQuery('down') === 'true'){						
-				$this->response = $this->response->withCharset('UTF-8');
-				return $this->response->withDownload('Adressbuch1854_P-'.$id.'.'.$format);
-			}*/
-			
-		}
+        $companies = $this->Companies->find()
+            ->contain([
+                'Addresses.Streets',
+                'ProfCategories'
+            ]);
+
+        $companies
+            ->leftJoinWith('Addresses.Streets.Arrondissements')
+			->where(['Arrondissements.id' => $id])
+			->distinct(['Companies.id']);
+
+        $this->set(compact('arrondissement', 'persons', 'companies'));
     }
 }

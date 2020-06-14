@@ -72,20 +72,4 @@ class PagesController extends AppController
 
         return $this->render();
     }
-	
-	public function project(){
-		
-	}
-	
-	public function addressbook(){
-		
-	}
-	
-	public function publications(){
-		
-	}
-	
-	public function credits(){
-		
-	}
 }

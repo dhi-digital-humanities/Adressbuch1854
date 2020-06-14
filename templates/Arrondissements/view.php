@@ -3,9 +3,9 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Arrondissement $arrondissement
  */
-	
+
 	use Cake\Collection\Collection;
-	
+
 	$noStr;
 	$type = $arrondissement->type;
 	$no = $arrondissement->no;
@@ -60,6 +60,6 @@
 		<?= $this->element('citation', ['id' => $arrondissement->id, 'type' => 'A', 'title' => $noStr, 'url' => $this->request->getUri()])?>
     </div>
 </div>
-<div id="mapBox" onload="initializeMap('multiView')">
+<!-- <div id="mapBox" onload="initializeMap('multiView')">
 	Dies ist ein Platzhalter-Div für die Karte.
-</div>
+</div> -->

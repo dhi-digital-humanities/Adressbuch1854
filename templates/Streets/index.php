@@ -20,7 +20,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<?php 
+						<?php
 						$countNo = 1;
 						foreach ($streets as $street): ?>
 						<?php
@@ -68,10 +68,12 @@
 				<p><?= $this->Paginator->counter(__('Seite {{page}} von {{pages}}, zeige {{current}} Straße(n) von {{count}}')) ?></p>
 			</div>
 		</div>
-		<div class="bigMap">
+		<!-- <div class="bigMap">
 			<div id="mapBox" class="content" onload="initializeMap(true)">
 				<?= $this->Html->script('map_paris_leaflet.js') ?>
 			</div>
 		</div>
+        Dies ist ein Platzhalter für eine Karte
+        -->
 	</div>
 </div>

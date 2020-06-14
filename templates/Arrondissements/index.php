@@ -2,10 +2,10 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Arrondissement[]|\Cake\Collection\CollectionInterface $arrondissements
- 
+
  $limit = the number of items displayed per page
  */
- 
+
  $limit=20;
 ?>
 <div class="row">
@@ -27,7 +27,7 @@
 						<?php
 							$countNo = 1;
 							foreach ($arrondissements as $arrondissement): ?>
-						<?php				
+						<?php
 						$noStr;
 						$no = $arrondissement->no;
 						if($no == 1){
@@ -59,10 +59,12 @@
 				<p><?= $this->Paginator->counter(__('Seite {{page}} von {{pages}}, zeige {{current}} Arrondissement(s) von {{count}}')) ?></p>
 			</div>
 		</div>
-		<div class="bigMap">
+		<!-- <div class="bigMap">
 			<div id="mapBox" class="content" onload="initializeMap(true)">
 				<?= $this->Html->script('map_paris_leaflet.js') ?>
 			</div>
 		</div>
+        Dies ist ein Platzhalter für eine Karte
+        -->
 	</div>
 </div>
