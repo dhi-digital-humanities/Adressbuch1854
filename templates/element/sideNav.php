@@ -13,9 +13,8 @@ $uri = $this->request->getRequestTarget();
 <aside class="column">
 	<?php if($mapBox):?>
         <div class="smallMap">
-            <!-- <div id="mapBox"  class="content" onload="initializeMap()"> -->
             <div id="mapBox"  class="content">
-                <?= $this->Html->script('map_paris_leaflet.js') ?>
+                <?= $this->Html->script('address-map.js') ?>
             </div>
         </div>
 	<?php endif; ?>

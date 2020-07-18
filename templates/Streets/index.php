@@ -70,7 +70,7 @@
 		</div>
 		<!-- <div class="bigMap">
 			<div id="mapBox" class="content" onload="initializeMap(true)">
-				<?= $this->Html->script('map_paris_leaflet.js') ?>
+				<?= $this->Html->script('address-map.js') ?>
 			</div>
 		</div>
         Dies ist ein Platzhalter für eine Karte

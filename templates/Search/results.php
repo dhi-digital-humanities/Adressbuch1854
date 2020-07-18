@@ -3,7 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Person[]|\Cake\Collection\CollectionInterface $persons
  */
- 
+
  use Cake\Routing\Router;
  echo $this->Html->css(['export', 'map']);
  $uri = $this->request->getRequestTarget();
@@ -13,7 +13,7 @@
 	$this->Paginator->counter(__('{{count}} Person(en)'), ['model' => 'Persons']).
 	' und '.
 	$this->Paginator->counter(__('{{count}} Unternehmen'), ['model' => 'Companies']).
-	' gefunden:';	
+	' gefunden:';
 ?>
 <div class="row">
     <?= $this->element('sideNav', ['mapBox' => false, 'export' => 'all'])?>
@@ -22,12 +22,12 @@
 		<div class="content">
 		<?php if (!$persons->isEmpty()) : ?>
 			<h3><?= __('Personen') ?></h3>
-				<!-- TODO: $this->Paginator->limitControl([10 => 10, 25 => 25, 50 => 50]) 
+				<!-- TODO: $this->Paginator->limitControl([10 => 10, 25 => 25, 50 => 50])
 				-> für Ergebnisanzeige? -->
 							<!-- TODO: mit Paginator->sort() Sortierung nach Spalten ermöglichen?
 								Geht vielleicht nur mit korrekten Modelnamen, nicht mit zusammengesetzten
 								Dingen wie Name oder Adresse -->
-			
+
 			<?= $this->element('personsMultiTable', ['persons' => $persons, 'count' => true])?>
 			<div class="paginator">
 				<ul class="pagination">
@@ -57,7 +57,7 @@
 		</div>
 		<div class="bigMap">
 			<div id="mapBox" class="content" onload="initializeMap(true)">
-				<?= $this->Html->script('map_paris_leaflet.js') ?>
+				<?= $this->Html->script('address-map.js') ?>
 			</div>
 		</div>
 		<?php else: ?>
