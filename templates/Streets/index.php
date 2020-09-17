@@ -21,7 +21,7 @@
 					</thead>
 					<tbody>
 						<?php
-						$countNo = 1;
+						$countNo = 1 + (($this->Paginator->current('Streets')-1) * $this->Paginator->param('perPage'));
 						foreach ($streets as $street): ?>
 						<?php
 							$arrsOld = [];
@@ -69,11 +69,11 @@
 			</div>
 		</div>
 		<!-- <div class="bigMap">
-			<div id="mapBox" class="content" onload="initializeMap(true)">
+			<div id="mapBox" class="content" onload="initializeMap()">
 				<?= $this->Html->script('address-map.js') ?>
 			</div>
 		</div>
-        Dies ist ein Platzhalter für eine Karte
+        This is a placeholder for a map
         -->
 	</div>
 </div>

@@ -1,27 +1,3 @@
-/* .wrapper-item {
-	margin-left: 100px;
-	margin-right: 100px;
-	margin-top: 20px;
-	margin-bottom: 20px;
-	display: inline-block;
-} */
-
-/* .simp-search-item {
-	display: inline;
-}
-
-#simp-search {
-	float: right;
-}
-
-#dhi-logo {
-	float: left;
-}
-
-#credits {
-	float: right;
-} */
-
 #simp-search form {
     display: flex;
 }
@@ -72,14 +48,7 @@ header h1 {
 }
 
 .top-nav {
-    /* margin-bottom: 0; */
     padding: 2rem 20rem;
-	/* margin-left: 20%;
-	margin-right: 20%;
-	width: 60%;
-	padding: 5px;
-	margin-top: 0;
-	margin-bottom: 50px; */
 }
 
 .top-nav-item {

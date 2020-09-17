@@ -1,3 +1,4 @@
+// Important global variables
 var leafletMap = null;
 var oms = null;
 var markers = null;
@@ -8,6 +9,10 @@ $('document').ready(function(){
     initializeMarkers();
 });
 
+/**
+ * Initial function. The leaflet map is created, options are set
+ * and a legend is created.
+ */
 function initializeMap(){
     leafletMap = L.map('mapBox', {
         center: [48.859289, 2.342122],
@@ -24,6 +29,7 @@ function initializeMap(){
         subdomains: ['a','b','c']
     }).addTo(leafletMap);
 
+    // Create a legend
     if(document.getElementById('mapBox').parentElement.className == 'bigMap'){
         var legend = L.control({position: 'bottomright'});
 
@@ -42,7 +48,13 @@ function initializeMap(){
     }
 }
 
-// use via Leaflet plugin https://github.com/Leaflet/Leaflet.markercluster
+// Use via Leaflet plugin https://github.com/Leaflet/Leaflet.markercluster
+/**
+ * Function for creating marker clusters. The clusters make it possible to count
+ * the number of markers on one coordinate and to create a cluster marker indicating
+ * the number of markers it contains. Furthermore the marker cluster do the
+ * spiderfying, so that multiple markers on the same spot become visible on click.
+ */
 function initializeMarkercluster(){
     markers = L.markerClusterGroup({
         maxClusterRadius: 1,
@@ -53,6 +65,7 @@ function initializeMarkercluster(){
                 types.set((marker.options.id.includes('P')? 'P' : 'C'), true);
             });
 
+            // Determine, which marker to use depending on the type of object (person, company, cluster of both)
             switch(types.size){
                 case 1:
                     if(types.has('P')){
@@ -79,10 +92,20 @@ function initializeMarkercluster(){
     });
 }
 
+/**
+ * Fetches the information about the person and company objects from the json-view of the current site and initializes
+ * a marker for each object.
+ */
 function initializeMarkers(){
+
+    // To access the information of the currently shown datasets, the Json export function is used.
+    // The current URL is expanded with the parameter export=json and returns thus a Json representation
+    // of the current datasets.
     var url = window.location;
     url = url + (window.location.search ? '&' : '?') + 'export=json';
 
+    // The getJSON function works asynchronous, therefore everything, that needs the json code,
+    // has to happen within the lambda expression of the getJSON function!
     $.getJSON(url, function(json){
         if(json.person) mapPerson(json.person);
         if(json.company) mapCompany(json.company);
@@ -122,6 +145,15 @@ function mapCompany(json){
     makePinPerAddress(json.addresses, name, json.profession_verbatim, json.id, false);
 }
 
+/**
+ * Takes a list of addresses and some information and creates a marker for each
+ * address containing the given information.
+ * @param {*} addressArray An array of addresses belonging to one object
+ * @param {*} name Name of the object to whom the address belongs
+ * @param {*} prof Profession of the object to whom the address belongs
+ * @param {*} id The id of the object to whom the address belongs
+ * @param {*} isPerson Boolean indicating, if the address belongs to a person or company
+ */
 function makePinPerAddress(addressArray, name, prof, id, isPerson){
     addressArray.forEach(function(addr){
 
@@ -137,20 +169,21 @@ function makePinPerAddress(addressArray, name, prof, id, isPerson){
 
         var mapPin = L.marker(
             L.latLng(
-                // take address coordinates if existing, otherwise take autodetected street coordinates
+                // Take address coordinates if existing, otherwise take autodetected street coordinates
                 addr.geo_lat || addr.street.geo_lat,
                 addr.geo_long || addr.street.geo_long
             ),
             {
-                // specify the icons (if unspecified, the default blue leaflet marker is used)
+                // Specify the icons according to the object type
+                // (if unspecified, the default blue leaflet marker is used)
 
-                // customized HTML-icons
+                // Customized HTML-icons
                 // icon: isPerson ? customHtmlIcon('#5F9ea0', '#2F4F4F', null, null, null) : customHtmlIcon('#FF8C00', '#8B4513', null, null, null),
 
-                // customized HTML canvas icons
+                // Customized HTML canvas icons
                 icon: isPerson ? customCanvasIcon('#5F9ea0', '#2F4F4F', null) : customCanvasIcon('#FF8C00', '#8B4513', null),
 
-                // markers resembling the original leaflet markers but having different colours
+                // Markers resembling the original leaflet markers but having different colours
                 // icon: isPerson ? colourMarker('blue') : colourMarker('orange'),
 
                 id: (isPerson ? 'P' : 'C')+'-'+id+'-'+addr.id,
@@ -160,6 +193,7 @@ function makePinPerAddress(addressArray, name, prof, id, isPerson){
 
         markers.addLayer(mapPin);
 
+        // Create a popup and tooltip for the marker
         if(document.getElementById('mapBox').parentElement.className == 'smallMap'){
             mapPin.bindPopup(
                 '<span style="font-size:10pt;text-shadow:none">'
@@ -184,10 +218,10 @@ function makePinPerAddress(addressArray, name, prof, id, isPerson){
     });
 }
 
-// options for customizd icons
+// Options for customizd icons
 
-// 1. paint a marker with HTML5 canvas
-// got inspiration from https://gist.github.com/viktorkelemen/1451945
+// 1. Paint a marker with HTML5 canvas
+// Got inspiration from https://gist.github.com/viktorkelemen/1451945
 function customCanvasIcon(colour, borderColour, text){
     return new L.Icon({
         iconUrl: createCanvasMarker(colour, borderColour, text),
@@ -240,8 +274,8 @@ function createCanvasMarker(colour, borderColour, text) {
     return canvas.toDataURL();
   }
 
-// 2. create a marker by formatting an HTML div accordingly
-// inspiration source https://stackoverflow.com/a/40870439
+// 2. Create a marker by formatting an HTML div accordingly
+// Inspiration source https://stackoverflow.com/a/40870439
 function customHtmlIcon(colour, borderColour, fontSize, fontColour, text){
 
     var markerHtmlStyles =
@@ -251,8 +285,8 @@ function customHtmlIcon(colour, borderColour, fontSize, fontColour, text){
         + 'display: block;'
         + 'left: -3rem;'
         + 'top: -0.5rem;'
-        // uncomment the following lines to have on edge markers pointing down to the geopoint (the tip of the marker is the lowest point)
-        // problem: it also rotates any text contained
+        // UNCOMMENT the following lines to have on edge markers pointing down to the geopoint (the tip of the marker is the lowest point)
+        // Problem: it also rotates any text contained
         // + 'left: -1.5rem;'
         // + 'top: -1.5rem;'
         // + 'transform: rotate(45deg);'
@@ -276,9 +310,9 @@ function customHtmlIcon(colour, borderColour, fontSize, fontColour, text){
     });
 }
 
-// 3. use icon-images such as provided by this github project. Problem: they don't except any HTML-properties, thus the markercluster
+// 3. Use icon-images such as provided by this github project. Problem: they don't except any HTML-properties, thus the markercluster
 // can't write the number of markers automatically
-// from https://github.com/pointhi/leaflet-color-markers
+// From https://github.com/pointhi/leaflet-color-markers
 function colourMarker(colour){
     return new L.Icon({
         iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-'+colour+'.png',

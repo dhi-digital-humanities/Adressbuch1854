@@ -1,12 +1,17 @@
 <?php
 /*
 Creates a table containing the main information about multiple companies. It uses the given array or query object with the variable name $companies.
-Adds a numbering if 'count' is set to true.
-Uses a list of addresses (instead of simple breaks) if addrAsList is set to true;
+$count: Adds a numbering if 'count' is set to true.
+$offset: Number, by which the count should be increased
+$addrAsList: Uses a list of addresses (instead of simple breaks) if addrAsList is set to true;
 */
 
 if(!isset($count)){
 	$count=false;
+}
+
+if(!isset($offset)){
+	$offset=0;
 }
 
 if(!isset($addrAsList)){
@@ -30,14 +35,14 @@ $this->Html->css('multiTable.css');
 			<th><?= __('Kategorien') ?></th>
 		</tr>
 		<?php
-		$countNo = 1;
+		$countNo = 1 + $offset;
 		foreach ($companies as $company): ?>
 		<?php
 			$cats = [];
 			if($company->has('prof_category')){
 				array_push($cats, $company->prof_category->name);
 			}
-			
+
 			$plus = [];
 			if($company->bold){
 				array_push($plus, __('Vorab-Abonnent'));
@@ -64,7 +69,7 @@ $this->Html->css('multiTable.css');
 			<td class="middle-width"><?= implode(', ', $plus)?></td>
 			<td class="middle-width"><?= implode(', ', $cats)?></td>
 		</tr>
-		<?php 
+		<?php
 			$countNo++;
 			endforeach;
 		?>

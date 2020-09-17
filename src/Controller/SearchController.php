@@ -11,12 +11,14 @@ class SearchController extends AppController
     {
 		parent::initialize();
 
+        // Load models for being able to access their data.
         $this->loadModel('Persons');
         $this->loadModel('Companies');
 	}
 
     /**
-     * Index method
+     * Index method. Redirects to the query method
+     * of this controller.
      *
      * @return
      */
@@ -28,6 +30,11 @@ class SearchController extends AppController
 		]);
     }
 
+    /**
+     * Funtion rendering a search form view. Before rendering the view,
+     * it loads all fields from the database containing preset selectable
+     * values and transfers it to the view.
+     */
     public function query()
     {
 		$arrondissements = $this->Persons->Addresses->Streets->Arrondissements->find();
@@ -49,8 +56,13 @@ class SearchController extends AppController
 		));
 	}
 
+    /**
+     * Function executing a database search with the given parameters
+     * and rendering a view containing all results.
+     */
     public function results()
     {
+        // Initial loading of the persons, companies and all their necessary fields
         $persons = $this->Persons->find()
             ->contain([
                 'LdhRanks',
@@ -73,6 +85,7 @@ class SearchController extends AppController
                 'ProfCategories'
             ]);
 
+        // Perform a search according to the given search type (simple or detailed)
         switch ($this->request->getQuery('type')) {
             case 'simp':
                 $this->simpleSearch($persons, $companies);
@@ -83,33 +96,74 @@ class SearchController extends AppController
             break;
         }
 
+        // Order the results alphabetically ascending by their names
 		$persons->order(['persons.surname' => 'ASC']);
-		$companies->order(['companies.name' => 'ASC']);
+        $companies->order(['companies.name' => 'ASC']);
 
-		$this->paginate($persons);
-		$this->paginate($companies);
+        $format = $this->request->getQuery('export');
+        if(!empty($format)){
+            $format = strtolower($format);
+        }
+        $formats = [
+            'xml' => 'Xml',
+            'json' => 'Json'
+        ];
 
+        // Paginate if download is not requested
+        // Note: This checking for download is important, since the download will
+        // only return the results of the first page if the results have been paginated!
+        if(empty($format) || !isset($formats[$format])){
+            $this->paginate($persons, ['scope' => 'Persons', 'limit' => 1]);
+            $this->paginate($companies, ['scope' => 'Companies', 'limit' => 1]);
+        }
         $this->set(compact('persons', 'companies'));
 	}
 
-	// TODO: Interessant: Die einfache Suche findet Personen, denen mindestens eine Straße mit dem Suchterm zugeordnet ist. Gibt man jedoch zwei
-	// unterschiedliche Straßen an, die auch beide einer Person zugeordnet sind, so wird die Person nicht gefunden.
-
+	/**
+     * Simple search function. Takes the query param 'text' as input
+     * and looks for database entries containing all tokens of the
+     * query. Only the following fields are searched:
+     * - Persons.surname
+     * - Persons.first_name
+     * - Persons.title
+     * - Persons.name_predicate
+     * - Companies.name
+     * - profession_verbatim (for persons and companies)
+     * - specification_verbatim (for persons and companies)
+     * - Streets.name_old_clean
+     * - Streets.name_new
+     * - Addresses.address_specification_verbatim
+     *
+     * Note: If no query text (= only non-word characters) has been entered, this
+     * function will return without filtering the initial queryObjects at all,
+     * causing the results to be the entire database!!! (To change this uncomment the marked lines)
+     *
+     * The function params are passed by value (&), so that they are changed and
+     * remain changed without having to explicitly return and reassign them.
+     *
+     * @param $persons An initial queryObject containing all persons with the needed fields of person
+     * @param $companies An initial queryObject containing all companies with the needed fields of company
+     */
     private function simpleSearch(&$persons, &$companies)
     {
 		$text = $this->request->getQuery('text');
 
-		// check if the submitted form input contains word characters. If not, empty the query objects
-		if(preg_match('/\w/', $text) === 0) return;
+		// Check if the submitted form input contains word characters. If not, return without modifying the results.
+        if(!isset($text) || preg_match('/\w/', $text) === 0) return;
 
-		// split the text around any number of commas, points and whitespaces
+        // UNCOMMENT these lines instead of the above ones if you want to return zero results for an empty query text:
+        // if(!isset($text) || preg_match('/\w/', $text) === 0){
+        //     $persons->where(['persons.id' => 0]);
+        //     $companies->where(['companies.id' => 0]);
+        // }
+
+		// Split the text around any number of commas, points and whitespaces
 		$tokens = preg_split('/[,.\s]+/', $text);
 
-		// for each token
-		// search for persons/companies that contain the current token in either one of the specified data base fields
+		// For each token
+		// Search for persons/companies that contain the current token in either one of the specified data base fields
 		foreach($tokens as $token){
 
-			// TODO: Abfangen, dass Addresses = null sein kann
 			$persons
 				->leftJoinWith('Addresses')
 				->leftJoinWith('Addresses.Streets')
@@ -141,12 +195,33 @@ class SearchController extends AppController
 						['Addresses.address_specification_verbatim LIKE' => '%'.$token.'%']
 					]
 				])
-				->group('Companies.id');
+                ->group('Companies.id');
 		}
-	}
+    }
 
+    /**
+     * Detailed search function. Takes the detailed query params as query
+     * and looks for database entries containing all the set params.
+     * For each param only the specified field is searched.
+     * If one or more fields have been selected, that exist in persons and companies,
+     * both persons and companies are treated as possible results and are
+     * filtered by the query. If only fields have been selected, that exist
+     * in persons, only persons are treated as possible results, while companies
+     * are excluded from the search and zero company-results will be returned.
+     *
+     * Note: If no fields at all have been selected, this function will return
+     * without filtering the initial queryObjects at all, causing the results to
+     * be the entire database!!! (To change this uncomment the marked lines)
+     *
+     * The function params are passed by value (&), so that they are changed and
+     * remain changed without having to explicitly return and reassign them.
+     *
+     * @param $persons An initial queryObject containing all persons with the needed fields of person
+     * @param $companies An initial queryObject containing all companies with the needed fields of company
+     */
     private function detailedSearch(&$persons, &$companies)
     {
+        // Get param values for fields existing in persons as well as in companies
 		$name = $this->request->getQuery('name');
 		$prof = $this->request->getQuery('prof');
 		$street = $this->request->getQuery('street');
@@ -156,6 +231,7 @@ class SearchController extends AppController
 		$bold = $this->request->getQuery('bold');
 		$advert = $this->request->getQuery('advert');
 
+        // Get param values for fields existing only in persons
 		$firstName = $this->request->getQuery('first_name');
 		$dlI = $this->request->getQuery('institut');
 		$ldh = $this->request->getQuery('ldh_rank');
@@ -164,13 +240,22 @@ class SearchController extends AppController
 		$mil = $this->request->getQuery('mil_stat');
 		$occup = $this->request->getQuery('occ_stat');
 
-		// TODO: Nur für Company checken und stattdessen das Form nicht abschicken, wenn _alle_ Felder leer sind?
-		// Dabei könnte ein Problem sein, dass das hidden Input field "type" ja nie empty ist.
-		// Checking if all values for company or person are empty and empty the entire query object
+        // Checking if all values for company or person are empty and either empty the query object
+        // for companies or return without modifying the query objects
 		if(empty($name.$street.$prof.$profCat.$arrOld.$arrNew) && $bold === null && $advert === null){
             if(empty($firstName.$soc.$mil.$occup.$ldh) && $dlI === null && $gender === null) return;
             $companies->where(['companies.id' => 0]);
-		}
+        }
+
+        // UNCOMMENT these lines instead of the above ones if you want to return zero results for an empty query form:
+        // if(empty($name.$street.$prof.$profCat.$arrOld.$arrNew) && $bold === null && $advert === null){
+        //     if(empty($firstName.$soc.$mil.$occup.$ldh) && $dlI === null && $gender === null){
+        //         $persons->where(['persons.id' => 0]);
+        //         $companies->where(['companies.id' => 0]);
+        //         return;
+        //     }
+        //     $companies->where(['companies.id' => 0]);
+        // }
 
 		// Query for $name (surname of persons/name of companies)
 		if(!empty($name)){
@@ -184,7 +269,8 @@ class SearchController extends AppController
 			$companies->where(['companies.profession_verbatim LIKE' => '%'.$prof.'%']);
 		}
 
-		// Query for $street (a person or company, that has at least one associated Street that contains the given String as old or new street name)
+        // Query for $street (a person or company, that has at least one associated
+        // street that contains the given string as old or new street name)
 		if(!empty($street)){
 			$persons->matching('Addresses.Streets', function($q) use ($street){
 					return $q->where(['OR' => [
@@ -208,7 +294,8 @@ class SearchController extends AppController
 			$companies->where(['companies.prof_category_id' => $profCat]);
 		}
 
-		//Query for $arrOld/$arrNew (a person or company, that has at least one associated street that lies at least partially within the given arrondissement)
+        //Query for $arrOld/$arrNew (a person or company, that has at least one associated
+        // street that lies at least partially within the given arrondissement)
 		$arrs = [];
 		if(!empty($arrOld)){
 			array_push($arrs, intval($arrOld));
@@ -234,7 +321,8 @@ class SearchController extends AppController
 			$companies->where(['bold' => true]);
 		}
 
-		// Query for $advert (the fact, that a person's/company's name appears in the entreprise list of the address book)
+        // Query for $advert (the fact, that a person's/company's name appears in the entreprise list of
+        // the address book)
 		if($advert === '1'){
 			$persons->where(['advert' => true]);
 			$companies->where(['advert' => true]);

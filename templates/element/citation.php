@@ -1,6 +1,6 @@
 <?php
 /*
-Creates a Citation for the currently shown page. Example: 
+Creates a Citation for the currently shown page. Example:
 Zitierhinweis: Eintrag Doctor Karl Müller (P1), in: Adressbuch der Deutschen in Paris für das Jahr 1854, Elektronische Edition, DHI Paris 2020, URL: http://localhost/adressbuch1854/streets/view/1 (Zugriff: 26.02.2020).
 
 $type -> Letter for the entry type (P=person, C=company, S=street, A=arrondissement)
@@ -23,6 +23,6 @@ $this->Html->css('cite', ['block' => true]);
 <div class="citation content">
 	<span><?= __('Zitierhinweis').': ' ?></span>
 	<?= __('Eintrag').' "'.$title.'" (ID '.$idno.'), '.__('in', 'Zitierhinweis, in: Edition').': '.
-		$bookeditor.' ('.'Hg.'.'), '.$booktitle.', '.__('Elektronische Edition').', DHI Paris 2020, URL: '.
+		$bookeditor.' ('.__('Hg.').'), '.$booktitle.', '.__('Elektronische Edition').', DHI Paris 2020, URL: '.
 		$url.' ('.__('Zugriff am ').$date.').'?>
 </div>

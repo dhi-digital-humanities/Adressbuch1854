@@ -21,18 +21,42 @@ class PersonsController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => [
+        $format = $this->request->getQuery('export');
+        if(!empty($format)){
+            $format = strtolower($format);
+        }
+        $formats = [
+            'xml' => 'Xml',
+            'json' => 'Json'
+        ];
+
+        // Paginate if download is not requested
+        // Note: This checking for download is important, since the download will
+        // only return the results of the first page if the results have been paginated!
+        if(empty($format) || !isset($formats[$format])){
+            $this->paginate = [
+                'contain' => [
+                    'LdhRanks',
+                    'MilitaryStatuses',
+                    'SocialStatuses',
+                    'OccupationStatuses',
+                    'ProfCategories',
+                    'Addresses.Streets'
+                ]
+            ];
+
+            $persons = $this->paginate($this->Persons, ['limit' => 20]);
+        } else{
+            $persons = $this->Persons->find()
+            ->contain([
                 'LdhRanks',
                 'MilitaryStatuses',
                 'SocialStatuses',
                 'OccupationStatuses',
                 'ProfCategories',
                 'Addresses.Streets'
-            ],
-        ];
-
-        $persons = $this->paginate($this->Persons);
+            ]);
+        }
 
         $this->set(compact('persons'));
     }

@@ -9,7 +9,7 @@
     <div class="column-responsive column-80">
 		<div class="content">
 			<h3><?= __('Personen') ?></h3>
-			<?= $this->element('personsMultiTable', ['count' => true, 'persons' => $persons])?>
+			<?= $this->element('personsMultiTable', ['count' => true, 'persons' => $persons, 'offset' => (($this->Paginator->current('Persons')-1) * $this->Paginator->param('perPage'))])?>
 			<div class="paginator">
 				<ul class="pagination">
 					<?= $this->Paginator->first('<< ' . __('Anfang')) ?>
@@ -22,7 +22,7 @@
 			</div>
 		</div>
 		<div class="bigMap">
-			<div id="mapBox" class="content" onload="initializeMap(true)">
+			<div id="mapBox" class="content" onload="initializeMap()">
 				<?= $this->Html->script('address-map.js') ?>
 			</div>
 		</div>

@@ -2,10 +2,14 @@
 /*
 Contains a side Navigation.
 $export: all/simple/none, means: none -> no export; simple -> export for the entire database; all -> export for entire database and current datasets
+$mapBox: true/false; if true, a div-box for the map is created
 */
+
 echo $this->Html->css(['map', 'export']);
 
 $params = $this->request->getQueryParams();
+unset($params['Persons[page]']);
+unset($params['Companies[page]']);
 
 $uri = $this->request->getRequestTarget();
 ?>

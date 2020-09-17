@@ -3,12 +3,12 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Company $company
  */
- 
+
  $this->Html->css('view');
- 
+
 	$pageRefs = [];
 	foreach($company->original_references as $ref){
-		$pageRef = 'S. ';
+		$pageRef = __('S. ');
 		$begP = $ref->begin_page_no;
 		$endP = $ref->end_page_no;
 		if($endP != null){
@@ -21,7 +21,7 @@
 		}
 		array_push($pageRefs, $pageRef);
 	}
-	
+
 ?>
 <div class="row">
     <?= $this->element('sideNav', ['mapBox' => true, 'export' => 'all'])?>
@@ -80,7 +80,7 @@
 				</details>
             </div>
             <?php endif; ?>
-			<?php if (!empty($company->external_references)) : ?>			
+			<?php if (!empty($company->external_references)) : ?>
 			<div class="related">
                 <details>
 					<?= '<summary title="'.__('Klicken für Details').'"><h4>'.__('Literatur- und Quellenhinweise').'</h4></summary>' ?>

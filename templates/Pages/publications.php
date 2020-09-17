@@ -1,6 +1,6 @@
 <?php
 /*
-Homepage
+Info Page Related Articles
 */
 ?>
 

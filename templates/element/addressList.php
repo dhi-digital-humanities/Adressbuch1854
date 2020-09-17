@@ -1,8 +1,8 @@
 <?php
-/*
-Creates a list of all addresses given in the array/query object specified by 'addresses'. Uses a bullet point <ul> when 'list' ist set to 'true' and simple <br> when it's set to false.
-
-*/
+/**
+ * Creates a list of all addresses given in the array/query object specified by 'addresses'.
+ * Uses a bullet point <ul> when 'list' ist set to 'true' and simple <br> when it's set to false.
+ */
 
 if(!isset($list)){
 	$list=false;
@@ -19,14 +19,14 @@ if(!isset($list)){
 		} else {
 			$street = $streetOld.' ('.$streetNew.')';
 		}
-		
+
 		$housNo = h($address->houseno);
 		if(!empty($address->houseno_specification)){
 			$housNo.=' '.h($address->houseno_specification);
 		}
-		
+
 		$spec = h($address->address_specification_verbatim);
-							
+
 		$lat = $address->geo_lat;
 		$long = $address->geo_long;
 	?>
@@ -35,15 +35,16 @@ if(!isset($list)){
 		<?php
 			echo $this->Html->link($street, ['controller' => 'Streets', 'action' => 'view', $address->street->id]);
 			echo ' '.$housNo;
-			
+
 			if(!empty($spec)){
 				echo ', '.$spec;
 			}
-			
-			/* Sollen die Geokoordinaten hier gezeigt werden (wenn vorhanden)? Dann diesen Code entkommentieren.
-			if(!empty($long) && !empty($lat )){
-				echo '<br>'.__('Geokoordinaten').': '.$lat.', '.$long.' '.__('(lat/long)');
-			}*/
+
+            // UNCOMMENT this Code if the geographical coordinates of an address (if existing) themselves
+            // shall be shown at this point
+			// if(!empty($long) && !empty($lat )){
+			// 	echo '<br>'.__('Geokoordinaten').': '.$lat.', '.$long.' '.__('(lat/long)');
+			// }
 		?>
 	</li>
 	<?php else: ?>

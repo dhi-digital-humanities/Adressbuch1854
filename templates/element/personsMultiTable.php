@@ -1,12 +1,17 @@
 <?php
 /*
-Creates a table containing the main information about multiple companies. It uses the given array or query object with the variable name $persons.
-Adds a numbering if 'count' is set to true.
-Uses a list of addresses (instead of simple breaks) if addrAsList is set to true;
+Creates a table containing the main information about multiple persons. It uses the given array or query object with the variable name $persons.
+$count: Adds a numbering if 'count' is set to true.
+$offset: Number, by which the count should be increased
+$addrAsList: Use a list of addresses (instead of simple breaks) if addrAsList is set to true;
 */
 
 if(!isset($count)){
 	$count=false;
+}
+
+if(!isset($offset)){
+	$offset=0;
 }
 
 if(!isset($addrAsList)){
@@ -28,8 +33,8 @@ $this->Html->css('multiTable.css');
 			<th class="middle-width"><?= __('Sonstige Merkmale') ?></th>
 			<th class="middle-width"><?= __('Kategorien') ?></th>
 		</tr>
-		<?php 
-		$countNo = 1;
+		<?php
+		$countNo = 1 + $offset;
 		foreach ($persons as $person) : ?>
 		<?php
 			$name = '';
@@ -43,7 +48,7 @@ $this->Html->css('multiTable.css');
 			if(!empty($person->first_name)){
 				$name.=', '.h($person->first_name);
 			}
-			
+
 			$cats = [];
 			if($person->has('prof_category')){
 				array_push($cats, $person->prof_category->name);
@@ -57,7 +62,7 @@ $this->Html->css('multiTable.css');
 			if($person->has('military_status') && $person->military_status->status != 'Civil'){
 				array_push($cats, $person->military_status->status);
 			}
-			
+
 			$plus = [];
 			if($person->has('ldh_rank')){
 				array_push($plus, $person->ldh_rank->rank);
@@ -90,7 +95,7 @@ $this->Html->css('multiTable.css');
 			<td class="middle-width"><?= implode(', ', $plus)?></td>
 			<td class="middle-width"><?= implode(', ', $cats)?></td>
 		</tr>
-		<?php 
+		<?php
 		$countNo++;
 		endforeach; ?>
 	</table>

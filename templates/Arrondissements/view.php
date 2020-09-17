@@ -60,6 +60,3 @@
 		<?= $this->element('citation', ['id' => $arrondissement->id, 'type' => 'A', 'title' => $noStr, 'url' => $this->request->getUri()])?>
     </div>
 </div>
-<!-- <div id="mapBox" onload="initializeMap('multiView')">
-	Dies ist ein Platzhalter-Div für die Karte.
-</div> -->

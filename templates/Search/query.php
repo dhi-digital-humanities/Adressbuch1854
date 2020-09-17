@@ -1,5 +1,5 @@
 <?php
-	// defining the options-arrays for the search form
+	// Defining the options-arrays for the search form
 
 	$optionsArrMod = [];
 	$optionsArrOld = [];
@@ -65,13 +65,10 @@
     <div class="column-responsive column-80">
         <div class="search form content">
             <?= $this->Form->create($persons, ['type' => 'get', 'url' => '/search/results']) ?>
-            <!-- Für spätere Befüllung des Forms
-			mit den bereits eingegebenen Suchparametern bei Sprung von search.php zu query.php:
-			$this->Form->setValueSources('query'])-->
             <fieldset>
                 <legend><?= __('Erweiterte Suche') ?></legend>
 				<?php
-					// set parameter for search type to "detailed"
+					// Set parameter for search type to "detailed"
 					echo $this->Form->hidden('type', ['value' => 'det']);
 				?>
                 <div class="form names">

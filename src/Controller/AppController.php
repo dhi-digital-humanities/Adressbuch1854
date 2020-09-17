@@ -51,8 +51,19 @@ class AppController extends Controller
         //$this->loadComponent('FormProtection');
     }
 
+    /**
+     * Checks, if a value for the query param 'export' is set and builds a
+     * json- or xml-file using the cakePHP viewBuilder. The file is then rendered
+     * as a download instead of a view. If the param 'export' is not set or
+     * contains an invalid value, the function returns with void immediately.
+     *
+     * Valid 'export' values are: json, xml (case insensitive).
+     *
+     * Note: beforeRender() function is executed before the view is rendered.
+     */
     public function beforeRender($event)
     {
+        // Get the format, that is to be rendered, from the query params
         $format = $this->request->getQuery('export');
         if(empty($format)) return;
 
@@ -63,6 +74,7 @@ class AppController extends Controller
             'json' => 'Json'
         ];
 
+        // Define file name for download file according to the current Controller
         if(isset($formats[$format])){
             $filename = 'Adressbuch1854_';
             $viewVars = $this->viewBuilder()->getVars();
@@ -95,28 +107,39 @@ class AppController extends Controller
 
             $filename .= '.'.$format;
 
+            // Set the options for the view
             $this->viewBuilder()->setClassName($formats[$format]);
             $this->viewBuilder()->setOption('serialize', true);
             $this->viewBuilder()->setOption('rootNode', 'results');
 
+            // Set content-disposition header to force download instead of rendering a view
             $this->response = $this->response
                 ->withCharset('UTF-8')
                 ->withHeader('Content-Disposition', 'attachment; filename="'.$filename.'"');
         }
     }
 
+    /**
+     * Checks, if a value for the query param 'exportAll' is set and returns
+     * a file of the given export-format as download containing all persons
+     * and companies existing in the database. For the values sql and csv
+     * static download files are used, for the values json and xml a file
+     * is build using the cakePHP viewBuilder. If the param 'exportAll' is not
+     * set or contains an invalid value, the function returns with void immediately.
+     *
+     * Valid 'exportAll' values are: json, xml, sql, csv (case insensitive).
+     */
     public function export()
     {
         $format = $this->request->getQuery('exportAll');
         if(empty($format)) return;
 
-        // paths relative to webroot
+        // sql and csv paths relative to webroot
         $csvFilePath = 'download/Adressbuch_1854_all.csv';
         $sqlFilePath = 'download/Adressbuch_1854_all.sql';
 
+        // Get the format, that is to be rendered, from the query params
         $format = strtolower($this->request->getQuery('exportAll'));
-
-        // Format to view mapping
         $formats = [
             'xml' => 'Xml',
             'json' => 'Json',
@@ -124,15 +147,17 @@ class AppController extends Controller
             'csv' => 'CSV',
         ];
 
-        // Error on unknown type
+        // Return, if the format is invalid
         if (!isset($formats[$format])){
-            throw new NotFoundException(__('Unknown format.'));
+            return;
         }
 
         $filename = 'Adressbuch1854_complete.'.$format;
         $pathname = '';
 
         switch($format){
+
+            // Load the static file if the format is sql or csv
             case 'csv':
                 return $this->response = $this->response
                     ->withCharset('UTF-8')
@@ -149,6 +174,8 @@ class AppController extends Controller
                         'name' => $filename
                     ]);
 
+            // build a view with all persons and companies if
+            // the format is json or xml
             default:
                 $this->loadModel('Persons');
                 $this->loadModel('Companies');
@@ -175,11 +202,13 @@ class AppController extends Controller
                         'ProfCategories'
                     ]);
 
+                // Set the options for the view
                 $this->set(compact('persons', 'companies'));
                 $this->viewBuilder()->setClassName($formats[$format]);
                 $this->viewBuilder()->setOption('serialize', true);
                 $this->viewBuilder()->setOption('rootNode', 'results');
 
+                // Set content-disposition header to force download instead of rendering a view
                 $this->response = $this->response
                     ->withCharset('UTF-8')
                     ->withHeader('Content-Disposition', 'attachment; filename="'.$filename.'"');

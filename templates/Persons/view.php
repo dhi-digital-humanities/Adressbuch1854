@@ -14,10 +14,10 @@
 	if(!empty($person->first_name)){
 		$name.=', '.h($person->first_name);
 	}
-	
+
 	$pageRefs = [];
 	foreach($person->original_references as $ref){
-		$pageRef = 'S. ';
+		$pageRef = __('S. ');
 		$begP = $ref->begin_page_no;
 		$endP = $ref->end_page_no;
 		if($endP != null){
@@ -30,14 +30,14 @@
 		}
 		array_push($pageRefs, $pageRef);
 	}
-	
+
 	$titles = [];
 	if(!empty($person->title)){
 		array_push($titles, $person->title);
 	}
 	if($person->de_l_institut){
 		array_push($titles, 'de l\'Institut');
-	}	
+	}
 ?>
 <div class="row">
     <?= $this->element('sideNav', ['mapBox' => true, 'export' => 'all'])?>

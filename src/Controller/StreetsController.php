@@ -24,7 +24,21 @@ class StreetsController extends AppController
             ->contain(['Arrondissements'])
             ->distinct(['name_old_clean']);
 
-		$this->paginate($streets);
+        $format = $this->request->getQuery('export');
+        if(!empty($format)){
+            $format = strtolower($format);
+        }
+        $formats = [
+            'xml' => 'Xml',
+            'json' => 'Json'
+        ];
+
+        // Paginate if download is not requested
+        // Note: This checking for download is important, since the download will
+        // only return the results of the first page if the results have been paginated!
+        if(empty($format) || !isset($formats[$format])){
+            $this->paginate($streets, ['limit' => 20]);
+        }
 
         $this->set(compact('streets'));
     }
@@ -40,6 +54,7 @@ class StreetsController extends AppController
     {
         if(!$id) return $this->redirect(['action' => 'index']);
 
+        // Load additional models for being able to access their data.
 		$this->loadModel('Persons');
 		$this->loadModel('Companies');
 
@@ -49,9 +64,16 @@ class StreetsController extends AppController
             ],
         ]);
 
+        // Find all the streets with the same old name clean -> duplicates,
+        // either containing an alternate old name or representing just a part of
+        // the old street, that has been given a new name in modern times.
         $sameStreets = $this->Streets->find()
             ->where(['name_old_clean' => $street->name_old_clean]);
 
+        // After fetching the street, find all persons and companies,
+        // that have addresses with this street. Use 'distinct' to avoid
+        // doubled persons/companies (some may have different addresses with
+		// the same street and may therefore be selected mutiple times).
         $persons = $this->Persons->find()
             ->contain([
                 'LdhRanks',
@@ -80,6 +102,8 @@ class StreetsController extends AppController
             })
             ->distinct(['Companies.id']);
 
+        // Set street as well as sameStreets, persons and companies to be
+        // able to access their data in the view
         $this->set(compact('street', 'sameStreets', 'persons', 'companies'));
     }
 }

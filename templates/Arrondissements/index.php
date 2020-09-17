@@ -3,10 +3,8 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Arrondissement[]|\Cake\Collection\CollectionInterface $arrondissements
 
- $limit = the number of items displayed per page
  */
 
- $limit=20;
 ?>
 <div class="row">
     <?= $this->element('sideNav', ['mapBox' => false, 'export' => 'all'])?>
@@ -25,7 +23,7 @@
 					</thead>
 					<tbody>
 						<?php
-							$countNo = 1;
+							$countNo = 1 + (($this->Paginator->current('Arrondissements')-1) * $this->Paginator->param('perPage'));
 							foreach ($arrondissements as $arrondissement): ?>
 						<?php
 						$noStr;
@@ -60,11 +58,11 @@
 			</div>
 		</div>
 		<!-- <div class="bigMap">
-			<div id="mapBox" class="content" onload="initializeMap(true)">
+			<div id="mapBox" class="content" onload="initializeMap()">
 				<?= $this->Html->script('address-map.js') ?>
 			</div>
 		</div>
-        Dies ist ein Platzhalter für eine Karte
+        This is a placeholder for a map
         -->
 	</div>
 </div>

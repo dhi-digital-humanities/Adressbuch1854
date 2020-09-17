@@ -19,7 +19,23 @@ class ArrondissementsController extends AppController
      */
     public function index()
     {
-        $arrondissements = $this->paginate($this->Arrondissements);
+        $format = $this->request->getQuery('export');
+        if(!empty($format)){
+            $format = strtolower($format);
+        }
+        $formats = [
+            'xml' => 'Xml',
+            'json' => 'Json'
+        ];
+
+        // Paginate if download is not requested
+        // Note: This checking for download is important, since the download will
+        // only return the results of the first page if the results have been paginated!
+        if(empty($format) || !isset($formats[$format])){
+            $arrondissements = $this->paginate($this->Arrondissements, ['limit' => 20]);
+        } else{
+            $arrondissements = $this->Arrondissements->find();
+        }
 
         $this->set(compact('arrondissements'));
     }
@@ -35,11 +51,16 @@ class ArrondissementsController extends AppController
     {
         if(!$id) return $this->redirect(['action' => 'index']);
 
+        // Load additional models for being able to access their data.
         $this->loadModel('Persons');
 		$this->loadModel('Companies');
 
         $arrondissement = $this->Arrondissements->get($id);
 
+        // After fetching the arrondissement, find all persons and companies,
+        // that have addresses in this arrondissement. Use 'distinct' to avoid
+        // doubled persons/companies (some may have different addresses with
+		// the same arrondissement and may therefore be selected mutiple times).
         $persons = $this->Persons->find()
             ->contain([
                 'LdhRanks',
@@ -50,8 +71,6 @@ class ArrondissementsController extends AppController
                 'Addresses.Streets'
             ]);
 
-		// use distinct to avoid doubled persons (some persons may have different addresses with
-		// the same arrondissement and may therefore be selected mutiple times)
         $persons
             ->leftJoinWith('Addresses.Streets.Arrondissements')
 			->where(['Arrondissements.id' => $id])
@@ -68,6 +87,8 @@ class ArrondissementsController extends AppController
 			->where(['Arrondissements.id' => $id])
 			->distinct(['Companies.id']);
 
+        // Set arrondissement as well as persons and companies to be
+        // able to access their data in the view
         $this->set(compact('arrondissement', 'persons', 'companies'));
     }
 }

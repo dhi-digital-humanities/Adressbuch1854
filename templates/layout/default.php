@@ -66,18 +66,13 @@ $description = 'Adressbuch 1854';
         </div>
 		<div class="wrapper-item search form" id="simp-search">
 			<?= $this->Form->create(null, ['type' => 'get', 'url' => '/search/results']) ?>
-			<!-- <fieldset class="simp-search-item"> -->
-				<?php
-					// set parameter for search type to "simple"
-					echo $this->Form->hidden('type', ['value' => 'simp']);
-					echo $this->Form->control('text', ['maxlength' => 256, 'label' => false, 'placeholder' => __('Freitextsuche')]);
-				?>
-			<!-- </fieldset> -->
+			<?php
+                // Set parameter for search type to "simple"
+                echo $this->Form->hidden('type', ['value' => 'simp']);
+                echo $this->Form->control('text', ['maxlength' => 256, 'label' => false, 'placeholder' => __('Freitextsuche')]);
+            ?>
 			<?= $this->Form->button(__('Los'), ['class' => 'simp-search-item']) ?>
 			<?= $this->Form->end() ?>
-			<!--Hinweis: Die Freitextsuche sucht nach den Feldern (Nach)Name, Vorname, Berufsbezeichnung,
-			Anmerkungen zur Person/zum Unternehmen, alter und neuer Straßenname sowie Anmerkungen zur Adresse.
-			Für genauere Abfragen nutzen Sie bitte die erweiterte Suche.-->
 		</div>
 	</header>
     <nav class="top-nav">
