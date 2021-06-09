@@ -97,8 +97,8 @@ class SearchController extends AppController
         }
 
         // Order the results alphabetically ascending by their names
-		$persons->order(['persons.surname' => 'ASC']);
-        $companies->order(['companies.name' => 'ASC']);
+		$persons->order(['Persons.surname' => 'ASC']);
+        $companies->order(['Companies.name' => 'ASC']);
 
         $format = $this->request->getQuery('export');
         if(!empty($format)){
@@ -113,8 +113,8 @@ class SearchController extends AppController
         // Note: This checking for download is important, since the download will
         // only return the results of the first page if the results have been paginated!
         if(empty($format) || !isset($formats[$format])){
-            $this->paginate($persons, ['scope' => 'Persons', 'limit' => 1]);
-            $this->paginate($companies, ['scope' => 'Companies', 'limit' => 1]);
+            $this->paginate($persons, ['scope' => 'Persons', 'limit' => 5]);
+            $this->paginate($companies, ['scope' => 'Companies', 'limit' => 5]);
         }
         $this->set(compact('persons', 'companies'));
 	}
@@ -153,8 +153,8 @@ class SearchController extends AppController
 
         // UNCOMMENT these lines instead of the above ones if you want to return zero results for an empty query text:
         // if(!isset($text) || preg_match('/\w/', $text) === 0){
-        //     $persons->where(['persons.id' => 0]);
-        //     $companies->where(['companies.id' => 0]);
+        //     $persons->where(['Persons.id' => 0]);
+        //     $companies->where(['Companies.id' => 0]);
         // }
 
 		// Split the text around any number of commas, points and whitespaces
@@ -244,29 +244,29 @@ class SearchController extends AppController
         // for companies or return without modifying the query objects
 		if(empty($name.$street.$prof.$profCat.$arrOld.$arrNew) && $bold === null && $advert === null){
             if(empty($firstName.$soc.$mil.$occup.$ldh) && $dlI === null && $gender === null) return;
-            $companies->where(['companies.id' => 0]);
+            $companies->where(['Companies.id' => 0]);
         }
 
         // UNCOMMENT these lines instead of the above ones if you want to return zero results for an empty query form:
         // if(empty($name.$street.$prof.$profCat.$arrOld.$arrNew) && $bold === null && $advert === null){
         //     if(empty($firstName.$soc.$mil.$occup.$ldh) && $dlI === null && $gender === null){
-        //         $persons->where(['persons.id' => 0]);
-        //         $companies->where(['companies.id' => 0]);
+        //         $persons->where(['Persons.id' => 0]);
+        //         $companies->where(['Companies.id' => 0]);
         //         return;
         //     }
-        //     $companies->where(['companies.id' => 0]);
+        //     $companies->where(['Companies.id' => 0]);
         // }
 
 		// Query for $name (surname of persons/name of companies)
 		if(!empty($name)){
-			$persons->where(['persons.surname LIKE' => '%'.$name.'%']);
-			$companies->where(['companies.name LIKE' => '%'.$name.'%']);
+			$persons->where(['Persons.surname LIKE' => '%'.$name.'%']);
+			$companies->where(['Companies.name LIKE' => '%'.$name.'%']);
 		}
 
 		// Query for $prof (given profession of a person or company)
 		if(!empty($prof)){
-			$persons->where(['persons.profession_verbatim LIKE' => '%'.$prof.'%']);
-			$companies->where(['companies.profession_verbatim LIKE' => '%'.$prof.'%']);
+			$persons->where(['Persons.profession_verbatim LIKE' => '%'.$prof.'%']);
+			$companies->where(['Companies.profession_verbatim LIKE' => '%'.$prof.'%']);
 		}
 
         // Query for $street (a person or company, that has at least one associated
@@ -290,8 +290,8 @@ class SearchController extends AppController
 
 		//Query for $profCat (profession category of person/company)
 		if(!empty($profCat)){
-			$persons->where(['persons.prof_category_id' => $profCat]);
-			$companies->where(['companies.prof_category_id' => $profCat]);
+			$persons->where(['Persons.prof_category_id' => $profCat]);
+			$companies->where(['Companies.prof_category_id' => $profCat]);
 		}
 
         //Query for $arrOld/$arrNew (a person or company, that has at least one associated
@@ -314,60 +314,60 @@ class SearchController extends AppController
 
 		// Query for $bold (the fact, that a person's/company's name is written bold in the address book)
 		if($bold === '1'){
-			$persons->where(['bold' => true]);
-			$companies->where(['bold' => true]);
+			$persons->where(['Persons.bold' => true]);
+			$companies->where(['Companies.bold' => true]);
 		} elseif($bold === '0'){
-			$persons->where(['bold' => false]);
-			$companies->where(['bold' => true]);
+			$persons->where(['Persons.bold' => false]);
+			$companies->where(['Companies.bold' => false]);
 		}
 
         // Query for $advert (the fact, that a person's/company's name appears in the entreprise list of
         // the address book)
 		if($advert === '1'){
-			$persons->where(['advert' => true]);
-			$companies->where(['advert' => true]);
+			$persons->where(['Persons.advert' => true]);
+			$companies->where(['Companies.advert' => true]);
 		} elseif($advert === '0'){
-			$persons->where(['advert' => false]);
-			$companies->where(['advert' => false]);
+			$persons->where(['Persons.advert' => false]);
+			$companies->where(['Companies.advert' => false]);
 		}
 
 		/* Queries that only concern persons */
 
 		//Query for $firstName (first name of person)
 		if(!empty($firstName)){
-			$persons->where(['persons.first_name LIKE' => '%'.$firstName.'%']);
+			$persons->where(['Persons.first_name LIKE' => '%'.$firstName.'%']);
 		}
 
 		// Query for $dlI (the fact, that a person is marked "de l'Institut" in the address book)
 		if($dlI === '1'){
-			$persons->where(['de_l_institut' => true]);
+			$persons->where(['Persons.de_l_institut' => true]);
 		} elseif($dlI === '0'){
-			$persons->where(['de_l_institut' => false]);
+			$persons->where(['Companies.de_l_institut' => false]);
 		}
 
 		//Query for $ldh (a person's rank in the Légion d'Honneur)
 		if(!empty($ldh)){
-			$persons->where(['ldh_rank_id' => $ldh]);
+			$persons->where(['Persons.ldh_rank_id' => $ldh]);
 		}
 
 		//Query for $gender (a person's gender)
 		if(!empty($gender)){
-			$persons->where([strtolower('gender') => $gender]);
+			$persons->where([strtolower('Persons.gender') => $gender]);
 		}
 
 		// Query for $soc (the social status of a person)
 		if(!empty($soc)){
-			$persons->where(['persons.social_status_id' => $soc]);
+			$persons->where(['Persons.social_status_id' => $soc]);
 		}
 
 		// Query for $mil (the military status of a person)
 		if(!empty($mil)){
-			$persons->where(['persons.military_status_id' => $mil]);
+			$persons->where(['Persons.military_status_id' => $mil]);
 		}
 
 		// Query for $occup (the occupational status of a person)
 		if(!empty($occup)){
-			$persons->where(['persons.occupation_status_id' => $occup]);
+			$persons->where(['Persons.occupation_status_id' => $occup]);
 		}
 	}
 }
