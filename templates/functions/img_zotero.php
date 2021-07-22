@@ -21,7 +21,7 @@
 
 //This function describes tag zotero for person view. This function generates HTML code for tag zotero of person view with $name, $precision, $precision2, $military_status, $social_status, $occupation_status, $gender, $ldh, $begP.
 
-          function zoteroperson($name, $precision, $precision2, $military_status, $social_status, $occupation_status, $gender, $ldh, $houseno, $addr_name, $addr_new,  $begP){
+         function zoteroperson($name, $precision, $precision2, $military_status, $social_status, $occupation_status, $gender, $ldh, $houseno, $addr_name, $addr_new,  $begP){
 
 				    	  $code_span= '<span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=bookitem&amp;rft.atitle=';
 				        $code_span.=$name;
@@ -98,7 +98,7 @@
 
 					function image($path, $size, $id, $begP)
 						{
-							$code_html_image = "<a target='_blank' href=/../img/HD/BHVP_703983_$begP.jpg>";
+							$code_html_image = "<a target='_blank' href=/../scans/HD/BHVP_703983_$begP.jpg>";
 							$code_html_image.=" <img src='";
 							$code_html_image.= $path;
 							$code_html_image.= $size;
