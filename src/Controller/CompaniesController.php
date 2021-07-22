@@ -46,8 +46,9 @@ class CompaniesController extends AppController
             ->contain(['ProfCategories',
                 'Addresses.Streets']);
         }
-
+        $companies = $this->paginate($this->Companies,['contain'=>['Addresses.Streets']], ['limit' => 20]);
         $this->set(compact('companies'));
+
     }
 
     /**
@@ -76,5 +77,8 @@ class CompaniesController extends AppController
         ]);
 
         $this->set(compact('company'));
-    }
+    
+
+
+}
 }

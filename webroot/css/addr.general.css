@@ -1,0 +1,70 @@
+.wrapper-item {
+	margin-left: 100px;
+	margin-right: 100px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	display: inline-block;
+}
+
+.simp-search-item {
+	display: inline;
+}
+
+#simp-search {
+	float: right;
+}
+
+#dhi-logo {
+	float: left;
+	widht: 100;
+}
+
+#credits {
+	float: right;
+}
+
+#title-logo {
+	float: left;
+	font-size: 25px;
+	color: #1C1C1C;
+	font-weight: bold;
+}
+
+#title-logo:hover {
+	color: #d33c43;
+}
+
+footer {
+	background-color: #5F9EA0;
+	
+}
+
+header {
+	background-color: #5F9EA0;
+	margin-bottom: 0;
+	
+}
+
+.top-nav {
+	margin-left: 20%;
+	margin-right: 20%;
+	width: 60%;
+	padding: 5px;
+	margin-top: 0;
+	margin-bottom: 50px;
+}
+
+aside {
+	margin-right: 10px;
+}
+
+blockquote{
+
+    display: block;
+    width: 70%;
+    border: 3px solid #A0A0A0;
+    border-radius: 10px;
+    float: right;
+   text-align: justify;
+   line-height: 2.2;
+}

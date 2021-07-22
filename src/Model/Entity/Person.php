@@ -73,5 +73,6 @@ class Person extends Entity
         'companies' => true,
         'external_references' => true,
         'original_references' => true,
+        //'bhvp300' => true,
     ];
 }

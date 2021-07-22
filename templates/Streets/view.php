@@ -4,6 +4,10 @@
  * @var \App\Model\Entity\Street $street
  */
 	use Cake\Collection\Collection;
+
+
+	require(__DIR__.'/../functions/img_zotero.php');
+	require(__DIR__.'/../functions/varsstreets.php');
 	
 	$varieties = [];
 	foreach($sameStreets as $sameStr){
@@ -69,9 +73,17 @@
 					<?= '<summary title="'.__('Klicken für Details').'"><h4>'.__('Unternehmen in dieser Straße').'</h4></summary>' ?>
 					<?= $this->element('companiesMultiTable', ['companies' => $companies])?>
 				</details>
-            </div>
-			<?php endif; ?>
-        </div>
-		<?= $this->element('citation', ['id' => $street->id, 'type' => 'S', 'title' => $street->name_old_clean, 'url' => $this->request->getUri()])?>
-    </div>
+           <div>
+<?php endif; ?>
+
+</div>
+
+ <br><div class="csl-bib-body" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">
+  <div class="csl-entry">Kronauge, F. «&nbsp;<?php echo $street_name ?>&nbsp;». In <i>Adressbuch der Deutschen in Paris für das Jahr 1854</i>, Elektronische Edition, 1854. <a target="_blank" href='<?php  $this->request->getUri() ?>'><?php echo $this->request->getUri() ?></a>.</div>
+
+<?php print zoterostreets($street_name, $no_old, $no_new, $street_new)?>
+          
+
+</div>
+
 </div>

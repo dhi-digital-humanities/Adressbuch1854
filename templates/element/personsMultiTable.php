@@ -84,13 +84,13 @@ $this->Html->css('multiTable.css');
 			<?php if($count):?>
 			<td><?= $this->Number->format($countNo)?></td>
 			<?php endif;?>
-			<td><?= $this->Html->link($name, ['controller' => 'Persons', 'action' => 'view', $person->id]) ?></td>
+			<td><?= $this->Html->link(htmlspecialchars_decode($name), ['controller' => 'Persons', 'action' => 'view', $person->id]) ?></td>
 			<td class="small-width"><?= h($person->specification_verbatim) ?></td>
 			<td><?= h($person->profession_verbatim) ?></td>
 			<td><?php
 				if (!empty($person->addresses)){
-					echo $this->element('addressList', ['addresses' => $person->addresses, 'list' => $addrAsList]);
-				}
+					echo htmlspecialchars_decode($this->element('addressList', ['addresses' => $person->addresses, 'list' => $addrAsList]));
+				} 
 			?></td>
 			<td class="middle-width"><?= implode(', ', $plus)?></td>
 			<td class="middle-width"><?= implode(', ', $cats)?></td>
