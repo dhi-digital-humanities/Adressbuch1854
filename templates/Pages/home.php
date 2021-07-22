@@ -20,7 +20,7 @@ Homepage
 			Website of the Department: <a href='https://www.dhi-paris.fr/forschung/digital-humanities.html'>https://www.dhi-paris.fr/forschung/digital-humanities.html</a>
 
 		</p>
-			<a target='_blank' href='/../img/HD/BHVP_703983_001.jpg'><img class='homepage' src='/../img/SD/BHVP_703983_001.jpg' alt='Seite der Adressbuch' title='IHA zur Nutzung der Seite'/></a>
+			<a target='_blank' href='http://adressbuch1854.dh.uni-koeln.de/scans/HD/BHVP_703983_001.jpg'><img class='homepage' src='http://adressbuch1854.dh.uni-koeln.de/scans/SD/BHVP_703983_001.jpg' alt='Seite der Adressbuch' title='IHA zur Nutzung der Seite'/></a>
 		
 		</div>
 	</div>
