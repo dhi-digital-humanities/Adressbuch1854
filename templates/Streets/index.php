@@ -4,6 +4,7 @@
  * @var \App\Model\Entity\Street[]|\Cake\Collection\CollectionInterface $streets
  */
 ?>
+
 <div class="row">
     <?= $this->element('sideNav', ['mapBox' => false, 'export' => 'all'])?>
     <div class="column-responsive column-80">
@@ -36,7 +37,7 @@
 						?>
 						<tr>
 							<td><?= $this->Number->format($countNo) ?></td>
-							<td><?= $this->Html->link(h($street->name_old_clean), ['action' => 'view', $street->id]) ?></td>
+							<td><?= htmlspecialchars_decode($this->Html->link(h($street->name_old_clean), ['action' => 'view', $street->id])) ?></td>
 							<td><?= h($street->name_new) ?></td>
 							<td>
 								<table>

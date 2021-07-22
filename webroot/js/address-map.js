@@ -102,7 +102,8 @@ function initializeMarkers(){
     // The current URL is expanded with the parameter export=json and returns thus a Json representation
     // of the current datasets.
     var url = window.location;
-    url = url + (window.location.search ? '&' : '?') + 'export=json';
+    url = url + (window.location.search ? '&' : '?')  + 'export=json';
+    console.log(url);
 
     // The getJSON function works asynchronous, therefore everything, that needs the json code,
     // has to happen within the lambda expression of the getJSON function!
@@ -154,8 +155,13 @@ function mapCompany(json){
  * @param {*} id The id of the object to whom the address belongs
  * @param {*} isPerson Boolean indicating, if the address belongs to a person or company
  */
-function makePinPerAddress(addressArray, name, prof, id, isPerson){
-    addressArray.forEach(function(addr){
+function makePinPerAddress(addressArray, name, prof, id, isPerson)
+{
+
+    addressArray.forEach(function(addr)
+        
+    {
+
 
         var addrFull = addr.street.name_old_clean;
 		if(addrFull != addr.street.name_new) addrFull += ' ('+addr.street.name_new+')';
@@ -163,9 +169,10 @@ function makePinPerAddress(addressArray, name, prof, id, isPerson){
 		if(addr.houseno_specification) addrFull += addr.houseno_specification;
 		if(addr.address_specification_verbatim) addrFull += ', '+addr.address_specification_verbatim;
 
-        var link ='/Adressbuch1854/';
+        var link ='/';
         link += isPerson ? 'persons' : 'companies';
         link += '/view/'+id;
+        
 
         var mapPin = L.marker(
             L.latLng(
@@ -215,8 +222,10 @@ function makePinPerAddress(addressArray, name, prof, id, isPerson){
         }
 
         mapPin.on('click', clickZoom);
-    });
-}
+   });
+
+
+};
 
 // Options for customizd icons
 

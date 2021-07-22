@@ -113,9 +113,11 @@ class SearchController extends AppController
         // Note: This checking for download is important, since the download will
         // only return the results of the first page if the results have been paginated!
         if(empty($format) || !isset($formats[$format])){
-            $this->paginate($persons, ['scope' => 'Persons', 'limit' => 5]);
+            $this->paginate($persons, ['scope' => 'Persons', 'limit' => 15]);
             $this->paginate($companies, ['scope' => 'Companies', 'limit' => 5]);
         }
+        $this->paginate($persons, ['scope' => 'Persons', 'limit' => 15]);
+        $this->paginate($companies, ['scope' => 'Companies', 'limit' => 5]);
         $this->set(compact('persons', 'companies'));
 	}
 
@@ -370,4 +372,31 @@ class SearchController extends AppController
 			$persons->where(['Persons.occupation_status_id' => $occup]);
 		}
 	}
+
+public function persons()
+    {
+        if(!$id) return $this->redirect(['action' => 'index']);
+
+        $person = $this->Persons->get($id, [
+            'contain' => [
+                'LdhRanks',
+                'MilitaryStatuses',
+                'SocialStatuses',
+                'OccupationStatuses',
+                'ProfCategories',
+                'Addresses.Streets.Arrondissements',
+                'Companies.ProfCategories',
+                'Companies.Addresses.Streets',
+                'ExternalReferences.ReferenceTypes',
+                'OriginalReferences'
+            ]
+        ]);
+
+        $this->set(compact('person'));
+    }
+
+    
 }
+
+
+ 
