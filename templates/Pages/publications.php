@@ -105,7 +105,7 @@ Info Page Related Articles
 	<tr>
 		<td>
 			<div class="csl-bib-body" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">
-  			<div class="csl-entry"><i>GitHub</i>. PHP/Javascript, <a href="https://github.com/dhi-digital-humanities/Adressbuch">https://github.com/dhi-digital-humanities/Adressbuch</a>.</div>
+  			<div class="csl-entry"><i>GitHub</i>. PHP/Javascript, <a href="https://github.com/DH-Cologne/Adressbuch1854">https://github.com/DH-Cologne/Adressbuch1854</a>.</div>
   			<span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rft.type=computerProgram&amp;rft.title=GitHub&amp;rft.description=Projekt%20Adressbuch%2C%20DHI-Digital-Humanities&amp;rft.identifier=https%3A%2F%2Fgithub.com%2Fdhi-digital-humanities%2FAdressbuch"></span></div>
 		</td>
 	</tr>
