@@ -2,7 +2,6 @@
 /*
 Info Pages related Partner und Mitarbeiter
 */
-
 ?>
 
 <div class="row">
