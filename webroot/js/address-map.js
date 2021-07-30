@@ -1,5 +1,6 @@
 // Important global variables
 var leafletMap = null;
+var cartohisto = null;
 var oms = null;
 var markers = null;
 
@@ -14,7 +15,7 @@ $('document').ready(function(){
  * and a legend is created.
  */
 function initializeMap(){
-    leafletMap = L.map('mapBox', {
+ leafletMap = L.map('mapBox', {
         center: [48.859289, 2.342122],
         maxBounds: [
             [48.813141, 2.234129],
@@ -24,10 +25,33 @@ function initializeMap(){
         zoom: 11
     });
 
-    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
         subdomains: ['a','b','c']
     }).addTo(leafletMap);
+
+
+cartohisto = L.tileLayer("https://wxs.ign.fr/cartes/geoportail/wmts?" +
+        "&REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0" +
+        "&STYLE=normal" +
+        "&TILEMATRIXSET=PM" +
+        "&FORMAT=image/jpeg"+
+        "&LAYER=GEOGRAPHICALGRIDSYSTEMS.ETATMAJOR40"+
+    "&TILEMATRIX={z}" +
+        "&TILEROW={y}" +
+        "&TILECOL={x}",
+                {
+                    minZoom :0,
+                    maxZoom :18,
+                    attribution : 'IGN-F/Geoportail',
+                    tileSize:256
+
+                }).addTo(leafletMap);
+
+ 
+var baseLayers = {"Open Street Map": leafletMap, "Etat Major 1820-1866": cartohisto};
+
+L.control.layers(baseLayers).addTo(leafletMap);
 
     // Create a legend
     if(document.getElementById('mapBox').parentElement.className == 'bigMap'){
@@ -45,8 +69,11 @@ function initializeMap(){
         };
 
         legend.addTo(leafletMap);
+
+
     }
 }
+
 
 // Use via Leaflet plugin https://github.com/Leaflet/Leaflet.markercluster
 /**
@@ -334,3 +361,4 @@ function colourMarker(colour){
 }
 
 // 4. Creating your own markers using personalized picture files (could pose same problem as 3.)
+
