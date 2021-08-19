@@ -3,6 +3,11 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Person $person
  */
+
+require(__DIR__.'/../functions/img_zotero.php');
+require (__DIR__.'/../functions/varspersons.php');
+
+
 	$name = '';
 	if(!empty($person->title)){
 		$name.=h($person->title).' ';
@@ -43,11 +48,41 @@
     <?= $this->element('sideNav', ['mapBox' => true, 'export' => 'all'])?>
     <div class="column-responsive column-80">
         <div class="persons view content">
-            <h3><?= h($name) ?></h3>
+            <h3><?= htmlspecialchars_decode(h($name)) ?></h3>
 			<?= !empty($pageRefs) ? __('Eintrag im Buch auf ').implode(' und ', $pageRefs).'.' : ''?>
             <table>
+            	<tr>
+            		<th><?= __('Scan der Seite') ?></th>
+            		<td>
+            			
+							<?php print image('http://adressbuch1854.dh.uni-koeln.de/scans/','SD/','BHVP_703983_',$begP);?><br>
+						
+						<details>
+							<summary><?= __('Seite in HD ansehen')?></summary>
+						<form>
+							<button type='submit' title="IHA zur Nutzung der Seite <?php echo $begP?>" formtarget='_blank' formaction='http://adressbuch1854.dh.uni-koeln.de/scans/HD/BHVP_703983_<?php echo $begP ?>.jpg'
+
+							value="text">BHVP_703983_<?php echo $begP?>.jpg</button>
+						</form>
+						</details>
+
+            	   </td> 
+            	</tr>
+            	<tr>
+            		<th><?= __('Volltexterkennung')?></th>
+            		<td>
+            		<details>
+							<summary><?= __('Volltext der Seite ansehen')?></summary>
+						<form>
+							<button type='submit' formtarget='_blank' formaction='/../Ocerisations/BHVP_703983_<?php echo $begP ?>.txt'
+
+							value="text">BHVP_703983_<?php echo $begP?>.txt</button>
+						</form>
+						</details>
+            		</td>
+            	</tr>
                 <tr>
-                    <th><?= __('Nachame') ?></th>
+                    <th><?= __('Nachname') ?></th>
                     <td><?= h($person->name_predicate).' '.h($person->surname) ?></td>
                 </tr>
                 <tr>
@@ -85,7 +120,7 @@
 					<th><?=__('Adresse(n)')?></th>
 					<td>
 					<?php if (!empty($person->addresses)) : ?>
-						<?= $this->element('addressList', ['addresses' => $person->addresses, 'list' => true]) ?>
+						<?= htmlspecialchars_decode($this->element('addressList', ['addresses' => $person->addresses, 'list' => true])) ?>
 					<?php endif; ?>
 					</td>
 				</tr>
@@ -144,9 +179,18 @@
 					<?= '<summary title="'.__('Klicken für Details').'"><h4>'.__('Literatur- und Quellenhinweise').'</h4></summary>' ?>
 					<?= $this->element('externalReferenceMultiTable', ['externalReferences' => $person->external_references])?>
 				</details>
-			</div>
-            <?php endif; ?>
-        </div>
-		<?= $this->element('citation', ['id' => $person->id, 'type' => 'P', 'title' => $name, 'url' => $this->request->getUri()])?>
-    </div>
+			</div><br>
+			<div>
+<?php endif; ?>
+
+</div>
+
+ <br><div class="csl-bib-body" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">
+  <div class="csl-entry">Kronauge, F. «&nbsp;<?php echo $name ?>&nbsp;». In <i>Adressbuch der Deutschen in Paris für das Jahr 1854</i>, Elektronische Edition., <?php echo $begP ?>, 1854. <a target="_blank" href='<?php  $this->request->getUri() ?>'><?php echo $this->request->getUri() ?></a>.</div>
+
+<?php print zoteroperson($name, $precision, $precision2, $military_status, $social_status,$occupation_status, $gender, $ldh, $houseno, $addr_name, $addr_new, $begP);?>
+          
+
+</div>
+
 </div>

@@ -15,14 +15,13 @@
 // The current pagination param for Person or Company must be unset first
 // to avoid overriding.
  $params = $this->request->getQueryParams();
- unset($params['Persons']);
+ 
  unset($params['Companies']);
 
 ?>
 <h2><?= __('Ergebnisse') ?></h2>
 <?php echo __('Für Ihre Suchanfrage wurden ').
-	$this->Paginator->counter(__('{{count}} Person(en)'), ['model' => 'Persons']).
-	' und '.
+	
 	$this->Paginator->counter(__('{{count}} Unternehmen'), ['model' => 'Companies']).
 	' gefunden:';
 ?>

@@ -37,9 +37,9 @@ class StreetsController extends AppController
         // Note: This checking for download is important, since the download will
         // only return the results of the first page if the results have been paginated!
         if(empty($format) || !isset($formats[$format])){
-            $this->paginate($streets, ['limit' => 20]);
+            $this->paginate($streets, ['order'=>['id'=>'ASC']],['limit' => 20]);
         }
-
+        $this->paginate($streets, ['order'=>['id'=>'ASC']], ['limit'=> 20]);
         $this->set(compact('streets'));
     }
 
@@ -105,5 +105,6 @@ class StreetsController extends AppController
         // Set street as well as sameStreets, persons and companies to be
         // able to access their data in the view
         $this->set(compact('street', 'sameStreets', 'persons', 'companies'));
+        
     }
 }

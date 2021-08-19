@@ -4,6 +4,9 @@
  * @var \App\Model\Entity\Company $company
  */
 
+require_once(__DIR__.'/../functions/img_zotero.php');
+require(__DIR__.'/../functions/varscomp.php');
+
  $this->Html->css('view');
 
 	$pageRefs = [];
@@ -30,6 +33,35 @@
             <h3><?= h($company->name) ?></h3>
 			<?=	!empty($pageRefs) ? __('Eintrag im Buch auf ').implode(' und ', $pageRefs).'.' : '' ?>
             <table>
+            	<tr>
+            		<th><?= __('Scan der Seite')?></th>
+            		<td>
+							<?php print image('http://adressbuch1854.dh.uni-koeln.de/scans/','SD/','BHVP_703983_',$begP);?><br>
+						
+						<details>
+							<summary><?= __('Seite in HD ansehen')?></summary>
+						<form>
+							<button type='submit' title="IHA zur Nutzung der Seite <?php echo $begP?>" formtarget='_blank' formaction='http://adressbuch1854.dh.uni-koeln.de/scans/HD/BHVP_703983_<?php echo $begP ?>.jpg'
+
+							value="text">BHVP_703983_<?php echo $begP?>.jpg</button>
+						</form>
+						</details>
+
+            	   </td> 
+            	</tr>
+            	<tr>
+            		<th><?= __('Volltexterkennung')?></th>
+            		<td>
+            		<details>
+							<summary><?= __('Volltext der Seite ansehen')?></summary>
+						<form>
+							<button type='submit' formtarget='_blank' formaction='/../Ocerisations/BHVP_703983_<?php echo $begP ?>.txt'
+
+							value="text">BHVP_703983_<?php echo $begP?>.txt</button>
+						</form>
+						</details>
+            		</td>
+            	</tr>
                 <tr>
                     <th><?= __('Name') ?></th>
                     <td><?= h($company->name) ?></td>
@@ -50,7 +82,7 @@
 					<th><?=__('Adresse(n)')?></th>
 					<td>
 					<?php if (!empty($company->addresses)) : ?>
-					<?= $this->element('addressList', ['addresses' => $company->addresses, 'list' => true]) ?>
+					<?= htmlspecialchars_decode($this->element('addressList', ['addresses' => $company->addresses, 'list' => true])) ?>
 					<?php endif; ?>
 					</td>
 				</tr>
@@ -87,8 +119,19 @@
 					<?= $this->element('externalReferenceMultiTable', ['externalReferences' => $company->external_references])?>
 				</details>
 			</div>
-			<?php endif; ?>
-        </div>
-		<?= $this->element('citation', ['id' => $company->id, 'type' => 'C', 'title' => $company->name, 'url' => $this->request->getUri()])?>
-    </div>
+			<div>
+<?php endif; ?>
+			     
+
 </div>
+
+ <br><div class="csl-bib-body" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">
+  <div class="csl-entry">Kronauge, F.«&nbsp;<?php echo $nachname ?>&nbsp;». In <i>Adressbuch der Deutschen in Paris für das Jahr 1854</i>, Elektronische Edition., <?php echo $begP ?>, 1854. <a target="_blank" href='<?php  $this->request->getUri() ?>'><?php echo $this->request->getUri() ?></a>.</div>
+
+<?php print zoterocomp($nachname, $prof_category, $specification, $profession, $addr_no, $addr_old, $addr_new, $begP);?>
+</div>
+
+</div>
+
+ 
+

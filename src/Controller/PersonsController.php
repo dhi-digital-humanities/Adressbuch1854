@@ -41,11 +41,14 @@ class PersonsController extends AppController
                     'SocialStatuses',
                     'OccupationStatuses',
                     'ProfCategories',
-                    'Addresses.Streets'
+                    'Addresses.Streets',
+
+                    
                 ]
             ];
 
-            $persons = $this->paginate($this->Persons, ['limit' => 20]);
+            $persons = $this->paginate($this->Persons, ['order'=>['id'=>'ASC']],['limit' => 20]);
+
         } else{
             $persons = $this->Persons->find()
             ->contain([
@@ -54,13 +57,16 @@ class PersonsController extends AppController
                 'SocialStatuses',
                 'OccupationStatuses',
                 'ProfCategories',
-                'Addresses.Streets'
+                'Addresses.Streets',
+                
             ]);
         }
-
+        $persons = $this->paginate($this->Persons, ['contain' =>['Addresses.Streets']], ['order'=>['id'=>'ASC']],['limit' => 20]);
+    {
         $this->set(compact('persons'));
     }
-
+    
+}
     /**
      * View method
      *
@@ -68,7 +74,8 @@ class PersonsController extends AppController
      * @return \Cake\Http\Response|null
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($id = null)
+   
+public function view($id = null)
     {
         if(!$id) return $this->redirect(['action' => 'index']);
 
@@ -83,10 +90,13 @@ class PersonsController extends AppController
                 'Companies.ProfCategories',
                 'Companies.Addresses.Streets',
                 'ExternalReferences.ReferenceTypes',
-                'OriginalReferences'
+                'OriginalReferences',
+                
+
             ]
         ]);
 
         $this->set(compact('person'));
+        
     }
 }
