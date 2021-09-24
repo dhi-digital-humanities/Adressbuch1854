@@ -1,7 +1,9 @@
 // Important global variables
 var leafletMap = null;
+var cartohisto = null;
 var oms = null;
 var markers = null;
+
 
 $('document').ready(function(){
     initializeMap();
@@ -14,24 +16,86 @@ $('document').ready(function(){
  * and a legend is created.
  */
 function initializeMap(){
-    leafletMap = L.map('mapBox', {
+ leafletMap = L.map('mapBox', {
+
         center: [48.859289, 2.342122],
         maxBounds: [
             [48.813141, 2.234129],
             [48.908715, 2.422941]
         ],
-        scrollWheelZoom: false,
-        zoom: 11
+        scrollWheelZoom: true,
+        transparent: true,
+        zoom: 12
     });
 
-    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+  L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a target="blank" href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
         subdomains: ['a','b','c']
     }).addTo(leafletMap);
 
+//The historic map is created with data from IGN
+
+cartohisto = L.tileLayer("https://wxs.ign.fr/cartes/geoportail/wmts?" +
+        "&REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0" +
+        "&STYLE=normal" +
+        "&TILEMATRIXSET=PM" +
+        "&FORMAT=image/jpeg"+
+        "&LAYER=GEOGRAPHICALGRIDSYSTEMS.ETATMAJOR40"+
+    "&TILEMATRIX={z}" +
+        "&TILEROW={y}" +
+        "&TILECOL={x}",
+                {
+                    Zoom:12,
+                    maxZoom :15,
+                    attribution : '<a target="blank" href="https://www.geoportail.gouv.fr/donnees/carte-de-letat-major-1820-1866">IGN-F/Geoportail</a>',
+                    tileSize:256,
+                    transparent: true
+
+                }).addTo(leafletMap);
+
+//Shapefile map is created with data from ALPAGE project
+
+var quartier = new L.Shapefile('download/Export_Quartiers_.zip',
+                                    {attribution:'<a target="blank "href="https://alpage.huma-num.fr/">Projet ALPAGE</a>',
+                                    style:function(feature)
+                                        {
+                                    return {color:'black'}},
+                                            onEachFeature:function(feature, layer)
+                                                {
+                                                    layer.bindTooltip(''+feature. properties.NOM+''); 
+                                                    layer.bindPopup(''+feature. properties.NOM+''); 
+                                                }}
+                                    ); 
+
+quartier.addTo(leafletMap);
+
+//Baselayers is created to switch between the two maps
+
+var controlMap = {"Open Street Map": leafletMap, "Etat Major 1820-1866": cartohisto};
+var otherMap = {"Quartiers de Paris": quartier}
+
+
+var controlLayers = L.control.layers(controlMap, otherMap).addTo(leafletMap);
+
+//control fullscreen is created to expand the map 
+
+L.control.fullscreen({position:'topright'}).addTo(leafletMap);
+
+//Opacity Layer is created to superimpose the two maps 
+
+var opacitySlider = new L.Control.opacitySlider({position: 'bottomright'});
+leafletMap.addControl(opacitySlider);
+var lowerOpacity = new L.Control.lowerOpacity({position: 'bottomright'});
+leafletMap.addControl(lowerOpacity);
+var higherOpacity = new L.Control.higherOpacity({position: 'bottomright'});
+leafletMap.addControl(higherOpacity);
+
+higherOpacity.setOpacityLayer(cartohisto);
+
+
     // Create a legend
     if(document.getElementById('mapBox').parentElement.className == 'bigMap'){
-        var legend = L.control({position: 'bottomright'});
+        var legend = L.control({position: 'bottomleft'});
 
         legend.onAdd = function (map) {
 
@@ -45,9 +109,10 @@ function initializeMap(){
         };
 
         legend.addTo(leafletMap);
-    }
+    
 }
 
+}
 // Use via Leaflet plugin https://github.com/Leaflet/Leaflet.markercluster
 /**
  * Function for creating marker clusters. The clusters make it possible to count
@@ -334,3 +399,4 @@ function colourMarker(colour){
 }
 
 // 4. Creating your own markers using personalized picture files (could pose same problem as 3.)
+

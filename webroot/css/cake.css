@@ -37,7 +37,7 @@ th {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: 130rem;
+    max-width: 120rem;
     padding: auto;
     margin: 0 auto 2rem;
 }
@@ -183,11 +183,11 @@ th {
     margin-right: 5%;
     padding-right: 5px;
     padding-left: 5px;
-    padding-top: 10px; 
-    padding-bottom: 10px;
+    padding-top: 5px; 
+    padding-bottom: 5px;
     line-height: 2;
     border-radius: 10px;
-    border: 1px solid  #5F9EA0;
+    border: 2px solid  #5F9EA0;
     text-align: justify;
 }
 

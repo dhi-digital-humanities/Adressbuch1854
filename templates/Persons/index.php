@@ -22,8 +22,11 @@
 			</div>
 		</div>
 		<div class="bigMap">
+
 			<div id="mapBox" class="content" onload="initializeMap()">
 				<?= $this->Html->script('address-map.js') ?>
+				 
+   
 			</div>
 		</div>
     </div>

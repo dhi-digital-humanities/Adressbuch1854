@@ -135,8 +135,8 @@ class AppController extends Controller
         if(empty($format)) return;
 
         // sql and csv paths relative to webroot
-        $csvFilePath = 'download/Adressbuch_1854_all.csv';
-        $sqlFilePath = 'download/Adressbuch_1854_all.sql';
+        $csvFilePath = 'C:/MAMP/htdocs/test/webroot/download/Adressbuch_1854_all.csv';
+        $sqlFilePath = 'C:/MAMP/htdocs/test/webroot/download/Adressbuch_1854_all.sql';
 
         // Get the format, that is to be rendered, from the query params
         $format = strtolower($this->request->getQuery('exportAll'));
