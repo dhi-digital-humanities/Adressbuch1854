@@ -36,12 +36,12 @@ require(__DIR__.'/../functions/varscomp.php');
             	<tr>
             		<th><?= __('Scan der Seite')?></th>
             		<td>
-							<?php print image('/../scans/','SD/','BHVP_703983_',$begP);?><br>
+							<?php print image('http://adressbuch1854.dh.uni-koeln.de/scans/','SD/','BHVP_703983_',$begP);?><br>
 						
 						<details>
 							<summary><?= __('Seite in HD ansehen')?></summary>
 						<form>
-							<button type='submit' title="IHA zur Nutzung der Seite <?php echo $begP?>" formtarget='_blank' formaction='/../scans/HD/BHVP_703983_<?php echo $begP ?>.jpg'
+							<button type='submit' title="IHA zur Nutzung der Seite <?php echo $begP?>" formtarget='_blank' formaction='http://adressbuch1854.dh.uni-koeln.de/scans/HD/BHVP_703983_<?php echo $begP ?>.jpg'
 
 							value="text">BHVP_703983_<?php echo $begP?>.jpg</button>
 						</form>
