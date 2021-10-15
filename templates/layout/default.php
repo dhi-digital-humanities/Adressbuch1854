@@ -47,7 +47,6 @@ $description = 'Adressbuch 1854';
     <?= $this->Html->css('https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css'); ?>
     <?= $this->Html->css('Control.Opacity.css'); ?>
     <?= $this->Html->css('jquery-ui-1.10.3.custom.min.css'); ?>
-    <?= $this->Html->css('L.Control.Sidebar.css'); ?>
 
 
 	<!-- JQuery script -->
@@ -62,10 +61,6 @@ $description = 'Adressbuch 1854';
    <?= $this->Html->script('Control.Opacity.js'); ?>
    <?= $this->Html->script('jquery-1.9.1.js'); ?>
    <?= $this->Html->script('jquery-ui-1.10.3.custom.min.js'); ?> 
-   <?= $this->Html->script('L.Map.Sync.js'); ?>
-   <?= $this->Html->script('leaflet.shpfile.js'); ?>
-   <?= $this->Html->script('shp.js'); ?>
-   <?= $this->Html->script('L.Control.Sidebar.js'); ?>
 
 	<!-- fetched meta -->
 	<?= $this->fetch('meta') ?>
@@ -96,6 +91,7 @@ $description = 'Adressbuch 1854';
 		<?= $this->Html->link(__('Das Projekt'), ['controller' => 'Pages', 'action' => 'project'], ['class' => 'top-nav-item']) ?>
 		<?= $this->Html->link(__('Links und Publikationen'), ['controller' => 'Pages', 'action' => 'publications'], ['class' => 'top-nav-item']) ?>
         <?= $this->Html->link(__('Partner und Team'), ['controller'=>'Pages', 'action'=>'partners'], ['class'=>'top-nav-item']) ?>
+        
 
     </nav>
     <main class="main">
