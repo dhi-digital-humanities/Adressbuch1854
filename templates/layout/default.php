@@ -102,7 +102,7 @@ $description = 'Adressbuch 1854';
     </main>
     <footer>
 		<a target="_blank" href="https://www.dhi-paris.fr/">
-			<?=$this->Html->image('/../scans/logo.png', ['class' => 'wrapper-item', 'id' => 'dhi-logo', 'alt' => 'Logo DHIP', 'width' => '100px'])?>
+			<?=$this->Html->image('logo.png', ['class' => 'wrapper-item', 'id' => 'dhi-logo', 'alt' => 'Logo DHIP', 'width' => '100px'])?>
 		</a>
 		<?= $this->Html->link(__('Impressum'), ['controller' => 'Pages', 'action' => 'credits'], ['class' => 'wrapper-item', 'id' => 'credits']) ?>
     </footer>
