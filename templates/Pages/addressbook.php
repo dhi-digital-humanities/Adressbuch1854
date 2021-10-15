@@ -65,9 +65,9 @@ Info Page Addressbook
 						</ul><br>
 
 				</blockquote><br>
-			<a target='_blank' href=/../scans/HD/BHVP_703983_001.jpg>
-			<img src='/../scans/SD/BHVP_703983_001.jpg' width="200px" alt="Seite der Adressbuch" title="IHA zur Nutzung der Seite" /></a><br>
-				<a target='_blank' href=/../scans/HD/BHVP_703983_19.jpg><img src='/../scans/SD/BHVP_703983_19.jpg' width="200px" alt="Seite der Adressbuch" title="IHA zur Nutzung der Seite" /></a>
+			<a target='_blank' href=http://adressbuch1854.dh.uni-koeln.de/scans/HD/BHVP_703983_001.jpg>
+			<img src='http://adressbuch1854.dh.uni-koeln.de/scans/SD/BHVP_703983_001.jpg' width="200px" alt="Seite der Adressbuch" title="IHA zur Nutzung der Seite" /></a><br>
+				<a target='_blank' href=http://adressbuch1854.dh.uni-koeln.de/scans/HD/BHVP_703983_19.jpg><img src='http://adressbuch1854.dh.uni-koeln.de/scans/SD/BHVP_703983_19.jpg' width="200px" alt="Seite der Adressbuch" title="IHA zur Nutzung der Seite" /></a>
 			
 
 				<br>

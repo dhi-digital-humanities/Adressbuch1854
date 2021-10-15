@@ -10,6 +10,7 @@ Homepage
 		<div class="content">
 			<h3><?= __('Willkommen') ?></h3>
 			<h4><?=__('Projekt Adressbuch 1854') ?></h4>
+			
 			<p class='p'>
 			Relaunch of <a target="blank" href='http://adressbuch1854.dhi-paris.fr'>http://adressbuch1854.dhi-paris.fr</a><br>
 
@@ -22,7 +23,7 @@ Homepage
 			Adressbuch 1854 full sources: <a target="blank" href="https://doi.org/10.5281/zenodo.5524880">https://doi.org/10.5281/zenodo.5524880</a>
 
 		</p>
-			<a target='_blank' href='/../scans/HD/BHVP_703983_001.jpg'><img class='homepage' src='/../scans/SD/BHVP_703983_001.jpg' alt='Seite der Adressbuch' title='IHA zur Nutzung der Seite'/></a>
+			<a target='_blank' href='http://adressbuch1854.dh.uni-koeln.de/scans/HD/BHVP_703983_001.jpg'><img class='homepage' src='http://adressbuch1854.dh.uni-koeln.de/scans/SD/BHVP_703983_001.jpg' alt='Seite der Adressbuch' title='IHA zur Nutzung der Seite'/></a>
 		
 		</div>
 	</div>
