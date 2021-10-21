@@ -286,7 +286,7 @@ return [
              * then you MUST use the `flags` config to set your charset encoding.
              * For e.g. `'flags' => [\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4']`
              */
-            'flags' => [\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'],
+            'flags' => [],
             'cacheMetadata' => true,
             'log' => false,
 

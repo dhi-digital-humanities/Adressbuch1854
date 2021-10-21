@@ -61,8 +61,9 @@ require (__DIR__.'/../functions/varspersons.php');
 						
 						<details>
 							<summary><?= __('Seite in HD ansehen')?></summary>
-								<form>
-									<button type='submit' title="IHA zur Nutzung der Seite <?php echo $begP?>" formtarget='_blank' formaction='http://adressbuch1854.dh.uni-koeln.de/scans/HD/BHVP_703983_<?php echo $begP ?>.jpg'
+						<form>
+							<button type='submit' title="IHA zur Nutzung der Seite <?php echo $begP?>" formtarget='_blank' formaction='http://adressbuch1854.dh.uni-koeln.de/scans/HD/BHVP_703983_<?php echo $begP ?>.jpg'
+
 
 									value="text">BHVP_703983_<?php echo $begP?>.jpg</button>
 								</form>
