@@ -60,12 +60,16 @@ class PersonsController extends AppController
                 'Addresses.Streets',
                 
             ])
-            ->limit(20);
-
-           
-            
+            ->limit(20);            
         }
-        
+         $persons = $this->paginate($this->Persons,
+            ['contain'=>['Addresses.Streets',
+                        'LdhRanks',
+                        'MilitaryStatuses',
+                        'SocialStatuses',
+                        'OccupationStatuses',
+                        'ProfCategories',
+                            ]],['limit'=>20]);
     {
         $this->set(compact('persons'));
     }
