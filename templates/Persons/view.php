@@ -55,15 +55,17 @@ require (__DIR__.'/../functions/varspersons.php');
             		<th><?= __('Scan der Seite') ?></th>
             		<td>
             			
-							<?php print image('/../scans/','SD/','BHVP_703983_',$begP);?><br>
+							<?php print image('http://adressbuch1854.dh.uni-koeln.de/scans/','SD/','BHVP_703983_',$begP);?><br>
+							<?php print scan_zotero($begP); ?>
+							<?php //print text('/../Ocerisations/','BHVP_703983_',$begP); ?>
 						
 						<details>
 							<summary><?= __('Seite in HD ansehen')?></summary>
-						<form>
-							<button type='submit' title="IHA zur Nutzung der Seite <?php echo $begP?>" formtarget='_blank' formaction='/../scans/HD/BHVP_703983_<?php echo $begP ?>.jpg'
+								<form>
+									<button type='submit' title="IHA zur Nutzung der Seite <?php echo $begP?>" formtarget='_blank' formaction='http://adressbuch1854.dh.uni-koeln.de/scans/HD/BHVP_703983_<?php echo $begP ?>.jpg'
 
-							value="text">BHVP_703983_<?php echo $begP?>.jpg</button>
-						</form>
+									value="text">BHVP_703983_<?php echo $begP?>.jpg</button>
+								</form>
 						</details>
 
             	   </td> 
@@ -71,13 +73,13 @@ require (__DIR__.'/../functions/varspersons.php');
             	<tr>
             		<th><?= __('Volltexterkennung')?></th>
             		<td>
-            		<details>
+            			<details>
 							<summary><?= __('Volltext der Seite ansehen')?></summary>
-						<form>
-							<button type='submit' formtarget='_blank' formaction='/../Ocerisations/BHVP_703983_<?php echo $begP ?>.txt'
+								<form>
+									<button type='submit' formtarget='_blank' formaction='/../Ocerisations/BHVP_703983_<?php echo $begP ?>.txt'
 
-							value="text">BHVP_703983_<?php echo $begP?>.txt</button>
-						</form>
+									value="text">BHVP_703983_<?php echo $begP?>.txt</button>
+								</form>
 						</details>
             		</td>
             	</tr>
@@ -185,12 +187,13 @@ require (__DIR__.'/../functions/varspersons.php');
 
 </div>
 
- <br><div class="csl-bib-body" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">
-  <div class="csl-entry">Kronauge, F. «&nbsp;<?php echo $name ?>&nbsp;». In <i>Adressbuch der Deutschen in Paris für das Jahr 1854</i>, Elektronische Edition., <?php echo $begP ?>, 1854. <a target="_blank" href='<?php  $this->request->getUri() ?>'><?php echo $this->request->getUri() ?></a>.</div>
+ <br>
+ 	<div class="csl-bib-body" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">
+  		<div class="csl-entry">Kronauge, F. «&nbsp;<?php echo $name ?>&nbsp;». In <i>Adressbuch der Deutschen in Paris für das Jahr 1854</i>, Elektronische Edition., <?php echo $begP ?>, 1854. <a target="_blank" href='<?php  $this->request->getUri() ?>'><?php echo $this->request->getUri() ?></a>.</div>
 
-<?php print zoteroperson($name, $precision, $precision2, $military_status, $social_status,$occupation_status, $gender, $ldh, $houseno, $addr_name, $addr_new, $begP);?>
+		<?php print zoteroperson($name, $precision, $precision2, $military_status, $social_status,$occupation_status, $gender, $ldh, $houseno, $addr_name, $addr_new, $begP);?>
           
 
-</div>
+	</div>
 
 </div>

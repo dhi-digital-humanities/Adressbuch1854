@@ -112,4 +112,28 @@
 						return ($code_html_image); 
 						}
 
+				function text($path, $id, $begP)
+						{
+							$code_text = "<object data='";
+							$code_text.= $path;
+							$code_text.= $id;
+							$code_text.= $begP;
+							$code_text.= ".txt'/>";
+
 						
+						return ($code_text);
+					}
+
+				function scan_zotero($begP)
+
+					{
+						$code_scan='<span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rft.type=artwork&amp;rft.title=Zeite%20';
+						$code_scan.=$begP;
+						$code_scan.='%20von%20das%20Adressbuch%20der%20Deutschen%20f%C3%BCr%20das%20Jahr%201854&amp;rft.description=Numerisation%20au%20format%20JPEG%2C%20metadat%20disponible%20ici%20%3A%20https%3A%2F%2Fdoi.org%2F10.5281%2Fzenodo.5524880%2C%20c%C3%B4te%3A%20BHVP_703983_';
+						$code_scan.=$begP;
+						$code_scan.='&amp;rft.identifier=http%3A%2F%2Fadressbuch1854.dh.uni-koeln.de%2Fscans%2FSD%2FBHVP_703983_';
+						$code_scan.=$begP;
+						$code_scan.='.jpg&amp;rft.aufirst=F&amp;rft.aulast=Kronauge&amp;rft.au=F%20Kronauge&amp;rft.date=1854&amp;rft.language=deu%20fra"></span>';
+
+						return($code_scan);
+					}

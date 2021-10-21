@@ -9,7 +9,7 @@ a {
     display: block;
     width: 100%;
     overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+   
 }
 
 /* Main */
@@ -17,6 +17,7 @@ body {
     background: #f5f7fa;
 }
 .content {
+    width: 950px;
     padding: 2rem;
     background: #ffffff;
     border-radius: 0.4rem;
@@ -38,8 +39,9 @@ th {
     align-items: center;
     justify-content: space-between;
     max-width: 120rem;
-    padding: auto;
-    margin: 0 auto 2rem;
+    margin-left: 25%;
+    margin-bottom: 2rem ;
+   
 }
 .top-nav-title a {
     font-size: 2.4rem;
@@ -196,4 +198,43 @@ th {
 
     width: 18%;
     
+}
+
+.github-logo
+
+{
+    
+    width: 30px;
+    position: relative;
+    top: 0;
+    bottom: 0;
+    left: 74%;
+}
+
+.cake-logo {
+
+    width: 100px;
+    position: relative;
+    left: 70%;
+    top: 0;
+    bottom: 0;
+}
+
+.op-logo{
+
+    width: 30px;
+    position: relative;
+    left: 75%;
+    top: 0;
+    bottom: 0;
+}
+
+.phpma-logo {
+
+    width: 100px;
+    position: relative;
+    left: 75%;
+    top: 0;
+    bottom: 0;
+
 }
