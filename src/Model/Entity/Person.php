@@ -16,7 +16,7 @@ use Cake\ORM\Entity;
  * @property string|null $name_predicate
  * @property string|null $specification_verbatim
  * @property string|null $profession_verbatim
- * @property bool|null $de_l_institut
+ * @property bool|null $des_Instituts
  * @property bool|null $notable_commercant
  * @property bool|null $bold
  * @property bool|null $advert
@@ -73,6 +73,6 @@ class Person extends Entity
         'companies' => true,
         'external_references' => true,
         'original_references' => true,
-        //'bhvp300' => true,
+        
     ];
 }

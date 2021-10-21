@@ -30,7 +30,7 @@ footer {
     display: flex;
     justify-content: space-between;
     margin-top: 2.5rem;
-    padding: 2rem calc((100vw - 112.0rem) / 2);
+    padding: 2rem calc((85vw - 112.10rem) / 2);
 }
 
 header {

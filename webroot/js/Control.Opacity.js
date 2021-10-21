@@ -1,5 +1,5 @@
 /*
-        Leaflet.OpacityControls, a plugin for adjusting the opacity of a Leaflet map.
+        Leaflet.OpacityControls, a plugin for adjusting the opacity of a Leaflet leafletMap.
         (c) 2013, Jared Dominguez
         (c) 2013, LizardTech
 
@@ -69,9 +69,9 @@ L.Control.opacitySlider = L.Control.extend({
           step: 10,
           start: function ( event, ui) {
             //When moving the slider, disable panning.
-            map.dragging.disable();
-            map.once('mousedown', function (e) { 
-              map.dragging.enable();
+            leafletMap.dragging.disable();
+            leafletMap.once('mousedown', function (e) { 
+              leafletMap.dragging.enable();
             });
           },
           slide: function ( event, ui ) {
@@ -93,9 +93,9 @@ function onClickHigherOpacity() {
     } else {
         opacity_layer.setOpacity(opacity_value + 0.2);
         //When you double-click on the control, do not zoom.
-        map.doubleClickZoom.disable();
-        map.once('click', function (e) { 
-            map.doubleClickZoom.enable();
+        leafletMap.doubleClickZoom.disable();
+        leafletMap.once('click', function (e) { 
+            leafletMap.doubleClickZoom.enable();
         });
     }
 
@@ -109,9 +109,9 @@ function onClickLowerOpacity() {
     } else {
         opacity_layer.setOpacity(opacity_value - 0.2);
         //When you double-click on the control, do not zoom.
-        map.doubleClickZoom.disable();
-        map.once('click', function (e) { 
-            map.doubleClickZoom.enable();
+        leafletMap.doubleClickZoom.disable();
+        leafletMap.once('click', function (e) { 
+            leafletMap.doubleClickZoom.enable();
         });
     }
       

@@ -32,7 +32,7 @@ class ArrondissementsController extends AppController
         // Note: This checking for download is important, since the download will
         // only return the results of the first page if the results have been paginated!
         if(empty($format) || !isset($formats[$format])){
-            $arrondissements = $this->paginate($this->Arrondissements, ['limit' => 20]);
+            $arrondissements = $this->paginate($this->Arrondissements);
         } else{
             $arrondissements = $this->Arrondissements->find();
         }
@@ -68,14 +68,15 @@ class ArrondissementsController extends AppController
                 'SocialStatuses',
                 'OccupationStatuses',
                 'ProfCategories',
-                'Addresses.Streets'
-            ]);
+                'Addresses.Streets'],
+                    );
 
         $persons
             ->leftJoinWith('Addresses.Streets.Arrondissements')
 			->where(['Arrondissements.id' => $id])
 			->distinct(['Persons.id']);
 
+    
         $companies = $this->Companies->find()
             ->contain([
                 'Addresses.Streets',

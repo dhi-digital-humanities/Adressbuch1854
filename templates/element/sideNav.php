@@ -13,11 +13,10 @@ unset($params['Companies[page]']);
 
 $uri = $this->request->getRequestTarget();
 ?>
-
 <aside class="column">
 	<?php if($mapBox):?>
         <div class="smallMap">
-            <div id="mapBox"  class="content">
+            <div id="mapBox"  class="content" onload="initializeMap()">
                 <?= $this->Html->script('address-map.js') ?>
             </div>
         </div>
@@ -29,7 +28,7 @@ $uri = $this->request->getRequestTarget();
 		<?= $this->Html->link(__('Straßen'), ['controller' => 'Streets', 'action' => 'index'], ['class' => 'side-nav-item']) ?>
 		<?= $this->Html->link(__('Arrondissements'), ['controller' => 'Arrondissements', 'action' => 'index'], ['class' => 'side-nav-item']) ?>
 		<?php if($export != 'none'):?>
-            <h4 class="heading" id="exportheading"><?=__('Exportiere...')?></h4>
+        <h4 class="heading" id="exportheading"><?=__('Exportiere...')?></h4>
             <div class="export-side">
                 <?php if($export === 'all'):?>
                     <div class="export-item">
@@ -49,3 +48,4 @@ $uri = $this->request->getRequestTarget();
 		<?php endif;?>
 	</div>
 </aside>
+

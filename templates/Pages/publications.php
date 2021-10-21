@@ -112,29 +112,29 @@ Info Page Related Articles
 	<tr>
 		<td>
 			<div class="csl-bib-body" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">
-  			<div class="csl-entry"><i>GitHub</i>. PHP/Javascript, <a href="https://github.com/DH-Cologne/Adressbuch1854">https://github.com/DH-Cologne/Adressbuch1854</a>.</div>
-  			<span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rft.type=computerProgram&amp;rft.title=GitHub&amp;rft.description=Projekt%20Adressbuch%2C%20DHI-Digital-Humanities&amp;rft.identifier=https%3A%2F%2Fgithub.com%2Fdhi-digital-humanities%2FAdressbuch"></span></div>
+  			<div class="csl-entry"><i>GitHub</i>. PHP/Javascript,<a target="blank" href="https://github.com/DH-Cologne/Adressbuch1854">https://github.com/DH-Cologne/Adressbuch1854</a>.</div>
+  			<span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rft.type=computerProgram&amp;rft.title=GitHub&amp;rft.description=Projekt%20Adressbuch%2C%20DHI-Digital-Humanities&amp;rft.identifier=https%3A%2F%2Fgithub.com%2Fdhi-digital-humanities%2FAdressbuch"></span><a target="blank" href="https://github.com/DH-Cologne/Adressbuch1854"><img class="github-logo" src="/../scans/github.jpg" title="github-logo" /></a></div>
 		</td>
 	</tr>
 	<tr>
 		<td>
 			<div class="csl-bib-body" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">
-			<div class="csl-entry"><i>Cake PHP</i> (version 4x). Windows, PHP, <a href="https://cakephp.org/">https://cakephp.org/</a>.</div>
- 			<span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rft.type=computerProgram&amp;rft.title=Cake%20PHP&amp;rft.identifier=https%3A%2F%2Fcakephp.org%2F"></span></div>
+			<div class="csl-entry"><i>Cake PHP</i> (version 4x). Windows, PHP, <a target="blank" href="https://cakephp.org/">https://cakephp.org/</a>.</div>
+ 			<span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rft.type=computerProgram&amp;rft.title=Cake%20PHP&amp;rft.identifier=https%3A%2F%2Fcakephp.org%2F"></span><a target="blank" href="https://cakephp.org/"><img src="/../scans/cake.jpg" class="cake-logo"  title="cakephp-logo" /></a></div>
 		</td>
 	</tr>
 	<tr>
 		<td>
 			<div class="csl-bib-body" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">
-			<div class="csl-entry"><i>Open Refine</i> (version 3.4.1). Windows, Java, <a href="https://openrefine.org/">https://openrefine.org/</a>.</div>
-  			<span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rft.type=computerProgram&amp;rft.title=Open%20Refine&amp;rft.identifier=https%3A%2F%2Fopenrefine.org%2F"></span></div>
+			<div class="csl-entry"><i>Open Refine</i> (version 3.4.1). Windows, Java, <a target="blank" href="https://openrefine.org/">https://openrefine.org/</a>.</div>
+  			<span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rft.type=computerProgram&amp;rft.title=Open%20Refine&amp;rft.identifier=https%3A%2F%2Fopenrefine.org%2F"></span><a target="blank" href="https://openrefine.org/"><img src="/../scans/openrefine.png" class="op-logo" title="openrefine-logo" /></a></div>
 		</td>
 	</tr>
 	<tr>
 		<td>
 			<div class="csl-bib-body" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">
-			<div class="csl-entry"><i>phpMyAdmin</i> (version 5.1.1). Windows, PHP/Javascript, <a href="https://www.phpmyadmin.net">https://www.phpmyadmin.net</a>.</div>
-  			<span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rft.type=computerProgram&amp;rft.title=phpMyAdmin&amp;rft.identifier=https%3A%2F%2Fwww.phpmyadmin.net"></span></div>
+			<div class="csl-entry"><i>phpMyAdmin</i> (version 5.1.1). Windows, PHP/Javascript, <a target="blank" href="https://www.phpmyadmin.net">https://www.phpmyadmin.net</a>.</div>
+  			<span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rft.type=computerProgram&amp;rft.title=phpMyAdmin&amp;rft.identifier=https%3A%2F%2Fwww.phpmyadmin.net"></span><a target="blank" href="https://www.phpmyadmin.net"><img src="/../scans/phpmyadmin.png"class="phpma-logo"  title="phpmyadmin-logo" /></a></div>
 		</td>
 	</tr>
 </table>

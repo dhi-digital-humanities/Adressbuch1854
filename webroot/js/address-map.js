@@ -1,11 +1,9 @@
 // Important global variables
 var leafletMap = null;
-var cartohisto = null;
-var oms = null;
+var osm = null;
 var markers = null;
 
-
-$('document').ready(function(){
+$("document").ready(function () {
     initializeMap();
     initializeMarkercluster();
     initializeMarkers();
@@ -15,104 +13,133 @@ $('document').ready(function(){
  * Initial function. The leaflet map is created, options are set
  * and a legend is created.
  */
-function initializeMap(){
- leafletMap = L.map('mapBox', {
 
+function initializeMap() {
+    leafletMap = L.map("mapBox", {
         center: [48.859289, 2.342122],
         maxBounds: [
             [48.813141, 2.234129],
-            [48.908715, 2.422941]
+            [48.908715, 2.422941],
         ],
         scrollWheelZoom: true,
         transparent: true,
-        zoom: 12
+        zoom: 12,
     });
 
-  L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution: '&copy; <a target="blank" href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-        subdomains: ['a','b','c']
+        subdomains: ["a", "b", "c"],
     }).addTo(leafletMap);
 
-//The historic map is created with data from IGN
+    //The historic map is created with data from IGN https://www.geoportail.gouv.fr/donnees/carte-de-letat-major-1820-1866
 
-cartohisto = L.tileLayer("https://wxs.ign.fr/cartes/geoportail/wmts?" +
-        "&REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0" +
-        "&STYLE=normal" +
-        "&TILEMATRIXSET=PM" +
-        "&FORMAT=image/jpeg"+
-        "&LAYER=GEOGRAPHICALGRIDSYSTEMS.ETATMAJOR40"+
-    "&TILEMATRIX={z}" +
-        "&TILEROW={y}" +
-        "&TILECOL={x}",
-                {
-                    Zoom:12,
-                    maxZoom :15,
-                    attribution : '<a target="blank" href="https://www.geoportail.gouv.fr/donnees/carte-de-letat-major-1820-1866">IGN-F/Geoportail</a>',
-                    tileSize:256,
-                    transparent: true
-
-                }).addTo(leafletMap);
-
-//Shapefile map is created with data from ALPAGE project
-
-var quartier = new L.Shapefile('download/Export_Quartiers_.zip',
-                                    {attribution:'<a target="blank "href="https://alpage.huma-num.fr/">Projet ALPAGE</a>',
-                                    style:function(feature)
-                                        {
-                                    return {color:'black'}},
-                                            onEachFeature:function(feature, layer)
-                                                {
-                                                    layer.bindTooltip(''+feature. properties.NOM+''); 
-                                                    layer.bindPopup(''+feature. properties.NOM+''); 
-                                                }}
-                                    ); 
-
-quartier.addTo(leafletMap);
-
-//Baselayers is created to switch between the two maps
-
-var controlMap = {"Open Street Map": leafletMap, "Etat Major 1820-1866": cartohisto};
-var otherMap = {"Quartiers de Paris": quartier}
+    var cartohisto = L.tileLayer(
+        "https://wxs.ign.fr/cartes/geoportail/wmts?" +
+            "&REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0" +
+            "&STYLE=normal" +
+            "&TILEMATRIXSET=PM" +
+            "&FORMAT=image/jpeg" +
+            "&LAYER=GEOGRAPHICALGRIDSYSTEMS.ETATMAJOR40" +
+            "&TILEMATRIX={z}" +
+            "&TILEROW={y}" +
+            "&TILECOL={x}",
+        {
+            Zoom: 12,
+            maxZoom: 16,
+            attribution: '<a target="blank" href="https://www.geoportail.gouv.fr/donnees/carte-de-letat-major-1820-1866">IGN-F/Geoportail</a>',
+            tileSize: 256,
+            transparent: true,
+        }
+    ).addTo(leafletMap);
 
 
-var controlLayers = L.control.layers(controlMap, otherMap).addTo(leafletMap);
+        //Use via Leaflet plugin Opacity Controls https://github.com/lizardtechblog/Leaflet.OpacityControls
 
-//control fullscreen is created to expand the map 
+    var opacitySlider = new L.Control.opacitySlider({ position: "bottomright" });
+    leafletMap.addControl(opacitySlider);
+    var lowerOpacity = new L.Control.lowerOpacity({ position: "bottomright" });
+    leafletMap.addControl(lowerOpacity);
+    var higherOpacity = new L.Control.higherOpacity({ position: "bottomright" });
+    leafletMap.addControl(higherOpacity);
 
-L.control.fullscreen({position:'topright'}).addTo(leafletMap);
+    higherOpacity.setOpacityLayer(cartohisto);
 
-//Opacity Layer is created to superimpose the two maps 
+    //Use via Leaflet Shapefile plugin https://github.com/calvinmetcalf/leaflet.shapefile
+    //Shapefile map is created with data from ALPAGE project https://alpage.huma-num.fr/
 
-var opacitySlider = new L.Control.opacitySlider({position: 'bottomright'});
-leafletMap.addControl(opacitySlider);
-var lowerOpacity = new L.Control.lowerOpacity({position: 'bottomright'});
-leafletMap.addControl(lowerOpacity);
-var higherOpacity = new L.Control.higherOpacity({position: 'bottomright'});
-leafletMap.addControl(higherOpacity);
+    var shapefile = new L.Shapefile("/../download/Export_arrondissements.zip", 
+        { attribution: "<a target='blank' href='https://alpage.huma-num.fr/'>Projet ALPAGE</a>" ,
+          onEachFeature: function(feature, layer) {
+      layer.bindTooltip("Arrondissement: " + feature.properties.NUM_ARROND + "");
+      layer.bindPopup("Arrondissement: " + feature.properties.NUM_ARROND + "");
+    },
+    style: function(feature) {
+      return { color: "black" };
+    }});
 
-higherOpacity.setOpacityLayer(cartohisto);
+    shapefile.addTo(leafletMap);
+    shapefile.once("data:loaded", function () {
+        console.log("finished shapefile loaded");
+    });
 
+    //Use via Paris OpenData https://opendata.paris.fr/explore/dataset/arrondissements/map/?disjunctive.c_ar&disjunctive.c_arinsee&disjunctive.l_ar&basemap=jawg.dark&location=12,48.85889,2.34692
 
-    // Create a legend
+    var arrondissement2 = new L.Shapefile('/../download/arrondissements.zip',
+                                        {attribution:'<a target="blank" href="https://opendata.paris.fr/explore/dataset/arrondissements/map/?disjunctive.c_ar&disjunctive.c_arinsee&disjunctive.l_ar&basemap=jawg.dark&location=12,48.85889,2.34692">Paris Open Data</a>',
+                                        onEachFeature:function(feature, layer)
+                                                    {
+                                                        layer.bindTooltip('Arrondissement: '
+                                                                           +feature. properties.c_ar+'');
+                                                        layer.bindPopup(''+feature. properties.c_ar+'');
+                                                    }}
+                                        );
+
+    arrondissement2.addTo(leafletMap);
+    arrondissement2.once("data:loaded", function(){
+        console.log("finished shapefile loaded");
+    });
+
+    //Baselayers is created to switch between the two maps
+
+    var controlMap = { "Open Street Map": leafletMap, "Etat Major 1820-1866": cartohisto };
+    var otherLayers = {"AR pre 1860" : shapefile, "AR post 1860" : arrondissement2};
+
+    L.control.layers(controlMap, otherLayers).addTo(leafletMap);
+
+    // Use via Leaflet plugin sidebar-v2 https://github.com/turbo87/sidebar-v2/
+
     if(document.getElementById('mapBox').parentElement.className == 'bigMap'){
-        var legend = L.control({position: 'bottomleft'});
+    L.control.sidebar('sidebar').addTo(leafletMap)};
 
+    // //Use via Leaflet plugin fullscreen https://github.com/Leaflet/Leaflet.fullscreen
+
+    L.control.fullscreen({ position: "topright" }).addTo(leafletMap);
+
+    var legend = L.control({ position: "bottomleft" });
+
+    // add legend
+    if (document.getElementById("mapBox").parentElement.className == "bigMap") {
         legend.onAdd = function (map) {
-
-            var div = L.DomUtil.create('div', 'info legend');
-            div.innerHTML += '<h4>Legende</h4>'
-                + 'Personen <img src="'+createCanvasMarker('#5F9ea0', '#2F4F4F', null)+'" alt="blau"><br>'
-                + 'Unternehmen <img src="'+createCanvasMarker('#FF8C00', '#8B4513', null)+'" alt="orange"><br>'
-                + 'Beide <img src="'+createCanvasMarker('#8B008B', '#4B0082', null)+'" alt="violett"><br>';
+            var div = L.DomUtil.create("div", "info legend");
+            div.innerHTML +=
+                "<h4>Legende</h4>" +
+                'Personen <img src="' +
+                createCanvasMarker("#5F9ea0", "#2F4F4F", null) +
+                '" alt="blau"><br>' +
+                'Unternehmen <img src="' +
+                createCanvasMarker("#FF8C00", "#8B4513", null) +
+                '" alt="orange"><br>' +
+                'Beide <img src="' +
+                createCanvasMarker("#8B008B", "#4B0082", null) +
+                '" alt="violett"><br>';
 
             return div;
         };
 
         legend.addTo(leafletMap);
-    
+    }
 }
 
-}
 // Use via Leaflet plugin https://github.com/Leaflet/Leaflet.markercluster
 /**
  * Function for creating marker clusters. The clusters make it possible to count
@@ -120,40 +147,40 @@ higherOpacity.setOpacityLayer(cartohisto);
  * the number of markers it contains. Furthermore the marker cluster do the
  * spiderfying, so that multiple markers on the same spot become visible on click.
  */
-function initializeMarkercluster(){
+function initializeMarkercluster() {
     markers = L.markerClusterGroup({
         maxClusterRadius: 1,
-        iconCreateFunction: function(cluster) {
+        iconCreateFunction: function (cluster) {
             var types = new Map();
 
-            cluster.getAllChildMarkers().forEach(function a(marker){
-                types.set((marker.options.id.includes('P')? 'P' : 'C'), true);
+            cluster.getAllChildMarkers().forEach(function a(marker) {
+                types.set(marker.options.id.includes("P") ? "P" : "C", true);
             });
 
             // Determine, which marker to use depending on the type of object (person, company, cluster of both)
-            switch(types.size){
+            switch (types.size) {
                 case 1:
-                    if(types.has('P')){
+                    if (types.has("P")) {
                         // return customHtmlIcon('#5F9ea0', '#2F4F4F', '12pt', '#FFFFFF', '<b>'+cluster.getChildCount()+'</b>');
-                        return customCanvasIcon('#5F9ea0', '#2F4F4F', cluster.getChildCount());
+                        return customCanvasIcon("#5F9ea0", "#2F4F4F", cluster.getChildCount());
                         break;
-                    } else if(types.has('C')){
+                    } else if (types.has("C")) {
                         // return customHtmlIcon('#FF8C00', '#8B4513', '12pt', '#FFFFFF', '<b>'+cluster.getChildCount()+'</b>');
-                        return customCanvasIcon('#FF8C00', '#8B4513', cluster.getChildCount());
+                        return customCanvasIcon("#FF8C00", "#8B4513", cluster.getChildCount());
                         break;
                     }
                 default:
-                // return customHtmlIcon('#8B008B', '#4B0082', '12pt', '#FFFFFF', '<b>'+cluster.getChildCount()+'</b>');
-                return customCanvasIcon('#8B008B', '#4B0082', cluster.getChildCount());
+                    // return customHtmlIcon('#8B008B', '#4B0082', '12pt', '#FFFFFF', '<b>'+cluster.getChildCount()+'</b>');
+                    return customCanvasIcon("#8B008B", "#4B0082", cluster.getChildCount());
             }
         },
         zoomToBoundsOnClick: false,
-        showCoverageOnHover: false
+        showCoverageOnHover: false,
     });
 
-    markers.on('clusterclick', function (a) {
+    markers.on("clusterclick", function (a) {
         a.layer.spiderfy();
-        if(leafletMap.getZoom() < 14) a.layer.zoomToBounds({padding: [20, 20], maxZoom: 14});
+        if (leafletMap.getZoom() < 14) a.layer.zoomToBounds({ padding: [20, 20], maxZoom: 14 });
     });
 }
 
@@ -161,51 +188,50 @@ function initializeMarkercluster(){
  * Fetches the information about the person and company objects from the json-view of the current site and initializes
  * a marker for each object.
  */
-function initializeMarkers(){
-
+function initializeMarkers() {
     // To access the information of the currently shown datasets, the Json export function is used.
     // The current URL is expanded with the parameter export=json and returns thus a Json representation
     // of the current datasets.
     var url = window.location;
-    url = url + (window.location.search ? '&' : '?')  + 'export=json';
+    url = url + (window.location.search ? "&" : "?") + "export=json";
     console.log(url);
 
     // The getJSON function works asynchronous, therefore everything, that needs the json code,
     // has to happen within the lambda expression of the getJSON function!
-    $.getJSON(url, function(json){
-        if(json.person) mapPerson(json.person);
-        if(json.company) mapCompany(json.company);
-        if(json.persons) json.persons.forEach(mapPerson);
-        if(json.companies) json.companies.forEach(mapCompany);
+    $.getJSON(url, function (json) {
+        if (json.person) mapPerson(json.person);
+        if (json.company) mapCompany(json.company);
+        if (json.persons) json.persons.forEach(mapPerson);
+        if (json.companies) json.companies.forEach(mapCompany);
 
         leafletMap.addLayer(markers);
     });
 }
 
 function clickZoom(e) {
-    if(leafletMap.getZoom() < 14) leafletMap.setView(e.target.getLatLng(),14);
+    if (leafletMap.getZoom() < 14) leafletMap.setView(e.target.getLatLng(), 14);
 }
 
 function mapPerson(json) {
-    var name = '';
-    if(json.title && !json.title.trim().length == 0){
-        name+=json.title+' ';
+    var name = "";
+    if (json.title && !json.title.trim().length == 0) {
+        name += json.title + " ";
     }
-    if(json.name_predicate && !json.name_predicate.trim().length == 0){
-        name+=json.name_predicate+' ';
+    if (json.name_predicate && !json.name_predicate.trim().length == 0) {
+        name += json.name_predicate + " ";
     }
-    name+=json.surname;
-    if(json.first_name && !json.first_name.trim().length == 0){
-        name+=', '+json.first_name;
+    name += json.surname;
+    if (json.first_name && !json.first_name.trim().length == 0) {
+        name += ", " + json.first_name;
     }
 
     makePinPerAddress(json.addresses, name, json.profession_verbatim, json.id, true);
 }
 
-function mapCompany(json){
+function mapCompany(json) {
     var name = json.name;
-    if(json.specification_verbatim && !json.specification_verbatim.trim().length == 0){
-        name += ', '+json.specification_verbatim ;
+    if (json.specification_verbatim && !json.specification_verbatim.trim().length == 0) {
+        name += ", " + json.specification_verbatim;
     }
 
     makePinPerAddress(json.addresses, name, json.profession_verbatim, json.id, false);
@@ -220,24 +246,17 @@ function mapCompany(json){
  * @param {*} id The id of the object to whom the address belongs
  * @param {*} isPerson Boolean indicating, if the address belongs to a person or company
  */
-function makePinPerAddress(addressArray, name, prof, id, isPerson)
-{
-
-    addressArray.forEach(function(addr)
-        
-    {
-
-
+function makePinPerAddress(addressArray, name, prof, id, isPerson) {
+    addressArray.forEach(function (addr) {
         var addrFull = addr.street.name_old_clean;
-		if(addrFull != addr.street.name_new) addrFull += ' ('+addr.street.name_new+')';
-		if(addr.houseno) addrFull += ' '+addr.houseno;
-		if(addr.houseno_specification) addrFull += addr.houseno_specification;
-		if(addr.address_specification_verbatim) addrFull += ', '+addr.address_specification_verbatim;
+        if (addrFull != addr.street.name_new) addrFull += " (" + addr.street.name_new + ")";
+        if (addr.houseno) addrFull += " " + addr.houseno;
+        if (addr.houseno_specification) addrFull += addr.houseno_specification;
+        if (addr.address_specification_verbatim) addrFull += ", " + addr.address_specification_verbatim;
 
-        var link ='/';
-        link += isPerson ? 'persons' : 'companies';
-        link += '/view/'+id;
-        
+        var link = "/";
+        link += isPerson ? "persons" : "companies";
+        link += "/view/" + id;
 
         var mapPin = L.marker(
             L.latLng(
@@ -253,53 +272,41 @@ function makePinPerAddress(addressArray, name, prof, id, isPerson)
                 // icon: isPerson ? customHtmlIcon('#5F9ea0', '#2F4F4F', null, null, null) : customHtmlIcon('#FF8C00', '#8B4513', null, null, null),
 
                 // Customized HTML canvas icons
-                icon: isPerson ? customCanvasIcon('#5F9ea0', '#2F4F4F', null) : customCanvasIcon('#FF8C00', '#8B4513', null),
+                icon: isPerson ? customCanvasIcon("#5F9ea0", "#2F4F4F", null) : customCanvasIcon("#FF8C00", "#8B4513", null),
 
                 // Markers resembling the original leaflet markers but having different colours
                 // icon: isPerson ? colourMarker('blue') : colourMarker('orange'),
 
-                id: (isPerson ? 'P' : 'C')+'-'+id+'-'+addr.id,
-                riseOnHover: true
+                id: (isPerson ? "P" : "C") + "-" + id + "-" + addr.id,
+                riseOnHover: true,
             }
         );
 
         markers.addLayer(mapPin);
 
         // Create a popup and tooltip for the marker
-        if(document.getElementById('mapBox').parentElement.className == 'smallMap'){
-            mapPin.bindPopup(
-                '<span style="font-size:10pt;text-shadow:none">'
-                +addrFull+'<br></span>',
-                {
-                    maxWidth: document.getElementById('mapBox').offsetWidth - 40
-                }
-            );
+        if (document.getElementById("mapBox").parentElement.className == "smallMap") {
+            mapPin.bindPopup('<span style="font-size:10pt;text-shadow:none">' + addrFull + "<br></span>", {
+                maxWidth: document.getElementById("mapBox").offsetWidth - 40,
+            });
             mapPin.bindTooltip(addr.street.name_old_clean);
-        } else{
-            mapPin.bindPopup(
-                '<span style="font-size:12pt;text-shadow:none"><h5>'
-                +name
-                + (prof ? '<br>'+prof : '')+'</h5>'
-                +addrFull+'<br>'
-                +'<a href="'+link+'">Zeige Datensatz</a>'+'</span>'
-            );
+        } else {
+            mapPin.bindPopup('<span style="font-size:12pt;text-shadow:none"><h5>' + name + (prof ? "<br>" + prof : "") + "</h5>" + addrFull + "<br>" + '<a href="' + link + '">Zeige Datensatz</a>' + "</span>");
             mapPin.bindTooltip(name);
         }
 
-        mapPin.on('click', clickZoom);
-   });
-
-
-};
+        mapPin.on("click", clickZoom);
+    });
+}
 
 // Options for customizd icons
 
 // 1. Paint a marker with HTML5 canvas
 // Got inspiration from https://gist.github.com/viktorkelemen/1451945
-function customCanvasIcon(colour, borderColour, text){
+function customCanvasIcon(colour, borderColour, text) {
     return new L.Icon({
         iconUrl: createCanvasMarker(colour, borderColour, text),
-        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
         iconSize: [25, 41],
         iconAnchor: [12, 41],
         popupAnchor: [1, -34],
@@ -308,7 +315,6 @@ function customCanvasIcon(colour, borderColour, text){
 }
 
 function createCanvasMarker(colour, borderColour, text) {
-
     var width = 25;
     var height = 30;
     var radius = 15;
@@ -321,7 +327,7 @@ function createCanvasMarker(colour, borderColour, text) {
 
     context = canvas.getContext("2d");
 
-    context.clearRect(0,0,width,height);
+    context.clearRect(0, 0, width, height);
 
     context.fillStyle = colour;
     context.strokeStyle = borderColour;
@@ -331,72 +337,78 @@ function createCanvasMarker(colour, borderColour, text) {
     context.lineTo(width - radius, 0);
     context.quadraticCurveTo(width, 0, width, height / 2);
     context.lineTo(width / 2, height);
-    context.lineTo(0, height  / 2)
+    context.lineTo(0, height / 2);
     context.quadraticCurveTo(0, 0, radius, 0);
     context.closePath();
 
     context.fill();
     context.stroke();
 
-    if(text){
+    if (text) {
         context.font = "bold 8pt Arial";
         context.fillStyle = "white";
-        context.textAlign = "center"
-        context.fillText(text, width/2, height/2);
+        context.textAlign = "center";
+        context.fillText(text, width / 2, height / 2);
     }
 
     return canvas.toDataURL();
-  }
+}
 
 // 2. Create a marker by formatting an HTML div accordingly
 // Inspiration source https://stackoverflow.com/a/40870439
-function customHtmlIcon(colour, borderColour, fontSize, fontColour, text){
-
+function customHtmlIcon(colour, borderColour, fontSize, fontColour, text) {
     var markerHtmlStyles =
-        'background-color: '+colour+';'
-        + 'width: 3rem;'
-        + 'height: 3rem;'
-        + 'display: block;'
-        + 'left: -3rem;'
-        + 'top: -0.5rem;'
+        "background-color: " +
+        colour +
+        ";" +
+        "width: 3rem;" +
+        "height: 3rem;" +
+        "display: block;" +
+        "left: -3rem;" +
+        "top: -0.5rem;" +
         // UNCOMMENT the following lines to have on edge markers pointing down to the geopoint (the tip of the marker is the lowest point)
         // Problem: it also rotates any text contained
         // + 'left: -1.5rem;'
         // + 'top: -1.5rem;'
         // + 'transform: rotate(45deg);'
-        + 'position: relative;'
-        + 'border-radius: 3rem 3rem 0;'
-        + 'border: 1px solid '+borderColour+';';
+        "position: relative;" +
+        "border-radius: 3rem 3rem 0;" +
+        "border: 1px solid " +
+        borderColour +
+        ";";
     var textStyles =
-        'font-size: '+(fontSize ? fontSize : '12pt')+';'
-        + 'color: '+(fontColour ? fontColour : 'black')+';'
-        + 'position = absolute;'
-        + 'padding: 1rem;'
+        "font-size: " +
+        (fontSize ? fontSize : "12pt") +
+        ";" +
+        "color: " +
+        (fontColour ? fontColour : "black") +
+        ";" +
+        "position = absolute;" +
+        "padding: 1rem;" +
         //+ 'transform: rotate(45deg);'
-        + 'text-align: center;';
+        "text-align: center;";
 
     return L.divIcon({
         className: "mapPin",
         iconAnchor: [0, 24],
         labelAnchor: [-6, 0],
         popupAnchor: [0, -36],
-        html: '<div style="'+markerHtmlStyles+'"><span style="'+textStyles+'">'+(text? '<b>'+text+'</b>' : '')+'</span></div>'
+        html: '<div style="' + markerHtmlStyles + '"><span style="' + textStyles + '">' + (text ? "<b>" + text + "</b>" : "") + "</span></div>",
     });
 }
 
 // 3. Use icon-images such as provided by this github project. Problem: they don't except any HTML-properties, thus the markercluster
 // can't write the number of markers automatically
 // From https://github.com/pointhi/leaflet-color-markers
-function colourMarker(colour){
+function colourMarker(colour) {
     return new L.Icon({
-        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-'+colour+'.png',
-        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-" + colour + ".png",
+        shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
         iconSize: [25, 41],
         iconAnchor: [12, 41],
         popupAnchor: [1, -34],
-        shadowSize: [41, 41]
-  });
+        shadowSize: [41, 41],
+    });
 }
 
 // 4. Creating your own markers using personalized picture files (could pose same problem as 3.)
-
