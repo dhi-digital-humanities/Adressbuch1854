@@ -16,7 +16,8 @@ use Cake\ORM\Entity;
  * @property string|null $name_predicate
  * @property string|null $specification_verbatim
  * @property string|null $profession_verbatim
- * @property bool|null $de_l_institut
+ * @property string|null $profession_unified
+ * @property bool|null $des_Instituts
  * @property bool|null $notable_commercant
  * @property bool|null $bold
  * @property bool|null $advert
@@ -55,6 +56,7 @@ class Person extends Entity
         'name_predicate' => true,
         'specification_verbatim' => true,
         'profession_verbatim' => true,
+        'profession_unified' =>true,
         'de_l_institut' => true,
         'notable_commercant' => true,
         'bold' => true,

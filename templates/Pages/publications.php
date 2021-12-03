@@ -120,7 +120,7 @@ Info Page Related Articles
 		<td>
 			<div class="csl-bib-body" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">
 			<div class="csl-entry"><i>Cake PHP</i> (version 4x). Windows, PHP, <a target="blank" href="https://cakephp.org/">https://cakephp.org/</a>.</div>
- 			<span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rft.type=computerProgram&amp;rft.title=Cake%20PHP&amp;rft.identifier=https%3A%2F%2Fcakephp.org%2F"></span><a target="blank" href="https://cakephp.org/"><img src="/../scans/cake.jpg" class="cake-logo"  title="cakephp-logo" /></a></div>
+ 			<span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rft.type=computerProgram&amp;rft.title=CakePHP&amp;rft.description=Framework%20PHP&amp;rft.identifier=https%3A%2F%2Fcakephp.org%2F&amp;rft.date=2021"></span><img src="/../scans/cake.jpg" class="cake-logo"  title="cakephp-logo" /></a></div>
 		</td>
 	</tr>
 	<tr>

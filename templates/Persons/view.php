@@ -4,8 +4,10 @@
  * @var \App\Model\Entity\Person $person
  */
 
-require(__DIR__.'/../functions/img_zotero.php');
-require (__DIR__.'/../functions/varspersons.php');
+require(__DIR__.'/../functions/functions.php');
+require(__DIR__.'/../functions/varspersons.php');
+
+
 
 
 	$name = '';
@@ -61,9 +63,8 @@ require (__DIR__.'/../functions/varspersons.php');
 						
 						<details>
 							<summary><?= __('Seite in HD ansehen')?></summary>
-						<form>
-							<button type='submit' title="IHA zur Nutzung der Seite <?php echo $begP?>" formtarget='_blank' formaction='http://adressbuch1854.dh.uni-koeln.de/scans/HD/BHVP_703983_<?php echo $begP ?>.jpg'
-
+								<form>
+									<button type='submit' title="IHA zur Nutzung der Seite <?php echo $begP?>" formtarget='_blank' formaction='http://adressbuch1854.dh.uni-koeln.de/scans/HD/BHVP_703983_<?php echo $begP ?>.jpg'
 
 									value="text">BHVP_703983_<?php echo $begP?>.jpg</button>
 								</form>
@@ -112,8 +113,8 @@ require (__DIR__.'/../functions/varspersons.php');
                     <td><?= h($person->specification_verbatim) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Beruf') ?></th>
-                    <td><?= h($person->profession_verbatim) ?></td>
+                	<th><?= __('Beruf') ?></th>
+                	<?= profession_person($precision2, $pro_unified) ?>
                 </tr>
                 <tr>
                     <th><?= __('Berufskategorie') ?></th>
@@ -129,7 +130,7 @@ require (__DIR__.'/../functions/varspersons.php');
 				</tr>
 				<?php if($person->has('ldh_rank')) : ?>
                 <tr>
-                    <th><?= __('Rang der Légion d\'Honneur') ?></th>
+                    <th><?= __('Rang der Ehrenlegion') ?></th>
                     <td><?= $person->ldh_rank->rank ?></td>
                 </tr>
 				<?php endif;?>

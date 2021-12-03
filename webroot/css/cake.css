@@ -35,11 +35,10 @@ th {
 
 /* Nav bar */
 .top-nav {
-    display: flex;
+    display:flex;
     align-items: center;
     justify-content: space-between;
     max-width: 120rem;
-    margin-left: 25%;
     margin-bottom: 2rem ;
    
 }

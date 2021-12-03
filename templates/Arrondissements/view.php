@@ -51,7 +51,7 @@ require(__DIR__.'/../functions/varsarr.php');
             <div class="related">
                 <details>
 					<?= '<summary title="'.__('Klicken für Details').'"><h4>'.__('Personen in diesem Arrondissement').'</h4></summary>' ?>
-					<?= $this->element('personsMultiTable', ['persons' => $persons],['order'=>['id'=> 'ASC']])?>			
+					<?= $this->element('personsMultiTable', ['persons'=>$persons])?>		
 				</details>
             </div>
 			<?php endif; ?>
@@ -59,7 +59,7 @@ require(__DIR__.'/../functions/varsarr.php');
             <div class="related">
                 <details>
 					<?= '<summary title="'.__('Klicken für Details').'"><h4>'.__('Unternehmen in diesem Arrondissement').'</h4></summary>' ?>
-					<?= $this->element('companiesMultiTable', ['companies' => $companies], ['order'=>['id'=> 'ASC']])?>
+					<?= $this->element('companiesMultiTable', ['companies' => $companies])?>
 				</details>
 			</div><br>
 				<div>

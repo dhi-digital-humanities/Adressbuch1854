@@ -82,12 +82,12 @@
                     <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
                 </h1><br>
 
-                <h4>Herunterladen dateien von das Adressbuch</h4>
+                <h4>Download der Daten des Adressbuchs</h4>
 
-                <p class="lorem">Zu das Dateien von der projekt ALPAGE, ihr könnt sie hier herunterladen </p>
+                <p class="lorem">Download der Dateien des Projekts ALPAGE</p>
                 <a href="download/Export_arrondissements.zip"><button type="button">Export_arrondissement.zip</button></a>
 
-                <p class="lorem">Zu das Dateien von Paris OpenData, ihr könnt sie hier herunterladen </p>
+                <p class="lorem">Download der Daten von Paris OpenData</p>
                 <a href="download/arrondissements.zip"><button type="button">arrondissement.zip</button></a>
 
             </div>

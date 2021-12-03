@@ -4,7 +4,7 @@
  * @var \App\Model\Entity\Company $company
  */
 
-require_once(__DIR__.'/../functions/img_zotero.php');
+require_once(__DIR__.'/../functions/functions.php');
 require(__DIR__.'/../functions/varscomp.php');
 
  $this->Html->css('view');
@@ -37,6 +37,7 @@ require(__DIR__.'/../functions/varscomp.php');
             		<th><?= __('Scan der Seite')?></th>
             		<td>
 							<?php print image('http://adressbuch1854.dh.uni-koeln.de/scans/','SD/','BHVP_703983_',$begP);?><br>
+							<?php print scan_zotero($begP); ?>
 						
 						<details>
 							<summary><?= __('Seite in HD ansehen')?></summary>
@@ -71,8 +72,8 @@ require(__DIR__.'/../functions/varscomp.php');
                     <td><?= h($company->specification_verbatim) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Beruf') ?></th>
-                    <td><?= h($company->profession_verbatim) ?></td>
+                	<th><?= __('Beruf') ?></th>
+                	<?= profession_company($profession, $p_unified) ?>
                 </tr>
                 <tr>
                     <th><?= __('Berufskategorie') ?></th>

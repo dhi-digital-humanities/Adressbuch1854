@@ -6,7 +6,7 @@
 	use Cake\Collection\Collection;
 
 
-	require(__DIR__.'/../functions/img_zotero.php');
+	require(__DIR__.'/../functions/functions.php');
 	require(__DIR__.'/../functions/varsstreets.php');
 	
 	$varieties = [];

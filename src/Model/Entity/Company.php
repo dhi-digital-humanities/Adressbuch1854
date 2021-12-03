@@ -32,6 +32,7 @@ class Company extends Entity
     protected $_accessible = [
         'name' => true,
 		'profession_verbatim' => true,
+        'profession_unified' => true,
 		'specification_verbatim' => true,
         'prof_category_id' => true,
         'prof_category' => true,

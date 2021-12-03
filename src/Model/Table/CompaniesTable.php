@@ -88,6 +88,11 @@ class CompaniesTable extends Table
             ->scalar('profession_verbatim')
             ->maxLength('profession_verbatim', 128)
             ->allowEmptyString('profession_verbatim');
+
+        $validator
+            ->scalar('profession_unified')
+            ->maxLength('profession_unified', 128)
+            ->allowEmptyString('profession_unified');
 		
         $validator
             ->scalar('specification_verbatim')
