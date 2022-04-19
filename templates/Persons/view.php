@@ -4,16 +4,16 @@
  * @var \App\Model\Entity\Person $person
  */
 
-require(__DIR__.'/../functions/functions.php');
-require(__DIR__.'/../functions/varspersons.php');
+	require(__DIR__.'/../functions/functions.php');
+	require(__DIR__.'/../functions/varspersons.php');
 
 
 
 
 	$name = '';
-	if(!empty($person->title)){
+	/*if(!empty($person->title)){
 		$name.=h($person->title).' ';
-	}
+	}*/
 	if(!empty($person->name_predicate)){
 		$name.=h($person->name_predicate).' ';
 	}
@@ -45,9 +45,25 @@ require(__DIR__.'/../functions/varspersons.php');
 	if($person->de_l_institut){
 		array_push($titles, 'de l\'Institut');
 	}
+	$params = $this->request->getQueryParams();
+	unset($params['Persons[page]']);
+	unset($params['Companies[page]']);
+
+	$uri = $this->request->getRequestTarget();
 ?>
+
+<?= $this->Html->script('tab.js') ?>
+<div class='container'>
+<div id="tabs">
+    <ul>
+        <li onClick="selView(1, this)"><?= htmlspecialchars_decode(h($name)) ?></li>
+        <li onClick="selView(2, this)"><?= __('Karte') ?></li>
+        <li onClick="selView(3, this)"><?= __('Exportiere') ?></li>
+    </ul>
+</div>
+<div class="tabcontent">
+<div id="indextab" class="tabpanel" style="display:inline">
 <div class="row">
-    <?= $this->element('sideNav', ['mapBox' => true, 'export' => 'all'])?>
     <div class="column-responsive column-80">
         <div class="persons view content">
             <h3><?= htmlspecialchars_decode(h($name)) ?></h3>
@@ -55,39 +71,35 @@ require(__DIR__.'/../functions/varspersons.php');
             <table>
             	<tr>
             		<th><?= __('Scan der Seite') ?></th>
-            		<td>
-            			
+						<td>
 							<?php print image('http://adressbuch1854.dh.uni-koeln.de/scans/','SD/','BHVP_703983_',$begP);?><br>
 							<?php print scan_zotero($begP); ?>
-							<?php //print text('/../Ocerisations/','BHVP_703983_',$begP); ?>
-						
-						<details>
-							<summary><?= __('Seite in HD ansehen')?></summary>
-								<form>
-									<button type='submit' title="IHA zur Nutzung der Seite <?php echo $begP?>" formtarget='_blank' formaction='http://adressbuch1854.dh.uni-koeln.de/scans/HD/BHVP_703983_<?php echo $begP ?>.jpg'
-
-									value="text">BHVP_703983_<?php echo $begP?>.jpg</button>
-								</form>
-						</details>
-
-            	   </td> 
+							<!-- si on veut mettre les OCR avec les scans -->
+							<?php //print text('/../Ocerisations/','BHVP_703983_',$begP); ?>		
+							<details>
+								<summary><?= __('Seite in HD ansehen')?></summary>
+									<form>
+										<button type='submit' title="IHA zur Nutzung der Seite <?php echo $begP?>" formtarget='_blank' formaction='http://adressbuch1854.dh.uni-koeln.de/scans/HD/BHVP_703983_<?php echo $begP ?>.jpg'
+										value="text">BHVP_703983_<?php echo $begP?>.jpg</button>
+									</form>
+							</details>
+						</td> 
             	</tr>
             	<tr>
             		<th><?= __('Volltexterkennung')?></th>
-            		<td>
-            			<details>
-							<summary><?= __('Volltext der Seite ansehen')?></summary>
-								<form>
-									<button type='submit' formtarget='_blank' formaction='/../Ocerisations/BHVP_703983_<?php echo $begP ?>.txt'
-
-									value="text">BHVP_703983_<?php echo $begP?>.txt</button>
-								</form>
-						</details>
-            		</td>
-            	</tr>
+						<td>
+							<details>
+								<summary><?= __('Volltext der Seite ansehen')?></summary>
+									<form>
+										<button type='submit' formtarget='_blank' formaction='/../Ocerisations/BHVP_703983_<?php echo $begP ?>.txt'
+										value="text">BHVP_703983_<?php echo $begP?>.txt</button>
+									</form>
+							</details>
+						</td>
+				</tr>
                 <tr>
                     <th><?= __('Nachname') ?></th>
-                    <td><?= h($person->name_predicate).' '.h($person->surname) ?></td>
+					<td><?= h($person->name_predicate).' '.h($person->surname) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Vorname') ?></th>
@@ -169,10 +181,12 @@ require(__DIR__.'/../functions/varspersons.php');
 					</td>
                 </tr>
             </table>
+            <br>
+       
             <?php if (!empty($person->companies)) : ?>
             <div class="related">
                 <details>
-				<?= '<summary title="'.__('Klicken für Details').'"><h4>'.__('Assoziierte Unternehmen').'</h4></summary>' ?>
+					<?= '<summary title="'.__('Klicken für Details').'"><h4>'.__('Assoziierte Unternehmen').'</h4></summary>' ?>
 					<?= $this->element('companiesMultiTable', ['companies' => $person->companies])?>
 				</details>
             </div>
@@ -183,19 +197,49 @@ require(__DIR__.'/../functions/varspersons.php');
 					<?= '<summary title="'.__('Klicken für Details').'"><h4>'.__('Literatur- und Quellenhinweise').'</h4></summary>' ?>
 					<?= $this->element('externalReferenceMultiTable', ['externalReferences' => $person->external_references])?>
 				</details>
-			</div><br>
-			<div>
-<?php endif; ?>
-
+				</div>
+				<?php endif; ?>
+				<br>
+			     <div class="csl-bib-body" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">
+				<div class="csl-entry">Kronauge, F. «&nbsp;<?php echo $name ?>&nbsp;». In <i>Adressbuch der Deutschen in Paris für das Jahr 1854</i>, Elektronische Edition., <?php echo $begP ?>, 1854. <a target="_blank" href='<?php  $this->request->getUri() ?>'><?php echo $this->request->getUri() ?></a>.</div>
+				<?php print zoteroperson($name, $precision, $precision2, $military_status, $social_status,$occupation_status, $gender, $ldh, $houseno, $addr_name, $addr_new, $begP);?>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+	<div id='maptab' class='tabpanel' style='display:none'>	
+		<div class="bigMap">
+			<div id="mapBox" class="content" onload="initializeMap()">
+				<?= $this->Html->script('address-map.js') ?>
+			</div>
+		</div>
+	</div>
+	<div id="exporttab" class="tabpanel" style="display:none">
+		<div class="row">
+		<?= $this->Form->postButton('JSON', ['controller' => '', 'action' => $uri, '?' => array_merge($params, ['export' => 'json'])],['class'=>'button2'])?>
+		<?= $this->Form->postButton('XML', ['controller' => '', 'action' => $uri, '?' => array_merge($params, ['export' => 'xml'])],['class'=>'button2'])?>
+		</div>
+	</div>
 </div>
 
- <br>
- 	<div class="csl-bib-body" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">
-  		<div class="csl-entry">Kronauge, F. «&nbsp;<?php echo $name ?>&nbsp;». In <i>Adressbuch der Deutschen in Paris für das Jahr 1854</i>, Elektronische Edition., <?php echo $begP ?>, 1854. <a target="_blank" href='<?php  $this->request->getUri() ?>'><?php echo $this->request->getUri() ?></a>.</div>
+<!-- on met en place un script en json pour que les données puissent être collectées -->
 
-		<?php print zoteroperson($name, $precision, $precision2, $military_status, $social_status,$occupation_status, $gender, $ldh, $houseno, $addr_name, $addr_new, $begP);?>
-          
-
-	</div>
-
+<script type="application/ld+json">
+	{
+	"@context":"https://schema.org",
+	"@type": "Person",
+	"address":{
+		"@type": "PostalAddress",
+		"addressLocality":"Paris",
+		"addressRegion": "France",
+		"postalCode":"F-75",
+		"streetAddress":"<?php echo $houseno. ' ' . $addr_name. ' ('. $addr_new. ')'?>"
+	},
+	"image":"<?php echo 'http://adressbuch1854.dh.uni-koeln.de/scans/HD/BHVP_703983'. $begP .'.jpg'?>",
+	"jobTitle":"<?php echo $precision2 ?>",
+	"name":"<?php echo $name ?>",
+	"url":"<?php echo $this->request->getUri() ?>"
+}
+</script>
 </div>

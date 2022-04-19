@@ -19,17 +19,13 @@ html
 
 .displayed
 {
-  position: absolute;
-  display: block;
-  float: left;
-  margin-left: 25%;
-  margin-right: 5%;
+  margin: 5rem;
   padding-right: 5%;
   padding-top: 10px;
   padding-bottom: 10px;
   line-height: 2;
   border-radius: 10px;
-  border: 3px solid  #5F9EA0;
+  border: 1.5px solid  #5B788C;
 }
 
 body
@@ -38,7 +34,6 @@ body
   font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   font-size: 1.6em;
   font-weight: 300;
-  letter-spacing: .01em;
   line-height: 1.6;
 }
 
@@ -57,8 +52,7 @@ blockquote *:last-child
 
 .button,button,input[type='button'],input[type='reset'],input[type='submit']
 {
-  background-color: #d33c43;
-  border: 0.1rem solid #d33c43;
+  background-color: #ED8B00;
   border-radius: .4rem;
   color: #fff;
   cursor: pointer;
@@ -89,11 +83,6 @@ blockquote *:last-child
   opacity: .5;
 }
 
-.button[disabled]:focus,.button[disabled]:hover,button[disabled]:focus,button[disabled]:hover,input[type='button'][disabled]:focus,input[type='button'][disabled]:hover,input[type='reset'][disabled]:focus,input[type='reset'][disabled]:hover,input[type='submit'][disabled]:focus,input[type='submit'][disabled]:hover
-{
-  background-color: #d33c43;
-  border-color: #d33c43;
-}
 
 .button.button-outline,button.button-outline,input[type='button'].button-outline,input[type='reset'].button-outline,input[type='submit'].button-outline
 {
@@ -161,18 +150,19 @@ pre>code
 hr
 {
   border: 0;
-  border-top: 0.1rem solid #f4f5f6;
-  margin: 3.0rem 0;
+  border-top: 0.1rem solid black;
+  margin: auto;
+  clear: both;
 }
 
 input[type='email'],input[type='number'],input[type='password'],input[type='search'],input[type='tel'],input[type='text'],input[type='url'],input[type='color'],input[type='date'],input[type='month'],input[type='week'],input[type='datetime'],input[type='datetime-local'],input:not([type]),textarea,select
 {
-  background-color: transparent;
-  border: 0.1rem solid #d1d1d1;
+  background-color: #ffff;
+  border: 0.3rem solid #d1d1d1;
   border-radius: .4rem;
   box-shadow: none;
   box-sizing: inherit;
-  height: 3.8rem;
+  height: 4rem;
   padding: .6rem 1.0rem;
   width: 100%;
 }
@@ -195,10 +185,10 @@ textarea
 
 label,legend
 {
-  display: block;
-  font-size: 2.0rem;
-  font-weight: 700;
-  margin-bottom: 2.0rem;
+ 
+  font-size: 16px;
+
+  
 }
 
 fieldset
@@ -219,13 +209,47 @@ input[type='checkbox'],input[type='radio']
   margin-left: .5rem;
 }
 
+@media all and (max-width: 600px){
 .container
 {
-  margin: 0 auto;
-  max-width: 112.0rem;
-  padding: 0 2.0rem;
-  position: relative;
+
   width: 100%;
+  padding: 10px;
+
+
+}
+
+}
+
+@media all and (min-width: 601px){
+
+  .container
+{
+
+  width: 100%;
+  padding: 10px;
+  height: 750px;
+
+}
+}
+
+.container2
+
+{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 10px;
+  
+}
+.container3
+
+{
+  display: grid;
+  justify-content: center;
+  width: 100%;
+  padding: 10px;
+  
 }
 
 .row
@@ -281,6 +305,15 @@ input[type='checkbox'],input[type='radio']
   display: block;
   flex: 1 1 auto;
   margin-left: 0;
+  max-width: 100%;
+  width: 100%;
+}
+
+.row .column-2
+{
+  display: block;
+  flex: 1 1 auto;
+  margin-right: 0;
   max-width: 100%;
   width: 100%;
 }
@@ -421,13 +454,22 @@ input[type='checkbox'],input[type='radio']
   width: 100%;
 }
 
+@media (min-width:640px)
+{
+  .row2
+  {
+    width: 690px;
+   
+  }
+}
+
 @media (min-width: 640px)
 {
   .row
   {
     flex-direction: row;
     margin-left: -1.0rem;
-    width: calc(100% + 2.0rem);
+    width: 100%;
   }
 
   .row .column
@@ -496,11 +538,6 @@ input[type='checkbox'],input[type='radio']
     max-width: 75%;
   }
 
-  .row .column-responsive.column-80
-  {
-    flex: 0 0 80%;
-    max-width: 80%;
-  }
 
   .row .column-responsive.column-90
   {
@@ -541,11 +578,6 @@ ol
 ul
 {
   list-style: circle inside;
-}
-
-.button,button,dd,dt,li
-{
-  margin-bottom: 1.0rem;
 }
 
 fieldset,input,select,textarea
@@ -614,7 +646,7 @@ td:last-child,th:last-child
   {
     display: flex;
     overflow-x: auto;
-    white-space: nowrap;
+    flex-direction: column;
   }
 
   table tbody tr
@@ -656,15 +688,14 @@ p
 h1,h2,h3,h4,h5,h6
 {
   font-weight: 300;
-  letter-spacing: -.1rem;
-  margin-bottom: 2.0rem;
-  margin-top: 0;
+
 }
 
 h1
 {
-  font-size: 4.6rem;
   line-height: 1.2;
+  color: black;
+  padding: 5px;
 }
 
 h2
@@ -677,6 +708,7 @@ h3
 {
   font-size: 2.8rem;
   line-height: 1.3;
+  margin: 10px;
 }
 
 h4
@@ -700,10 +732,7 @@ h6
   line-height: 1.4;
 }
 
-img
-{
-  max-width: 100%;
-}
+
 
 .clearfix:after
 {
@@ -717,7 +746,3 @@ img
   float: left;
 }
 
-.float-right
-{
-  float: right;
-},sourceMappingURL=milligram.min.css.map

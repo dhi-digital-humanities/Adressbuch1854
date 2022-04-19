@@ -76,7 +76,9 @@ class ArrondissementsController extends AppController
 			->where(['Arrondissements.id' => $id])
 			->distinct(['Persons.id']);
 
-    
+//to fix pagination because we have many people foreach arrondissements.
+    $persons = $this->paginate($persons);
+
         $companies = $this->Companies->find()
             ->contain([
                 'Addresses.Streets',
@@ -87,6 +89,7 @@ class ArrondissementsController extends AppController
             ->leftJoinWith('Addresses.Streets.Arrondissements')
 			->where(['Arrondissements.id' => $id])
 			->distinct(['Companies.id']);
+
 
         // Set arrondissement as well as persons and companies to be
         // able to access their data in the view

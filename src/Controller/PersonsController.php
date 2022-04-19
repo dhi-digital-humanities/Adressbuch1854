@@ -46,8 +46,8 @@ class PersonsController extends AppController
                     
                 ]
             ];
-
             $persons = $this->paginate($this->Persons,['limit' => 20]);
+
 
         } else{
             $persons = $this->Persons->find()
@@ -60,7 +60,7 @@ class PersonsController extends AppController
                 'Addresses.Streets',
                 
             ])
-            ->limit(20);            
+            ->limit(20);
         }
          $persons = $this->paginate($this->Persons,
             ['contain'=>['Addresses.Streets',
@@ -71,6 +71,7 @@ class PersonsController extends AppController
                         'ProfCategories',
                             ]],['limit'=>20]);
     {
+
         $this->set(compact('persons'));
     }
 

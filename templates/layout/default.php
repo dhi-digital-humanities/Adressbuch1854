@@ -46,8 +46,8 @@ $description = 'Adressbuch 1854';
     <?= $this->Html->css('https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.0/MarkerCluster.Default.min.css') ?>
     <?= $this->Html->css('https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css') ?>
     <?= $this->Html->css('Control.Opacity.css') ?>
+	<?= $this->Html->css('map.css') ?>
     <?= $this->Html->css('jquery-ui-1.10.3.custom.min.css') ?>
-    <?= $this->Html->css('leaflet-sidebar.css') ?>
     <?= $this->Html->css('https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css') ?>
 
 
@@ -61,11 +61,10 @@ $description = 'Adressbuch 1854';
     <?= $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.0/leaflet.markercluster-src.js') ?>
    <?= $this->Html->script('https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js') ?>
    <?= $this->Html->script('Control.Opacity.js') ?>
-   <?= $this->Html->script('jquery-1.9.1.js') ?>
    <?= $this->Html->script('jquery-ui-1.10.3.custom.min.js') ?> 
-   <?= $this->Html->script('leaflet-sidebar.js') ?>
    <?= $this->Html->script('leaflet.shpfile.js') ?>
    <?= $this->Html->script('shp.js') ?>
+   
 
 	<!-- fetched meta -->
 	<?= $this->fetch('meta') ?>
@@ -74,46 +73,66 @@ $description = 'Adressbuch 1854';
 </head>
 <body>
 	<header>
-        <div class="wrapper-item">
-            <h1>
-			    <?= $this->Html->link('Adressbuch der Deutschen in Paris von 1854', ['controller' => 'Pages', 'action' => 'home', 'id' => 'title-logo'])?>
-            </h1>
-        </div>
-		<div class="wrapper-item search form" id="simp-search">
-			<?= $this->Form->create(null, ['type' => 'get', 'url' => '/search/results']) ?>
-			<?php
-                // Set parameter for search type to "simple"
-                echo $this->Form->hidden('type', ['value' => 'simp']);
-                echo $this->Form->control('text', ['maxlength' => 256, 'label' => false, 'placeholder' => __('Freitextsuche')]);
-            ?>
-			<?= $this->Form->button(__('Los'), ['class' => 'simp-search-item']) ?>
-			<?= $this->Form->end() ?>
-		</div>
-	</header>
-    <nav class="top-nav">
-		<?= $this->Html->link(__('Suche'), ['controller' => 'Search', 'action' => 'query'], ['class' => 'top-nav-item']) ?>
-		<?= $this->Html->link(__('Das Adressbuch'), ['controller' => 'Pages', 'action' => 'addressbook'], ['class' => 'top-nav-item']) ?>
-		<?= $this->Html->link(__('Das Projekt'), ['controller' => 'Pages', 'action' => 'project'], ['class' => 'top-nav-item']) ?>
-		<?= $this->Html->link(__('Links und Publikationen'), ['controller' => 'Pages', 'action' => 'publications'], ['class' => 'top-nav-item']) ?>
-        <?= $this->Html->link(__('Partner und Team'), ['controller'=>'Pages', 'action'=>'partners'], ['class'=>'top-nav-item']) ?>
-        
 
-    </nav>
+<nav class="top-nav">
+	<label class="label2" for="toggle"><img src="/scans/index.png" style="width:30px" alt="menu"></label>
+        <input type="checkbox" id="toggle">
+            <div class="main_pages">
+              <a href="/pages/home">
+              <?=$this->Html->image('/../scans/icon-house.png', [ 'width'=>'50px','alt'=>'home-logo'])?>
+              </a>
+		      <?= $this->Html->link(__('Suche'), ['controller' => 'Search', 'action' => 'query'], ['class' => 'top-nav-item']) ?>
+              <?= $this->Html->link(__('Digitalbuch'), ['controller' => 'Pages', 'action' => 'digitalbook'], ['class' => 'top-nav-item']) ?>
+              <?= $this->Html->link(__('Karte'), ['controller'=>'Pages', 'action'=>'karte'], ['class'=>'top-nav-item']) ?>
+		      <?= $this->Html->link(__('Das Adressbuch'), ['controller' => 'Pages', 'action' => 'addressbook'], ['class' => 'top-nav-item']) ?>
+		      <?= $this->Html->link(__('Das Projekt'), ['controller' => 'Pages', 'action' => 'project'], ['class' => 'top-nav-item']) ?>
+              <?= $this->Html->link(__('Partner und Team'), ['controller'=>'Pages', 'action'=>'partners'], ['class'=>'top-nav-item']) ?>
+              <?= $this->Html->link(__('Hilfe'), ['controller'=>'Pages', 'action'=>'hilfe'], ['class'=>'top-nav-item']) ?>
+              <a href="/pages/panier_export">
+              <?= $this->Html->image('/../scans/icon-download.png', ['width'=>'25px', 'alt'=>'home-logo']) ?>
+              </a>
+            </div>
+</nav>
+<hr>
+</header>
     <main class="main">
-        <div class="container">
+        
             <?= $this->Flash->render() ?>
             <?= $this->fetch('content') ?>
-        </div>
+        
     </main>
     <footer>
+        <div class="contact">
         <a target="_blank" href="https://dh.phil-fak.uni-koeln.de/">
-            <?=$this->Html->image('/../scans/IDH.jpg', ['class' => 'wrapper-item', 'id' => 'idh-logo', 'alt' => 'Logo IDH', 'width' => '100px'])?>
+            <?=$this->Html->image('/../scans/IDH.jpg', ['class' => 'wrapper-item', 'id' => 'idh-logo', 'alt' => 'Logo IDH', 'style'=>'width:70px;padding-right:4px;'])?>
         </a>
+            <p><br><strong>Institut für Digital Humanities</strong><br>
+                Universität zu Köln<br>
+                Albertus-Magnus-Platz<br>
+                D-50931 Köln<br></p>
+        </div>
+        <div class="contact">
 		<a target="_blank" href="https://www.dhi-paris.fr/">
-			<?=$this->Html->image('/../scans/logo.png', ['class' => 'wrapper-item', 'id' => 'dhi-logo', 'alt' => 'Logo DHIP', 'width' => '100px'])?>
+			<?=$this->Html->image('/../scans/logo.png', ['class' => 'wrapper-item', 'id' => 'dhi-logo', 'alt' => 'Logo DHIP', 'style' =>'width:70px;padding-right:4px;'])?>
 		</a>
-
-		<?= $this->Html->link(__('Impressum'), ['controller' => 'Pages', 'action' => 'credits'], ['class' => 'wrapper-item', 'id' => 'credits']) ?>
+        <p><br><strong>Deutsches Historisches Institut Paris</strong><br>
+            Hôtel Duret-de-Chevry<br>
+            8 rue du Parc-Royal<br>
+            75003 Paris<br>
+            Tel.+33 1 44542380<br>
+            Fax+33 1 42715643<br>
+            E-Mail: <a style="color: white;"href="mailto:info@dhi-paris.fr">info@dhi-paris.fr</a></p>
+        </div>
+         <a target="_blank" href="https://www.maxweberstiftung.de/startseite.html">
+            <?=$this->Html->image('/../scans/MWS.svg', ['class' => 'wrapper-item', 'id' => 'idh-logo', 'alt' => 'Logo Max Weber stifung', 'width' => '100px', 'style'=>'padding:10px'])?>
+        </a>
     </footer>
+
+    <hr>
+
+    <div class='links'>
+            <?= $this->Html->link(__('Datenschutz / '), ['controller' => 'Pages', 'action' => 'datenschutz'], ['class' => 'wrapper-item', 'id' => 'credits']) ?></li>
+            <?= $this->Html->link(__('Impressum'), ['controller' => 'Pages', 'action' => 'credits'], ['class' => 'wrapper-item', 'id' => 'credits']) ?></li>
+        </div>
 </body>
 </html>

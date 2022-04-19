@@ -4,15 +4,15 @@ Info Pages related Partner und Mitarbeiter
 */
 ?>
 
-<div class="row">
-    <?= $this->element('sideNav', ['mapBox' => false, 'export' => 'simple'])?>
+<div class="container2">
+<div class="row2">
     <div class="column-responsive column-80">
-		<div class="content">
+		<div class="content4">
 			<h3><?= __('Partner') ?></h3>
 				<table>
 					<tr>
 						<td>
-							Institut für Digital Humanities, Universität zu Köln<br>
+							<?= __('Institut für Digital Humanities, Universität zu Köln')?><br>
 							<a href='https://dh.phil-fak.uni-koeln.de/en'>https://dh.phil-fak.uni-koeln.de/en</a>
 						</td>
 					</tr>
@@ -23,21 +23,19 @@ Info Pages related Partner und Mitarbeiter
 						</td>
 					</tr>
 				</table>
-			</div>
-		<br>
-		<div class='content'>
+		
 			<h3><?=__('Projektleitung')?></h3>
 				<table>
 					<tr>
 						<td>
 							Dr. Mareike König<br>
-							Stellvertretende Direktorin, Abteilungsleiterin Digital Humanities, DHIP Paris
+							<?= __('Stellvertretende Direktorin, Abteilungsleiterin Digital Humanities, DHIP Paris')?>
 						</td>
 					</tr>
 					<tr>
 						<td>
 							Dr. Jürgen Hermes<br>
-							Sprachliche Informationsverarbeitung, Institut für Digital Humanities, Universität zu Köln
+							<?= __('Sprachliche Informationsverarbeitung, Institut für Digital Humanities, Universität zu Köln')?>
 						</td>
 					</tr>
 				</table>
@@ -46,17 +44,17 @@ Info Pages related Partner und Mitarbeiter
 				<table>
 					<tr>
 						<td>
-							Alina Ostrowski (IDH, Entwicklung)
+							Alina Ostrowski (IDH, <?=__('Entwicklung')?>)
 						</td>
 					</tr>
 					<tr>
 						<td>
-							Dr. Gérald Kembellec (DHIP, Entwicklung)
+							Dr. Gérald Kembellec (DHIP, <?=__('Entwicklung')?>)
 						</td>
 					</tr>
 					<tr>
 						<td>
-							Evan Virevialle (DHIP, Entwicklung)
+							Evan Virevialle (DHIP, <?=__('Entwicklung')?>)
 						</td>
 					</tr>
 					<tr>
@@ -66,3 +64,4 @@ Info Pages related Partner und Mitarbeiter
 					</tr>
 				</table>
 		</div>
+</div>

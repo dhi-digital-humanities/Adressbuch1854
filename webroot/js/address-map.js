@@ -3,6 +3,10 @@ var leafletMap = null;
 var osm = null;
 var markers = null;
 
+$("document").on("mapBox", function() {
+    leafletMap.invalidateSize(false);
+});
+
 $("document").ready(function () {
     initializeMap();
     initializeMarkercluster();
@@ -71,7 +75,7 @@ function initializeMap() {
         { attribution: "<a target='blank' href='https://alpage.huma-num.fr/'>Projet ALPAGE</a>" ,
           onEachFeature: function(feature, layer) {
       layer.bindTooltip("Arrondissement: " + feature.properties.NUM_ARROND + "");
-      layer.bindPopup("Arrondissement: " + feature.properties.NUM_ARROND + "");
+      
     },
     style: function(feature) {
       return { color: "black" };
@@ -90,7 +94,7 @@ function initializeMap() {
                                                     {
                                                         layer.bindTooltip('Arrondissement: '
                                                                            +feature. properties.c_ar+'');
-                                                        layer.bindPopup(''+feature. properties.c_ar+'');
+                                                        
                                                     }}
                                         );
 
@@ -99,24 +103,38 @@ function initializeMap() {
         console.log("finished shapefile loaded");
     });
 
+     //Shapefile map is created with data from ALPAGE project https://alpage.huma-num.fr/
+    var quartiers = new L.Shapefile('/../download/Export_Quartiers__Vasserot_.zip',
+                                        {
+                                        onEachFeature:function(feature, layer)
+                                                    {
+                                                        layer.bindTooltip('quartiers: '
+                                                                           +feature. properties.NOM+'');
+                                            
+                                                    },
+    style: function(feature) {
+      return { color: "green" };
+    }}
+                                        );
+
+    quartiers.addTo(leafletMap);
+    quartiers.once("data:loaded", function(){
+        console.log("finished shapefile loaded");
+    });
+
     //Baselayers is created to switch between the two maps
 
-    var controlMap = { "Open Street Map": leafletMap, "Etat Major 1820-1866": cartohisto };
-    var otherLayers = {"AR pre 1860" : shapefile, "AR post 1860" : arrondissement2};
+    var controlMap = { "Open Street Map": leafletMap, "Etat Major 1820-1866": cartohisto};
+    var otherLayers = {"AR pre 1860" : shapefile, "AR post 1860" : arrondissement2,"Quartiers de Paris":quartiers};
 
     L.control.layers(controlMap, otherLayers).addTo(leafletMap);
-
-    // Use via Leaflet plugin sidebar-v2 https://github.com/turbo87/sidebar-v2/
-
-    if(document.getElementById('mapBox').parentElement.className == 'bigMap'){
-    L.control.sidebar('sidebar').addTo(leafletMap)};
 
     // //Use via Leaflet plugin fullscreen https://github.com/Leaflet/Leaflet.fullscreen
 
     L.control.fullscreen({ position: "topright" }).addTo(leafletMap);
 
     var legend = L.control({ position: "bottomleft" });
-
+	
     // add legend
     if (document.getElementById("mapBox").parentElement.className == "bigMap") {
         legend.onAdd = function (map) {
@@ -412,3 +430,6 @@ function colourMarker(colour) {
 }
 
 // 4. Creating your own markers using personalized picture files (could pose same problem as 3.)
+setInterval(function () {
+   leafletMap.invalidateSize();
+}, 100);

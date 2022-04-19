@@ -2,29 +2,58 @@
 /*
 Homepage
 */
+
 ?>
+<div class="container">
+<div class='background'>
+        <br>
+        <div class='header2'>
+                <div class="wrapper-item search form" id="simp-search" style="display: flex; justify-content:center; align-items: center;">
+                <?= $this->Form->create(null, ['type' => 'get', 'url' => '/search/results']) ?>
+                <?php
+                // Set parameter for search type to "simple"
+                echo $this->Form->hidden('type', ['value' => 'simp']);
+                echo $this->Form->control('text', ['maxlength' => 256, 'label' => false, 'placeholder   ' => __('Freitextsuche')]);?>
+                <?= $this->Form->button(__('Los'), ['class' => 'simp-search-item']) ?>
+                <?= $this->Form->end() ?>
+                <?= $this->Html->link(__('Erweitert'), ['controller'=>'Search', 'action'=>'query']) ?>
+                </div>  
+                <h1 style="display: flex; justify-content:center; color:#606c76;"><?= __('Adressbuch der Deutschen in Paris von 1854') ?></h1>           
+                <p style='text-align: center;'><?= __('Die Datenbank basiert auf einem gedruckten Buch, das deutsche Kaufleute, Unternehmer, Handwerker und andere Selbständige verzeichnet, die 1854 in Paris und den angrenzenden Vororten ansässig waren.')?></p>
+        </div>
+        <div class="header3">
+                <div class="divhome">
+                <h3 style="padding-left:16px"><?= __('Interaktive Karte') ?></h3>
+                <p style="padding-left: 16px"> <?= __('Besuchen Sie die Karte, um die Daten zu sehen'); ?><br>
+                <?= $this->Html->link(__('Weiterlesen...'), ['controller'=>'Pages', 'action'=>'karte']); ?></p>
+                </div>
 
-<div class="row">
-    <?= $this->element('sideNav', ['mapBox' => false, 'export' => 'simple'])?>
-    <div class="column-responsive column-80">
-		<div class="content">
-			<h3><?= __('Willkommen') ?></h3>
-			<h4><?=__('Projekt "Adressbuch der Deutschen in Paris von 1854"') ?></h4>
-			
-			<p class='p'>
-			Relaunch von <a target="blank" href='http://adressbuch1854.dhi-paris.fr'>http://adressbuch1854.dhi-paris.fr</a><br>
+                <div class="divhome">
+                <h3 style="padding-left:16px"><?= __('Zeige alle') ?></h3>
+                <?= $this->Html->link(__('Personen'), ['controller'=> 'Persons', 'action'=>'index'],['class'=>'button2']) ?><br>
+                <?= $this->Html->link(__('Unternehmen'), ['controller'=>'Companies', 'action'=>'index'],['class'=>'button2'])?><br>
+                <?= $this->Html->link(__('Straßen'), ['controller'=>'Streets', 'action'=>'index'],['class'=>'button2'])?><br>
+                <?= $this->Html->link(__('Arrondissements'), ['controller'=>'Arrondissements', 'action'=>'index'],['class'=>'button2']) ?>
+                </div>
+                <div class="divhome">
+         
+                <h3 style="padding-left: 16px;"><?= __('Export') ?></h3>
+                <?= $this->Html->link('JSON', ['controller' => 'App', 'action' => 'export', '?' => ['exportAll' => 'json']], ['class'=>'button2'])?><br>
+                <?= $this->Html->link('XML', ['controller' => 'App', 'action' => 'export', '?' => ['exportAll' => 'xml']],['class'=>'button2'])?><br>
+                <?= $this->Html->link('CSV', ['controller' => 'App', 'action' => 'export', '?' => ['exportAll' => 'csv']],['class'=>'button2'])?><br>
+                <?= $this->Html->link('SQL', ['controller' => 'App', 'action' => 'export', '?' => ['exportAll' => 'sql']],['class'=>'button2'])?>
+                </div>
+             
+              </div>
+       
+        <div class='divhome'>
+        <?php 
 
-			Ein Projekt des Deutschen Historichen Instituts Paris (DHIP)<br>
+        echo "<h3 style='padding-left:16px;'><a target='blank' href='/persons/view/".rand(1,4772)."'>Serendipity-Suche</a></h3><p>Zufällige Anzeige einer Person</p>";
+?>
+        </div>
 
-			Website des DHIP: <a target="blank" href='https://www.dhi-paris.fr/home.html'>https://www.dhi-paris.fr/home.html</a><br>
 
-			Website der Abteilung: <a target="blank" href='https://www.dhi-paris.fr/forschung/digital-humanities.html'>https://www.dhi-paris.fr/forschung/digital-humanities.html</a><br>
-
-			Alle Daten des Adressbuchs: <a target="blank" href="https://doi.org/10.5281/zenodo.5524880">https://doi.org/10.5281/zenodo.5524880</a>
-
-		</p>
-			<a target='_blank' href='http://adressbuch1854.dh.uni-koeln.de/scans/HD/BHVP_703983_001.jpg'><img class='homepage' src='http://adressbuch1854.dh.uni-koeln.de/scans/SD/BHVP_703983_001.jpg' alt='Seite der Adressbuch' title='IHA zur Nutzung der Seite'/></a>
-		
-		</div>
-	</div>
+      
+</div>
 </div>

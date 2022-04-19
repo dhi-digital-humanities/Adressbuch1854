@@ -8,6 +8,7 @@
 	$optionsMil = [];
 	$optionsOcc = [];
 	$optionsCat = [];
+	$optionsComp = [];
 
 	foreach($arrondissements as $arr){
 		$id = $arr->id;
@@ -59,11 +60,13 @@
 		$name = $cat->name;
 		array_push($optionsCat, [$id => __($name)]);
 	}
+
+
 ?>
-<div class="row">
-    <?= $this->element('sideNav', ['mapBox' => false, 'export' => 'none'])?>
+<div class="container2">
+<div class="row2">
     <div class="column-responsive column-80">
-        <div class="search form content">
+        <div class="search form content4">
             <?= $this->Form->create($persons, ['type' => 'get', 'url' => '/search/results']) ?>
             <fieldset>
                 <legend><?= __('Erweiterte Suche') ?></legend>
@@ -71,13 +74,14 @@
 					// Set parameter for search type to "detailed"
 					echo $this->Form->hidden('type', ['value' => 'det']);
 				?>
-                <div class="form names">
+                <div class="form names" style="display: flex; flex-direction:column;">
 				<h5 class="heading"><?= __('Personen- oder Firmenname')?></h5>
 				<?php
                     echo $this->Form->control('name', ['label' => __('Name')]);
                     echo $this->Form->control('first_name', ['label' => __('Vorname')]);
 					echo $this->Form->label('gender', __('Geschlecht'));
-					echo $this->Form->radio('gender', [['value' => 'm', 'text' => __('Männlich')], ['value' => 'f', 'text' => __('weiblich')]], ['hiddenField' => false]);
+					echo $this->Form->radio('gender', [['value' => 'm', 'text' => __(' Männlich')], ['value' => 'f', 'text' => __(' Weiblich')]], ['hiddenField' => false]);
+
                 ?>
 				</div>
 				<div class="form profession">
@@ -99,7 +103,7 @@
 					echo $this->Form->select('arr_old', $optionsArrOld, ['empty' => true]);
                 ?>
 				</div>
-				<div class="form persAttributes">
+				<div class="form persAttributes" style="display:flex; flex-direction:column;">
 				<h5 class="heading"><?= __('Weitere Merkmale')?></h5>
 				<?php
 
@@ -107,7 +111,7 @@
 					echo $this->Form->select('ldh_rank', $optionsRank, ['empty' => true]);
 
 					echo $this->Form->label('institut', __('Mitglied des Institut de France?').' (de l\'Institut)');
-					echo $this->Form->radio('institut', [['value' => '1', 'text' => __('Ja')], ['value' => '0', 'text' => __('Nein')]], ['hiddenField' => false]);
+					echo $this->Form->radio('institut', [['value' => '1', 'text' => __(' Ja')], ['value' => '0', 'text' => __(' Nein')]], ['hiddenField' => false]);
 
 					echo $this->Form->label('soc_stat', __('Sozialer Stand'));
 					echo $this->Form->select('soc_stat', $optionsSoc, ['empty' => true]);
@@ -119,17 +123,19 @@
 					echo $this->Form->select('occ_stat', $optionsOcc, ['empty' => true]);
 
 					echo $this->Form->label('bold', __('Hat das Adressbuch vorabonniert?').' '.__('(im Buch fett gedruckt)'));
-					echo $this->Form->radio('bold', [['value' => '1', 'text' => __('Ja')], ['value' => '0', 'text' => __('Nein')]], ['hiddenField' => false]);
+					echo $this->Form->radio('bold', [['value' => '1', 'text' => __(' Ja')], ['value' => '0', 'text' => __(' Nein')]], ['hiddenField' => false]);
 
 					echo $this->Form->label('advert', __('Hat einen Eintrag in der Geschäftsliste?'));
-					echo $this->Form->radio('advert', [['value' => '1', 'text' => __('Ja')], ['value' => '0', 'text' => __('Nein')]], ['hiddenField' => false]);
+					echo $this->Form->radio('advert', [['value' => '1', 'text' => __(' Ja')], ['value' => '0', 'text' => __(' Nein')]], ['hiddenField' => false]);
+
 				?>
 				</div>
-            </fieldset>
+
 			<?= $this->Form->button(__('Search')) ?>
             <?= $this->Form->end() ?>
 			<?= __('Tipp: Falls Ihre Suche nicht die gewünschten Ergebnisse liefert, versuchen Sie erneut mit weniger Eingaben zu suchen. Probieren Sie auch verschiedene
 			Schreibweisen von Straßen- und Personennamen aus und suchen Sie zunächst ohne Vornamen, da diese im Buch häufig nicht vorhanden oder stark abgekürzt sind.', 'Suchhinweis')?>
         </div>
     </div>
+</div>
 </div>
