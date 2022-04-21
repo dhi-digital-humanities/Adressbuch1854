@@ -84,7 +84,7 @@ $this->Html->css('multiTable.css');
 			<?php if($count):?>
 			<td><?= $this->Number->format($countNo)?></td>
 			<?php endif;?>
-			<td><?= $this->Html->link(htmlspecialchars_decode($name), ['controller' => 'Persons', 'action' => 'view', $person->id]) ?></td>
+			<td><?= $this->Html->link(htmlspecialchars_decode($name, ENT_QUOTES), ['controller' => 'Persons', 'action' => 'view', $person->id]) ?></td>
 			
 			<td><?= h($person->profession_verbatim) ?></td>
 			<td><?php
