@@ -8,8 +8,15 @@ Info Pages related Partner und Mitarbeiter
 <div class="row2">
     <div class="column-responsive column-80">
 		<div class="content4">
+		
 			<h3><?= __('Partner') ?></h3>
 				<table>
+				<tr>
+						<td>
+							<?= __('Deutsches Historisches Institut Paris')?><br>
+							<a href='https://www.dhi-paris.fr/'>https://www.dhi-paris.fr/</a>
+						</td>
+					</tr>
 					<tr>
 						<td>
 							<?= __('Institut für Digital Humanities, Universität zu Köln')?><br>
@@ -24,44 +31,46 @@ Info Pages related Partner und Mitarbeiter
 					</tr>
 				</table>
 		
-			<h3><?=__('Projektleitung')?></h3>
+			
+			<h4><?=__('Team DHIP') ?></h4>
 				<table>
-					<tr>
+				<tr>
 						<td>
-							Dr. Mareike König<br>
-							<?= __('Stellvertretende Direktorin, Abteilungsleiterin Digital Humanities, DHIP Paris')?>
+							<?= __('Dr. Mareike König (Projektleitung)') ?>
 						</td>
 					</tr>
 					<tr>
 						<td>
-							Dr. Jürgen Hermes<br>
-							<?= __('Sprachliche Informationsverarbeitung, Institut für Digital Humanities, Universität zu Köln')?>
+							<?= __('Dr. Gérald Kembellec (Entwicklung)') ?>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<?= __('Evan Virevialle (Entwicklung, Website)') ?>
+						</td>
+					</tr>
+			
+</table>
+<h4><?= __('Team IDH') ?></h4>
+<table>
+					
+					<tr>
+						<td>
+							<?= __('Dr. Jürgen Hermes (Projektleitung)') ?>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<?= __('Alina Ostrowski (Entwicklung)') ?>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<?= __('Dennis Demmmer (Administration)') ?>
 						</td>
 					</tr>
 				</table>
-		<br>
-			<h4><?=__('Projektmitarbeiter*innen') ?></h4>
-				<table>
-					<tr>
-						<td>
-							Alina Ostrowski (IDH, <?=__('Entwicklung')?>)
-						</td>
-					</tr>
-					<tr>
-						<td>
-							Dr. Gérald Kembellec (DHIP, <?=__('Entwicklung')?>)
-						</td>
-					</tr>
-					<tr>
-						<td>
-							Evan Virevialle (DHIP, <?=__('Entwicklung')?>)
-						</td>
-					</tr>
-					<tr>
-						<td>
-							Denis Demmer (IDH, Administration)
-						</td>
-					</tr>
-				</table>
+				<br>
+				<p><?= __('Das Projekt wurde in der ersten Phase 2002-2006 unterstützt durch die Gerda Henkel Stiftung (Düsseldorf) und die Gesellschaft der Freunde des DHIP.') ?></p>
 		</div>
 </div>

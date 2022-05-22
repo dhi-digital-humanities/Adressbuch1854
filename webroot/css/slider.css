@@ -64,6 +64,7 @@
       .dot {
         cursor: pointer;
         text-align: center;
+        margin: 0;
       }
       .active,
       .dot:hover {

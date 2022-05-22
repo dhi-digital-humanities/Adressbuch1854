@@ -29,7 +29,7 @@ foreach ($obj as $key => $values){
   echo "<div class='mySlides fade'>
         <a target='blank' href='".$directory2.$values['image'].".jpg'><img src='".$directory.$values['image'].".jpg' alt='".$values['alt']."' style='width:100%'></a>
         <div style='text-align:center; background-color:lightgrey; border-radius:10px; padding:5px;margin:5px'>
-        Name: ".$values['alt']."<br>
+        Dateiname: ".$values['alt']."<br>
         Format: JPEG <br>
         Auflösung: 300dpi <br>
         Größe: ".$values['taille']."

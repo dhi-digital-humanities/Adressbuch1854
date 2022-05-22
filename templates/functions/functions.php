@@ -94,7 +94,7 @@
 
 					function image($path, $size, $id, $begP)
 						{
-							$code_html_image = "<a target='_blank' href=/../scans/HD/BHVP_703983_$begP.jpg>";
+							$code_html_image = "<a target='_blank' href='http://adressbuch1854.dhi-paris.fr/scans/HD/BHVP_703983_$begP.jpg'>";
 							$code_html_image.=" <img src='";
 							$code_html_image.= $path;
 							$code_html_image.= $size;

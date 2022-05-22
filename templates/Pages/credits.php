@@ -24,21 +24,21 @@ Credits
 			<p><?= __('Unser Online-Angebot enthält Links zu anderen Websites. Wir haben keinen Einfluss darauf, dass deren Betreiber die Datenschutzbestimmungen einhalten.') ?><br>
 			<?= __('Wir sind als Anbieter für eigene Inhalte nach den allgemeinen Gesetzen verantwortlich. Von diesen eigenen Inhalten sind unter Umständen Links auf die von anderen Anbietern bereitgehaltenen Inhalte zu unterscheiden. Für fremde Inhalte, die über Links zur Nutzung bereitgestellt werden und besonders gekennzeichnet sind, übernehmen wir keine Verantwortung und machen uns deren Inhalt nicht zu Eigen. Für illegale, fehlerhafte oder unvollständige Inhalte sowie für Schäden, die durch die Nutzung oder Nichtnutzung der Informationen entstehen, haftet allein der Anbieter der Website, auf die verwiesen wurde. Für fremde Hinweise ist die Redaktion nur dann verantwortlich, wenn sie von ihnen, das heißt auch von einem eventuellen rechtswidrigen bzw. strafbaren Inhalt, positive Kenntnis hat, und es technisch möglich und zumutbar ist, deren Nutzung zu verhindern.') ?></p>
 
-			<h4><?= __('Hinweis zur Benutzung von Genderformen') ?></h4>
-			<p><?= __('Wir beachten in den Texten dieser Internetseite generell die Genderform. Aus Gründen der Lesbarkeit wird in Ausnahmefällen nur eine Genderform benutzt, die sowohl die männliche als auch die weibliche Form einschließt.')?></p>
 
 			<h4><?= __('Gestaltung') ?></h4>
-			<h4><?= __('Design :') ?></h4>
-			<p><?= __('Mareike Koenig')?><br>
+			<p><?= __('Mareike König')?><br>
 			   <?= __('Evan Virevialle') ?></p>
 
-			<h4><?= __('Technische Realisation :') ?></h4>
+			<h4><?= __('Technische Realisation') ?></h4>
 			<p><?= __('Gerald Kembellec') ?><br>
 			   <?= __('Alina Ostrowski') ?><br>
 			   <?= __('Evan Virevialle') ?><br>
 
-			<h4><?= __('Redaktion/Umsetzung :') ?></h4>
-			<p><?= __('Mareike Koenig') ?></p>
+			<h4><?= __('Redaktion') ?></h4>
+			<p><?= __('Mareike König') ?></p>
+			<br>
+
+			<p><?= __('Letzte Änderung: 18.05.2022') ?></p>
 
 		</div>
 	</div>

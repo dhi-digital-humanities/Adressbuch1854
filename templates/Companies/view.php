@@ -41,9 +41,9 @@ $uri = $this->request->getRequestTarget();
 
 <div id="tabs">
     <ul>
-        <li onClick="selView(1, this)"><?= __('Index') ?></li>
+        <li onClick="selView(1, this)" style="border-bottom:2px solid #ED8B00;"><?= __('Index') ?></li>
         <li onClick="selView(2, this)"><?= __('Karte') ?></li>
-        <li onClick="selView(3, this)"><?= __('Exportiere') ?></li>
+        <li onClick="selView(3, this)"><?= __('Exportieren') ?></li>
     </ul>
 </div>
 <div id='tabcontent'>
@@ -70,13 +70,13 @@ $uri = $this->request->getRequestTarget();
             	   					</td> 
             				</tr>
             				<tr>
-            					<th><?= __('Volltexterkennung')?></th>
+            					<th> __('Volltexterkennung')?></th>
             						<td>
             						<details>
 										<summary><?= __('Volltext der Seite ansehen')?></summary>
 										<form>
-										<button type='submit' formtarget='_blank' formaction='/../Ocerisations/BHVP_703983_<?php echo $begP ?>.txt'
-										value="text">BHVP_703983_<?php echo $begP?>.txt</button>
+										<button type='submit' formtarget='_blank' formaction='/webroot/scans/Ocerisations/BHVP_703983_<?php echo $begP ?>.txt'
+										value="text">BHVP_703983_<?php echo $begP ?>.txt</button>
 										</form>
 									</details>
             						</td>
@@ -144,8 +144,8 @@ $uri = $this->request->getRequestTarget();
 
 </div>
 
- <br><div class="csl-bib-body" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">
-  <div class="csl-entry">Kronauge, F.«&nbsp;<?php echo $nachname ?>&nbsp;». In <i>Adressbuch der Deutschen in Paris für das Jahr 1854</i>, Elektronische Edition., <?php echo $begP ?>, 1854. <a target="_blank" href='<?php  $this->request->getUri() ?>'><?php echo $this->request->getUri() ?></a>.</div>
+<br><div class="csl-bib-body" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">
+				<div class="csl-entry">Zitierhinweis: <?php echo $nachname ?>, in: Adressbuch der Deutschen in Paris für das Jahr 1854, S.<?php echo $begP ?>, hg. v. F.A. Kronauge, Paris. Elektronische Edition, DHI Paris 2022, <a target="_blank" href='<?php  $this->request->getUri() ?>'><?php echo $this->request->getUri() ?></a>, CC-BY 4.0.</div>
 
 <?php print zoterocomp($nachname, $prof_category, $specification, $profession, $addr_no, $addr_old, $addr_new, $begP);?>
 </div>

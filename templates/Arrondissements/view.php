@@ -34,8 +34,8 @@ $uri = $this->request->getRequestTarget();
 	<!-- mise en place de tabs pour switcher sur la même page -->
 <div id="tabs">
 	<ul>
-		<li onclick="selView(1, this)"><?= __('View') ?></li>
-		<li onclick="selView(2, this)"><?= __('Exportiere') ?></li>
+		<li onclick="selView(1, this)" style="border-bottom:2px solid #ED8B00;"><?= __('Ansicht') ?></li>
+		<li onclick="selView(2, this)"><?= __('Exportieren') ?></li>
 	</ul>
 </div>
 <div id='tabcontent'>
@@ -94,8 +94,8 @@ $uri = $this->request->getRequestTarget();
 
 					</div>
 
- 					<br><div class="csl-bib-body" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">
-  					<div class="csl-entry">Kronauge, F. «&nbsp;<?php echo $noStr ?>&nbsp;». In <i>Adressbuch der Deutschen in Paris für das Jahr 1854</i>, Elektronische Edition, 1854. <a target="_blank" href='<?php  $this->request->getUri() ?>'><?php echo $this->request->getUri() ?></a>.</div>
+ 					<br> <div class="csl-bib-body" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">
+				<div class="csl-entry">Zitierhinweis: <?php echo $noStr ?>, in: Adressbuch der Deutschen in Paris für das Jahr 1854, hg. v. F.A. Kronauge. Elektronische Edition, DHI Paris 2022, <a target="_blank" href='<?php  $this->request->getUri() ?>'><?php echo $this->request->getUri() ?></a>, CC-BY 4.0.</div>
 
 					<?php print zoteroarr($noStr, $arr1) ?>
           			</div>

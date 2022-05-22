@@ -23,18 +23,18 @@ function selView(n, litag) {
   var tabs = document.getElementById("tabs");
   var ca = Array.prototype.slice.call(tabs.querySelectorAll("li"));
   ca.map(function(elem) {
-    elem.style.background="#F0F0F0";
-    elem.style.borderBottom="1px solid #5B788C"
+    elem.style.borderBottom="2px solid #5B788C"
   });
 
-  litag.style.borderBottom = "1px solid #ED8B00";
-  litag.style.background = "#ED8B00";
+  litag.style.borderBottom = "2px solid #ED8B00";
+  litag.style.fontWeight="bold";
+  
 
 }
 
 function selInit() {
   var tabs = document.getElementById("tabs");
   var litag = tabs.querySelector("li");   // first li
-  litag.style.borderBottom = "1px solid #ED8B00";
-  litag.style.background = "#ED8B00";
+  litag.style.borderBottom = "2px solid #ED8B00";
+ 
 }

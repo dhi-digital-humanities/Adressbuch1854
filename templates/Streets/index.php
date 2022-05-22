@@ -18,8 +18,8 @@ $uri = $this->request->getRequestTarget();
 <!-- mise en place des tabs pour les onglets -->
 <div id="tabs">
     <ul>
-        <li onClick="selView(1, this)"><?= __('Index') ?></li>
-        <li onClick="selView(2, this)"><?= __('Exportiere') ?></li>
+        <li onClick="selView(1, this)" style="border-bottom:2px solid #ED8B00;"><?= __('Index') ?></li>
+        <li onClick="selView(2, this)"><?= __('Exportieren') ?></li>
     </ul>
 </div>
 <div id='tabcontent'>

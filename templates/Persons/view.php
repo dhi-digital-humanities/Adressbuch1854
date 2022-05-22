@@ -56,9 +56,9 @@
 <div class='container'>
 <div id="tabs">
     <ul>
-        <li onClick="selView(1, this)"><?= htmlspecialchars_decode(h($name)) ?></li>
+        <li onClick="selView(1, this)" style="border-bottom:2px solid #ED8B00;"><?= htmlspecialchars_decode(h($name)) ?></li>
         <li onClick="selView(2, this)"><?= __('Karte') ?></li>
-        <li onClick="selView(3, this)"><?= __('Exportiere') ?></li>
+        <li onClick="selView(3, this)"><?= __('Exportieren') ?></li>
     </ul>
 </div>
 <div class="tabcontent">
@@ -91,7 +91,7 @@
 							<details>
 								<summary><?= __('Volltext der Seite ansehen')?></summary>
 									<form>
-										<button type='submit' formtarget='_blank' formaction='/../Ocerisations/BHVP_703983_<?php echo $begP ?>.txt'
+										<button type='submit' formtarget='_blank' formaction='/webroot/Ocerisations/BHVP_703983_<?php echo $begP ?>.txt'
 										value="text">BHVP_703983_<?php echo $begP?>.txt</button>
 									</form>
 							</details>
@@ -146,23 +146,23 @@
                     <td><?= $person->ldh_rank->rank ?></td>
                 </tr>
 				<?php endif;?>
-                <tr>
-                    <th><?= __('Sonstige Kategorien') ?></th>
+                <!--<tr>
+                    <th>< __('Sonstige Kategorien') ?></th>
                     <td>
 						<table>
 							<tr>
-								<th><?= __('Stand')?></th>
-								<th><?= __('Militärischer Status')?></th>
-								<th><?= __('Beruflicher Status')?></th>
+								<th>< __('Stand')?></th>
+								<th>< __('Militärischer Status')?></th>
+								<th>< __('Beruflicher Status')?></th>
 							</tr>
 							<tr>
-								<td><?=$person->social_status->status?></td>
-								<td><?=$person->military_status->status?></td>
-								<td><?=$person->occupation_status->status?></td>
+								<td><$person->social_status->status?></td>
+								<td><$person->military_status->status?></td>
+								<td><$person->occupation_status->status?></td>
 							</tr>
 						</table>
 					</td>
-                </tr>
+                </tr>-->
                 <tr>
                     <th><?= __('Sonstige Merkmale') ?></th>
                     <td>
@@ -192,16 +192,16 @@
             </div>
             <?php endif; ?>
 			<?php if (!empty($person->external_references)) : ?>
-			<div class="related">
+			<!--<div class="related">
                 <details>
-					<?= '<summary title="'.__('Klicken für Details').'"><h4>'.__('Literatur- und Quellenhinweise').'</h4></summary>' ?>
-					<?= $this->element('externalReferenceMultiTable', ['externalReferences' => $person->external_references])?>
+					 '<summary title="'.__('Klicken für Details').'"><h4>'.__('Literatur- und Quellenhinweise').'</h4></summary>' ?>
+					 $this->element('externalReferenceMultiTable', ['externalReferences' => $person->external_references])?>
 				</details>
-				</div>
+				</div>-->
 				<?php endif; ?>
 				<br>
 			     <div class="csl-bib-body" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">
-				<div class="csl-entry">Kronauge, F. «&nbsp;<?php echo $name ?>&nbsp;». In <i>Adressbuch der Deutschen in Paris für das Jahr 1854</i>, Elektronische Edition., <?php echo $begP ?>, 1854. <a target="_blank" href='<?php  $this->request->getUri() ?>'><?php echo $this->request->getUri() ?></a>.</div>
+				<div class="csl-entry">Zitierhinweis: <?php echo $name ?>, in: Adressbuch der Deutschen in Paris für das Jahr 1854, hg. v. F.A. Kronauge, Paris, S.<?php echo $begP ?>, Elektronische Edition, DHI Paris 2022, <a target="_blank" href='<?php  $this->request->getUri() ?>'><?php echo $this->request->getUri() ?></a>, CC-BY 4.0.</div>
 				<?php print zoteroperson($name, $precision, $precision2, $military_status, $social_status,$occupation_status, $gender, $ldh, $houseno, $addr_name, $addr_new, $begP);?>
 			</div>
 		</div>

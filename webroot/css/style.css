@@ -1,9 +1,8 @@
 #simp-search form {
     display: flex;
-    padding-top: 10px;
+    margin-top:-27px;
     padding-right: 10px;
-    justify-content: center;
-    margin-left: 0.5px;
+
 
 }
 
@@ -54,16 +53,18 @@ header {
 	background-color: #ffff;
     width: 100%;
     margin-bottom: 5px;
+    box-shadow: 0 7px 14px 0 rgba(60, 66, 87, 0.1),
+    0 3px 6px 0 rgba(0, 0, 0, 0.07);
 }
 
 .header2 {
-
-    margin: 25px;
+    display: flex;
+    flex-direction:column;
+    align-items: center;
     padding: 5px;
-    background-color: lightgrey;
     opacity: 0.9;
     border-radius: 10px;
-    width: 680px;
+   
 }
 
 
@@ -77,8 +78,21 @@ header h1 {
 .top-nav-item {
     padding: 1rem;
     font-weight: bold;
+    border-bottom: 2px solid #ED8B00;
     /*border-radius: .25rem;
     border: 1px dashed #5F9EA0;*/
+}
+
+.top-nav-item2 {
+    padding: 1rem;
+    font-weight: bold;
+   
+    /*border-radius: .25rem;
+    border: 1px dashed #5F9EA0;*/
+}
+
+.top-nav-item2:hover {
+    border-bottom: 2px solid #ED8B00;
 }
 
 

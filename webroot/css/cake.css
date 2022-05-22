@@ -1,7 +1,15 @@
 /* Miligram overrides */
 a {
     font-family: "Raleway", sans-serif;
-    color: #404041;
+    color: #5B788C;
+}
+ a:hover{
+     color:#ED8B00;
+ }
+ 
+.a2 {
+
+    color : white;
 }
 
 /* Utility */
@@ -53,6 +61,7 @@ th {
         padding-top:  1rem;
         display: flex;
         justify-content: center;
+        padding-bottom: 1rem;
     }
 }
 
@@ -170,6 +179,7 @@ th {
 .input.radio label:first-of-type {
     margin-bottom: 2.0rem;
 }
+
 
 /* Paginator */
 .paginator {
@@ -298,16 +308,11 @@ th {
 {
     display:inline-block;
     height:40px;
-    width: 150px;
     min-width:80px;
     text-align:center;
     line-height: 40px;
     cursor: pointer;
-    padding:0 8px 0 8px;
-    margin: 15px 0px 0px 0px;
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
-    background-color: #ffff;
+    font-weight: bold;
     
 }
 
@@ -316,7 +321,7 @@ th {
     display:inline-block;
     cursor: pointer;
     margin: 15px 0px 0px 0px;
-    padding-right: 2rem;
+    padding-right: 5px;
     font-weight: bold;
     
 }
@@ -360,6 +365,8 @@ th {
     margin-bottom: 4rem;
    justify-content: center;
    width: 100%;
+   margin-top: 70px;
+   align-items: flex-end;
 
     }
 }
@@ -378,13 +385,16 @@ th {
 .divhome {
 
     display: inline-block;
-    background: lightgrey;
     opacity: 0.8;
     border-radius: 10px;
-    margin: 20px;
+    margin: 45px;
     margin-bottom: 10px;
     width: 200px;
+    margin-top: 10px;
+    text-align: center;
 }
+
+
 
 .content3 {
     padding: 10px;
@@ -393,98 +403,13 @@ th {
 }
 
 .content4 {
- 
     overflow-y: auto;
-   
-    
-
-  
 }
-
-.banniere {
-
-    width: 100%;
-}
-
-      .containerhome {
-        width: 100%;
-        border-radius: 10px;
-        margin-bottom: 3rem;
-        overflow: hidden;
-        position: relative;
-        display: inline-block;
-        
-      }
-       .span {
-                display: none;
-                font-size: 35px;
-                color: black;
-                font-family: sans-serif;
-                text-align: center;
-                margin: auto;
-                position: absolute;
-                top: 0;
-                left: 0;
-                bottom: 0;
-                right: 0;
-                height: 50px;
-                cursor: pointer;
-                text-decoration: none;
-      }
-      .child {
-        height: 100%;
-        width: 100%;
-        background-size: cover;
-        background-repeat: no-repeat;
-        -webkit-transition: all .5s;
-        -moz-transition: all .5s;
-        -o-transition: all .5s;
-        transition: all .5s;
-      }
-      .bg-one {
-        background-image: url(/webroot/scans/home.png);
-      }
-
-      .containerhome:hover .child,
-      .containerhome:focus .child {
-        -ms-transform: scale(1.2);
-        -moz-transform: scale(1.2);
-        -webkit-transform: scale(1.2);
-        -o-transform: scale(1.2);
-        transform: scale(1.2);
-      }
-      .containerhome:hover .child:before,
-      .containerhome:focus .child:before {
-        display: block;
-      }
-      .containerhome:hover span,
-      .containerhome:focus span {
-        display: block;
-      }
-      .child:before {
-        content: "";
-        display: none;
-        height: 100%;
-        width: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        background-color: rgb(129 143 157 / 75%);
-      }
-      @media screen and (max-width: 960px) {
-        .containerhome {
-          width: 100%;
-          
-         
-        }
-      }
-
 
 .background {
-
     background-image: url('/webroot/scans/home.png');
-  
-    width: 100%;
+    background-size:cover;
+    height: 300px;
     border-radius: 10px;
     display: flex;
     flex-wrap: wrap;
@@ -495,7 +420,7 @@ th {
 
 .contact {
     
-    margin-right: 40px;
+    margin-right: 100px;
     font-size: 10px;
     display: flex;
    line-height: 1.3;
@@ -506,6 +431,7 @@ th {
 
     font-weight: bold;
    text-align: center;
+   padding-bottom: 10px;
 }
 
 .image2 {
@@ -517,4 +443,23 @@ th {
 
 .content5 {
     height: 690px; 
+}
+
+.button_home {
+
+    
+    display: flex;
+    align-items: center;
+}
+
+.button_home2 {
+
+    background-color: #ED8B00;
+    align-items: center;
+    display: flex;
+}
+
+.button_home2:hover {
+
+    background-color: #5B788C;
 }

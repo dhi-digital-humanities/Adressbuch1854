@@ -52,7 +52,7 @@ if(!isset($list)){
 	</li>
 	<?php else: ?>
 		<?php
-			echo strtolower($this->Html->link($street, ['controller' => 'Streets', 'action' => 'view', $address->street->id]));
+			echo $this->Html->link($street, ['controller' => 'Streets', 'action' => 'view', $address->street->id]);
 			echo ' '.$housNo.'<br>';
 		?>
 	<?php endif; ?>

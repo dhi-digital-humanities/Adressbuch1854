@@ -3,9 +3,7 @@ var leafletMap = null;
 var osm = null;
 var markers = null;
 
-$("document").on("mapBox2", function() {
-    leafletMap.invalidateSize(false);
-});
+
 
 $("document").ready(function () {
     initializeMap();
@@ -30,11 +28,10 @@ function initializeMap() {
         zoom: 12,
     });
 
-    L.tileLayer("http://{s}.tile.openstreetmap.de/{z}/{x}/{y}.png", {
-        attribution: '&copy; <a target="blank" href="https://www.openstreetmap.de">OpenStreetMap</a>',
+    L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: '&copy; <a target="blank" href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
         subdomains: ["a", "b", "c"],
     }).addTo(leafletMap);
-
 
     //The historic map is created with data from IGN https://www.geoportail.gouv.fr/donnees/carte-de-letat-major-1820-1866
 
@@ -72,11 +69,11 @@ function initializeMap() {
     //Use via Leaflet Shapefile plugin https://github.com/calvinmetcalf/leaflet.shapefile
     //Shapefile map is created with data from ALPAGE project https://alpage.huma-num.fr/
 
-    var shapefile = new L.Shapefile("/webroot/download/Export_arrondissements.zip", 
+    var shapefile = new L.Shapefile("/../download/Export_arrondissements.zip", 
         { attribution: "<a target='blank' href='https://alpage.huma-num.fr/'>Projet ALPAGE</a>" ,
           onEachFeature: function(feature, layer) {
       layer.bindTooltip("Arrondissement: " + feature.properties.NUM_ARROND + "");
-     
+      
     },
     style: function(feature) {
       return { color: "black" };
@@ -89,7 +86,7 @@ function initializeMap() {
 
     //Use via Paris OpenData https://opendata.paris.fr/explore/dataset/arrondissements/map/?disjunctive.c_ar&disjunctive.c_arinsee&disjunctive.l_ar&basemap=jawg.dark&location=12,48.85889,2.34692
 
-    var arrondissement2 = new L.Shapefile('/webroot/download/arrondissements.zip',
+    var arrondissement2 = new L.Shapefile('/../download/arrondissements.zip',
                                         {attribution:'<a target="blank" href="https://opendata.paris.fr/explore/dataset/arrondissements/map/?disjunctive.c_ar&disjunctive.c_arinsee&disjunctive.l_ar&basemap=jawg.dark&location=12,48.85889,2.34692">Paris Open Data</a>',
                                         onEachFeature:function(feature, layer)
                                                     {
@@ -104,30 +101,10 @@ function initializeMap() {
         console.log("finished shapefile loaded");
     });
 
- //Shapefile map is created with data from ALPAGE project https://alpage.huma-num.fr/
-
-    var quartiers = new L.Shapefile('/webroot/download/Export_Quartiers__Vasserot_.zip',
-                                        {
-                                        onEachFeature:function(feature, layer)
-                                                    {
-                                                        layer.bindTooltip('Viertel: '
-                                                                           +feature. properties.NOM+'');
-                                            
-                                                    },
-    style: function(feature) {
-      return { color: "green" };
-    }}
-                                        );
-
-    quartiers.addTo(leafletMap);
-    quartiers.once("data:loaded", function(){
-        console.log("finished shapefile loaded");
-    });
-
     //Baselayers is created to switch between the two maps
 
-    var controlMap = { "Open Street Map": leafletMap, " Karte Etat Major 1820-1866": cartohisto };
-    var otherLayers = {"Arrondissements vor 1860" : shapefile, "Arrondissements nach 1860" : arrondissement2, "Viertel": quartiers};
+    var controlMap = { "Open Street Map": leafletMap, "Etat Major 1820-1866": cartohisto };
+    var otherLayers = {"AR pre 1860" : shapefile, "AR post 1860" : arrondissement2};
 
     L.control.layers(controlMap, otherLayers).addTo(leafletMap);
 
@@ -212,8 +189,8 @@ function initializeMarkers() {
     // To access the information of the currently shown datasets, the Json export function is used.
     // The current URL is expanded with the parameter export=json and returns thus a Json representation
     // of the current datasets.
-    var url = 'http://adressbuch1854.dhi-paris.fr/';
-    url = url + (window.location.search ? "&" : "app/export?") + "exportAll=json";
+    var url = 'http://adressbuch1854.fr/app/export';
+    url = url + (window.location.search ? "&" : "?") + "exportAll=json";
     console.log(url);
 
     // The getJSON function works asynchronous, therefore everything, that needs the json code,

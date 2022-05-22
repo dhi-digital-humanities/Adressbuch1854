@@ -30,19 +30,20 @@ unset($params['Companies[page]']);
 
 $uri = $this->request->getRequestTarget();
 ?>
-<?= $this->Html->script('tab2.js') ?>
+<?= $this->Html->script('tab4.js') ?>
 <div class="container">
 
 <!-- mise en place des tabs pour les différents onglets -->
 
-<div id="tabs">
+<div id="tabs2">
     <ul>
-        <li onClick="selView(1, this)"><?= __('View')?></li>
-        <li onClick="selView(2, this)"><?= __('Exportiere') ?></li>
+        <li onClick="selView(1, this)" style="border-bottom:2px solid #ED8B00;"><?= __('Ansicht')?></li>
+		<li onClick="selView(2, this)"><?= __('Karten') ?></li>
+        <li onClick="selView(3, this)"><?= __('Exportieren') ?></li>
     </ul>
 </div>
 <div id='tabcontents'>
-	<div id='indextab' class='tabpanel' style='display: inline;'>
+	<div id='tab1' class='tabpanel' style='display: inline;'>
 		<div class="row">
     		<div class="column-responsive column-80">
         		<div class="streets view content">
@@ -103,13 +104,20 @@ $uri = $this->request->getRequestTarget();
 					</div>
 					<?php endif; ?>
 					<br>
- 					<div class="csl-bib-body" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">
-  					<div class="csl-entry">Kronauge, F. «&nbsp;<?php echo $street_name ?>&nbsp;». In <i>Adressbuch der Deutschen in Paris für das Jahr 1854</i>, Elektronische Edition, 1854. <a target="_blank" href='<?php  $this->request->getUri() ?>'><?php echo $this->request->getUri() ?></a>.</div><?php print zoterostreets($street_name, $no_old, $no_new, $street_new)?> </div>
+					<div class="csl-bib-body" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">
+				<div class="csl-entry">Zitierhinweis: <?php echo $street_name ?>, in: Adressbuch der Deutschen in Paris für das Jahr 1854, hg. v. F.A. Kronauge, Paris. Elektronische Edition, DHI Paris 2022, <a target="_blank" href='<?php  $this->request->getUri() ?>'><?php echo $this->request->getUri() ?></a>, CC-BY 4.0.</div><?php print zoterostreets($street_name, $no_old, $no_new, $street_new)?> </div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div id='exporttab' class="tabpanel" style="display:none">
+	<div id='tab2' class='tabpanel' style='display:none'>	
+		<div class="bigMap">
+			<div id="mapBox" class="content" onload="initializeMap()">
+				<?= $this->Html->script('address-map.js') ?>
+			</div>
+		</div>
+	</div>
+	<div id='tab3' class="tabpanel" style="display:none">
 		<div class="row">
 			<?= $this->Form->postButton('JSON', ['controller' => '', 'action' => $uri, '?' => array_merge($params, ['export' => 'json'])],['class'=>'button2'])?>
 			<?= $this->Form->postButton('XML', ['controller' => '', 'action' => $uri, '?' => array_merge($params, ['export' => 'xml'])],['class'=>'button2'])?>

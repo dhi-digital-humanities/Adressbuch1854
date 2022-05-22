@@ -58,23 +58,23 @@ if (!$erreur){
             <div class="content">
                <table>
                   <tr>
-                     <td colspan="4"><?= __('Ihre Aufnahmen') ?></td>
+                     <th colspan="4"><?= __('Ihre Aufnahmen') ?></th>
                   </tr>
                   <tr>
-                     <td>Id</td>
-                     <td><?= __('Name')?></td>
-                     <!--<td>Profession</td>-->
-                     <td><?= __('Link') ?></td>
-                     <td><?= __('Löschen') ?></td>
-                     <td><?= __('Export JSON') ?></td>
-                     <td><?= __('Export XML') ?></td>
+                     <th>Id</th>
+                     <th><?= __('Name')?></th>
+                     <!--<th>Profession</th>-->
+                     <th><?= __('Link') ?></th>
+                     <th><?= __('Löschen') ?></th>
+                     <th><?= __('Export JSON') ?></th>
+                     <th><?= __('Export XML') ?></th>
                   </tr>
     <?php
     if (creationPanier())
     {
        $nbArticles=count($_SESSION['panier_export']['Identifiant']);
        if ($nbArticles <= 0)
-       echo "<tr><td>". __('Keine Aufnahmen'). "</ td></tr>";
+       echo "<tr><th>". __('Keine Aufnahmen'). "</ th></tr>";
        else
        {
           for ($i=0 ;$i < $nbArticles ; $i++)
@@ -102,7 +102,9 @@ if (!$erreur){
           }
        }
     }
-            echo "<td>". compterArticles() ."</td>";
+            echo "<td>". compterArticles() ." </td>";
+
+         
     ?>
                </table>
             </div>

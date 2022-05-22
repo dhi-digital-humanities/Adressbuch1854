@@ -74,26 +74,31 @@ $description = 'Adressbuch 1854';
 <body>
 	<header>
 
+ <?php  $path = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+        $current = basename ($path); 
+  ?>   
+
 <nav class="top-nav">
-	<label class="label2" for="toggle"><img src="/scans/index.png" style="width:30px" alt="menu"></label>
+	<label class="label2" for="toggle"><img src="/webroot/scans/index.png" style="width:30px" alt="menu"></label>
         <input type="checkbox" id="toggle">
             <div class="main_pages">
               <a href="/pages/home">
-              <?=$this->Html->image('/../scans/icon-house.png', [ 'width'=>'50px','alt'=>'home-logo'])?>
+              <?=$this->Html->image('/webroot/scans/icon-house.png', [ 'width'=>'50px','alt'=>'home-logo','title'=>'home'])?>
               </a>
-		      <?= $this->Html->link(__('Suche'), ['controller' => 'Search', 'action' => 'query'], ['class' => 'top-nav-item']) ?>
-              <?= $this->Html->link(__('Digitalbuch'), ['controller' => 'Pages', 'action' => 'digitalbook'], ['class' => 'top-nav-item']) ?>
-              <?= $this->Html->link(__('Karte'), ['controller'=>'Pages', 'action'=>'karte'], ['class'=>'top-nav-item']) ?>
-		      <?= $this->Html->link(__('Das Adressbuch'), ['controller' => 'Pages', 'action' => 'addressbook'], ['class' => 'top-nav-item']) ?>
-		      <?= $this->Html->link(__('Das Projekt'), ['controller' => 'Pages', 'action' => 'project'], ['class' => 'top-nav-item']) ?>
-              <?= $this->Html->link(__('Partner und Team'), ['controller'=>'Pages', 'action'=>'partners'], ['class'=>'top-nav-item']) ?>
-              <?= $this->Html->link(__('Hilfe'), ['controller'=>'Pages', 'action'=>'hilfe'], ['class'=>'top-nav-item']) ?>
+              <a href='/search/query' class='<?php if ($current == 'query'){ echo 'top-nav-item';} else{ echo'top-nav-item2';}?>'>Suche</a>
+              <a href='/pages/addressbook' class='<?php if ($current == 'addressbook'){ echo 'top-nav-item';} else{ echo'top-nav-item2';}?>'>Adressbuch</a>
+              <a href='/pages/project' class='<?php if ($current == 'project'){ echo 'top-nav-item';} else{ echo'top-nav-item2';}?>'>Datenbank</a>
+              <a href='/pages/karte' class='<?php if ($current == 'karte'){ echo 'top-nav-item';} else{ echo'top-nav-item2';}?>'>Karte</a>
+              <a href='/pages/digitalbook' class='<?php if ($current == 'digitalbook'){ echo 'top-nav-item';} else{ echo'top-nav-item2';}?>'>Digitalisate</a>
+              <a href='/pages/partners' class='<?php if ($current == 'partners'){ echo 'top-nav-item';} else{ echo'top-nav-item2';}?>'>Partner und Team</a>
+              <a href='/pages/hilfe' class='<?php if ($current == 'hilfe'){ echo 'top-nav-item';} else{ echo'top-nav-item2';}?>'>Hilfe</a>
               <a href="/pages/panier_export">
-              <?= $this->Html->image('/../scans/icon-download.png', ['width'=>'25px', 'alt'=>'home-logo']) ?>
+              <?= $this->Html->image('/webroot/scans/icon-download.png', ['width'=>'25px', 'alt'=>'download-logo', 'title'=>'download']) ?>
               </a>
             </div>
 </nav>
-<hr>
+
+
 </header>
     <main class="main">
         
@@ -104,7 +109,7 @@ $description = 'Adressbuch 1854';
     <footer>
         <div class="contact">
         <a target="_blank" href="https://dh.phil-fak.uni-koeln.de/">
-            <?=$this->Html->image('/../scans/IDH.jpg', ['class' => 'wrapper-item', 'id' => 'idh-logo', 'alt' => 'Logo IDH', 'style'=>'width:70px;padding-right:4px;'])?>
+            <?=$this->Html->image('/webroot/scans/IDH.jpg', ['class' => 'wrapper-item', 'id' => 'idh-logo', 'alt' => 'Logo IDH', 'style'=>'width:70px;padding-right:4px;'])?>
         </a>
             <p><br><strong>Institut für Digital Humanities</strong><br>
                 Universität zu Köln<br>
@@ -113,7 +118,7 @@ $description = 'Adressbuch 1854';
         </div>
         <div class="contact">
 		<a target="_blank" href="https://www.dhi-paris.fr/">
-			<?=$this->Html->image('/../scans/logo.png', ['class' => 'wrapper-item', 'id' => 'dhi-logo', 'alt' => 'Logo DHIP', 'style' =>'width:70px;padding-right:4px;'])?>
+			<?=$this->Html->image('/webroot/scans/logo.png', ['class' => 'wrapper-item', 'id' => 'dhi-logo', 'alt' => 'Logo DHIP', 'style' =>'width:70px;padding-right:4px;'])?>
 		</a>
         <p><br><strong>Deutsches Historisches Institut Paris</strong><br>
             Hôtel Duret-de-Chevry<br>
@@ -124,15 +129,16 @@ $description = 'Adressbuch 1854';
             E-Mail: <a style="color: white;"href="mailto:info@dhi-paris.fr">info@dhi-paris.fr</a></p>
         </div>
          <a target="_blank" href="https://www.maxweberstiftung.de/startseite.html">
-            <?=$this->Html->image('/../scans/MWS.svg', ['class' => 'wrapper-item', 'id' => 'idh-logo', 'alt' => 'Logo Max Weber stifung', 'width' => '100px', 'style'=>'padding:10px'])?>
+            <?=$this->Html->image('/webroot/scans/MWS.svg', ['class' => 'wrapper-item', 'id' => 'idh-logo', 'alt' => 'Logo Max Weber stifung', 'width' => '125px', 'style'=>'padding:10px'])?>
         </a>
     </footer>
 
-    <hr>
+    
 
     <div class='links'>
-            <?= $this->Html->link(__('Datenschutz / '), ['controller' => 'Pages', 'action' => 'datenschutz'], ['class' => 'wrapper-item', 'id' => 'credits']) ?></li>
-            <?= $this->Html->link(__('Impressum'), ['controller' => 'Pages', 'action' => 'credits'], ['class' => 'wrapper-item', 'id' => 'credits']) ?></li>
+            <?= $this->Html->link(__('Datenschutz / '), ['controller' => 'Pages', 'action' => 'datenschutz'], ['class' => 'wrapper-item', 'id' => 'credits']) ?>
+            <?= $this->Html->link(__('Impressum'), ['controller' => 'Pages', 'action' => 'credits'], ['class' => 'wrapper-item', 'id' => 'credits']) ?>
+            
         </div>
 </body>
 </html>

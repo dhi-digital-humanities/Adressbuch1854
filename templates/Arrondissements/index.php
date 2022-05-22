@@ -16,8 +16,8 @@ $uri = $this->request->getRequestTarget();
 	<!-- mise en place de tabs pour switcher sur la même page -->
 <div id="tabs">
 	<ul>
-		<li onclick="selView(1, this)"><?= __('Index') ?></li>
-		<li onclick="selView(2, this)"><?= __('Exportiere') ?></li>
+		<li onclick="selView(1, this)" style="border-bottom:2px solid #ED8B00;"><?= __('Index') ?></li>
+		<li onclick="selView(2, this)"><?= __('Exportieren') ?></li>
 	</ul>
 </div>
 <div id="tabcontent">

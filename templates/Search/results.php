@@ -17,19 +17,17 @@
  $params = $this->request->getQueryParams();
  
  unset($params['Companies']);
- unset($params['Persons']);
 
 ?>
 
 <?= $this->Html->script('tab.js'); ?>
 <br>
 <div class="container">
-	<!-- on met en place les tabs pour les onglets -->
 <div id="tabs">
     <ul>
-        <li onClick="selView(1, this)">Index</li>
-        <li onClick="selView(2, this)">Karte</li>
-        <li onClick="selView(3, this)">Exportiere</li>
+        <li onClick="selView(1, this)" style="border-bottom:2px solid #ED8B00;"><?= __('Index')?></li>
+        <li onClick="selView(2, this)"><?= __('Karte') ?></li>
+        <li onClick="selView(3, this)"><?= __('Exportieren') ?></li>
     </ul>
 </div>
 <div id='tabcontent'>

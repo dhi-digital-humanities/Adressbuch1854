@@ -52,74 +52,33 @@ blockquote *:last-child
 
 .button,button,input[type='button'],input[type='reset'],input[type='submit']
 {
-  background-color: #ED8B00;
-  border-radius: .4rem;
+  background-color: #5B788C;
+  height: 55px;
   color: #fff;
   cursor: pointer;
   display: inline-block;
-  font-size: 1.1rem;
+  font-size: 12px;
   font-weight: 700;
-  height: 3.8rem;
   letter-spacing: .1rem;
   line-height: 3.8rem;
-  padding: 0 3.0rem;
+  padding: 0 20px;
   text-align: center;
   text-decoration: none;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   white-space: nowrap;
+  border-color: none;
 }
 
-.button:focus,.button:hover,button:focus,button:hover,input[type='button']:focus,input[type='button']:hover,input[type='reset']:focus,input[type='reset']:hover,input[type='submit']:focus,input[type='submit']:hover
-{
-  background-color: #606c76;
-  border-color: #606c76;
-  color: #fff;
-  outline: 0;
+button:hover{
+
+  background-color:#ED8B00;
+
 }
 
 .button[disabled],button[disabled],input[type='button'][disabled],input[type='reset'][disabled],input[type='submit'][disabled]
 {
   cursor: default;
   opacity: .5;
-}
-
-
-.button.button-outline,button.button-outline,input[type='button'].button-outline,input[type='reset'].button-outline,input[type='submit'].button-outline
-{
-  background-color: transparent;
-  color: #d33c43;
-}
-
-.button.button-outline:focus,.button.button-outline:hover,button.button-outline:focus,button.button-outline:hover,input[type='button'].button-outline:focus,input[type='button'].button-outline:hover,input[type='reset'].button-outline:focus,input[type='reset'].button-outline:hover,input[type='submit'].button-outline:focus,input[type='submit'].button-outline:hover
-{
-  background-color: transparent;
-  border-color: #606c76;
-  color: #606c76;
-}
-
-.button.button-outline[disabled]:focus,.button.button-outline[disabled]:hover,button.button-outline[disabled]:focus,button.button-outline[disabled]:hover,input[type='button'].button-outline[disabled]:focus,input[type='button'].button-outline[disabled]:hover,input[type='reset'].button-outline[disabled]:focus,input[type='reset'].button-outline[disabled]:hover,input[type='submit'].button-outline[disabled]:focus,input[type='submit'].button-outline[disabled]:hover
-{
-  border-color: inherit;
-  color: #d33c43;
-}
-
-.button.button-clear,button.button-clear,input[type='button'].button-clear,input[type='reset'].button-clear,input[type='submit'].button-clear
-{
-  background-color: transparent;
-  border-color: transparent;
-  color: #d33c43;
-}
-
-.button.button-clear:focus,.button.button-clear:hover,button.button-clear:focus,button.button-clear:hover,input[type='button'].button-clear:focus,input[type='button'].button-clear:hover,input[type='reset'].button-clear:focus,input[type='reset'].button-clear:hover,input[type='submit'].button-clear:focus,input[type='submit'].button-clear:hover
-{
-  background-color: transparent;
-  border-color: transparent;
-  color: #606c76;
-}
-
-.button.button-clear[disabled]:focus,.button.button-clear[disabled]:hover,button.button-clear[disabled]:focus,button.button-clear[disabled]:hover,input[type='button'].button-clear[disabled]:focus,input[type='button'].button-clear[disabled]:hover,input[type='reset'].button-clear[disabled]:focus,input[type='reset'].button-clear[disabled]:hover,input[type='submit'].button-clear[disabled]:focus,input[type='submit'].button-clear[disabled]:hover
-{
-  color: #d33c43;
 }
 
 code
@@ -155,21 +114,25 @@ hr
   clear: both;
 }
 
+
+
+
 input[type='email'],input[type='number'],input[type='password'],input[type='search'],input[type='tel'],input[type='text'],input[type='url'],input[type='color'],input[type='date'],input[type='month'],input[type='week'],input[type='datetime'],input[type='datetime-local'],input:not([type]),textarea,select
 {
-  background-color: #ffff;
-  border: 0.3rem solid #d1d1d1;
-  border-radius: .4rem;
+  background-color:#ffff;
+  border: 2px solid #d1d1d1;
   box-shadow: none;
   box-sizing: inherit;
-  height: 4rem;
   padding: .6rem 1.0rem;
   width: 100%;
+  height: 55px;
 }
+
 
 input[type='email']:focus,input[type='number']:focus,input[type='password']:focus,input[type='search']:focus,input[type='tel']:focus,input[type='text']:focus,input[type='url']:focus,input[type='color']:focus,input[type='date']:focus,input[type='month']:focus,input[type='week']:focus,input[type='datetime']:focus,input[type='datetime-local']:focus,input:not([type]):focus,textarea:focus,select:focus
 {
-  border-color: #606c76;
+ 
+  border-color:#ED8B00 ;
   outline: 0;
 }
 
@@ -187,6 +150,7 @@ label,legend
 {
  
   font-size: 16px;
+  display:flex;
 
   
 }
@@ -200,6 +164,7 @@ fieldset
 input[type='checkbox'],input[type='radio']
 {
   display: inline;
+  margin:7px;
 }
 
 .label-inline
@@ -250,6 +215,15 @@ input[type='checkbox'],input[type='radio']
   width: 100%;
   padding: 10px;
   
+}
+.container6
+{
+
+  width: 100%;
+  padding: 10px;
+  color: #5B788C;
+ 
+
 }
 
 .row
@@ -458,7 +432,7 @@ input[type='checkbox'],input[type='radio']
 {
   .row2
   {
-    width: 690px;
+    width: 750px;
    
   }
 }
@@ -539,11 +513,17 @@ input[type='checkbox'],input[type='radio']
   }
 
 
+
   .row .column-responsive.column-90
   {
     flex: 0 0 90%;
     max-width: 90%;
   }
+}
+
+a:hover{
+
+  color:#ED8B00;
 }
 
 a
@@ -552,10 +532,6 @@ a
   text-decoration: none;
 }
 
-a:focus,a:hover
-{
-  color: #606c76;
-}
 
 dl,ol,ul
 {
@@ -682,21 +658,16 @@ b,strong
 
 p
 {
-  margin-top: 0;
+  margin-top: 10px;
 }
 
 h1,h2,h3,h4,h5,h6
 {
   font-weight: 300;
+  color: #5B788C;
 
 }
 
-h1
-{
-  line-height: 1.2;
-  color: black;
-  padding: 5px;
-}
 
 h2
 {
@@ -708,7 +679,7 @@ h3
 {
   font-size: 2.8rem;
   line-height: 1.3;
-  margin: 10px;
+  
 }
 
 h4
@@ -746,3 +717,7 @@ h6
   float: left;
 }
 
+.float-right
+{
+  float: right;
+}
