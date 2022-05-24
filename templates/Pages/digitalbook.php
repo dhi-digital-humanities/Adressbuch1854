@@ -12,8 +12,8 @@ $data = file_get_contents($file);
 $obj = json_decode($data, true);
 
 //on donne la direction des scans pour l'affichage
-$directory = 'http://adressbuch1854.dhi-paris.fr/webroot/scans/SD/';
-$directory2 = 'http://adressbuch1854.dhi-paris.fr/webroot/scans/HD/';
+$directory = 'http://adressbuch1854.dh.uni-koeln.de/scans/SD/';
+$directory2 = 'http://adressbuch1854.dh.uni-koeln.de/scans/HD/';
 
 ?>
 <!-- on importe la feuille de style -->

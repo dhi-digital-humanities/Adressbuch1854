@@ -212,7 +212,7 @@ function initializeMarkers() {
     // To access the information of the currently shown datasets, the Json export function is used.
     // The current URL is expanded with the parameter export=json and returns thus a Json representation
     // of the current datasets.
-    var url = 'http://adressbuch1854.dhi-paris.fr/';
+    var url = 'http://adressbuch1854.dh.uni-koeln.de/';
     url = url + (window.location.search ? "&" : "app/export?") + "exportAll=json";
     console.log(url);
 
