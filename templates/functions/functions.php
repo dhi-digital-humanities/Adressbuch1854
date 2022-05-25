@@ -21,14 +21,12 @@
 
 //This function describes tag zotero for person view. This function generates HTML code for tag zotero of person view with $name, $precision, $precision2, $military_status, $social_status, $occupation_status, $gender, $ldh, $begP.
 
-         function zoteroperson($name, $precision, $precision2, $military_status, $social_status, $occupation_status, $gender, $ldh, $houseno, $addr_name, $addr_new,  $begP){
+         function zoteroperson($name, $precision, $military_status, $social_status, $occupation_status, $gender, $ldh, $houseno, $addr_name, $addr_new,  $begP){
 
 				    	  $code_span= '<span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=bookitem&amp;rft.atitle=';
 				        $code_span.=$name;
-				        $code_span.='&amp;rft.description=Der Beruf ist: ';
+				        $code_span.='&amp;rft.description=Beruf: ';
 				        $code_span.=$precision;
-				        $code_span.=', und: ';
-				        $code_span.=$precision2;
 				        $code_span.=', militärischer Status: ';
 				        $code_span.=$military_status;
 				        $code_span.=', Sozialer Status: ';
@@ -44,7 +42,7 @@
 				        $code_span.=$houseno;
 				        $code_span.=') ';
 				        $code_span.=$addr_name;
-				        $code_span.=', die Straße heute: ';
+				        $code_span.=', Straße heute: ';
 				        $code_span.=$addr_new;
 				        $code_span.='&amp;rft.btitle=Adressbuch%20der%20Deutschen%20in%20Paris%20f%C3%BCr%20das%20Jahr%201854&amp;rft.place=Paris&amp;rft.edition=Elektronische%20Edition&amp;rft.aufirst=F.&amp;rft.aulast=Kronauge&amp;rft.au=F.%20Kronauge&amp;rft.date=1854&amp;rft.pages=';
 				        $code_span.=$begP;
@@ -60,7 +58,7 @@
 
 		    	$code_span= '<span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=bookitem&amp;rft.atitle= Das Arrondissement ist : ';
 		        $code_span.=$noStr;
-		        $code_span.='&amp;rft.description= der code INSEE ist: ';
+		        $code_span.='&amp;rft.description=code INSEE: ';
 		        $code_span.=$arr1;
 		        $code_span.='&amp;rft.btitle=Adressbuch%20der%20Deutschen%20in%20Paris%20f%C3%BCr%20das%20Jahr%201854&amp;rft.place=Paris&amp;rft.edition=Elektronische%20Edition&amp;rft.aufirst=F.&amp;rft.aulast=Kronauge&amp;rft.au=F.%20Kronauge&amp;rft.date=1854&amp;rft.language=Allemand">'; 
 		        
@@ -70,21 +68,19 @@
 
 //This function describes tag zotero for company view. This function generates HTML code for tag zotero of company view with $nachname, $prof_category, $begP:
 
-        function zoterocomp($nachname, $prof_category, $specification, $profession, $addr_no, $addr_old, $addr_new, $begP){
+        function zoterocomp($nachname, $prof_category, $profession, $addr_no, $addr_old, $addr_new, $begP){
 
     	$code_span= '<span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=bookitem&amp;rft.atitle=';
     	$code_span.=$nachname;
-    	$code_span.='&amp;rft.description=Der Berufskategorie ist :';
+    	$code_span.='&amp;rft.description=Berufskategorie:';
     	$code_span.=$prof_category;
-    	$code_span.=' und : ';
-    	$code_span.=$specification;
-    	$code_span.=', der Beruf ist :';
+    	$code_span.=', Beruf:';
     	$code_span.=$profession;
-    	$code_span.=', Die Straße ist: (';
+    	$code_span.=', Straße: (';
     	$code_span.=$addr_no;
     	$code_span.=') ';
     	$code_span.=$addr_old;
-    	$code_span.=', die Straße heute ist: ';
+    	$code_span.=', Straße heute: ';
     	$code_span.=$addr_new;
     	$code_span.='&amp;rft.btitle=Adressbuch%20der%20Deutschen%20in%20Paris%20f%C3%BCr%20das%20Jahr%201854&amp;rft.place=Paris&amp;rft.edition=Elektronische%20Edition&amp;rft.aufirst=F.&amp;rft.aulast=Kronauge&amp;rft.au=F.%20Kronauge&amp;rft.date=1854&amp;rft.pages=';
       $code_span.=$begP;
@@ -98,7 +94,7 @@
 
 					function image($path, $size, $id, $begP)
 						{
-							$code_html_image = "<a target='_blank' href=/../scans/HD/BHVP_703983_$begP.jpg>";
+							$code_html_image = "<a target='_blank' href='http://adressbuch1854.dh.uni-koeln.de/scans/HD/BHVP_703983_$begP.jpg'>";
 							$code_html_image.=" <img src='";
 							$code_html_image.= $path;
 							$code_html_image.= $size;
@@ -112,6 +108,7 @@
 						return ($code_html_image); 
 						}
 
+//Possiblité d'afficher les contenus textuels de chaque à côté des images
 				function text($path, $id, $begP)
 						{
 							$code_text = "<object data='";
@@ -124,6 +121,7 @@
 						return ($code_text);
 					}
 
+//Possibilité d'enregistrer chaque image avec Zotero
 				function scan_zotero($begP)
 
 					{
@@ -138,7 +136,7 @@
 						return($code_scan);
 					}
 
-
+// Si le métier ancien est identique au nouveau de nom de métier on affiche que $precision2, sinon on affiche les 2 dans un tableau (persons)
 				function profession_person($precision2, $pro_unified)
 					{
 
@@ -151,6 +149,7 @@
     				}
     			}
 
+// Si le métier ancien est identique au nouveau de nom de métier on affiche que $precision2, sinon on affiche les 2 dans un tableau (companies)
     		function profession_company($profession, $p_unified)
 					{
 						if($profession === $p_unified){

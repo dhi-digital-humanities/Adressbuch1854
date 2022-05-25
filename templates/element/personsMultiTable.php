@@ -27,7 +27,7 @@ $this->Html->css('multiTable.css');
 			<th><?= __('Nr') ?></th>
 			<?php endif;?>
 			<th><?= __('Name') ?></th>
-			<th class="small-width"><?= __('Anmerkungen') ?></th>
+			
 			<th><?= __('Beruf') ?></th>
 			<th><?= __('Adresse(n)') ?></th>
 			<th class="middle-width"><?= __('Sonstige Merkmale') ?></th>
@@ -38,9 +38,9 @@ $this->Html->css('multiTable.css');
 		foreach ($persons as $person) : ?>
 		<?php
 			$name = '';
-			if(!empty($person->title)){
+			/*if(!empty($person->title)){
 				$name.=h($person->title).' ';
-			}
+			}*/
 			if(!empty($person->name_predicate)){
 				$name.=h($person->name_predicate).' ';
 			}
@@ -56,12 +56,12 @@ $this->Html->css('multiTable.css');
 			if($person->has('social_status') && $person->social_status->status != 'Commoner'){
 				array_push($cats, $person->social_status->status);
 			}
-			if($person->has('occupation_status') && $person->occupation_status->status != 'Active'){
+			/*if($person->has('occupation_status') && $person->occupation_status->status != 'Active'){
 				array_push($cats, $person->occupation_status->status);
-			}
-			if($person->has('military_status') && $person->military_status->status != 'Civil'){
+			}*/
+			/*if($person->has('military_status') && $person->military_status->status != 'Civil'){
 				array_push($cats, $person->military_status->status);
-			}
+			}*/
 
 			$plus = [];
 			if($person->has('ldh_rank')){
@@ -84,8 +84,8 @@ $this->Html->css('multiTable.css');
 			<?php if($count):?>
 			<td><?= $this->Number->format($countNo)?></td>
 			<?php endif;?>
-			<td><?= $this->Html->link(htmlspecialchars_decode($name), ['controller' => 'Persons', 'action' => 'view', $person->id]) ?></td>
-			<td class="small-width"><?= h($person->specification_verbatim) ?></td>
+			<td><?= $this->Html->link(htmlspecialchars_decode($name, ENT_QUOTES), ['controller' => 'Persons', 'action' => 'view', $person->id]) ?></td>
+			
 			<td><?= h($person->profession_verbatim) ?></td>
 			<td><?php
 				if (!empty($person->addresses)){
@@ -94,9 +94,16 @@ $this->Html->css('multiTable.css');
 			?></td>
 			<td class="middle-width"><?= implode(', ', $plus)?></td>
 			<td class="middle-width"><?= implode(', ', $cats)?></td>
+
+			<!-- possiblité d'enregistrer nos recherches dans un panier pour les exporter plus tard -->
+
+			<td><a href="/pages/panier_export?action=ajout&amp;l=<?= $person->id ?>&amp;n=<?= $name ?>&amp;p=<?= $person->profession_verbatim?>&amp;u=<?= $this->request->getUri(); ?>" onclick="window.open(this.href, '', 
+				'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=800, height=350'); return false;"><img src="/webroot/scans/icon-download.png" title="<?= __('Speichern') ?>" style="width: 20px"></a>
+			<td>
 		</tr>
 		<?php
 		$countNo++;
 		endforeach; ?>
 	</table>
+<?php ?>
 </div>

@@ -2,29 +2,50 @@
 /*
 Homepage
 */
+
 ?>
+<div class="container6">
+<div class='background'>
+</div>
+<div class="wrapper-item search form" id="simp-search" style="display: flex; justify-content:center; align-items: center;">
+                <?= $this->Form->create(null, ['type' => 'get', 'url' => '/search/results']) ?>
+                <?php
+                // Set parameter for search type to "simple"
+                echo $this->Form->hidden('type', ['value' => 'simp']);
+                echo $this->Form->control('text', ['maxlength' => 256, 'label' => false, 'placeholder   ' => __('Freitextsuche'), 'class'=>'textarea', 'style'=>'width:550px']);?>
+                <?= $this->Form->button(__('Start'), ['class' => 'button_home2']) ?>
+                <?= $this->Form->end() ?>
+                <button style='margin-top:-27px' onclick="window.location.href='/search/query';"><?= __('Erweitert') ?></button>
+                </div>  
 
-<div class="row">
-    <?= $this->element('sideNav', ['mapBox' => false, 'export' => 'simple'])?>
-    <div class="column-responsive column-80">
-		<div class="content">
-			<h3><?= __('Willkommen') ?></h3>
-			<h4><?=__('Projekt "Adressbuch der Deutschen in Paris von 1854"') ?></h4>
-			
-			<p class='p'>
-			Relaunch von <a target="blank" href='http://adressbuch1854.dhi-paris.fr'>http://adressbuch1854.dhi-paris.fr</a><br>
+<div class='header2'>
+ 
+                <h1 style='width:745px; margin-bottom:2px;'><?= __('Adressbuch der Deutschen in Paris von 1854') ?></h1>         
+                <p style='text-align: left; width:745px;'><?= __('Die Datenbank basiert auf einem gedruckten Buch, das deutsche Kaufleute, Unternehmer, Handwerker und andere Selbständige verzeichnet, die 1854 in Paris und den angrenzenden Vororten ansässig waren.')?></p>
+        </div>
+        <div class="header3">
+                <div class="divhome">
+               
+                <button style="margin-left:16px;" class="button_home" onclick="window.location.href='/pages/karte';"><?= __('Interaktive Karte') ?></a></button>
+                </div>
+                <div class="divhome">
+                <div style='text-align:left; padding-bottom:2px;'>
+                <?= $this->Html->link(__('Personen'), ['controller'=> 'Persons', 'action'=>'index'],['class'=>'button2']) ?><br>
+                <?= $this->Html->link(__('Unternehmen'), ['controller'=>'Companies', 'action'=>'index'],['class'=>'button2'])?><br>
+                <?= $this->Html->link(__('Straßen'), ['controller'=>'Streets', 'action'=>'index'],['class'=>'button2'])?><br>
+                <?= $this->Html->link(__('Arrondissements'), ['controller'=>'Arrondissements', 'action'=>'index'],['class'=>'button2']) ?>
+</div>
+                </div>
+                <div class='divhome'>
+                        
+                        <button class="button_home" onclick="window.location.href='/persons/view/<?php echo rand(1,4772) ?>';"><?= __('Serendipity') ?></a></button>
+                </div>
+             
+              
+             
+              </div>
+       
 
-			Ein Projekt des Deutschen Historichen Instituts Paris (DHIP)<br>
 
-			Website des DHIP: <a target="blank" href='https://www.dhi-paris.fr/home.html'>https://www.dhi-paris.fr/home.html</a><br>
-
-			Website der Abteilung: <a target="blank" href='https://www.dhi-paris.fr/forschung/digital-humanities.html'>https://www.dhi-paris.fr/forschung/digital-humanities.html</a><br>
-
-			Alle Daten des Adressbuchs: <a target="blank" href="https://doi.org/10.5281/zenodo.5524880">https://doi.org/10.5281/zenodo.5524880</a>
-
-		</p>
-			<a target='_blank' href='http://adressbuch1854.dh.uni-koeln.de/scans/HD/BHVP_703983_001.jpg'><img class='homepage' src='http://adressbuch1854.dh.uni-koeln.de/scans/SD/BHVP_703983_001.jpg' alt='Seite der Adressbuch' title='IHA zur Nutzung der Seite'/></a>
-		
-		</div>
-	</div>
+      
 </div>

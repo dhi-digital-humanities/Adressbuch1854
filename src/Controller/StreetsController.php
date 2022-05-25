@@ -74,6 +74,7 @@ class StreetsController extends AppController
         // that have addresses with this street. Use 'distinct' to avoid
         // doubled persons/companies (some may have different addresses with
 		// the same street and may therefore be selected mutiple times).
+
         $persons = $this->Persons->find()
             ->contain([
                 'LdhRanks',
@@ -89,6 +90,8 @@ class StreetsController extends AppController
                 return $q->where(['Streets.name_old_clean LIKE' => $street->name_old_clean]);
             })
             ->distinct(['Persons.id']);
+
+        $persons = $this->paginate($persons, ['limit'=>10]);
 
         $companies = $this->Companies->find()
             ->contain([

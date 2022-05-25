@@ -342,9 +342,9 @@ class SearchController extends AppController
 
 		// Query for $dlI (the fact, that a person is marked "de l'Institut" in the address book)
 		if($dlI === '1'){
-			$persons->where(['Persons.des_Instituts' => true]);
+			$persons->where(['Persons.de_l_institut' => true]);
 		} elseif($dlI === '0'){
-			$persons->where(['Companies.des_Instituts' => false]);
+			$persons->where(['Persons.de_l_institut' => false]);
 		}
 
 		//Query for $ldh (a person's rank in the Légion d'Honneur)
@@ -354,7 +354,7 @@ class SearchController extends AppController
 
 		//Query for $gender (a person's gender)
 		if(!empty($gender)){
-			$persons->where([strtolower('Persons.gender') => $gender]);
+			$persons->where(['Persons.gender' => $gender]);
 		}
 
 		// Query for $soc (the social status of a person)
