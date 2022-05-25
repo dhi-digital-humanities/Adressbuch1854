@@ -23,9 +23,9 @@ $this->Html->css('multiTable.css');
 <div class="table-responsive">
 	<table>
 		<tr>
-			<?php if($count):?>
-			<th><?= __('Nr') ?></th>
-			<?php endif;?>
+			
+			<th><?= $this->Paginator->sort('id')?></th>
+			
 			<th><?= __('Name') ?></th>
 			
 			<th><?= __('Beruf') ?></th>
@@ -81,9 +81,9 @@ $this->Html->css('multiTable.css');
 			}
 		?>
 		<tr>
-			<?php if($count):?>
-			<td><?= $this->Number->format($countNo)?></td>
-			<?php endif;?>
+			
+			<td><?= $person->id ?></td>
+			
 			<td><?= $this->Html->link(htmlspecialchars_decode($name, ENT_QUOTES), ['controller' => 'Persons', 'action' => 'view', $person->id]) ?></td>
 			
 			<td><?= h($person->profession_verbatim) ?></td>
