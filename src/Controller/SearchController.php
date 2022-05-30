@@ -113,11 +113,11 @@ class SearchController extends AppController
         // Note: This checking for download is important, since the download will
         // only return the results of the first page if the results have been paginated!
         if(empty($format) || !isset($formats[$format])){
-            $this->paginate($persons, ['scope' => 'Persons', 'limit' => 15]);
-            $this->paginate($companies, ['scope' => 'Companies', 'limit' => 5]);
+            $this->paginate($persons, ['scope' => 'Persons']);
+            $this->paginate($companies, ['scope' => 'Companies']);
         }
-        $this->paginate($persons, ['scope' => 'Persons', 'limit' => 15]);
-        $this->paginate($companies, ['scope' => 'Companies', 'limit' => 5]);
+        $this->paginate($persons, ['scope' => 'Persons']);
+        $this->paginate($companies, ['scope' => 'Companies']);
         $this->set(compact('persons', 'companies'));
 	}
 
@@ -344,7 +344,7 @@ class SearchController extends AppController
 		if($dlI === '1'){
 			$persons->where(['Persons.de_l_institut' => true]);
 		} elseif($dlI === '0'){
-			$persons->where(['Companies.de_l_institut' => false]);
+			$persons->where(['Persons.de_l_institut' => false]);
 		}
 
 		//Query for $ldh (a person's rank in the Légion d'Honneur)
@@ -354,7 +354,7 @@ class SearchController extends AppController
 
 		//Query for $gender (a person's gender)
 		if(!empty($gender)){
-			$persons->where([strtolower('Persons.gender') => $gender]);
+			$persons->where(['Persons.gender' => $gender]);
 		}
 
 		// Query for $soc (the social status of a person)

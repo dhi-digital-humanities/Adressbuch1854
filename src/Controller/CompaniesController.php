@@ -40,17 +40,19 @@ class CompaniesController extends AppController
                 ]
             ];
 
-            $companies = $this->paginate($this->Companies, ['limit' => 20]);
+            $companies = $this->paginate($this->Companies);
         } else{
             $companies = $this->Companies->find()
             ->contain(['ProfCategories',
-                'Addresses.Streets']);
+                'Addresses.Streets'])
+            ->limit(20);
         }
-        $companies = $this->paginate($this->Companies,['contain'=>['Addresses.Streets']], ['limit' => 20]);
+         $companies = $this->paginate($this->Companies,['contain'=>['ProfCategories','Addresses.Streets'],['limit'=>20]]);
+        {
         $this->set(compact('companies'));
 
     }
-
+}
     /**
      * View method
      *

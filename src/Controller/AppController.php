@@ -100,6 +100,7 @@ class AppController extends Controller
                     case 'Search':
                         $filename .= 'search_results';
                     break;
+
                 }
             } else {
                 $filename .= 'overview';
@@ -135,8 +136,8 @@ class AppController extends Controller
         if(empty($format)) return;
 
         // sql and csv paths relative to webroot
-        $csvFilePath = 'download/Adressbuch_1854_all.csv';
-        $sqlFilePath = 'download/Adressbuch_1854_all.sql';
+        $csvFilePath = '/webroot/download/Adressbuch_1854_all.csv';
+        $sqlFilePath = '/webroot/download/Adressbuch_1854_all.sql';
 
         // Get the format, that is to be rendered, from the query params
         $format = strtolower($this->request->getQuery('exportAll'));
@@ -193,6 +194,7 @@ class AppController extends Controller
                         'Companies'
                     ]);
 
+
                 $companies = $this->Companies->find()
                     ->contain([
                         'Persons',
@@ -213,5 +215,11 @@ class AppController extends Controller
                     ->withCharset('UTF-8')
                     ->withHeader('Content-Disposition', 'attachment; filename="'.$filename.'"');
         }
-    }
-}
+    
+
+    }}
+
+
+
+
+

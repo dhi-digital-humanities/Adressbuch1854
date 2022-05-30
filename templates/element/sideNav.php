@@ -13,11 +13,10 @@ unset($params['Companies[page]']);
 
 $uri = $this->request->getRequestTarget();
 ?>
-
 <aside class="column">
 	<?php if($mapBox):?>
         <div class="smallMap">
-            <div id="mapBox"  class="content">
+            <div id="mapBox"  class="content" onload="initializeMap()">
                 <?= $this->Html->script('address-map.js') ?>
             </div>
         </div>
@@ -29,23 +28,24 @@ $uri = $this->request->getRequestTarget();
 		<?= $this->Html->link(__('Straßen'), ['controller' => 'Streets', 'action' => 'index'], ['class' => 'side-nav-item']) ?>
 		<?= $this->Html->link(__('Arrondissements'), ['controller' => 'Arrondissements', 'action' => 'index'], ['class' => 'side-nav-item']) ?>
 		<?php if($export != 'none'):?>
-            <h4 class="heading" id="exportheading"><?=__('Exportiere...')?></h4>
+        <h4 class="heading" id="exportheading"><?=__('Exportiere...')?></h4>
             <div class="export-side">
                 <?php if($export === 'all'):?>
                     <div class="export-item">
                         <h5><?=__('Aktuelle Datensätze')?></h5>
-                        <?= $this->Form->postButton('Json', ['controller' => '', 'action' => $uri, '?' => array_merge($params, ['export' => 'json'])])?>
-                        <?= $this->Form->postButton('XML', ['controller' => '', 'action' => $uri, '?' => array_merge($params, ['export' => 'xml'])])?>
+                        <?= $this->Form->postButton('Json', ['controller' => '', 'action' => $uri, '?' => array_merge($params, ['export' => 'json'])],['class'=>'button2'])?>
+                        <?= $this->Form->postButton('XML', ['controller' => '', 'action' => $uri, '?' => array_merge($params, ['export' => 'xml'])],['class'=>'button2'])?>
                     </div>
                 <?php endif;?>
                 <div class="export-item">
                     <h5><?=__('Gesamte Datenbank')?></h5>
-                    <?= $this->Form->postButton('Json', ['controller' => 'App', 'action' => 'export', '?' => ['exportAll' => 'json']])?>
-                    <?= $this->Form->postButton('XML', ['controller' => 'App', 'action' => 'export', '?' => ['exportAll' => 'xml']])?>
-                    <?= $this->Form->postButton('CSV', ['controller' => 'App', 'action' => 'export', '?' => ['exportAll' => 'csv']])?>
-                    <?= $this->Form->postButton('SQL', ['controller' => 'App', 'action' => 'export', '?' => ['exportAll' => 'sql']])?>
+                    <?= $this->Form->postButton('Json', ['controller' => 'App', 'action' => 'export', '?' => ['exportAll' => 'json']],['class'=>'button2'])?>
+                    <?= $this->Form->postButton('XML', ['controller' => 'App', 'action' => 'export', '?' => ['exportAll' => 'xml']],['class'=>'button2'])?>
+                    <?= $this->Form->postButton('CSV', ['controller' => 'App', 'action' => 'export', '?' => ['exportAll' => 'csv']],['class'=>'button2'])?>
+                    <?= $this->Form->postButton('SQL', ['controller' => 'App', 'action' => 'export', '?' => ['exportAll' => 'sql']],['class'=>'button2'])?>
                 </div>
             </div>
 		<?php endif;?>
 	</div>
 </aside>
+

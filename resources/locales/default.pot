@@ -1,0 +1,651 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2022-02-18 12:39+0000\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: C:/wamp64/www/test/templates/Arrondissements/index.php:12
+#: C:/wamp64/www/test/templates/Streets/index.php:35
+#: C:/wamp64/www/test/templates/Streets/view.php:48
+#: C:/wamp64/www/test/templates/element/sideNav.php:29
+msgid "Arrondissements"
+msgstr "Arrondissements"
+
+#: C:/wamp64/www/test/templates/Arrondissements/index.php:17
+#: C:/wamp64/www/test/templates/Streets/index.php:32
+#: C:/wamp64/www/test/templates/element/companiesMultiTable.php:28
+#: C:/wamp64/www/test/templates/element/externalReferenceMultiTable.php:10
+#: C:/wamp64/www/test/templates/element/personsMultiTable.php:29
+msgid "Nr"
+msgstr "Nr"
+
+#: C:/wamp64/www/test/templates/Arrondissements/index.php:18
+#: C:/wamp64/www/test/templates/Search/query.php:100
+#: C:/wamp64/www/test/templates/Search/query.php:102
+msgid "Arrondissement"
+msgstr "Arrondissement"
+
+#: C:/wamp64/www/test/templates/Arrondissements/index.php:19
+msgid "Typ"
+msgstr "Typ"
+
+#: C:/wamp64/www/test/templates/Arrondissements/index.php:20
+#: C:/wamp64/www/test/templates/Arrondissements/view.php:41
+msgid "Postleitzahl"
+msgstr "Code Postal"
+
+#: C:/wamp64/www/test/templates/Arrondissements/index.php:50
+#: C:/wamp64/www/test/templates/Arrondissements/view.php:57
+#: C:/wamp64/www/test/templates/Companies/index.php:32
+#: C:/wamp64/www/test/templates/Persons/index.php:33
+#: C:/wamp64/www/test/templates/Search/results.php:38
+#: C:/wamp64/www/test/templates/Search/results.php:52
+#: C:/wamp64/www/test/templates/Streets/index.php:78
+#: C:/wamp64/www/test/templates/Streets/view.php:70
+msgid "Anfang"
+msgstr "Debut"
+
+#: C:/wamp64/www/test/templates/Arrondissements/index.php:51
+#: C:/wamp64/www/test/templates/Arrondissements/view.php:58
+#: C:/wamp64/www/test/templates/Companies/index.php:33
+#: C:/wamp64/www/test/templates/Persons/index.php:34
+#: C:/wamp64/www/test/templates/Search/results.php:39
+#: C:/wamp64/www/test/templates/Search/results.php:53
+#: C:/wamp64/www/test/templates/Streets/index.php:79
+#: C:/wamp64/www/test/templates/Streets/view.php:71
+msgid "zurück"
+msgstr "Précédent"
+
+#: C:/wamp64/www/test/templates/Arrondissements/index.php:53
+#: C:/wamp64/www/test/templates/Arrondissements/view.php:60
+#: C:/wamp64/www/test/templates/Companies/index.php:35
+#: C:/wamp64/www/test/templates/Persons/index.php:36
+#: C:/wamp64/www/test/templates/Search/results.php:41
+#: C:/wamp64/www/test/templates/Search/results.php:55
+#: C:/wamp64/www/test/templates/Streets/index.php:81
+#: C:/wamp64/www/test/templates/Streets/view.php:73
+msgid "vor"
+msgstr "suite"
+
+#: C:/wamp64/www/test/templates/Arrondissements/index.php:54
+#: C:/wamp64/www/test/templates/Arrondissements/view.php:61
+#: C:/wamp64/www/test/templates/Companies/index.php:36
+#: C:/wamp64/www/test/templates/Persons/index.php:37
+#: C:/wamp64/www/test/templates/Search/results.php:42
+#: C:/wamp64/www/test/templates/Search/results.php:56
+#: C:/wamp64/www/test/templates/Streets/index.php:82
+#: C:/wamp64/www/test/templates/Streets/view.php:74
+msgid "Ende"
+msgstr "fin"
+
+#: C:/wamp64/www/test/templates/Arrondissements/index.php:56
+msgid "Seite {{page}} von {{pages}}, zeige {{current}} Arrondissement(s) von {{count}}"
+msgstr "Page {{page}} de {{pages}}, {{current}} sur {{count}} Arrondissement(s)"
+
+#: C:/wamp64/www/test/templates/Arrondissements/view.php:32
+msgid "Nummer"
+msgstr "Numero"
+
+#: C:/wamp64/www/test/templates/Arrondissements/view.php:36
+msgid "Type"
+msgstr "Type"
+
+#: C:/wamp64/www/test/templates/Arrondissements/view.php:45
+msgid "INSEE Citycode"
+msgstr "Code Insee"
+
+#: C:/wamp64/www/test/templates/Arrondissements/view.php:53
+#: C:/wamp64/www/test/templates/Arrondissements/view.php:71
+#: C:/wamp64/www/test/templates/Companies/view.php:124
+#: C:/wamp64/www/test/templates/Companies/view.php:132
+#: C:/wamp64/www/test/templates/Persons/view.php:186
+#: C:/wamp64/www/test/templates/Persons/view.php:194
+#: C:/wamp64/www/test/templates/Streets/view.php:66
+#: C:/wamp64/www/test/templates/Streets/view.php:84
+msgid "Klicken für Details"
+msgstr "Cliquez pour plus de détails"
+
+#: C:/wamp64/www/test/templates/Arrondissements/view.php:53
+msgid "Personen in diesem Arrondissement"
+msgstr "Personnes dans cet Arrondissement"
+
+#: C:/wamp64/www/test/templates/Arrondissements/view.php:63
+#: C:/wamp64/www/test/templates/Persons/index.php:39
+#: C:/wamp64/www/test/templates/Search/results.php:44
+#: C:/wamp64/www/test/templates/Streets/view.php:76
+msgid "Seite {{page}} von {{pages}}, zeige {{current}} Person(en) von {{count}}"
+msgstr "Page {{page}} de {{pages}}, {{current}} sur {{count}} Personne(s)"
+
+#: C:/wamp64/www/test/templates/Arrondissements/view.php:71
+msgid "Unternehmen in diesem Arrondissement"
+msgstr "Compagnies dans cet arrondissement"
+
+#: C:/wamp64/www/test/templates/Companies/index.php:15
+#: C:/wamp64/www/test/templates/Persons/index.php:16
+#: C:/wamp64/www/test/templates/Streets/index.php:15
+msgid "Back to Catalogue"
+msgstr "Retour au Catalogue"
+
+#: C:/wamp64/www/test/templates/Companies/index.php:28
+#: C:/wamp64/www/test/templates/Search/results.php:48
+#: C:/wamp64/www/test/templates/element/sideNav.php:27
+msgid "Unternehmen"
+msgstr "Compagnies"
+
+#: C:/wamp64/www/test/templates/Companies/index.php:38
+#: C:/wamp64/www/test/templates/Search/results.php:58
+msgid "Seite {{page}} von {{pages}}, zeige {{current}} Unternehmen von {{count}}"
+msgstr "Page {{page}} de {{pages}}, {{current}} sur {{count}} Compagnie(s)"
+
+#: C:/wamp64/www/test/templates/Companies/index.php:52
+#: C:/wamp64/www/test/templates/Companies/view.php:160
+#: C:/wamp64/www/test/templates/Persons/index.php:53
+#: C:/wamp64/www/test/templates/Streets/index.php:98
+#: C:/wamp64/www/test/templates/element/sideNav.php:35
+msgid "Aktuelle Datensätze"
+msgstr "Données Actuelles"
+
+#: C:/wamp64/www/test/templates/Companies/view.php:14
+#: C:/wamp64/www/test/templates/Persons/view.php:27
+msgid "S. "
+msgstr "S."
+
+#: C:/wamp64/www/test/templates/Companies/view.php:23
+#: C:/wamp64/www/test/templates/Persons/view.php:36
+msgid "(Geschäftsliste)"
+msgstr "Dans la liste des affaires"
+
+#: C:/wamp64/www/test/templates/Companies/view.php:36
+#: C:/wamp64/www/test/templates/Streets/view.php:29
+msgid "Back to index"
+msgstr "Retour à l'index"
+
+#: C:/wamp64/www/test/templates/Companies/view.php:50
+#: C:/wamp64/www/test/templates/Persons/view.php:70
+msgid "Eintrag im Buch auf "
+msgstr "Figure dans le carnet d'adresse page "
+
+#: C:/wamp64/www/test/templates/Companies/view.php:53
+#: C:/wamp64/www/test/templates/Persons/view.php:73
+msgid "Scan der Seite"
+msgstr "Scan de la page"
+
+#: C:/wamp64/www/test/templates/Companies/view.php:58
+#: C:/wamp64/www/test/templates/Persons/view.php:79
+msgid "Seite in HD ansehen"
+msgstr "Voir la page en HD"
+
+#: C:/wamp64/www/test/templates/Companies/view.php:68
+#: C:/wamp64/www/test/templates/Persons/view.php:88
+msgid "Volltexterkennung"
+msgstr "Reconnaissance textuelle"
+
+#: C:/wamp64/www/test/templates/Companies/view.php:71
+#: C:/wamp64/www/test/templates/Persons/view.php:91
+msgid "Volltext der Seite ansehen"
+msgstr "Voir le texte de la page"
+
+#: C:/wamp64/www/test/templates/Companies/view.php:80
+#: C:/wamp64/www/test/templates/Search/query.php:80
+#: C:/wamp64/www/test/templates/element/companiesMultiTable.php:30
+#: C:/wamp64/www/test/templates/element/personsMultiTable.php:31
+msgid "Name"
+msgstr "Nom"
+
+#: C:/wamp64/www/test/templates/Companies/view.php:84
+#: C:/wamp64/www/test/templates/Persons/view.php:123
+msgid "Anmerkungen wörtlich"
+msgstr "Commentaires"
+
+#: C:/wamp64/www/test/templates/Companies/view.php:88
+#: C:/wamp64/www/test/templates/Persons/view.php:127
+#: C:/wamp64/www/test/templates/Search/query.php:88
+#: C:/wamp64/www/test/templates/Search/query.php:90
+#: C:/wamp64/www/test/templates/element/companiesMultiTable.php:32
+#: C:/wamp64/www/test/templates/element/personsMultiTable.php:33
+msgid "Beruf"
+msgstr "Profession"
+
+#: C:/wamp64/www/test/templates/Companies/view.php:92
+#: C:/wamp64/www/test/templates/Persons/view.php:131
+msgid "Berufskategorie"
+msgstr "Catégorie professionnelle"
+
+#: C:/wamp64/www/test/templates/Companies/view.php:96
+#: C:/wamp64/www/test/templates/Persons/view.php:135
+#: C:/wamp64/www/test/templates/element/companiesMultiTable.php:33
+#: C:/wamp64/www/test/templates/element/personsMultiTable.php:34
+msgid "Adresse(n)"
+msgstr "Adresse(s)"
+
+#: C:/wamp64/www/test/templates/Companies/view.php:104
+#: C:/wamp64/www/test/templates/Persons/view.php:166
+#: C:/wamp64/www/test/templates/element/companiesMultiTable.php:34
+#: C:/wamp64/www/test/templates/element/personsMultiTable.php:35
+msgid "Sonstige Merkmale"
+msgstr "Autres"
+
+#: C:/wamp64/www/test/templates/Companies/view.php:108
+#: C:/wamp64/www/test/templates/Persons/view.php:170
+msgid "Vorab-Abonnent (fett)"
+msgstr "Nom en gras dans le carnet d'adresse"
+
+#: C:/wamp64/www/test/templates/Companies/view.php:109
+#: C:/wamp64/www/test/templates/Persons/view.php:171
+msgid "Notable Commerçant [NC]"
+msgstr "Notable Commerçant [NC]"
+
+#: C:/wamp64/www/test/templates/Companies/view.php:110
+#: C:/wamp64/www/test/templates/Persons/view.php:172
+msgid "In Geschäftsliste"
+msgstr "Dans la liste d'affaire"
+
+#: C:/wamp64/www/test/templates/Companies/view.php:113
+#: C:/wamp64/www/test/templates/Companies/view.php:114
+#: C:/wamp64/www/test/templates/Companies/view.php:115
+#: C:/wamp64/www/test/templates/Persons/view.php:175
+#: C:/wamp64/www/test/templates/Persons/view.php:176
+#: C:/wamp64/www/test/templates/Persons/view.php:177
+msgid "Ja"
+msgstr "Oui"
+
+#: C:/wamp64/www/test/templates/Companies/view.php:113
+#: C:/wamp64/www/test/templates/Companies/view.php:114
+#: C:/wamp64/www/test/templates/Companies/view.php:115
+#: C:/wamp64/www/test/templates/Persons/view.php:175
+#: C:/wamp64/www/test/templates/Persons/view.php:176
+#: C:/wamp64/www/test/templates/Persons/view.php:177
+msgid "Nein"
+msgstr "Non"
+
+#: C:/wamp64/www/test/templates/Companies/view.php:124
+msgid "Assoziierte Personen"
+msgstr "Personne associée"
+
+#: C:/wamp64/www/test/templates/Companies/view.php:132
+#: C:/wamp64/www/test/templates/Persons/view.php:194
+msgid "Literatur- und Quellenhinweise"
+msgstr "Références"
+
+#: C:/wamp64/www/test/templates/Pages/addressbook.php:6
+#: C:/wamp64/www/test/templates/Pages/catalogue.php:7
+#: C:/wamp64/www/test/templates/Pages/exportiere.php:8
+#: C:/wamp64/www/test/templates/Pages/karte.php:9
+#: C:/wamp64/www/test/templates/Pages/partners.php:6
+#: C:/wamp64/www/test/templates/Pages/project.php:6
+#: C:/wamp64/www/test/templates/Pages/publications.php:6
+#: C:/wamp64/www/test/templates/Search/query.php:66
+msgid "Back to home"
+msgstr "Retour à l'accueil"
+
+#: C:/wamp64/www/test/templates/Pages/addressbook.php:10
+#: C:/wamp64/www/test/templates/layout/default.php:85
+msgid "Das Adressbuch"
+msgstr "Le carnet d'adresses"
+
+#: C:/wamp64/www/test/templates/Pages/catalogue.php:9
+msgid "Index"
+msgstr "Index"
+
+#: C:/wamp64/www/test/templates/Pages/credits.php:11
+#: C:/wamp64/www/test/templates/layout/default.php:108
+msgid "Impressum"
+msgstr "Impression"
+
+#: C:/wamp64/www/test/templates/Pages/exportiere.php:10
+#: C:/wamp64/www/test/templates/element/sideNav.php:41
+msgid "Gesamte Datenbank"
+msgstr "Base de données"
+
+#: C:/wamp64/www/test/templates/Pages/home.php:18
+msgid "Freitextsuche"
+msgstr "Rechercher dans la base"
+
+#: C:/wamp64/www/test/templates/Pages/home.php:19
+msgid "Los"
+msgstr "Rechercher"
+
+#: C:/wamp64/www/test/templates/Pages/home.php:26
+msgid "Export"
+msgstr "Exporter"
+
+#: C:/wamp64/www/test/templates/Pages/home.php:26
+#: C:/wamp64/www/test/templates/Pages/home.php:29
+#: C:/wamp64/www/test/templates/Pages/home.php:32
+msgid "Weiterlesen..."
+msgstr "Voir plus..."
+
+#: C:/wamp64/www/test/templates/Pages/home.php:29
+msgid "Index"
+msgstr "Index"
+
+#: C:/wamp64/www/test/templates/Pages/home.php:32
+msgid "Karte"
+msgstr "Cartographie"
+
+#: C:/wamp64/www/test/templates/Pages/partners.php:10
+msgid "Partner"
+msgstr "Partenaires"
+
+#: C:/wamp64/www/test/templates/Pages/partners.php:28
+msgid "Projektleitung"
+msgstr "Direction du projet"
+
+#: C:/wamp64/www/test/templates/Pages/partners.php:44
+msgid "Projektmitarbeiter*innen"
+msgstr "Collaborateurs"
+
+#: C:/wamp64/www/test/templates/Pages/publications.php:10
+#: C:/wamp64/www/test/templates/layout/default.php:87
+msgid "Links und Publikationen"
+msgstr "Liens et publications"
+
+#: C:/wamp64/www/test/templates/Pages/publications.php:109
+msgid "Software"
+msgstr "Logiciels"
+
+#: C:/wamp64/www/test/templates/Persons/index.php:29
+#: C:/wamp64/www/test/templates/Search/results.php:34
+#: C:/wamp64/www/test/templates/element/sideNav.php:26
+msgid "Personen"
+msgstr "Personnes"
+
+#: C:/wamp64/www/test/templates/Persons/view.php:56
+msgid "Back to Index"
+msgstr "Retour à l'index"
+
+#: C:/wamp64/www/test/templates/Persons/view.php:100
+msgid "Nachname"
+msgstr "Nom"
+
+#: C:/wamp64/www/test/templates/Persons/view.php:104
+#: C:/wamp64/www/test/templates/Search/query.php:81
+msgid "Vorname"
+msgstr "Prénom"
+
+#: C:/wamp64/www/test/templates/Persons/view.php:108
+#: C:/wamp64/www/test/templates/Search/query.php:82
+msgid "Geschlecht"
+msgstr "Sexe"
+
+#: C:/wamp64/www/test/templates/Persons/view.php:119
+msgid "Titel"
+msgstr "Titre"
+
+#: C:/wamp64/www/test/templates/Persons/view.php:144
+msgid "Rang der Ehrenlegion"
+msgstr "Rang dans la légion d'honneur"
+
+#: C:/wamp64/www/test/templates/Persons/view.php:149
+msgid "Sonstige Kategorien"
+msgstr "Catégories socio-professionnelles"
+
+#: C:/wamp64/www/test/templates/Persons/view.php:153
+msgid "Stand"
+msgstr "Statut social"
+
+#: C:/wamp64/www/test/templates/Persons/view.php:154
+msgid "Militärischer Status"
+msgstr "Statut militaire"
+
+#: C:/wamp64/www/test/templates/Persons/view.php:155
+#: C:/wamp64/www/test/templates/Search/query.php:122
+msgid "Beruflicher Status"
+msgstr "Statut professionnel"
+
+#: C:/wamp64/www/test/templates/Persons/view.php:186
+msgid "Assoziierte Unternehmen"
+msgstr "Compagnies associées"
+
+#: C:/wamp64/www/test/templates/Search/query.php:18
+#: C:/wamp64/www/test/templates/Search/query.php:102
+msgid "alt"
+msgstr "ancien"
+
+#: C:/wamp64/www/test/templates/Search/query.php:25
+#: C:/wamp64/www/test/templates/Search/query.php:100
+msgid "modern"
+msgstr "actuel"
+
+#: C:/wamp64/www/test/templates/Search/query.php:72
+msgid "Erweiterte Suche"
+msgstr "Recherche avancée"
+
+#: C:/wamp64/www/test/templates/Search/query.php:78
+msgid "Personen- oder Firmenname"
+msgstr "Personne ou entreprise"
+
+#: C:/wamp64/www/test/templates/Search/query.php:83
+msgid " Männlich"
+msgstr "Homme"
+
+#: C:/wamp64/www/test/templates/Search/query.php:83
+msgid " Weiblich"
+msgstr "Femme"
+
+#: C:/wamp64/www/test/templates/Search/query.php:92
+msgid "Kategorie"
+msgstr "Categorie"
+
+#: C:/wamp64/www/test/templates/Search/query.php:97
+msgid "Addresse"
+msgstr "Adresse"
+
+#: C:/wamp64/www/test/templates/Search/query.php:99
+msgid "Straße"
+msgstr "Rue"
+
+#: C:/wamp64/www/test/templates/Search/query.php:107
+msgid "Weitere Merkmale"
+msgstr "Autres champs"
+
+#: C:/wamp64/www/test/templates/Search/query.php:110
+msgid "Rang der Ehrenlegion"
+msgstr "Rang dans la légion d'honneur"
+
+#: C:/wamp64/www/test/templates/Search/query.php:113
+msgid "Mitglied des Institut de France?"
+msgstr "Membre de l'institut de France"
+
+#: C:/wamp64/www/test/templates/Search/query.php:114
+#: C:/wamp64/www/test/templates/Search/query.php:126
+#: C:/wamp64/www/test/templates/Search/query.php:129
+msgid " Ja"
+msgstr " Oui"
+
+#: C:/wamp64/www/test/templates/Search/query.php:114
+#: C:/wamp64/www/test/templates/Search/query.php:126
+#: C:/wamp64/www/test/templates/Search/query.php:129
+msgid " Nein"
+msgstr " Non"
+
+#: C:/wamp64/www/test/templates/Search/query.php:116
+msgid "Sozialer Stand"
+msgstr "Statut Social"
+
+#: C:/wamp64/www/test/templates/Search/query.php:119
+msgid "Militärstatus"
+msgstr "Statut militaire"
+
+#: C:/wamp64/www/test/templates/Search/query.php:125
+msgid "Hat das Adressbuch vorabonniert?"
+msgstr "Personne figurant dans le carnet d'adresses ?"
+
+#: C:/wamp64/www/test/templates/Search/query.php:125
+msgid "(im Buch fett gedruckt)"
+msgstr "(en caractères gras)"
+
+#: C:/wamp64/www/test/templates/Search/query.php:128
+msgid "Hat einen Eintrag in der Geschäftsliste?"
+msgstr "Dans la liste d'affaire ?"
+
+#: C:/wamp64/www/test/templates/Search/query.php:134
+msgid "Search"
+msgstr "Rechercher"
+
+#: C:/wamp64/www/test/templates/Search/query.php:136
+msgid "Tipp: Falls Ihre Suche nicht die gewünschten Ergebnisse liefert, versuchen Sie erneut mit weniger Eingaben zu suchen. Probieren Sie auch verschiedene\n\t\t\tSchreibweisen von Straßen- und Personennamen aus und suchen Sie zunächst ohne Vornamen, da diese im Buch häufig nicht vorhanden oder stark abgekürzt sind."
+msgstr "Conseil : Si votre recherche ne renvoie pas les résultats souhaités, essayez à nouveau d'effectuer une recherche avec moins d'entrées. Essayez également différentes orthographes des noms de rue et de personnes et effectuez une première recherche sans prénoms, car ceux-ci ne sont souvent pas disponibles dans le livre ou sont abrégés."
+
+#: C:/wamp64/www/test/templates/Search/results.php:22
+msgid "Ergebnisse"
+msgstr ""
+
+#: C:/wamp64/www/test/templates/Search/results.php:23
+msgid "Für Ihre Suchanfrage wurden "
+msgstr "Pour votre recherche"
+
+#: C:/wamp64/www/test/templates/Search/results.php:25
+msgid "{{count}} Unternehmen"
+msgstr "{{count}} compagnies"
+
+#: C:/wamp64/www/test/templates/Search/results.php:123
+msgid "Keine Ergebnisse"
+msgstr "Aucun résultat"
+
+#: C:/wamp64/www/test/templates/Search/results.php:124
+msgid "Zurück zur Suche"
+msgstr "Suite de la recherche"
+
+#: C:/wamp64/www/test/templates/Streets/index.php:27
+#: C:/wamp64/www/test/templates/element/sideNav.php:28
+msgid "Straßen"
+msgstr "Rues"
+
+#: C:/wamp64/www/test/templates/Streets/index.php:33
+#: C:/wamp64/www/test/templates/Streets/view.php:36
+msgid "Name alt"
+msgstr "Nom ancien"
+
+#: C:/wamp64/www/test/templates/Streets/index.php:34
+#: C:/wamp64/www/test/templates/Streets/view.php:44
+msgid "Name heute"
+msgstr "Nom actuel"
+
+#: C:/wamp64/www/test/templates/Streets/index.php:60
+#: C:/wamp64/www/test/templates/Streets/view.php:52
+msgid "Vor 1860"
+msgstr "Avant 1860"
+
+#: C:/wamp64/www/test/templates/Streets/index.php:61
+#: C:/wamp64/www/test/templates/Streets/view.php:53
+msgid "Nach 1860"
+msgstr "Après 1860"
+
+#: C:/wamp64/www/test/templates/Streets/index.php:84
+msgid "Seite {{page}} von {{pages}}, zeige {{current}} Straße(n) von {{count}}"
+msgstr "Page {{page}} de {{pages}}, {{current}} sur {{count}} Rue(s)"
+
+
+#: C:/wamp64/www/test/templates/Streets/view.php:40
+msgid "Schreibweisen im Buch"
+msgstr "Écriture dans le carnet d'adresses"
+
+#: C:/wamp64/www/test/templates/Streets/view.php:66
+msgid "Personen in dieser Straße"
+msgstr "Personne dans cette rue"
+
+#: C:/wamp64/www/test/templates/Streets/view.php:84
+msgid "Unternehmen in dieser Straße"
+msgstr "Compagnies dans la rue"
+
+#: C:/wamp64/www/test/templates/element/citation.php:24
+msgid "Zitierhinweis"
+msgstr "Citation"
+
+#: C:/wamp64/www/test/templates/element/citation.php:25
+msgid "Eintrag"
+msgstr "Entrée"
+
+#: C:/wamp64/www/test/templates/element/citation.php:25
+msgid "in"
+msgstr "dans"
+
+#: C:/wamp64/www/test/templates/element/citation.php:26
+msgid "Hg."
+msgstr "Hg."
+
+#: C:/wamp64/www/test/templates/element/citation.php:26
+msgid "Elektronische Edition"
+msgstr "édition électronique"
+
+#: C:/wamp64/www/test/templates/element/citation.php:27
+msgid "Zugriff am "
+msgstr "à la date du"
+
+#: C:/wamp64/www/test/templates/element/companiesMultiTable.php:31
+#: C:/wamp64/www/test/templates/element/personsMultiTable.php:32
+msgid "Anmerkungen"
+msgstr "Caractéristiques"
+
+#: C:/wamp64/www/test/templates/element/companiesMultiTable.php:35
+#: C:/wamp64/www/test/templates/element/personsMultiTable.php:36
+msgid "Kategorien"
+msgstr "Catégories"
+
+#: C:/wamp64/www/test/templates/element/companiesMultiTable.php:48
+#: C:/wamp64/www/test/templates/element/personsMultiTable.php:76
+msgid "Vorab-Abonnent"
+msgstr "En gras"
+
+#: C:/wamp64/www/test/templates/element/companiesMultiTable.php:54
+#: C:/wamp64/www/test/templates/element/personsMultiTable.php:82
+msgid "mit Geschäftseintrag"
+msgstr "Avec publicité"
+
+#: C:/wamp64/www/test/templates/element/externalReferenceMultiTable.php:11
+msgid "Literatur/Quelle"
+msgstr "Références"
+
+#: C:/wamp64/www/test/templates/element/externalReferenceMultiTable.php:12
+msgid "Kurzbeschreibung"
+msgstr "Lien de source"
+
+#: C:/wamp64/www/test/templates/element/sideNav.php:25
+msgid "Zeige alle..."
+msgstr "Allez vers..."
+
+#: C:/wamp64/www/test/templates/element/sideNav.php:31
+msgid "Exportiere..."
+msgstr "Exporter"
+
+#: C:/wamp64/www/test/templates/functions/functions.php:150
+#: C:/wamp64/www/test/templates/functions/functions.php:161
+msgid "Beruf verbatim"
+msgstr "Métier verbatim"
+
+#: C:/wamp64/www/test/templates/functions/functions.php:150
+#: C:/wamp64/www/test/templates/functions/functions.php:161
+msgid "Beruf clean"
+msgstr "Nom de métier"
+
+#: C:/wamp64/www/test/templates/layout/default.php:84
+msgid "Suche"
+msgstr "Recherche"
+
+#: C:/wamp64/www/test/templates/layout/default.php:86
+msgid "Das Projekt"
+msgstr "Le projet"
+
+#: C:/wamp64/www/test/templates/layout/default.php:88
+msgid "Partner und Team"
+msgstr "Partenaires et équipe"
+
+#: C:/wamp64/www/test/templates/layout/error.php:40
+msgid "Back"
+msgstr "Retour"
+
+#: View/Helper/PaginatorHelper.php:1268
+msgid "View"
+msgstr "Vue"
+

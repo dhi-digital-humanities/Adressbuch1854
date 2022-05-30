@@ -46,8 +46,8 @@ class PersonsController extends AppController
                     
                 ]
             ];
+            $persons = $this->paginate($this->Persons,['limit' => 20]);
 
-            $persons = $this->paginate($this->Persons, ['order'=>['id'=>'ASC']],['limit' => 20]);
 
         } else{
             $persons = $this->Persons->find()
@@ -59,13 +59,22 @@ class PersonsController extends AppController
                 'ProfCategories',
                 'Addresses.Streets',
                 
-            ]);
+            ])
+            ->limit(20);
         }
-        $persons = $this->paginate($this->Persons, ['contain' =>['Addresses.Streets']], ['order'=>['id'=>'ASC']],['limit' => 20]);
+         $persons = $this->paginate($this->Persons,
+            ['contain'=>['Addresses.Streets',
+                        'LdhRanks',
+                        'MilitaryStatuses',
+                        'SocialStatuses',
+                        'OccupationStatuses',
+                        'ProfCategories',
+                            ]],['limit'=>20]);
     {
+
         $this->set(compact('persons'));
     }
-    
+
 }
     /**
      * View method

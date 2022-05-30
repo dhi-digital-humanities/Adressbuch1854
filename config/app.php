@@ -49,7 +49,7 @@ return [
      */
     'App' => [
         'namespace' => 'App',
-        'encoding' => env('APP_ENCODING', 'UTF-8'),
+        'encoding' => env('APP_ENCODING', 'utf8'),
         'defaultLocale' => env('APP_DEFAULT_LOCALE', 'en_US'),
         'defaultTimezone' => env('APP_DEFAULT_TIMEZONE', 'UTC'),
         'base' => false,
@@ -274,6 +274,7 @@ return [
             'driver' => Mysql::class,
             'persistent' => false,
             'timezone' => 'UTC',
+            'encoding' => 'utf8',
 
             /**
              * For MariaDB/MySQL the internal default changed from utf8 to utf8mb4, aka full utf-8 support, in CakePHP 3.6
@@ -285,7 +286,7 @@ return [
              * then you MUST use the `flags` config to set your charset encoding.
              * For e.g. `'flags' => [\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4']`
              */
-            'flags' => [],
+            'flags' => [\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'],
             'cacheMetadata' => true,
             'log' => false,
 
@@ -298,6 +299,7 @@ return [
              * manipulated before being executed.
              */
             'quoteIdentifiers' => false,
+           
 
             /*
              * During development, if using MySQL < 5.6, uncommenting the

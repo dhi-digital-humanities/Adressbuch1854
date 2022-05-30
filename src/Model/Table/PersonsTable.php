@@ -130,6 +130,11 @@ class PersonsTable extends Table
             ->allowEmptyString('profession_verbatim');
 
         $validator
+            ->scalar('profession_unified')
+            ->maxLength('profession_unified', 128)
+            ->allowEmptyString('profession_unified');
+
+        $validator
             ->boolean('de_l_institut')
             ->allowEmptyString('de_l_institut');
 

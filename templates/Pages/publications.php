@@ -96,6 +96,13 @@ Info Page Related Articles
   			<span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=Georg%20Kibler%2C%20M%C3%B6belbauer%2C%20Rue%20de%20Charonne%2039%3A%20Adre%C3%9Fbuch%20der%20Deutschen%20in%20Paris%20f%C3%BCr%20das%20Jahr%201854&amp;rft.jtitle=Francia%2030%2F3%20(2003)&amp;rft.aufirst=Mareike&amp;rft.aulast=K%C3%B6nig&amp;rft.au=Mareike%20K%C3%B6nig&amp;rft.date=2004&amp;rft.pages=143-156&amp;rft.spage=143&amp;rft.epage=156&amp;rft.language=fr"></span></div>
 		</td>
 	</tr>
+	<tr>
+		<td>
+			<div class="csl-bib-body" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">
+  			<div class="csl-entry">Noizet Hélène, Boris Bove, et Laura Costa (dir.). <i>Paris de parcelles en pixels. Analyse géomatique de l’espace parisien médiéval et moderne</i>. Paris: Presses universitaires de Vincennes - Comité d’histoire de la ville de Paris, 2013.</div>
+  			<span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=book&amp;rft.btitle=Paris%20de%20parcelles%20en%20pixels.%20Analyse%20g%C3%A9omatique%20de%20l'espace%20parisien%20m%C3%A9di%C3%A9val%20et%20moderne&amp;rft.place=Paris&amp;rft.publisher=Presses%20universitaires%20de%20Vincennes%20-%20Comit%C3%A9%20d'histoire%20de%20la%20ville%20de%20Paris&amp;rft.aufirst=H%C3%A9l%C3%A8ne&amp;rft.aulast=Noizet&amp;rft.au=H%C3%A9l%C3%A8ne%20Noizet&amp;rft.au=Boris%20Bove&amp;rft.au=Laura%20(dir.)%20Costa&amp;rft.date=2013"></span></div>
+		</td>
+	</tr>
 </table>
 </div>
 <br>
@@ -105,29 +112,29 @@ Info Page Related Articles
 	<tr>
 		<td>
 			<div class="csl-bib-body" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">
-  			<div class="csl-entry"><i>GitHub</i>. PHP/Javascript, <a href="https://github.com/DH-Cologne/Adressbuch1854">https://github.com/DH-Cologne/Adressbuch1854</a>.</div>
-  			<span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rft.type=computerProgram&amp;rft.title=GitHub&amp;rft.description=Projekt%20Adressbuch%2C%20DHI-Digital-Humanities&amp;rft.identifier=https%3A%2F%2Fgithub.com%2Fdhi-digital-humanities%2FAdressbuch"></span></div>
+  			<div class="csl-entry"><i>GitHub</i>. PHP/Javascript,<a target="blank" href="https://github.com/DH-Cologne/Adressbuch1854">https://github.com/DH-Cologne/Adressbuch1854</a>.</div>
+  			<span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rft.type=computerProgram&amp;rft.title=GitHub&amp;rft.description=Projekt%20Adressbuch%2C%20DHI-Digital-Humanities&amp;rft.identifier=https%3A%2F%2Fgithub.com%2Fdhi-digital-humanities%2FAdressbuch"></span><a target="blank" href="https://github.com/DH-Cologne/Adressbuch1854"><img class="github-logo" src="/../scans/github.jpg" title="github-logo" /></a></div>
 		</td>
 	</tr>
 	<tr>
 		<td>
 			<div class="csl-bib-body" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">
-			<div class="csl-entry"><i>Cake PHP</i> (version 4x). Windows, PHP, <a href="https://cakephp.org/">https://cakephp.org/</a>.</div>
- 			<span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rft.type=computerProgram&amp;rft.title=Cake%20PHP&amp;rft.identifier=https%3A%2F%2Fcakephp.org%2F"></span></div>
+			<div class="csl-entry"><i>Cake PHP</i> (version 4x). Windows, PHP, <a target="blank" href="https://cakephp.org/">https://cakephp.org/</a>.</div>
+ 			<span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rft.type=computerProgram&amp;rft.title=CakePHP&amp;rft.description=Framework%20PHP&amp;rft.identifier=https%3A%2F%2Fcakephp.org%2F&amp;rft.date=2021"></span><img src="/../scans/cake.jpg" class="cake-logo"  title="cakephp-logo" /></a></div>
 		</td>
 	</tr>
 	<tr>
 		<td>
 			<div class="csl-bib-body" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">
-			<div class="csl-entry"><i>Open Refine</i> (version 3.4.1). Windows, Java, <a href="https://openrefine.org/">https://openrefine.org/</a>.</div>
-  			<span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rft.type=computerProgram&amp;rft.title=Open%20Refine&amp;rft.identifier=https%3A%2F%2Fopenrefine.org%2F"></span></div>
+			<div class="csl-entry"><i>Open Refine</i> (version 3.4.1). Windows, Java, <a target="blank" href="https://openrefine.org/">https://openrefine.org/</a>.</div>
+  			<span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rft.type=computerProgram&amp;rft.title=Open%20Refine&amp;rft.identifier=https%3A%2F%2Fopenrefine.org%2F"></span><a target="blank" href="https://openrefine.org/"><img src="/../scans/openrefine.png" class="op-logo" title="openrefine-logo" /></a></div>
 		</td>
 	</tr>
 	<tr>
 		<td>
 			<div class="csl-bib-body" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">
-			<div class="csl-entry"><i>phpMyAdmin</i> (version 5.1.1). Windows, PHP/Javascript, <a href="https://www.phpmyadmin.net">https://www.phpmyadmin.net</a>.</div>
-  			<span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rft.type=computerProgram&amp;rft.title=phpMyAdmin&amp;rft.identifier=https%3A%2F%2Fwww.phpmyadmin.net"></span></div>
+			<div class="csl-entry"><i>phpMyAdmin</i> (version 5.1.1). Windows, PHP/Javascript, <a target="blank" href="https://www.phpmyadmin.net">https://www.phpmyadmin.net</a>.</div>
+  			<span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rft.type=computerProgram&amp;rft.title=phpMyAdmin&amp;rft.identifier=https%3A%2F%2Fwww.phpmyadmin.net"></span><a target="blank" href="https://www.phpmyadmin.net"><img src="/../scans/phpmyadmin.png"class="phpma-logo"  title="phpmyadmin-logo" /></a></div>
 		</td>
 	</tr>
 </table>

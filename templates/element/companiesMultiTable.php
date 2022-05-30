@@ -28,10 +28,8 @@ $this->Html->css('multiTable.css');
 			<th><?= __('Nr') ?></th>
 			<?php endif;?>
 			<th><?= __('Name') ?></th>
-			<th><?= __('Anmerkungen') ?></th>
 			<th><?= __('Beruf') ?></th>
 			<th><?= __('Adresse(n)') ?></th>
-			<th><?= __('Sonstige Merkmale') ?></th>
 			<th><?= __('Kategorien') ?></th>
 		</tr>
 		<?php
@@ -59,15 +57,18 @@ $this->Html->css('multiTable.css');
 			<td><?= $this->Number->format($countNo)?></td>
 			<?php endif;?>
 			<td><?= $this->Html->link(h($company->name), ['controller' => 'Companies', 'action' => 'view', $company->id]) ?></td>
-			<td class="small-width"><?= h($company->specification_verbatim) ?></td>
 			<td><?= h($company->profession_verbatim) ?></td>
 			<td><?php
 				if (!empty($company->addresses)){
 					echo htmlspecialchars_decode($this->element('addressList', ['addresses' => $company->addresses, 'list' => $addrAsList]));
 				}
 			?></td>
-			<td class="middle-width"><?= implode(', ', $plus)?></td>
 			<td class="middle-width"><?= implode(', ', $cats)?></td>
+
+			<!-- on ajoute la possiblité d'enregistrer nos recherches dans un panier pour exporter à la fin -->
+
+			<td><a href="/pages/panier_export?action=ajout&amp;l=<?= $company->id ?>&amp;n=<?= $company->name?>&amp;p=<?= $company->profession_verbatim?>&amp;u=<?= $this->request->getUri() ?>" onclick="window.open(this.href, '', 
+		'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=800, height=350'); return false;"><img src="/webroot/scans/icon-download.png" title="<?= __('Speichern') ?>" style="width: 20px"></a><td>
 		</tr>
 		<?php
 			$countNo++;

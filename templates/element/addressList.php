@@ -19,7 +19,10 @@ if(!isset($list)){
 		} else {
 			$street = $streetOld.' ('.$streetNew.')';
 		}
+		if(empty($streetNew)){
 
+			$street = $streetOld;		
+		}
 		$housNo = h($address->houseno);
 		if(!empty($address->houseno_specification)){
 			$housNo.=' '.h($address->houseno_specification);
@@ -33,7 +36,7 @@ if(!isset($list)){
 	<?php if($list): ?>
 	<li>
 		<?php
-			echo $this->Html->link($street, ['controller' => 'Streets', 'action' => 'view', $address->street->id]);
+			echo strtolower($this->Html->link($street, ['controller' => 'Streets', 'action' => 'view', $address->street->id]));
 			echo ' '.$housNo;
 
 			if(!empty($spec)){
