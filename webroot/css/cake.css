@@ -407,7 +407,7 @@ th {
 }
 
 .background {
-    background-image: url('/webroot/scans/home.png');
+    background-image: url('/adressbuchv2/webroot/scans/home.png');
     background-size:cover;
     height: 300px;
     border-radius: 10px;
@@ -462,4 +462,44 @@ th {
 .button_home2:hover {
 
     background-color: #5B788C;
+}
+@media all and (min-width:800px){
+.textarea2 {
+
+    width:555px !important;
+
+}
+}
+@media all and (max-width:800px){
+    .textarea2{
+
+        width: 100% !important;
+    }
+}
+@media all and (min-width:800px){
+
+    .h1home {
+    width:745px;
+    text-align:left;
+    margin-bottom:2px;
+    }
+}
+@media all and (max-width:800px){
+    .h1home{
+        margin-bottom: 2px;
+        text-align:left;
+    }
+}
+@media all and (min-width:800px)
+{
+.p1home {
+
+   text-align: left; 
+   width:745px;
+}
+}
+@media all and( max-width:800px){
+    .p1home {
+        text-align:left;
+    }
 }
