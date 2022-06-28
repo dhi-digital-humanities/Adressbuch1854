@@ -407,7 +407,7 @@ th {
 }
 
 .background {
-    background-image: url('/adressbuchv2/webroot/scans/home.png');
+    background-image: url('/webroot/scans/home.png');
     background-size:cover;
     height: 300px;
     border-radius: 10px;
