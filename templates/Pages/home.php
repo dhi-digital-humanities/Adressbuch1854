@@ -15,7 +15,7 @@ Homepage
                 echo $this->Form->control('text', ['maxlength' => 256, 'label' => false, 'placeholder   ' => __('Freitextsuche'), 'class'=>'textarea2']);?>
                 <?= $this->Form->button(__('Start'), ['class' => 'button_home2']) ?>
                 <?= $this->Form->end() ?>
-                <button style='margin-top:-27px' onclick="window.location.href='/adressbuchv2/search/query';"><?= __('Erweitert') ?></button>
+                <button style='margin-top:-27px' onclick="window.location.href='/search/query';"><?= __('Erweitert') ?></button>
                 </div>  
 
 <div class='header2'>
@@ -26,7 +26,7 @@ Homepage
         <div class="header3">
                 <div class="divhome">
                
-                <button style="margin-left:16px;" class="button_home" onclick="window.location.href='/adressbuchv2/pages/karte';"><?= __('Interaktive Karte') ?></a></button>
+                <button style="margin-left:16px;" class="button_home" onclick="window.location.href='/pages/karte';"><?= __('Interaktive Karte') ?></a></button>
                 </div>
                 <div class="divhome">
                 <div style='text-align:left; padding-bottom:2px;'>
@@ -38,7 +38,7 @@ Homepage
                 </div>
                 <div class='divhome'>
                         
-                        <button class="button_home" onclick="window.location.href='/adressbuchv2/persons/view/<?php echo rand(1,4772) ?>';"><?= __('Serendipity') ?></a></button>
+                        <button class="button_home" onclick="window.location.href='/persons/view/<?php echo rand(1,4772) ?>';"><?= __('Serendipity') ?></a></button>
                 </div>
              
               
