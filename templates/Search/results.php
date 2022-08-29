@@ -17,6 +17,7 @@
  $params = $this->request->getQueryParams();
  
  unset($params['Companies']);
+ unset($params['Persons']);
 
 ?>
 
