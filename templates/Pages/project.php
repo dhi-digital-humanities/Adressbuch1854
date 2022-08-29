@@ -90,8 +90,10 @@ Info Page Project
 		</div>
 	</div>
 </div>
+
 <div id='tab2' class='tabpanel' style='display:none'>
 	<div class="row2">
+		<div class="column-responsive column-80">
 		<div class="content4">
 			<br>
 			<p><?= __('Diese Dokumentation erklärt die Funktionsweise und den Aufbau der Datenbank und ihrer Website.') ?></p>
@@ -172,6 +174,7 @@ Info Page Project
 		</tr>
 </table>
 	</div>
+</div>
 </div>
 </div>
 <div id="tab3" class="tabpanel" style="display: none;">

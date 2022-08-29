@@ -197,7 +197,7 @@ input[type='checkbox'],input[type='radio']
 
 }
 }
-
+@media all and (min-width:450px){
 .container2
 
 {
@@ -207,6 +207,18 @@ input[type='checkbox'],input[type='radio']
   padding: 10px;
   
 }
+}
+@media all and (max-width:450px){
+  .container2
+  
+  {
+    
+    width: 100%;
+    padding: 10px;
+    
+  }
+  }
+  @media all and (min-width:550px){
 .container3
 
 {
@@ -216,6 +228,17 @@ input[type='checkbox'],input[type='radio']
   padding: 10px;
   
 }
+  }
+  @media all and (max-width:550px){
+    .container3
+    
+    {
+      
+      width: 100%;
+      padding: 10px;
+      
+    }
+    }
 .container6
 {
 
