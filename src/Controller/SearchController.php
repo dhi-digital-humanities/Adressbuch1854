@@ -14,6 +14,7 @@ class SearchController extends AppController
         // Load models for being able to access their data.
         $this->loadModel('Persons');
         $this->loadModel('Companies');
+        $this->loadModel('Profession');
 	}
 
     /**
@@ -73,7 +74,8 @@ class SearchController extends AppController
                 'ExternalReferences.ReferenceTypes',
                 'OriginalReferences',
                 'ProfCategories',
-                'Companies'
+                'Companies',
+                'Profession',
             ]);
 
         $companies = $this->Companies->find()
@@ -82,9 +84,14 @@ class SearchController extends AppController
                 'Addresses.Streets.Arrondissements',
                 'ExternalReferences.ReferenceTypes',
                 'OriginalReferences',
-                'ProfCategories'
+                'ProfCategories',
+                'Profession',
             ]);
-
+        
+            $total1 = $this->Persons->find()
+            ->count();
+            $total2 = $this->Companies->find()
+            ->count();
         // Perform a search according to the given search type (simple or detailed)
         switch ($this->request->getQuery('type')) {
             case 'simp':
@@ -118,7 +125,7 @@ class SearchController extends AppController
         }
         $this->paginate($persons, ['scope' => 'Persons']);
         $this->paginate($companies, ['scope' => 'Companies']);
-        $this->set(compact('persons', 'companies'));
+        $this->set(compact('persons', 'companies', 'total1', 'total2'));
 	}
 
 	/**
@@ -169,12 +176,14 @@ class SearchController extends AppController
 			$persons
 				->leftJoinWith('Addresses')
 				->leftJoinWith('Addresses.Streets')
+                ->innerJoinWith('Profession')
 				->where([
 					'OR' => [
 						['Persons.surname LIKE' => '%'.$token.'%'],
 						['Persons.first_name LIKE' => '%'.$token.'%'],
-						['Persons.title LIKE' => '%'.$token.'%'],
-						['Persons.profession_verbatim LIKE' => '%'.$token.'%'],
+						['Persons.zusatz LIKE' => '%'.$token.'%'],
+                        ['Profession.profession_unified LIKE' => '%'.$token.'%'],
+                        ['Profession.profession_verbatim LIKE' => '%'.$token.'%'],
 						['Persons.specification_verbatim LIKE' => '%'.$token.'%'],
 						['Persons.name_predicate LIKE' => '%'.$token.'%'],
 						['Streets.name_old_clean LIKE' => '%'.$token.'%'],
@@ -187,10 +196,12 @@ class SearchController extends AppController
 			$companies
 				->leftJoinWith('Addresses')
 				->leftJoinWith('Addresses.Streets')
+                ->innerJoinWith('Profession')
 				->where([
 					'OR' => [
 						['Companies.name LIKE' => '%'.$token.'%'],
-						['Companies.profession_verbatim LIKE' => '%'.$token.'%'],
+						['Profession.profession_unified LIKE' => '%'.$token.'%'],
+                        ['Profession.profession_verbatim LIKE' => '%'.$token.'%'],
 						['Companies.specification_verbatim LIKE' => '%'.$token.'%'],
 						['Streets.name_old_clean LIKE' => '%'.$token.'%'],
 						['Streets.name_new LIKE' => '%'.$token.'%'],
@@ -267,8 +278,20 @@ class SearchController extends AppController
 
 		// Query for $prof (given profession of a person or company)
 		if(!empty($prof)){
-			$persons->where(['Persons.profession_verbatim LIKE' => '%'.$prof.'%']);
-			$companies->where(['Companies.profession_verbatim LIKE' => '%'.$prof.'%']);
+            $persons->matching('Profession', function($q) use ($prof){
+                return $q->where(['OR' => [
+                    ['Profession.profession_verbatim LIKE' => '%'.$prof.'%'],
+                    ['Profession.profession_unified LIKE' => '%'.$prof.'%']
+                ]]);
+            }
+        );
+        $companies->matching('Profession', function($q) use ($prof){
+                return $q->where(['OR' => [
+                    ['Profession.profession_verbatim LIKE' => '%'.$prof.'%'],
+                    ['Profession.profession_unified LIKE' => '%'.$prof.'%']
+                ]]);
+            }
+        );
 		}
 
         // Query for $street (a person or company, that has at least one associated
@@ -388,7 +411,8 @@ public function persons()
                 'Companies.ProfCategories',
                 'Companies.Addresses.Streets',
                 'ExternalReferences.ReferenceTypes',
-                'OriginalReferences'
+                'OriginalReferences',
+                'Profession'
             ]
         ]);
 

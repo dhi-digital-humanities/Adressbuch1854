@@ -18,14 +18,17 @@ if(!isset($addrAsList)){
 	$addrAsList=false;
 }
 
+
+
 $this->Html->css('multiTable.css');
 ?>
+
 <div class="table-responsive">
 	<table>
 		<tr>
+		
 			
-			<th><?= $this->Paginator->sort('id')?></th>
-			
+		
 			<th><?= __('Name') ?></th>
 			
 			<th><?= __('Beruf') ?></th>
@@ -38,8 +41,8 @@ $this->Html->css('multiTable.css');
 		foreach ($persons as $person) : ?>
 		<?php
 			$name = '';
-			/*if(!empty($person->title)){
-				$name.=h($person->title).' ';
+			/*if(!empty($person->zusatz)){
+				$name.=h($person->zusatz).' ';
 			}*/
 			if(!empty($person->name_predicate)){
 				$name.=h($person->name_predicate).' ';
@@ -53,16 +56,17 @@ $this->Html->css('multiTable.css');
 			if($person->has('prof_category')){
 				array_push($cats, $person->prof_category->name);
 			}
-			if($person->has('social_status') && $person->social_status->status != 'Commoner'){
+			/*if($person->has('social_status') && $person->social_status->status != 'Commoner'){
 				array_push($cats, $person->social_status->status);
 			}
-			/*if($person->has('occupation_status') && $person->occupation_status->status != 'Active'){
+			if($person->has('occupation_status') && $person->occupation_status->status != 'Active'){
 				array_push($cats, $person->occupation_status->status);
-			}*/
-			/*if($person->has('military_status') && $person->military_status->status != 'Civil'){
+			}
+			if($person->has('military_status') && $person->military_status->status != 'Civil'){
 				array_push($cats, $person->military_status->status);
 			}*/
-
+			
+			
 			$plus = [];
 			if($person->has('ldh_rank')){
 				array_push($plus, $person->ldh_rank->rank);
@@ -82,14 +86,17 @@ $this->Html->css('multiTable.css');
 		?>
 		<tr>
 			
-			<td><?= $person->id ?></td>
+			
 			
 			<td><?= $this->Html->link(htmlspecialchars_decode($name, ENT_QUOTES), ['controller' => 'Persons', 'action' => 'view', $person->id]) ?></td>
 			
-			<td><?= h($person->profession_verbatim) ?></td>
+			<td><?php if(!empty($person->profession->profession_verbatim)){
+				echo $this->html->link($person->profession->profession_verbatim, ['controller'=>'Profession', 'action'=>'view', $person->profession->id]);
+			} ?></td>
+			</td>
 			<td><?php
 				if (!empty($person->addresses)){
-					echo htmlspecialchars_decode($this->element('addressList', ['addresses' => $person->addresses, 'list' => $addrAsList]));
+					echo strtolower(htmlspecialchars_decode($this->element('addressList', ['addresses' => $person->addresses, 'list' => $addrAsList])));
 				} 
 			?></td>
 			<td class="middle-width"><?= implode(', ', $plus)?></td>

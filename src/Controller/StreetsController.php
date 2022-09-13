@@ -82,6 +82,7 @@ class StreetsController extends AppController
                 'SocialStatuses',
                 'OccupationStatuses',
                 'ProfCategories',
+                'Profession',
                 'Addresses.Streets'
             ]);
 
@@ -91,12 +92,13 @@ class StreetsController extends AppController
             })
             ->distinct(['Persons.id']);
 
-        $persons = $this->paginate($persons, ['limit'=>10]);
+        $persons = $this->paginate($persons);
 
         $companies = $this->Companies->find()
             ->contain([
                 'Addresses.Streets',
-                'ProfCategories'
+                'ProfCategories',
+                'Profession',
             ]);
 
         $companies

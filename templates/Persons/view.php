@@ -39,8 +39,8 @@
 	}
 
 	$titles = [];
-	if(!empty($person->title)){
-		array_push($titles, $person->title);
+	if(!empty($person->zusatz)){
+		array_push($titles, $person->zusatz);
 	}
 	if($person->de_l_institut){
 		array_push($titles, 'de l\'Institut');
@@ -71,11 +71,11 @@
             <table>
             	<tr>
             		<th><?= __('Scan der Seite') ?></th>
-						<td>
+						<td style="display:flex">
 							<?php print image('http://adressbuch1854.dh.uni-koeln.de/scans/','SD/','BHVP_703983_',$begP);?><br>
 							<?php print scan_zotero($begP); ?>
 							<!-- si on veut mettre les OCR avec les scans -->
-							<?php //print text('/../Ocerisations/','BHVP_703983_',$begP); ?>		
+							<?php print text('/webroot/Ocerisations/','BHVP_703983_',$begP); ?>		
 							<details>
 								<summary><?= __('Seite in HD ansehen')?></summary>
 									<form>
@@ -117,16 +117,13 @@
 						} ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Titel') ?></th>
+                    <th><?= __('Zusatz') ?></th>
                     <td><?= implode(', ', $titles)?></td>
                 </tr>
-                <tr>
-                    <th><?= __('Anmerkungen wörtlich') ?></th>
-                    <td><?= h($person->specification_verbatim) ?></td>
-                </tr>
+             
                 <tr>
                 	<th><?= __('Beruf') ?></th>
-                	<?= profession_person($precision2, $pro_unified) ?>
+                	<td><?= $person->has('profession') ? $person->profession->profession_verbatim : '' ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Berufskategorie') ?></th>
@@ -173,9 +170,9 @@
 								<th><?= __('In Geschäftsliste')?></th>
 							</tr>
 							<tr>
-								<td><?=$person->bold ? __('Ja') : __('Nein');?></td>
-								<td><?=$person->notable_commercant ? __('Ja') : __('Nein');?></td>
-								<td><?=$person->advert ? __('Ja') : __('Nein');?></td>
+								<td style="border:none"><?=$person->bold ? __('Ja') : __('Nein');?></td>
+								<td style="border:none"><?=$person->notable_commercant ? __('Ja') : __('Nein');?></td>
+								<td style="border:none"><?=$person->advert ? __('Ja') : __('Nein');?></td>
 							</tr>
 						</table>
 					</td>
@@ -192,12 +189,12 @@
             </div>
             <?php endif; ?>
 			<?php if (!empty($person->external_references)) : ?>
-			<!--<div class="related">
+			<div class="related">
                 <details>
-					 '<summary title="'.__('Klicken für Details').'"><h4>'.__('Literatur- und Quellenhinweise').'</h4></summary>' ?>
-					 $this->element('externalReferenceMultiTable', ['externalReferences' => $person->external_references])?>
+					 <summary title="<?=__('Klicken für Details') ?>"><h4><?=__('Literatur- und Quellenhinweise')?></h4></summary>
+					<?= $this->element('externalReferenceMultiTable', ['externalReferences' => $person->external_references]) ?>
 				</details>
-				</div>-->
+				</div>
 				<?php endif; ?>
 				<br>
 			     <div class="csl-bib-body" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">

@@ -8,24 +8,38 @@ if(!isset($list)){
 	$list=false;
 }
 ?>
-<?= $list ? '<ul>' : ''?>
+<?= $list ? '<table>' : ''?>
 	<?php foreach($addresses as $address): ?>
 	<?php
+		$housNo = h($address->houseno);
+		if(!empty($address->houseno_specification)){
+			$housNo.=' '.h($address->houseno_specification);
+		}
+
 		$streetOld = h($address->street->name_old_clean);
 		$streetNew = h($address->street->name_new);
 		$street;
 		if($streetOld === $streetNew){
 			$street = $streetOld;
 		} else {
-			$street = $streetOld.' ('.$streetNew.')';
+			$street= '<tr><th>'.__('Alt Adresse').'</th><th>'.__('Neue adresse').'</th></tr>';
+			$street.= '<tr><td style="border:none">'.$housNo.' '.$this->Html->link($streetOld, ['controller' => 'Streets', 'action' => 'view', $address->street->id]).'</td><td style="border:none">'.$housNo.' '.$this->Html->link($streetNew, ['controller' => 'Streets', 'action' => 'view', $address->street->id]).'</td></tr>';
+		
 		}
 		if(empty($streetNew)){
 
 			$street = $streetOld;		
 		}
-		$housNo = h($address->houseno);
-		if(!empty($address->houseno_specification)){
-			$housNo.=' '.h($address->houseno_specification);
+		$street2;
+		if($streetOld === $streetNew){
+			$street2 = $streetOld;
+		} else {
+			$street2 = '<ul>'.$housNo.' '.$streetOld.'<br><strong>'.__('neue adresse: ').'</strong>'.$housNo.' '.$streetNew.'</ul>';
+		
+		}
+		if(empty($streetNew)){
+
+			$street2 = $streetOld;		
 		}
 
 		$spec = h($address->address_specification_verbatim);
@@ -34,10 +48,9 @@ if(!isset($list)){
 		$long = $address->geo_long;
 	?>
 	<?php if($list): ?>
-	<li>
+	
 		<?php
-			echo strtolower($this->Html->link($street, ['controller' => 'Streets', 'action' => 'view', $address->street->id]));
-			echo ' '.$housNo;
+			echo $street ;
 
 			if(!empty($spec)){
 				echo ', '.$spec;
@@ -49,12 +62,11 @@ if(!isset($list)){
 			// 	echo '<br>'.__('Geokoordinaten').': '.$lat.', '.$long.' '.__('(lat/long)');
 			// }
 		?>
-	</li>
+	
 	<?php else: ?>
 		<?php
-			echo $this->Html->link($street, ['controller' => 'Streets', 'action' => 'view', $address->street->id]);
-			echo ' '.$housNo.'<br>';
+			echo $this->Html->link($street2, ['controller' => 'Streets', 'action' => 'view', $address->street->id]);
 		?>
 	<?php endif; ?>
 	<?php endforeach; ?>
-<?= $list ? '</ul>' : ''?>
+<?= $list ? '</table>' : ''?>

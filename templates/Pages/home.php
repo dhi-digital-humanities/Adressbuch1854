@@ -21,7 +21,7 @@ Homepage
 <div class='header2'>
  
                 <h1 class='h1home'><?= __('Adressbuch der Deutschen in Paris von 1854') ?></h1>         
-                <p class='p1home'><?= __('Die Datenbank basiert auf einem gedruckten Buch, das deutsche Kaufleute, Unternehmer, Handwerker und andere Selbständige verzeichnet, die 1854 in Paris und den angrenzenden Vororten ansässig waren.')?></p>
+                <p class='p1home'><?= __('Die Datenbank basiert auf einem gedruckten Buch, das 4.772 deutsche Kaufleute, Unternehmer, Handwerker und andere Selbständige verzeichnet, die 1854 in Paris und den angrenzenden Vororten ansässig waren.')?></p>
         </div>
         <div class="header3">
                 <div class="divhome">
@@ -33,7 +33,7 @@ Homepage
                 <?= $this->Html->link(__('Personen'), ['controller'=> 'Persons', 'action'=>'index'],['class'=>'button2']) ?><br>
                 <?= $this->Html->link(__('Unternehmen'), ['controller'=>'Companies', 'action'=>'index'],['class'=>'button2'])?><br>
                 <?= $this->Html->link(__('Straßen'), ['controller'=>'Streets', 'action'=>'index'],['class'=>'button2'])?><br>
-                <?= $this->Html->link(__('Arrondissements'), ['controller'=>'Arrondissements', 'action'=>'index'],['class'=>'button2']) ?>
+                <?= $this->Html->link(__('Berufe'), ['controller'=>'Profession', 'action'=>'index'],['class'=>'button2']) ?>
 </div>
                 </div>
                 <div class='divhome'>

@@ -7,9 +7,9 @@
 
 		    	  	$code_span= '<span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=bookitem&amp;rft.atitle=';
 			        $code_span.=$street_name;
-			        $code_span.='&amp;rft.description=Die Straße heute: ';
+			        $code_span.='&amp;rft.description=neue straße: ';
 			        $code_span.=$street_new;
-			        $code_span.='. Vor 1860, die Straße war in: ';
+			        $code_span.='. alt straße: ';
 			        $code_span.=$no_old;
 			        $code_span.=' Arrondissements. Nach 1860 die Straße ist in: ' ;
 			        $code_span.=$no_new;
@@ -94,7 +94,7 @@
 
 					function image($path, $size, $id, $begP)
 						{
-							$code_html_image = "<a target='_blank' href='http://adressbuch1854.dh.uni-koeln.de/scans/HD/BHVP_703983_$begP.jpg'>";
+							$code_html_image = "<a target='_blank' href='http://adressbuch1854.dhi-paris.fr/scans/HD/BHVP_703983_$begP.jpg'>";
 							$code_html_image.=" <img src='";
 							$code_html_image.= $path;
 							$code_html_image.= $size;
@@ -102,7 +102,7 @@
 							$code_html_image.= $begP;
 							$code_html_image.= ".jpg'";
 							$code_html_image.= " width = '100'";
-							$code_html_image.= "title= 'IHA zur Nutzung der Seite $begP'";
+							$code_html_image.= "title= 'IHA zur Nutzung der Seite $begP'></a>";
 
 
 						return ($code_html_image); 
@@ -145,7 +145,7 @@
         		}
     				else
         		{
-        		echo  '<td><table><tr><th>'. __('Beruf verbatim').'</th><th>'.__('Beruf clean').'</th></tr><tr><td>'.$precision2.'</td><td>'.$pro_unified.'</td></tr></table><td>';
+        		echo  '<td><table><tr><th>'. __('Beruf verbatim').'</th><th>'.__('Beruf clean').'</th></tr><tr><td style="border:none">'.$precision2.'</td><td style="border:none">'.$pro_unified.'</td></tr></table><td>';
     				}
     			}
 
@@ -157,6 +157,6 @@
         		}
     				else
         		{
-        		echo  '<td><table><tr><th>'. __('Beruf verbatim').'</th><th>'.__('Beruf clean').'</th></tr><tr><td>'.$profession.'</td><td>'.$p_unified.'</td></tr></table><td>';
+        		echo  '<td><table><tr><th>'. __('Beruf verbatim').'</th><th>'.__('Beruf clean').'</th></tr><tr><td style="border:none">'.$profession.'</td><td style="border:none">'.$p_unified.'</td></tr></table><td>';
     				}
     			}
