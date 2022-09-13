@@ -16,6 +16,7 @@ use Cake\Validation\Validator;
  * @property \App\Model\Table\ExternalReferencesTable&\Cake\ORM\Association\BelongsToMany $ExternalReferences
  * @property \App\Model\Table\OriginalReferencesTable&\Cake\ORM\Association\BelongsToMany $OriginalReferences
  * @property \App\Model\Table\PersonsTable&\Cake\ORM\Association\BelongsToMany $Persons
+ * @property \App\Model\Table\ProfessionTable&\Cake\ORM\Association\BelongsTo $Profession
  *
  * @method \App\Model\Entity\Company get($primaryKey, $options = [])
  * @method \App\Model\Entity\Company newEntity($data = null, array $options = [])
@@ -44,6 +45,9 @@ class CompaniesTable extends Table
 
         $this->belongsTo('ProfCategories', [
             'foreignKey' => 'prof_category_id',
+        ]);
+        $this->belongsTo('Profession', [
+            'foreignKey' => 'profession_id'
         ]);
         $this->belongsToMany('Addresses', [
             'foreignKey' => 'company_id',
@@ -84,15 +88,6 @@ class CompaniesTable extends Table
             ->maxLength('name', 62)
             ->allowEmptyString('name');
 		
-        $validator
-            ->scalar('profession_verbatim')
-            ->maxLength('profession_verbatim', 128)
-            ->allowEmptyString('profession_verbatim');
-
-        $validator
-            ->scalar('profession_unified')
-            ->maxLength('profession_unified', 128)
-            ->allowEmptyString('profession_unified');
 		
         $validator
             ->scalar('specification_verbatim')
@@ -112,6 +107,8 @@ class CompaniesTable extends Table
     public function buildRules(RulesChecker $rules): RulesChecker
     {
         $rules->add($rules->existsIn(['prof_category_id'], 'ProfCategories'));
+        $rules->add($rules->existsIn(['profession_id'], 'Profession'));
+        
 
         return $rules;
     }

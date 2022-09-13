@@ -28,6 +28,7 @@ function initializeMap() {
         scrollWheelZoom: true,
         transparent: true,
         zoom: 12,
+        minZoom:12,
     });
 
     L.tileLayer("http://{s}.tile.openstreetmap.de/{z}/{x}/{y}.png", {
@@ -129,7 +130,7 @@ function initializeMap() {
     var controlMap = { "Open Street Map": leafletMap, " Karte Etat Major 1820-1866": cartohisto };
     var otherLayers = {"Arrondissements vor 1860" : shapefile, "Arrondissements nach 1860" : arrondissement2, "Viertel": quartiers};
 
-    L.control.layers(controlMap, otherLayers).addTo(leafletMap);
+    L.control.layers(controlMap, otherLayers, {collapsed:false}).addTo(leafletMap);
 
     // //Use via Leaflet plugin fullscreen https://github.com/Leaflet/Leaflet.fullscreen
 

@@ -12,11 +12,10 @@ use Cake\ORM\Entity;
  * @property string|null $surname
  * @property string|null $first_name
  * @property string|null $gender
- * @property string|null $title
+ * @property string|null $zusatz
  * @property string|null $name_predicate
  * @property string|null $specification_verbatim
- * @property string|null $profession_verbatim
- * @property string|null $profession_unified
+ * @property int $profession_id
  * @property bool|null $des_Instituts
  * @property bool|null $notable_commercant
  * @property bool|null $bold
@@ -36,6 +35,7 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\Company[] $companies
  * @property \App\Model\Entity\ExternalReference[] $external_references
  * @property \App\Model\Entity\OriginalReference[] $original_references
+ * @property \App\Model\Entity\Profession[] $profession
  */
 class Person extends Entity
 {
@@ -52,11 +52,10 @@ class Person extends Entity
         'surname' => true,
         'first_name' => true,
         'gender' => true,
-        'title' => true,
+        'zusatz' => true,
         'name_predicate' => true,
         'specification_verbatim' => true,
-        'profession_verbatim' => true,
-        'profession_unified' =>true,
+        'profession_id'=>true,
         'de_l_institut' => true,
         'notable_commercant' => true,
         'bold' => true,
@@ -75,6 +74,6 @@ class Person extends Entity
         'companies' => true,
         'external_references' => true,
         'original_references' => true,
-        
+        'profession'=>true,
     ];
 }

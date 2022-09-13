@@ -17,6 +17,7 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\ExternalReference[] $external_references
  * @property \App\Model\Entity\OriginalReference[] $original_references
  * @property \App\Model\Entity\Person[] $persons
+ * @property \App\Model\Entity\Profession[] $profession
  */
 class Company extends Entity
 {
@@ -31,11 +32,10 @@ class Company extends Entity
      */
     protected $_accessible = [
         'name' => true,
-		'profession_verbatim' => true,
-        'profession_unified' => true,
+		'profession_id'=>true,
 		'specification_verbatim' => true,
+        'profession_id' => true,
         'prof_category_id' => true,
-        'prof_category' => true,
 		'notable_commercant' => true,
         'bold' => true,
         'advert' => true,
@@ -43,5 +43,6 @@ class Company extends Entity
         'external_references' => true,
         'original_references' => true,
         'persons' => true,
+        'profession' =>true,
     ];
 }

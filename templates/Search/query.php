@@ -70,9 +70,18 @@
 <div class="row2">
     <div class="column-responsive column-80">
         <div class="search form content4">
-            <?= $this->Form->create($persons, ['type' => 'get', 'url' => '/search/results']) ?>
+		<h5 class="heading"><?= __('Freitextsuche')?></h5>
+		<?= $this->Form->create(null, ['type' => 'get', 'url' => '/search/results', 'style'=>'display:flex']) ?>
+                <?php
+                // Set parameter for search type to "simple"
+                echo $this->Form->hidden('type', ['value' => 'simp']);
+                echo $this->Form->control('text', ['maxlength' => 256, 'label' => false, 'class'=>'textarea2']);?>
+                <?= $this->Form->button(__('Start'), ['class' => 'button_home2']) ?>
+                <?= $this->Form->end() ?>
             <fieldset>
+			<?= $this->Form->create($persons, ['type' => 'get', 'url' => '/search/results']) ?>
 				<?php
+				
 					// Set parameter for search type to "detailed"
 					echo $this->Form->hidden('type', ['value' => 'det']);
 				?>
@@ -135,6 +144,7 @@
 				</div>
 
 			<?= $this->Form->button(__('Suche')) ?>
+			<?= $this->Form->button(__('Reset'), array('type'=>'reset')); ?>
             <?= $this->Form->end() ?><br>
 			<p><?= __('Tipp: Probieren Sie verschiedene Schreibweisen von Personen- und Straßennamen aus (mit und ohne Umlaute z.B.) und suchen Sie zunächst ohne Vornamen, da diese häufig nicht vorhanden oder abgekürzt sind.')?></p>
         </div>

@@ -70,7 +70,7 @@ $uri = $this->request->getRequestTarget();
             	   					</td> 
             				</tr>
             				<tr>
-            					<th> __('Volltexterkennung')?></th>
+            					<th><?= __('Volltexterkennung')?></th>
             						<td>
             						<details>
 										<summary><?= __('Volltext der Seite ansehen')?></summary>
@@ -138,22 +138,18 @@ $uri = $this->request->getRequestTarget();
 					<?= $this->element('externalReferenceMultiTable', ['externalReferences' => $company->external_references])?>
 				</details>
 			</div>
-			<div>
-<?php endif; ?>
-			     
-
-</div>
-
-<br><div class="csl-bib-body" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">
+				<?php endif; ?>
+				<br><div class="csl-bib-body" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">
 				<div class="csl-entry">Zitierhinweis: <?php echo $nachname ?>, in: Adressbuch der Deutschen in Paris für das Jahr 1854, S.<?php echo $begP ?>, hg. v. F.A. Kronauge, Paris. Elektronische Edition, DHI Paris 2022, <a target="_blank" href='<?php  $this->request->getUri() ?>'><?php echo $this->request->getUri() ?></a>, CC-BY 4.0.</div>
 
 <?php print zoterocomp($nachname, $prof_category, $specification, $profession, $addr_no, $addr_old, $addr_new, $begP);?>
 </div>
+			
+</div>
+</div>
+</div>
+</div>
 
-</div>
-</div>
-</div>
-</div>
 	<div id='maptab' class='tabpanel' style='display:none'>	
 		<div class="bigMap">
 			<div id="mapBox" class="content" onload="initializeMap()">

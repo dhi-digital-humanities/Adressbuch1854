@@ -21,6 +21,7 @@ class PersonsController extends AppController
      */
     public function index()
     {
+
         $format = $this->request->getQuery('export');
         if(!empty($format)){
             $format = strtolower($format);
@@ -41,6 +42,7 @@ class PersonsController extends AppController
                     'SocialStatuses',
                     'OccupationStatuses',
                     'ProfCategories',
+                    'Profession',
                     'Addresses.Streets',
 
                     
@@ -57,22 +59,33 @@ class PersonsController extends AppController
                 'SocialStatuses',
                 'OccupationStatuses',
                 'ProfCategories',
+                'Profession',
                 'Addresses.Streets',
                 
             ])
             ->limit(20);
         }
-         $persons = $this->paginate($this->Persons,
-            ['contain'=>['Addresses.Streets',
-                        'LdhRanks',
-                        'MilitaryStatuses',
-                        'SocialStatuses',
-                        'OccupationStatuses',
-                        'ProfCategories',
-                            ]],['limit'=>20]);
+         $persons = $this->paginate($this->Persons->find(
+            'all', array('order'=>array('surname ASC'))
+         ) 
+         ->contain([
+            'Addresses.Streets',
+            'LdhRanks',
+            'MilitaryStatuses',
+            'SocialStatuses',
+            'OccupationStatuses',
+            'ProfCategories',
+            'Profession',
+        ])
+        ->limit(20)
+         );
+
+         $total = $this->Persons->find()
+         ->count();
+            
     {
 
-        $this->set(compact('persons'));
+        $this->set(compact('persons','total'));
     }
 
 }
@@ -95,6 +108,7 @@ public function view($id = null)
                 'SocialStatuses',
                 'OccupationStatuses',
                 'ProfCategories',
+                'Profession',
                 'Addresses.Streets.Arrondissements',
                 'Companies.ProfCategories',
                 'Companies.Addresses.Streets',
@@ -105,7 +119,10 @@ public function view($id = null)
             ]
         ]);
 
+       
+
         $this->set(compact('person'));
         
     }
+
 }

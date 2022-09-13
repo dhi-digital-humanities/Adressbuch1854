@@ -47,7 +47,12 @@ class CompaniesController extends AppController
                 'Addresses.Streets'])
             ->limit(20);
         }
-         $companies = $this->paginate($this->Companies,['contain'=>['ProfCategories','Addresses.Streets'],['limit'=>20]]);
+         $companies = $this->paginate($this->Companies->find(
+         'all', array('order'=>array('Companies.name ASC')))
+         ->contain(['ProfCategories',
+                    'Addresses.Streets',
+                    'Profession'])
+         ->limit(20));
         {
         $this->set(compact('companies'));
 
@@ -70,6 +75,7 @@ class CompaniesController extends AppController
                 'Addresses.Streets.Arrondissements',
                 'ExternalReferences.ReferenceTypes',
                 'OriginalReferences',
+                'Profession',
                 'Persons.ProfCategories',
                 'Persons.SocialStatuses',
                 'Persons.MilitaryStatuses',

@@ -4,16 +4,16 @@ Info Page Related Articles
 */
 ?>
 
+
 <div class="row">
-    <?= $this->element('sideNav', ['mapBox' => false, 'export' => 'simple'])?>
     <div class="column-responsive column-80">
-		<div class="content">
+		<div class="content4">
 			<h3><?= __('Links und Publikationen') ?></h3>
 	<table>
 		<tr>
 			<td>
 				<div class="csl-bib-body" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">
-  				<div class="csl-entry"><i>Archives de Paris: Correspondance entre les anciens et nouveaux arrondissements</i>, <a href="http://archives.paris.fr/_depot_ad75/_depot_arko/articles/47/correspondance-entre-les-arrondissements-anciens-et-nouveaux_doc.pdf">http://archives.paris.fr/_depot_ad75/_depot_arko/articles/47/correspondance-entre-les-arrondissements-anciens-et-nouveaux_doc.pdf</a>.</div>
+  				<div class="csl-entry"><i>Archives de Paris: Correspondance entre les anciens et nouveaux arrondissements</i>, <a href="http://archives.paris.fr/_depot_ad75/_depot_arko/articles/47/correspondance-entre-les-arrondissements-anciens-et-nouveaux_doc.pdf">http://archives.paris.fr</a>.</div>
  				 <span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rft.type=document&amp;rft.title=Archives de Paris&amp;rft.description=Correspondance entre les anciens et nouveaux arrondissements&amp;rft.identifier=http%3A%2F%2Farchives.paris.fr%2F_depot_ad75%2F_depot_arko%2Farticles%2F47%2Fcorrespondance-entre-les-arrondissements-anciens-et-nouveaux_doc.pdf&amp;rft.language=FR"></span>
 				</div>
 			</td>
@@ -23,7 +23,7 @@ Info Page Related Articles
 				<div class="csl-bib-body" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">
   				<div class="csl-entry"><i>History of work information system</i>, <a href="https://historyofwork.iisg.nl/index.php">https://historyofwork.iisg.nl/index.php</a>.</div>
   				<span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rft.type=document&amp;rft.title=History%20of%20work%20information%20system&amp;rft.identifier=https%3A%2F%2Fhistoryofwork.iisg.nl%2Findex.php"></span>
-</div>
+				</div>
 			</td>
 		</tr>
 		<tr>
@@ -85,7 +85,7 @@ Info Page Related Articles
 	<tr>
 		<td>
 			<div class="csl-bib-body" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">
-			<div class="csl-entry">König, Mareike, Wolfgang Gipper, Petra Götte, et Elke Kleinau. «&nbsp;Konfliktdeladene Kulturvermittlung: deutsche Dienstmädchen und Erzieherinnen in Paris um 1900&nbsp;». In <i>Transkulturalität:gender und bildungshistoriche Perspektive</i>, Bielfeld., 237‑55, 2008.</div>
+			<div class="csl-entry">König, Mareike, Wolfgang Gipper, Petra Götte, et Elke Kleinau. «&nbsp;Konfliktgeladene Kulturvermittlung: deutsche Dienstmädchen und Erzieherinnen in Paris um 1900&nbsp;». In <i>Transkulturalität: gender- und bildungshistorische Perspektiven</i>, Bielefeld., 237‑55, 2008.</div>
   			<span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=bookitem&amp;rft.atitle=Konfliktdeladene%20Kulturvermittlung%3A%20deutsche%20Dienstm%C3%A4dchen%20und%20Erzieherinnen%20in%20Paris%20um%201900&amp;rft.edition=Bielfeld&amp;rft.aufirst=Mareike&amp;rft.aulast=K%C3%B6nig&amp;rft.au=Mareike%20K%C3%B6nig&amp;rft.au=Wolfgang%20Gipper&amp;rft.au=Petra%20G%C3%B6tte&amp;rft.au=Elke%20Kleinau&amp;rft.date=2008&amp;rft.pages=237-255&amp;rft.spage=237&amp;rft.epage=255&amp;rft.language=de-DE"></span></div>
 		</td>
 	</tr>
@@ -104,9 +104,6 @@ Info Page Related Articles
 		</td>
 	</tr>
 </table>
-</div>
-<br>
-<div class='content'>
 	<h3><?= __('Software')?></h3>
 <table>
 	<tr>

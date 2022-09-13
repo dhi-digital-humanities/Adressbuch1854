@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Person[]|\Cake\Collection\CollectionInterface $persons
  */
+
  
 $params = $this->request->getQueryParams();
 unset($params['Persons[page]']);
@@ -27,6 +28,7 @@ $uri = $this->request->getRequestTarget();
 			<div class="column-responsive column-80">
 				<div class="content">
 					<h3><?= __('Personen') ?></h3>
+					
 					<?= $this->element('personsMultiTable', ['count' => true, 'persons' => $persons, 'offset' => (($this->Paginator->current('Persons')-1) * $this->Paginator->param('perPage'))])?>
 					<div class="paginator">
 						<ul class="pagination">
@@ -36,8 +38,8 @@ $uri = $this->request->getRequestTarget();
 						<?= $this->Paginator->next(__('vor') . ' >') ?>
 						<?= $this->Paginator->last(__('Ende') . ' >>') ?>
 						</ul>
-						<p><?= $this->Paginator->counter(__('Seite {{page}} von {{pages}}, zeige {{current}} Person(en) von {{count}}')) ?></p>
-					</div>
+						<p><?= $this->Paginator->counter(__('Seite {{page}} von {{pages}}, zeige {{current}} Person(en) von '.$this->Number->format($total, ['locale'=>'fr_FR']))) ?></p>
+						</div>
 				</div>
 			</div>
 		</div>

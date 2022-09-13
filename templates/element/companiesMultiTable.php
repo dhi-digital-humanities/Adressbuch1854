@@ -24,9 +24,9 @@ $this->Html->css('multiTable.css');
 <div class="table-responsive">
 	<table>
 		<tr>
-			<?php if($count):?>
-			<th><?= __('Nr') ?></th>
-			<?php endif;?>
+			
+			
+			
 			<th><?= __('Name') ?></th>
 			<th><?= __('Beruf') ?></th>
 			<th><?= __('Adresse(n)') ?></th>
@@ -53,14 +53,16 @@ $this->Html->css('multiTable.css');
 			}
 		?>
 		<tr>
-			<?php if($count):?>
-			<td><?= $this->Number->format($countNo)?></td>
-			<?php endif;?>
+			
+			
+			
 			<td><?= $this->Html->link(h($company->name), ['controller' => 'Companies', 'action' => 'view', $company->id]) ?></td>
-			<td><?= h($company->profession_verbatim) ?></td>
+			<td><?php if(!empty($company->profession->profession_verbatim)){
+				echo $this->Html->link($company->profession->profession_verbatim, ['controller'=>'Profession','action'=>'view', $company->profession->id]);
+				}?></td>
 			<td><?php
 				if (!empty($company->addresses)){
-					echo htmlspecialchars_decode($this->element('addressList', ['addresses' => $company->addresses, 'list' => $addrAsList]));
+					echo strtolower(htmlspecialchars_decode($this->element('addressList', ['addresses' => $company->addresses, 'list' => $addrAsList])));
 				}
 			?></td>
 			<td class="middle-width"><?= implode(', ', $cats)?></td>
