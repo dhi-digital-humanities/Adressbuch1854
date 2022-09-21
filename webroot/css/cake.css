@@ -402,8 +402,8 @@ th {
     
 }
 
-.content4 {
-    overflow-y: auto;
+.content5 {
+    height: 650px;
 }
 
 .background {
@@ -466,7 +466,8 @@ th {
 @media all and (min-width:800px){
 .textarea2 {
 
-    width:555px !important;
+    width:662px !important;
+    margin-right:10px !important;
 
 }
 }

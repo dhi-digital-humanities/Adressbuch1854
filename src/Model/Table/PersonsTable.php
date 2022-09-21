@@ -11,6 +11,7 @@ use Cake\Validation\Validator;
 /**
  * Persons Model
  *
+ * @property \App\Model\Table\ProfessionTable&\Cake\ORM\Association\BelongsTo $Profession
  * @property \App\Model\Table\LdhRanksTable&\Cake\ORM\Association\BelongsTo $LdhRanks
  * @property \App\Model\Table\MilitaryStatusesTable&\Cake\ORM\Association\BelongsTo $MilitaryStatuses
  * @property \App\Model\Table\SocialStatusesTable&\Cake\ORM\Association\BelongsTo $SocialStatuses
@@ -43,9 +44,12 @@ class PersonsTable extends Table
         parent::initialize($config);
 
         $this->setTable('persons');
-        $this->setDisplayField('title');
+        $this->setDisplayField('zusatz');
         $this->setPrimaryKey('id');
 
+        $this->belongsTo('Profession', [
+            'foreignKey' => 'profession_id'
+        ]);
         $this->belongsTo('LdhRanks', [
             'foreignKey' => 'ldh_rank_id',
         ]);
@@ -110,9 +114,9 @@ class PersonsTable extends Table
             ->allowEmptyString('gender');
 
         $validator
-            ->scalar('title')
-            ->maxLength('title', 42)
-            ->allowEmptyString('title');
+            ->scalar('zusatz')
+            ->maxLength('zusatz', 42)
+            ->allowEmptyString('zusatz');
 
         $validator
             ->scalar('name_predicate')
@@ -123,16 +127,6 @@ class PersonsTable extends Table
             ->scalar('specification_verbatim')
             ->maxLength('specification_verbatim', 128)
             ->allowEmptyString('specification_verbatim');
-
-        $validator
-            ->scalar('profession_verbatim')
-            ->maxLength('profession_verbatim', 128)
-            ->allowEmptyString('profession_verbatim');
-
-        $validator
-            ->scalar('profession_unified')
-            ->maxLength('profession_unified', 128)
-            ->allowEmptyString('profession_unified');
 
         $validator
             ->boolean('de_l_institut')
@@ -167,6 +161,7 @@ class PersonsTable extends Table
         $rules->add($rules->existsIn(['social_status_id'], 'SocialStatuses'));
         $rules->add($rules->existsIn(['occupation_status_id'], 'OccupationStatuses'));
         $rules->add($rules->existsIn(['prof_category_id'], 'ProfCategories'));
+        $rules->add($rules->existsIn(['profession_id'], 'Profession'));
 
         return $rules;
     }

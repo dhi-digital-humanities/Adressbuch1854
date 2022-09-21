@@ -17,7 +17,7 @@ return [
      * Development Mode:
      * true: Errors and warnings shown.
      */
-    'debug' => filter_var(env('DEBUG', false), FILTER_VALIDATE_BOOLEAN),
+    'debug' => filter_var(env('DEBUG', true), FILTER_VALIDATE_BOOLEAN),
 
     /*
      * Configure basic information about the application.
@@ -177,7 +177,7 @@ return [
      *   breathing room to complete logging or error handling.
      */
     'Error' => [
-        'errorLevel' => E_ALL,
+        'errorLevel' => E_ALL ^ E_DEPRECATED ^ E_USER_DEPRECATED,
         'exceptionRenderer' => ExceptionRenderer::class,
         'skipLog' => [],
         'log' => true,

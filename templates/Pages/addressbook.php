@@ -20,7 +20,7 @@ Info Page Addressbook
 		<div class="content4">
 			<br>
 
-				<p><?= __('Das gedruckte "Adressbuch der Deutschen in Paris von 1854" verzeichnet selbständige Deutsche, die 1854 in Paris und den angrenzenden Vororten ansässig waren. Alphabetisch geordnet findet man in diesen frühen "Gelben Seiten“ 4.772 Adressen, ganz überwiegend Handwerker - Tischler, Schreiner, Schneider, Goldschmiede und Drucker -, außerdem Unternehmer, Händler und Bankiers sowie freie Berufe wie Ärzte, Schriftsteller, Architekten, Künstler und Musiker. Auch 286 Frauen sind im Adressbuch verzeichnet, vor allem aus dem Bereich Handwerk und Handel (davon 103 in den Bereichen Mode, Kurzwaren, Weißzeug) sowie Adelige, Lehrerinnen und Hebammen.')?></p>
+				<p><?= __('Das 1854 im Eigenverlag von F.A. Kronauge publizierte "Adressbuch der Deutschen in Paris" verzeichnet selbständige Deutsche, die in Paris und den angrenzenden Vororten ansässig waren. Alphabetisch geordnet findet man in diesen frühen "Gelben Seiten“ 4.772 Adressen, ganz überwiegend Handwerker - Tischler, Schreiner, Schneider, Goldschmiede und Drucker -, außerdem Unternehmer, Händler und Bankiers sowie freie Berufe wie Ärzte, Schriftsteller, Architekten, Künstler und Musiker. Auch 286 Frauen sind im Adressbuch verzeichnet, vor allem aus dem Bereich Handwerk und Handel (davon 103 in den Bereichen Mode, Kurzwaren, Weißzeug) sowie Adelige, Lehrerinnen und Hebammen.')?></p>
 
 				<br>
 				<div class="image2">
