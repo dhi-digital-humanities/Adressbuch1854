@@ -75,7 +75,7 @@ Info Page Project
 					<p><?= __('(1) In der Datenbank LEONORE der Archives Nationales können die Namen der mit der Légion d’honneur ausgezeichneten Personen für eine weitere Recherche nachgeschlagen werden: ') ?><a target='blank' href='https://www.leonore.archives-nationales.culture.gouv.fr/ui/'>https://www.leonore.archives-nationales.culture.gouv.fr/ui/</a></p>
 				</em>
 				<em>
-					<p><?=__('(2) Hillairet, Jacques, Dictionnaire historique des rues de Paris Paris, 1963.')?></p>
+					<p><?=__('(2) Hillairet, Jacques, Dictionnaire historique des rues de Paris, Paris, 1963.')?></p>
 				</em>
 				
 				  <br>
