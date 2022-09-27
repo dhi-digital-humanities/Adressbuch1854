@@ -35,7 +35,7 @@ Datenschutz
 
             <p><strong><?= __('3. Einwilligung in weitergehende Datennutzung')?></strong></p>
 
-            <p><?= __('Die Nutzung bestimmter Funktionen (z. B. Freigabe von Digitalisaten) unseres Internetangebotes erfordert die Angabe und weitergehende Verarbeitung personenbezogener Daten. Mit Angabe und Übersendung der erfragten Daten willigen Sie in deren Verarbeitung ein. Sie können diese Einwilligung jederzeit für die Zukunft widerrufen (bibliothek@dhi-paris.fr).') ?></p>           
+            <p><?= __('Die Nutzung bestimmter Funktionen (z. B. Freigabe von Digitalisaten) unseres Internetangebotes erfordert die Angabe und weitergehende Verarbeitung personenbezogener Daten. Mit Angabe und Übersendung der erfragten Daten willigen Sie in deren Verarbeitung ein. Sie können diese Einwilligung jederzeit für die Zukunft widerrufen (<a href="mailto:bibliothek@dhi-paris.fr">bibliothek@dhi-paris.fr</a>).') ?></p>           
 
             <p><strong><?= __('4. Einsatz von Cookies') ?></strong></p>
 
@@ -57,7 +57,7 @@ Datenschutz
 
             <p><?= __('Diese Datenschutzerklärung datiert vom 01. Dezember 2020. Durch Weiterentwicklung unserer Webseite oder die Implementierung neuer Technologien kann es notwendig werden, diese Datenschutzvereinbarung zu ändern. Das DHI Paris behält sich vor, diese Datenschutzerklärung jederzeit zu ändern. Sollte es Änderungen der aktuellen Datenschutzerklärung geben, werden die User auf der Startseite darauf hingewiesen.')?> </p>
 
-            <p><?= __('Verantwortlich ist die Max Weber Stiftung, DHI Paris, Dr. Mareike König, 8, Rue du Parc Royal, 75003 Paris, Frankreich, Tel. +33(0)144542380, bibliothek@dhi-paris.fr. Der Datenschutzbeauftragte der Stiftung ist Reinhard Hiß, MWS Geschäftsstelle, Rheinallee 6, 53173 Bonn, Deutschland, Tel. +49(228)37786-14, datenschutz@maxweberstiftung.de. Aufsichtsbehörde ist der BfDI, Gaurheindorfer Strasse 153, 53117 Bonn, Deutschland.')?></p>
+            <p><?= __('Verantwortlich ist die Max Weber Stiftung, DHI Paris, Dr. Mareike König, 8, Rue du Parc Royal, 75003 Paris, Frankreich, Tel. +33(0)144542380, <a href="mailto:bibliothek@dhi-paris.fr">bibliothek@dhi-paris.fr</a>. Der Datenschutzbeauftragte der Stiftung ist Reinhard Hiß, MWS Geschäftsstelle, Rheinallee 6, 53173 Bonn, Deutschland, Tel. +49(228)37786-14, <a href="mailto:datenschutz@maxweberstiftung.de">datenschutz@maxweberstiftung.de</a>. Aufsichtsbehörde ist der BfDI, Gaurheindorfer Strasse 153, 53117 Bonn, Deutschland.')?></p>
 
             
         </div>

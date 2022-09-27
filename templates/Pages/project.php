@@ -20,7 +20,7 @@ Info Page Project
     <div class="column-responsive column-80">
 		<div class="content4">
 			<br>
-			<p><?= __('Dies ist die zwischen 2020 und 2022 vollständig überarbeitete Datenbank „Adressbuch der Deutschen in Paris von 1854“. Eine erste Version war 2006 online gestellt worden (siehe unten). Die Neufassung zielte auf die <em>FAIRification</em> der Daten, die Digitalisierung des Druckexemplars, den Relaunch der Website sowie die Visualisierung der Daten auf einer historischen Karte. Für alle Anwendungen wurden Open Source-Produkte verwendet. Der Code ist bei GitHub hinterlegt (siehe Dokumentation). Ein Export der Daten ist in den Formaten csv, xml und JSON möglich. Der vollständige Datensatz kann unter CC-BY 4.0 bei Zenodo heruntergeladen werden: <a href="https://doi.org/10.5281/zenodo.5524880"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.5524880.svg" alt="DOI"></a>') ?></p>
+			<p><?= __('Dies ist die zwischen 2020 und 2022 vollständig überarbeitete Datenbank „Adressbuch der Deutschen in Paris von 1854“. Eine erste Version war 2006 online gestellt worden (siehe unten). Die Neufassung zielte auf die <em>FAIRification</em> der Daten, die Digitalisierung des Druckexemplars, den Relaunch der Website sowie die Visualisierung der Daten auf einer historischen Karte. Für alle Anwendungen wurden Open Source-Produkte verwendet. Der Code ist bei GitHub hinterlegt (siehe Dokumentation). Ein Export der Daten ist in den Formaten CSV, XML und JSON möglich. Der vollständige Datensatz kann unter <a target="blank" href="https://creativecommons.org/licenses/by/4.0/deed.fr">CC-BY 4.0</a> bei Zenodo heruntergeladen werden: <a target="blank" href="https://doi.org/10.5281/zenodo.5524880"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.5524880.svg" alt="DOI"></a>') ?></p>
 
 			<h4><?= __('Angaben aus dem Adressbuch') ?></h4>
 			<p><?= __('Die Datenbank enthält alle Angaben aus dem "Adressbuch der Deutschen in Paris" von 1854: Name, Vorname (sofern vorhanden), Straße, Hausnummer und Beruf.')?></p>
@@ -75,7 +75,7 @@ Info Page Project
 					<p><?= __('(1) In der Datenbank LEONORE der Archives Nationales können die Namen der mit der Légion d’honneur ausgezeichneten Personen für eine weitere Recherche nachgeschlagen werden: ') ?><a target='blank' href='https://www.leonore.archives-nationales.culture.gouv.fr/ui/'>https://www.leonore.archives-nationales.culture.gouv.fr/ui/</a></p>
 				</em>
 				<em>
-					<p><?=__('(2) Hillairet, Jacques, Dictionnaire historique des rues de Paris Paris, 1963.')?></p>
+					<p><?=__('(2) Hillairet, Jacques, Dictionnaire historique des rues de Paris, Paris, 1963.')?></p>
 				</em>
 				
 				  <br>
