@@ -5,7 +5,7 @@ A project by Deutsches Historisches Institut Paris (DHIP), Department for Digita
 
 Website of the DHIP: https://www.dhi-paris.fr/home.html
 
-Website of the Department: https://www.dhi-paris.fr/forschung/digital-humanities.html
+Website of the Department: https://www.dhi-paris.fr/de/forschung/digitale-geschichtswissenschaft.html
 
 
 Development Framework: CakePHP Version 4.0

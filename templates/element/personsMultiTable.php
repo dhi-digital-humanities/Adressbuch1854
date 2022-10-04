@@ -96,7 +96,7 @@ $this->Html->css('multiTable.css');
 			</td>
 			<td><?php
 				if (!empty($person->addresses)){
-					echo strtolower(htmlspecialchars_decode($this->element('addressList', ['addresses' => $person->addresses, 'list' => $addrAsList])));
+					echo htmlspecialchars_decode($this->element('addressList', ['addresses' => $person->addresses, 'list' => $addrAsList]));
 				} 
 			?></td>
 			<td class="middle-width"><?= implode(', ', $plus)?></td>

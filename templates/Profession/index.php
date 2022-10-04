@@ -62,7 +62,7 @@ $uri = $this->request->getRequestTarget();
             <?= $this->Paginator->next(__('next') . ' >') ?>
             <?= $this->Paginator->last(__('last') . ' >>') ?>
         </ul>
-        <p><?= $this->Paginator->counter(__('Seite {{page}} von {{pages}}, zeige {{current}} Professions von '.$this->Number->format($total, ['locale'=>'fr_FR']))) ?></p>
+        <p><?= $this->Paginator->counter(__('Seite {{page}} von {{pages}}, zeige {{current}} Berufe von '.$this->Number->format($total, ['locale'=>'fr_FR']))) ?></p>
     </div>
 </div>
 </div>
