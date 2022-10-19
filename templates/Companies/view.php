@@ -56,17 +56,10 @@ $uri = $this->request->getRequestTarget();
             			<table>
             				<tr>
             					<th><?= __('Scan der Seite')?></th>
-            						<td>
+            						<td style="display:flex;">
 									<?php print image('http://adressbuch1854.dh.uni-koeln.de/scans/','SD/','BHVP_703983_',$begP);?><br>
 									<?php print scan_zotero($begP); ?>
-									<details>
-										<summary><?= __('Seite in HD ansehen')?></summary>
-										<form>
-											<button type='submit' title="IHA zur Nutzung der Seite <?php echo $begP?>" formtarget='_blank' formaction='http://adressbuch1854.dh.uni-koeln.de/scans/HD/BHVP_703983_<?php echo $begP ?>.jpg'
-
-											value="text">BHVP_703983_<?php echo $begP?>.jpg</button>
-										</form>
-									</details>
+									<?php print text('/webroot/Ocerisations/','BHVP_703983_',$begP); ?>
             	   					</td> 
             				</tr>
             				<tr>
@@ -91,7 +84,9 @@ $uri = $this->request->getRequestTarget();
                 			</tr>
                 			<tr>
                 				<th><?= __('Beruf') ?></th>
-                				<?= profession_company($profession, $p_unified) ?>
+                				<td><?php if(!empty($company->profession->profession_verbatim)){
+				echo $this->Html->link($company->profession->profession_verbatim, ['controller'=>'Profession','action'=>'view', $company->profession->id]);
+				}?></td>
                 			</tr>
                 			<tr>
                     			<th><?= __('Berufskategorie') ?></th>
@@ -131,14 +126,14 @@ $uri = $this->request->getRequestTarget();
 				</details>
             </div>
             <?php endif; ?>
-			<?php if (!empty($company->external_references)) : ?>
+			<!-- if (!empty($company->external_references)) : ?>
 			<div class="related">
                 <details>
-					<?= '<summary title="'.__('Klicken für Details').'"><h4>'.__('Literatur- und Quellenhinweise').'</h4></summary>' ?>
-					<?= $this->element('externalReferenceMultiTable', ['externalReferences' => $company->external_references])?>
+					< '<summary title="'.__('Klicken für Details').'"><h4>'.__('Literatur- und Quellenhinweise').'</h4></summary>' ?>
+					< $this->element('externalReferenceMultiTable', ['externalReferences' => $company->external_references])?>
 				</details>
 			</div>
-				<?php endif; ?>
+				?php endif;-->
 				<br><div class="csl-bib-body" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">
 				<div class="csl-entry">Zitierhinweis: <?php echo $nachname ?>, in: Adressbuch der Deutschen in Paris für das Jahr 1854, S.<?php echo $begP ?>, hg. v. F.A. Kronauge, Paris. Elektronische Edition, DHI Paris 2022, <a target="_blank" href='<?php  $this->request->getUri() ?>'><?php echo $this->request->getUri() ?></a>, CC-BY 4.0.</div>
 

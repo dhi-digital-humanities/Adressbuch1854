@@ -10,11 +10,8 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property string|null $profession_verbatim
- * @property string|null $profession_unified
- * @property string|null $norm
- * @property string|null $ind
  * @property string|null $ohab_ges
- * @property string|null $ohdab
+ * @property string|null $OhdAB_01
  *
  * @property \App\Model\Entity\Company[] $companies
  * @property \App\Model\Entity\Person[] $persons
@@ -32,11 +29,11 @@ class Profession extends Entity
      */
     protected $_accessible = [
         'profession_verbatim' => true,
-        'profession_unified' => true,
+        'name' => true,
         'norm' => true,
-        'ind' => true,
         'ohab_ges' => true,
-        'ohdab' => true,
+        'OhdAB_01' => true,
+        'Anforderungsniveau' => true,
         'companies' => true,
         'persons' => true,
     ];

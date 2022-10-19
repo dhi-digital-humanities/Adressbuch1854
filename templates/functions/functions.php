@@ -137,7 +137,7 @@
 					}
 
 // Si le métier ancien est identique au nouveau de nom de métier on affiche que $precision2, sinon on affiche les 2 dans un tableau (persons)
-				function profession_person($precision2, $pro_unified)
+				/*function profession_person($precision2, $pro_unified)
 					{
 
 						if($precision2 === $pro_unified){
@@ -147,10 +147,10 @@
         		{
         		echo  '<td><table><tr><th>'. __('Beruf verbatim').'</th><th>'.__('Beruf clean').'</th></tr><tr><td style="border:none">'.$precision2.'</td><td style="border:none">'.$pro_unified.'</td></tr></table><td>';
     				}
-    			}
+    			}*/
 
 // Si le métier ancien est identique au nouveau de nom de métier on affiche que $precision2, sinon on affiche les 2 dans un tableau (companies)
-    		function profession_company($profession, $p_unified)
+    		/*function profession_company($profession, $p_unified)
 					{
 						if($profession === $p_unified){
         		echo '<td>'.h($profession).'</td>';
@@ -159,4 +159,4 @@
         		{
         		echo  '<td><table><tr><th>'. __('Beruf verbatim').'</th><th>'.__('Beruf clean').'</th></tr><tr><td style="border:none">'.$profession.'</td><td style="border:none">'.$p_unified.'</td></tr></table><td>';
     				}
-    			}
+    			}*/

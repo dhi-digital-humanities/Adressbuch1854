@@ -12,7 +12,9 @@ hilfe
 			<div class="content4">
 				<h4><?= __('Hilfe') ?></h4>
 
+				
 				<p><?=__('In alphabetischer Form finden sich hier Informationen über die wichtigsten Aspekte der Nutzung der Datenbank. Allgemeine Informationen zu ihrem Aufbau und ihren Inhalten finden sich im Reiter "Datenbank" und "Dokumentation"')?></p>
+				<p><strong><?= __('Berufe: ') ?></strong><?= __('Für die Klassifizierung der Berufe wird die Ontologie historischer, deutschsprachiger Berufs- und Amtsbezeichnungen (OhdAB) verwendet, die am Historischen Datenzentrum der Martin-Luther-Universität Halle-Wittenberg unter der Leitung von Dr. Katrin Moeller entsteht. In der ersten Projektphase 2003-2006 waren bereits zur Klassifizierung elf Berufskategorien eingeführt worden, die weiterhin angezeigt werden (siehe die Seite "Dokumentation" im Reiter "Datenbank").') ?></p>
 				<p><strong><?= __('Datenmodell: ')?></strong><?= __('Zum Datenmodell siehe die Seite "Dokumentation" im Reiter "Datenbank".')?></p>
 				<p><strong><?= __('Datenschutz: ')?></strong><?= __('Die Datenschutzseite befindet sich unten im Footer auf der Website.')?></p>
 				
@@ -24,7 +26,7 @@ hilfe
 				<p><strong><?= __('Nutzung: ')?></strong><?= __('Die Datenbank kann entweder integral oder nach einem oder mehreren Suchbegriffen (Name, Vorname, Beruf und Straße) durchsucht werden. Es ist auch möglich, sich Ergebnislisten nach Kategorie (z.B. alle Eigentümer) oder nach Geschlecht (z.B. alle Frauen) anzeigen zu lassen. ')?></p>
 				<p><strong><?= __('Suche: ') ?></strong><?= __('Probieren Sie verschiedene Schreibweisen von Personen- und Straßennamen aus (mit und ohne Umlaute z.B.) und suchen Sie zunächst ohne Vornamen, da diese häufig nicht vorhanden oder abgekürzt sind. Es erfolgt eine automatische Trunkierung der Suchbegriffe am Ende, die Eingabe von Platzhaltern wie "?" oder "*" ist nicht notwendig. Eine Suche nach dem Begriff "Fruchthändler" findet zugleich auch "Fruchthändlerin". Eine Trunkierung in der Mitte eines Wortes ist nicht möglich.')?></p>
 				<p><strong><?= __('Zitierhinweis: ')?></strong><?= __('Adressbuch der Deutschen in Paris für das Jahr 1854, hg. v. F.A. Kronauge, Paris, Elektronische Edition, DHI Paris 2022, <a href="http://adressbuch1854.dhi-paris.fr/" target="blank">http://adressbuch1854.dhi-paris.fr/</a>, CC-BY 4.0.') ?></p>
-				<p><?= __('Falls Sie Schwierigkeiten bei der Nutzung haben, einen Fehler entdecken oder sonst einen Hinweis haben, schreiben Sie uns gerne ein Mail an: ')?><a href='mailto:adressbuch1854@dhi-paris.fr'>adressbuch1854@dhi-paris.fr</a></p>
+				<p><?= __('Falls Sie Schwierigkeiten bei der Nutzung haben, einen Fehler entdecken oder sonst einen Hinweis haben, schreiben Sie uns gerne ein Mail an: ')?><a href="mailto:adressbuch1854@dhi-paris.fr">adressbuch1854@dhi-paris.fr</a></p>
 				<br>
 			</div>
 		</div>

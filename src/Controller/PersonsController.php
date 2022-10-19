@@ -112,6 +112,7 @@ public function view($id = null)
                 'Addresses.Streets.Arrondissements',
                 'Companies.ProfCategories',
                 'Companies.Addresses.Streets',
+                'Companies.Profession',
                 'ExternalReferences.ReferenceTypes',
                 'OriginalReferences',
                 

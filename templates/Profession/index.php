@@ -28,11 +28,11 @@ $uri = $this->request->getRequestTarget();
                 <tr>
                     
                     <th><?= __('Berufe Adressbuch') ?></th>
-                    <th><?= __('Berufe vereinheitlicht') ?></th>
-                    <th><?= __('Normierter Ansatz') ?></th>
-                    <th><?= __('ind') ?></th>
-                    <th><?= __('ohdab') ?></th>
+                    <th><?= __('Berufskategorie') ?></th>
+                    <th><?= __('Berufsgattungsname (OhdAB)') ?></th>
                     <th><?= __('ohab_ges') ?></th>
+                    <th><?= __('OhdAB_01') ?></th>
+                  
                     
                     
                 </tr>
@@ -42,11 +42,11 @@ $uri = $this->request->getRequestTarget();
                 <?php foreach ($profession as $p): ?>   
                 <tr>
                     <td><?= $this->Html->link($p->profession_verbatim, ['controller'=>'Profession', 'action'=>'view', $p->id]) ?></td>
-                    <td><?= h($p->profession_unified) ?></td>
+                    <td><?= h($p->name) ?></td>
                     <td><?= h($p->norm) ?></td>
-                    <td><?= h($p->ind) ?></td>
-                    <td><?= h($p->ohdab) ?></td>
                     <td><?= h($p->ohab_ges) ?></td>
+                    <td><?= h($p->OhdAB_01) ?></td>
+                    
                     
               
                 </tr>
@@ -55,15 +55,15 @@ $uri = $this->request->getRequestTarget();
         </table>
     </div>
     <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(__('Seite {{page}} von {{pages}}, zeige {{current}} Berufe von '.$this->Number->format($total, ['locale'=>'fr_FR']))) ?></p>
-    </div>
+		<ul class="pagination">
+		<?= $this->Paginator->first('<< ' . __('Anfang')) ?>
+		<?= $this->Paginator->prev('< ' . __('zurück')) ?>
+		<?= $this->Paginator->numbers() ?>
+		<?= $this->Paginator->next(__('vor') . ' >') ?>
+		<?= $this->Paginator->last(__('Ende') . ' >>') ?>
+		</ul>
+		<p><?= $this->Paginator->counter(__('Seite {{page}} von {{pages}}, zeige {{current}} Berufe von '.$this->Number->format($total, ['locale'=>'fr_FR']))) ?></p>
+	</div>
 </div>
 </div>
                 </div>

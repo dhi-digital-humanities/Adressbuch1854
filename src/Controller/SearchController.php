@@ -176,13 +176,13 @@ class SearchController extends AppController
 			$persons
 				->leftJoinWith('Addresses')
 				->leftJoinWith('Addresses.Streets')
-                ->innerJoinWith('Profession')
+                ->leftJoinWith('Profession')
 				->where([
 					'OR' => [
 						['Persons.surname LIKE' => '%'.$token.'%'],
 						['Persons.first_name LIKE' => '%'.$token.'%'],
 						['Persons.zusatz LIKE' => '%'.$token.'%'],
-                        ['Profession.profession_unified LIKE' => '%'.$token.'%'],
+                        ['Profession.norm LIKE' => '%'.$token.'%'],
                         ['Profession.profession_verbatim LIKE' => '%'.$token.'%'],
 						['Persons.specification_verbatim LIKE' => '%'.$token.'%'],
 						['Persons.name_predicate LIKE' => '%'.$token.'%'],
@@ -200,7 +200,7 @@ class SearchController extends AppController
 				->where([
 					'OR' => [
 						['Companies.name LIKE' => '%'.$token.'%'],
-						['Profession.profession_unified LIKE' => '%'.$token.'%'],
+						['Profession.norm LIKE' => '%'.$token.'%'],
                         ['Profession.profession_verbatim LIKE' => '%'.$token.'%'],
 						['Companies.specification_verbatim LIKE' => '%'.$token.'%'],
 						['Streets.name_old_clean LIKE' => '%'.$token.'%'],
