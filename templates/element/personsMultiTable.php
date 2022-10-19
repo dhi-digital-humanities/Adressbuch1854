@@ -91,7 +91,7 @@ $this->Html->css('multiTable.css');
 			<td><?= $this->Html->link(htmlspecialchars_decode($name, ENT_QUOTES), ['controller' => 'Persons', 'action' => 'view', $person->id]) ?></td>
 			
 			<td><?php if(!empty($person->profession->profession_verbatim)){
-				echo $this->html->link($person->profession->profession_verbatim, ['controller'=>'Profession', 'action'=>'view', $person->profession->id]);
+				echo $this->Html->link($person->profession->profession_verbatim, ['controller'=>'Profession', 'action'=>'view', $person->profession->id]);
 			} ?></td>
 			</td>
 			<td><?php

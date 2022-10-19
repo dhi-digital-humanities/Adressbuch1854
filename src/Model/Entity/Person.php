@@ -15,7 +15,7 @@ use Cake\ORM\Entity;
  * @property string|null $zusatz
  * @property string|null $name_predicate
  * @property string|null $specification_verbatim
- * @property int $profession_id
+ * @property int|null $profession_id
  * @property bool|null $des_Instituts
  * @property bool|null $notable_commercant
  * @property bool|null $bold

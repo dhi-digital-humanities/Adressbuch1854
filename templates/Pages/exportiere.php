@@ -5,7 +5,7 @@ Exportiere page
 */
 ?>
 
-
+<strong><?= $this->Html->link(__('Zurück zu home'), ['controller'=>'Pages', 'action'=>'home']) ?></strong><br>
 
 <h3><?= __('Gesamte Datenbank') ?></h3>
 

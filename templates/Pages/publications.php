@@ -4,10 +4,12 @@ Info Page Related Articles
 */
 ?>
 
-
+<br>
+<strong><?= $this->Html->link(__('Zurück zu home'),['controller'=>'Pages', 'action'=>'home'])?></strong>
+<br>
 <div class="row">
     <div class="column-responsive column-80">
-		<div class="content4">
+		<div class="content3">
 			<h3><?= __('Links und Publikationen') ?></h3>
 	<table>
 		<tr>
@@ -85,7 +87,7 @@ Info Page Related Articles
 	<tr>
 		<td>
 			<div class="csl-bib-body" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">
-			<div class="csl-entry">König, Mareike, Wolfgang Gipper, Petra Götte, et Elke Kleinau. «&nbsp;Konfliktgeladene Kulturvermittlung: deutsche Dienstmädchen und Erzieherinnen in Paris um 1900&nbsp;». In <i>Transkulturalität: gender- und bildungshistorische Perspektiven</i>, Bielefeld., 237‑55, 2008.</div>
+			<div class="csl-entry">König, Mareike, Wolfgang Gipper, Petra Götte, et Elke Kleinau. «&nbsp;Konfliktdeladene Kulturvermittlung: deutsche Dienstmädchen und Erzieherinnen in Paris um 1900&nbsp;». In <i>Transkulturalität:gender und bildungshistoriche Perspektive</i>, Bielfeld., 237‑55, 2008.</div>
   			<span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=bookitem&amp;rft.atitle=Konfliktdeladene%20Kulturvermittlung%3A%20deutsche%20Dienstm%C3%A4dchen%20und%20Erzieherinnen%20in%20Paris%20um%201900&amp;rft.edition=Bielfeld&amp;rft.aufirst=Mareike&amp;rft.aulast=K%C3%B6nig&amp;rft.au=Mareike%20K%C3%B6nig&amp;rft.au=Wolfgang%20Gipper&amp;rft.au=Petra%20G%C3%B6tte&amp;rft.au=Elke%20Kleinau&amp;rft.date=2008&amp;rft.pages=237-255&amp;rft.spage=237&amp;rft.epage=255&amp;rft.language=de-DE"></span></div>
 		</td>
 	</tr>
@@ -104,6 +106,9 @@ Info Page Related Articles
 		</td>
 	</tr>
 </table>
+</div>
+<br>
+<div class='content3'>
 	<h3><?= __('Software')?></h3>
 <table>
 	<tr>

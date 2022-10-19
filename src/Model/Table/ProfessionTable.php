@@ -64,21 +64,16 @@ class ProfessionTable extends Table
             ->scalar('profession_verbatim')
             ->maxLength('profession_verbatim', 120)
             ->allowEmptyString('profession_verbatim');
-
+        
         $validator
-            ->scalar('profession_unified')
-            ->maxLength('profession_unified', 120)
-            ->allowEmptyString('profession_unified');
-
+            ->scalar('name')
+            ->maxLength('name', 120)
+            ->allowEmptyString('name');
+        
         $validator
             ->scalar('norm')
-            ->maxLength('norm', 120)
+            ->maxLenght('norm', 120)
             ->allowEmptyString('norm');
-
-        $validator
-            ->scalar('ind')
-            ->maxLength('ind', 11)
-            ->allowEmptyString('ind');
 
         $validator
             ->scalar('ohab_ges')
@@ -86,9 +81,14 @@ class ProfessionTable extends Table
             ->allowEmptyString('ohab_ges');
 
         $validator
-            ->scalar('ohdab')
-            ->maxLength('ohdab', 11)
-            ->allowEmptyString('ohdab');
+            ->scalar('OhdAB_01')
+            ->maxLength('OhdAB_01', 250)
+            ->allowEmptyString('OhdAB_01');
+        
+        $validator
+            ->scalar('Anforderungsniveau')
+            ->maxLength('Anforderungsniveau', 120)
+            ->allowEmptyString('Anforderungsniveau');
 
         return $validator;
     }

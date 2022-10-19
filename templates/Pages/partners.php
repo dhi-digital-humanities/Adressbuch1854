@@ -74,3 +74,5 @@ Info Pages related Partner und Mitarbeiter
 				<p><?= __('Das Projekt wurde in der ersten Phase 2002-2006 unterstützt durch die Gerda Henkel Stiftung (Düsseldorf) und die Gesellschaft der Freunde des DHIP.') ?></p>
 		</div>
 </div>
+</div>
+</div>

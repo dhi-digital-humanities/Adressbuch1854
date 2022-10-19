@@ -20,7 +20,7 @@ if(!isset($list)){
 		$streetNew = h($address->street->name_new);
 		$street;
 		if($streetOld === $streetNew){
-			$street = $streetOld;
+			$street = $housNo.' '.$this->Html->link($streetOld, ['controller' => 'Streets', 'action' => 'view', $address->street->id]);
 		} else {
 			$street= '<tr><th>'.__('Alt Adresse').'</th><th>'.__('Neue adresse').'</th></tr>';
 			$street.= '<tr><td style="border:none">'.$housNo.' '.$this->Html->link($streetOld, ['controller' => 'Streets', 'action' => 'view', $address->street->id]).'</td><td style="border:none">'.$housNo.' '.$this->Html->link($streetNew, ['controller' => 'Streets', 'action' => 'view', $address->street->id]).'</td></tr>';
@@ -28,11 +28,11 @@ if(!isset($list)){
 		}
 		if(empty($streetNew)){
 
-			$street = $streetOld;		
+			$street = $housNo.' '.$this->Html->link($streetOld, ['controller' => 'Streets', 'action' => 'view', $address->street->id]);;		
 		}
 		$street2;
 		if($streetOld === $streetNew){
-			$street2 = $streetOld;
+			$street2 = $housNo.' '.$streetOld;
 		} else {
 			$street2 = '<ul>'.$housNo.' '.$streetOld.'<br><strong>'.__('neue adresse: ').'</strong>'.$housNo.' '.$streetNew.'</ul>';
 		

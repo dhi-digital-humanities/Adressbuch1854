@@ -28,29 +28,26 @@ $uri = $this->request->getRequestTarget();
                 <h3><?= h($profession->profession_verbatim) ?></h3>
             <table>
                 <tr>
-                    <th><?= __('Profession Verbatim') ?></th>
+                    <th><?= __('Berufe Adressbuch') ?></th>
                     <td><?= h($profession->profession_verbatim) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Profession Unified') ?></th>
-                    <td><?= h($profession->profession_unified) ?></td>
+                    <th><?= __('Berufkategorie') ?></th>
+                    <td><?= h($profession->name) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Norm') ?></th>
+                    <th><?= __('Berufgattungsname (OhdAB)') ?></th>
                     <td><?= h($profession->norm) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Ind') ?></th>
-                    <td><?= h($profession->ind) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Ohab Ges') ?></th>
+                    <th><?= __('ohab_ges') ?></th>
                     <td><?= h($profession->ohab_ges) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Ohdab') ?></th>
-                    <td><?= h($profession->ohdab) ?></td>
+                    <th><?= __('OhdAB_01') ?></th>
+                    <td><?= h($profession->OhdAB_01) ?></td>
                 </tr>
+				
             </table>
             <?php if(!$persons->isEmpty()): ?>
 				<div class="related">

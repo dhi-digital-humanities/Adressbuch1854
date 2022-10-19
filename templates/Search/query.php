@@ -102,7 +102,7 @@
 				<?php
 					echo $this->Form->control('prof', ['label' => __('Beruf')]);
 
-					echo $this->Form->label('prof_cat', __('Kategorie'));
+					echo $this->Form->label('prof_cat', __('Berufskategorie'));
 					echo $this->Form->select('prof_cat', $beruf, ['empty' => true]);
 				?>
 				</div>
