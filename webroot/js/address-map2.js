@@ -275,7 +275,7 @@ function makePinPerAddress(addressArray, name, prof, id, isPerson) {
         if (addr.houseno_specification) addrFull += addr.houseno_specification;
         if (addr.address_specification_verbatim) addrFull += ", " + addr.address_specification_verbatim;
 
-        var link = "/adressbuchv2/";
+        var link = "/";
         link += isPerson ? "persons" : "companies";
         link += "/view/" + id;
 
