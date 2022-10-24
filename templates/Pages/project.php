@@ -39,7 +39,8 @@ Info Page Project
 			<h4><?= __('Hinzugefügte Angaben') ?></h4>
 
 			<p><?= __('Folgende Angaben wurden recherchiert und der Datenbank hinzugefügt:')?>
-			<li><?= __('Zur Strukturierung der Berufe der "Berufliche Status" mit den Kategorien: Adel, Arbeiter, Angestellte, Beamte, Handwerk, Handel, Künstler, Militär, Rentier, Rentner, Selbständig, Sonstiges und keine Angaben. ')?></li>
+			<li><?= __('Zur Strukturierung der Berufe "Berufskategorien" mit elf Auswahlmöglichkeiten: Adel, Arbeiter, Angestellte, Beamte, Handwerk, Handel, Künstler, Militär, Rentier, Rentner, Selbstständig, Sonstiges und keine Angaben. ')?></li>
+			<li><?= __('Die Berufsangaben wurden außerdem mit der Ontologie historischer, deutschsprachiger Berufs- und Amtsbezeichnungen (OhdAB) angereichert (siehe Reiter "Dokumentation").') ?></li>
 			<li><?= __('Zur Identifikation der Straßen wurden sowohl das damalige und das aktuelle Arrondissement als auch der aktuelle Name der Straße mitangegeben (2). ')?></li>
 			<li><?= __('Vermerkt wurde bei den Einträgen ebenfalls, ob es sich um einen Mann, eine Frau oder um einen Betrieb handelt.')?></li>
 			</p>
@@ -75,7 +76,7 @@ Info Page Project
 					<p><?= __('(1) In der Datenbank LEONORE der Archives Nationales können die Namen der mit der Légion d’honneur ausgezeichneten Personen für eine weitere Recherche nachgeschlagen werden: ') ?><a target='blank' href='https://www.leonore.archives-nationales.culture.gouv.fr/ui/'>https://www.leonore.archives-nationales.culture.gouv.fr/ui/</a></p>
 				</em>
 				<em>
-					<p><?=__('(2) Hillairet, Jacques, Dictionnaire historique des rues de Paris, Paris, 1963.')?></p>
+					<p><?=__('(2) Hillairet, Jacques, Dictionnaire historique des rues de Paris Paris, 1963.')?></p>
 				</em>
 				
 				  <br>
@@ -119,6 +120,11 @@ Info Page Project
 			<h4><?= __('Die Karte') ?></h4>
 			<p><?= __('Die Karte wurde mit der Open-Source-Software Leaflet erstellt. Diese ermöglicht es, eine interaktive Karte zu entwickeln und die im Adressbuch aufgeführten Personen zugleich auf einer historischen und modernen Karte zu lokalisieren. Mit dem Plugin Opacity-Controls können historische und moderne Karten übereinandergelegt werden und zeigen so die Veränderungen an. Die Daten werden von mehreren Vektordateien dargestellt wie den alten (vor 1860) und aktuellen Arrondissements sowie den Stadtvierteln von Paris, sie sind mit dem Plugin Leaflet-Shapefile implementiert.')?></p>
 			<p><?= __('Die Daten zu den Straßen und den alten Arrondissements stammen aus dem ALPAGE-Projekt des LAMOP der Universität Paris 1 Panthéon Sorbonne. Die Daten zu den neuen Arrondissements stammen aus Paris OpenData. Die historische Karte stammt aus dem Katalog von Géoportail. Es handelt sich um eine Karte des französischen Generalstabs aus der Zeit zwischen 1820 und 1866. Die Marker zeigen auf die Straßenmitte.') ?></p>
+			<h4><?= __('Klassifizierung der Berufe') ?></h4>
+			<p><?= __('Die Angaben zu den Berufen wurden angereichert mit Normdaten aus der <a target="blank" href="https://www.geschichte.uni-halle.de/struktur/hist-data/ontologie/">Ontologie historischer, deutschsprachiger Berufs- und Amtsbezeichnungen (OhdAB)</a>, die am Historischen Datenzentrum der Martin-Luther-Universität Halle-Wittenberg unter Leitung von Dr. Katrin Moeller entsteht. Basis dafür ist die <a target="blank" href="https://de.wikipedia.org/wiki/Klassifikation_der_Berufe_2010">Klassifizierung der Berufe (KldB)</a> der Bundesagentur für Arbeit und des Statistischen Bundesamtes aus dem Jahr 2010, der wiederum die International Standard Classification of Occupations (ISCO) des International Labour Office zugrunde liegt (ILO 2008). Die KldB wurde am Historischen Datenzentrum in Halle überarbeitet und in Teilen erweitert und damit für die Klassifizierung historischer Berufe nutzbar gemacht. Insgesamt werden mit OhdAB bisher mehr als 44.000 historische Berufe taxonomisch geordnet und können in Berufsbereiche, Berufshauptgruppen oder unterschiedlich differenzierten Berufsgruppen geordnet werden. Die Nummern umfassen jeweils drei Bestandteile: den Buchstaben A (keine Amts- oder Berufsbezeichnung im engeren Sinne, sondern Besitzer, Schüler etc.) oder B (Amts- oder Berufsbezeichnung), dann folgt fünfstellig die Taxonomie (siehe dazu die Gliederung im <a target="blank" href="https://de.wikipedia.org/wiki/Klassifikation_der_Berufe_2010">Wikipedia-Eintrag zur KldB</a>) und dann die Individualnummer. Die erste Zahl im fünfstelligen Code zeigt den Berufsbereich an. Die letzte Zahl in der Taxonomie gibt das Anforderungsniveau an, etwa Helfer- und Anlerntätigkeit bis hin zu komplexen Spezialistentätigkeiten. Wir geben in der Datenbank neben der OhdAB-Gesamtnummer als Verbatim-Eintrag den Berufsbereich (Einsteller) und das Anforderungsniveau an (1). Anhand der Gesamtnummer kann den Bezeichnungen ein normierter Berufsgattungsname zugewiesen werden. ') ?></p>
+			<h4><?= __('Weiterführende Literatur') ?></h4>
+			<p><?= __('Katrin Moeller: Standards für die Geschichtswissenschaft! Zu differenzierten Funktionen von Normdaten, Standards und Klassifikationen für die Geisteswissenschaften am Beispiel von Berufsklassifikationen, in: Jana Kittelmann und Anne Purschwitz (Hg.), Aufklärungsforschung digital. Konzepte, Methoden, Perspektiven, Halle 2019, S. 17-43.') ?></p>
+			<p><?= __('Katrin Moeller und Jan Michael Goldberg: Automatisierte Identifikation und Lemmatisierung historischer Berufsbezeichnungen in deutschsprachigen Datenbeständen, in: Zeitschrift für digitale Geisteswissenschaften, Wolfenbüttel 2022, DOI: <a target="blank" href="https://zfdg.de/2022_002">10.17175/2022_002</a>.')?></p>
 			<h4><?= __('Die Website') ?></h4>
 			<p><?= __('Die Website ist mit der Open-Source-Software CakePHP programmiert.') ?></p>
 			
@@ -199,7 +205,7 @@ Info Page Project
 		<tr>
 		<td>
 			<div class="csl-bib-body" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">
- 			<div class="csl-entry">Hillairet, Jacques: Dictionnaire historique des rues de Paris, Paris, 1963.</div>
+ 			<div class="csl-entry">Hillairet, Jacques: Dictionnaire historique des rues de Paris. Paris, 1963.</div>
   			<span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=book&amp;rft.btitle=Dictionnaire%20historique%20des%20rues%20de%20Paris&amp;rft.place=Paris&amp;rft.aufirst=Jacques&amp;rft.aulast=Hillairet&amp;rft.au=Jacques%20Hillairet&amp;rft.date=1963"></span></div>
 		</td>
 	</tr>
@@ -213,6 +219,11 @@ Info Page Project
 </table>
 <h5><?= __('Publikationen zum Projekt') ?></h5>
 <table>
+<tr>
+	<td>
+		<?= __('Mareike König, Evan Virevialle: Datenbank "Adressbuch der Deutschen in Paris von 1854" - Database "Directory of German Migrants living in Paris in 1854". Zenodo, 2.10.2022. <a target="blank" href="https://doi.org/10.5281/zenodo.7134960">https://doi.org/10.5281/zenodo.7134960</a>.') ?>
+	</td>
+</tr>
 <tr>
 		<td>
 			<div class="csl-bib-body" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">

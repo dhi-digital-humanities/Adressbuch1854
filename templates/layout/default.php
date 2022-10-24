@@ -19,6 +19,7 @@ $description = 'Adressbuch 1854';
 <!DOCTYPE html>
 <html>
 <head>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
@@ -64,14 +65,66 @@ $description = 'Adressbuch 1854';
    <?= $this->Html->script('jquery-ui-1.10.3.custom.min.js') ?> 
    <?= $this->Html->script('leaflet.shpfile.js') ?>
    <?= $this->Html->script('shp.js') ?>
-   
-
 	<!-- fetched meta -->
 	<?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
+    
+    <!-- mamoto js -->
+ <script>
+         var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//ruegen.ihap.local/mamoto/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+  </script>
+  <!-- end mamoto -->
+
 </head>
 <body>
+
+<details>
+<summary><strong>Datenschutz &nbsp</strong></summary>
+<div style="display:flex;justify-content:center">
+        
+        <div style="width:750px; display:flex; flex-wrap:wrap; justify-content:center;">
+        <p style="text-align:justify">Ihr Besuch dieser Webseite wird aktuell von der Matomo Webanalyse erfasst. Diese Checkbox abwählen für Opt-out. Weitere Informationen: <a href="/pages/datenschutz" target="blank">Datenschutz</a>. </p>
+        <br><div id="optout-form" style="border:1px solid black;border-radius:10px;width:300px;background:#ED8B00;color:black;">
+    <input style="float:left" type="checkbox" id="optout" /><label for="optout"><strong></strong></label>
+    </div>
+<script>
+document.addEventListener("DOMContentLoaded", function(event) {
+  function setOptOutText(element) {
+    _paq.push([function() {
+      element.checked = !this.isUserOptedOut();
+      document.querySelector('label[for=optout] strong').innerText = this.isUserOptedOut()
+        ? 'Cookies sind abgelehnt (Opt-out)'
+        : 'Cookies sind akzeptiert (Opt-in)';
+    }]);
+  }
+
+  var optOut = document.getElementById("optout");
+  optOut.addEventListener("click", function() {
+    if (this.checked) {
+      _paq.push(['forgetUserOptOut']);
+    } else {
+      _paq.push(['optUserOut']);
+    }
+    setOptOutText(optOut);
+  });
+  setOptOutText(optOut);
+});
+</script>
+</div>
+</div>
+</details>
+
 	<header>
 
  <?php  $path = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
@@ -97,11 +150,7 @@ $description = 'Adressbuch 1854';
               </a>
             </div>
 </nav>
-
-
-</header>
-    <main class="main">
-        
+</header>        
             <?= $this->Flash->render() ?>
             <?= $this->fetch('content') ?>
         
@@ -136,9 +185,12 @@ $description = 'Adressbuch 1854';
     
 
     <div class='links'>
-            <?= $this->Html->link(__('Datenschutz / '), ['controller' => 'Pages', 'action' => 'datenschutz'], ['class' => 'wrapper-item', 'id' => 'credits']) ?>
+            <?= $this->Html->link(__('Datenschutz'), ['controller' => 'Pages', 'action' => 'datenschutz'], ['class' => 'wrapper-item', 'id' => 'credits']) ?>&nbsp/&nbsp
             <?= $this->Html->link(__('Impressum'), ['controller' => 'Pages', 'action' => 'credits'], ['class' => 'wrapper-item', 'id' => 'credits']) ?>
             
         </div>
+
+  
 </body>
+
 </html>

@@ -65,7 +65,7 @@
 								<?= $this->Paginator->next(__('vor') . ' >', ['model' => 'Companies', 'url' => ['?' => $params]]) ?>
 								<?= $this->Paginator->last(__('Ende') . ' >>', ['model' => 'Companies', 'url' => ['?' => $params]]) ?>
 							</ul>
-							<p><?= $this->Paginator->counter(__('Seite {{page}} von {{pages}}, zeige {{current}} Unternehmen von {{count}}'), ['model' => 'Companies']) ?></p>
+							<p><?= $this->Paginator->counter(__('Seite {{page}} von {{pages}}, zeige {{current}} Unternehmen von '.$this->Number->format($total2, ['locale'=>'fr_FR'])), ['model' => 'Companies']) ?></p>
 						</div>
 						<?php endif; ?>
 				</div>

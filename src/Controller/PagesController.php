@@ -71,5 +71,7 @@ class PagesController extends AppController
         }
 
         return $this->render();
+
+      
     }
 }

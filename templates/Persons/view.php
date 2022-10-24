@@ -75,15 +75,17 @@
 							<?php print image('http://adressbuch1854.dh.uni-koeln.de/scans/','SD/','BHVP_703983_',$begP);?><br>
 							<?php print scan_zotero($begP); ?>
 							<!-- si on veut mettre les OCR avec les scans -->
-							<?php print text('/webroot/Ocerisations/','BHVP_703983_',$begP); ?>		
-							<details>
+							<?php print text('/webroot/Ocerisations/','BHVP_703983_',$begP); ?><br>	
+						</td>
+						<!--<td>
+						<details>
 								<summary><?= __('Seite in HD ansehen')?></summary>
 									<form>
 										<button type='submit' title="IHA zur Nutzung der Seite <?php echo $begP?>" formtarget='_blank' formaction='http://adressbuch1854.dh.uni-koeln.de/scans/HD/BHVP_703983_<?php echo $begP ?>.jpg'
 										value="text">BHVP_703983_<?php echo $begP?>.jpg</button>
 									</form>
 							</details>
-						</td> 
+										</td>-->
             	</tr>
             	<tr>
             		<th><?= __('Volltexterkennung')?></th>
@@ -123,19 +125,20 @@
              
                 <tr>
                 	<th><?= __('Beruf') ?></th>
-                	<td><?= $person->has('profession') ? $person->profession->profession_verbatim : '' ?></td>
-                </tr>
+                	<td><?php if(!empty($person->profession->profession_verbatim)){
+				echo $this->Html->link($person->profession->profession_verbatim, ['controller'=>'Profession', 'action'=>'view', $person->profession->id]);
+			} ?></td> </tr>
                 <tr>
                     <th><?= __('Berufskategorie') ?></th>
                     <td><?= $person->has('prof_category') ? $person->prof_category->name : '' ?></td>
                 </tr>
 				<tr>
 					<th><?=__('Adresse(n)')?></th>
-					<td>
-					<?php if (!empty($person->addresses)) : ?>
-						<?= htmlspecialchars_decode($this->element('addressList', ['addresses' => $person->addresses, 'list' => true])) ?>
-					<?php endif; ?>
-					</td>
+					<td><?php
+				if (!empty($person->addresses)){
+					echo htmlspecialchars_decode($this->element('addressList', ['addresses' => $person->addresses, 'list' => true]));
+				} 
+			?></td>
 				</tr>
 				<?php if($person->has('ldh_rank')) : ?>
                 <tr>
@@ -188,14 +191,14 @@
 				</details>
             </div>
             <?php endif; ?>
-			<?php if (!empty($person->external_references)) : ?>
+			<!-- if (!empty($person->external_references)) : ?>
 			<div class="related">
                 <details>
 					 <summary title="<?=__('Klicken für Details') ?>"><h4><?=__('Literatur- und Quellenhinweise')?></h4></summary>
-					<?= $this->element('externalReferenceMultiTable', ['externalReferences' => $person->external_references]) ?>
+					 $this->element('externalReferenceMultiTable', ['externalReferences' => $person->external_references]) ?>
 				</details>
-				</div>
-				<?php endif; ?>
+				</div>-->
+				<!-- endif; ?>-->
 				<br>
 			     <div class="csl-bib-body" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">
 				<div class="csl-entry">Zitierhinweis: <?php echo $name ?>, in: Adressbuch der Deutschen in Paris für das Jahr 1854, hg. v. F.A. Kronauge, Paris, S.<?php echo $begP ?>, Elektronische Edition, DHI Paris 2022, <a target="_blank" href='<?php  $this->request->getUri() ?>'><?php echo $this->request->getUri() ?></a>, CC-BY 4.0.</div>

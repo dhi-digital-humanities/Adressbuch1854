@@ -7,9 +7,9 @@
 //$person is a variable to save all informations of one person on zotero in JSON format. 
 
 					
-					$pro_unified=$person->profession_unified;
+					
 					$precision=isset($person->specification_verbatim) ? ($person->specification_verbatim) : 'unbekannt';
-					$precision2=isset($person->profession_verbatim) ? ($person->profession_verbatim) : 'unbekannt';
+					$precision2=isset($person->profession->profession_verbatim) ? ($person->profession->profession_verbatim) : 'unbekannt';
 					$military_status=$person->military_status->status;
 					$social_status=$person->social_status->status;
 					$occupation_status=$person->occupation_status->status;

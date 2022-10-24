@@ -4,7 +4,8 @@ Homepage
 */
 
 ?>
-<div class="container6">
+
+<div class="container6">     
 <div class='background'>
 </div>
 <div class="wrapper-item search form" id="simp-search" style="display: flex; justify-content:center; align-items: center;">

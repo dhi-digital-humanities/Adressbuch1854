@@ -80,7 +80,8 @@ class CompaniesController extends AppController
                 'Persons.SocialStatuses',
                 'Persons.MilitaryStatuses',
                 'Persons.OccupationStatuses',
-                'Persons.Addresses.Streets'
+                'Persons.Addresses.Streets',
+                'Persons.Profession',
             ]
         ]);
 

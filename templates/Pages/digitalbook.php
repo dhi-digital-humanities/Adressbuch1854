@@ -12,12 +12,12 @@ $data = file_get_contents($file);
 $obj = json_decode($data, true);
 
 //on donne la direction des scans pour l'affichage
-$directory = 'http://adressbuch1854.dh.uni-koeln.de/scans/SD/';
-$directory2 = 'http://adressbuch1854.dh.uni-koeln.de/scans/HD/';
+$directory = '../scans/SD/';
+$directory2 = '../scans/HD/';
 
 ?>
 <!-- on importe la feuille de style -->
-<link rel="stylesheet" type="text/css" href="/webroot/css/slider.css">
+<link rel="stylesheet" type="text/css" href="../webroot/css/slider.css">
 <div class="container3">
 <?php
 // on créé une div pour la galerie
