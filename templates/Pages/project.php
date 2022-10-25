@@ -185,6 +185,11 @@ Info Page Project
 			Paris Open Data, <a href="https://opendata.paris.fr/explore/dataset/arrondissements/map/?disjunctive.c_ar&disjunctive.c_arinsee&disjunctive.l_ar&basemap=jawg.dark&location=12,48.85889,2.34692">https://opendata.paris.fr/explore/dataset/arrondissements/</a>
 			</td>
 		</tr>
+    <tr>
+			<td>
+			Ontologie historischer, deutschsprachiger Berufs- und Amtsbezeichnungen (OhdAB), <a href="https://www.geschichte.uni-halle.de/struktur/hist-data/ontologie/">https://www.geschichte.uni-halle.de/struktur/hist-data/ontologie/</a>
+			</td>
+		</tr>
 		<tr>
 			<td>
 			Wikidata, <a href="https://www.wikidata.org/wiki/Wikidata:Main_Page">https://www.wikidata.org/wiki/Wikidata:Main_Page</a>
