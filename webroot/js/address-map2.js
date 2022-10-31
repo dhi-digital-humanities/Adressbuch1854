@@ -73,7 +73,7 @@ function initializeMap() {
     //Use via Leaflet Shapefile plugin https://github.com/calvinmetcalf/leaflet.shapefile
     //Shapefile map is created with data from ALPAGE project https://alpage.huma-num.fr/
 
-    var shapefile = new L.Shapefile("/adressbuchv2/webroot/download/Export_arrondissements.zip", 
+    var shapefile = new L.Shapefile("/webroot/download/Export_arrondissements.zip", 
         { attribution: "<a target='blank' href='https://alpage.huma-num.fr/'>Projet ALPAGE</a>" ,
           onEachFeature: function(feature, layer) {
       layer.bindTooltip("Arrondissement: " + feature.properties.NUM_ARROND + "");
@@ -90,7 +90,7 @@ function initializeMap() {
 
     //Use via Paris OpenData https://opendata.paris.fr/explore/dataset/arrondissements/map/?disjunctive.c_ar&disjunctive.c_arinsee&disjunctive.l_ar&basemap=jawg.dark&location=12,48.85889,2.34692
 
-    var arrondissement2 = new L.Shapefile('/adressbuchv2/webroot/download/arrondissements.zip',
+    var arrondissement2 = new L.Shapefile('/webroot/download/arrondissements.zip',
                                         {attribution:'<a target="blank" href="https://opendata.paris.fr/explore/dataset/arrondissements/map/?disjunctive.c_ar&disjunctive.c_arinsee&disjunctive.l_ar&basemap=jawg.dark&location=12,48.85889,2.34692">Paris Open Data</a>',
                                         onEachFeature:function(feature, layer)
                                                     {
@@ -107,7 +107,7 @@ function initializeMap() {
 
  //Shapefile map is created with data from ALPAGE project https://alpage.huma-num.fr/
 
-    var quartiers = new L.Shapefile('/adressbuchv2/webroot/download/Export_Quartiers__Vasserot_.zip',
+    var quartiers = new L.Shapefile('/webroot/download/Export_Quartiers__Vasserot_.zip',
                                         {
                                         onEachFeature:function(feature, layer)
                                                     {
@@ -213,7 +213,7 @@ function initializeMarkers() {
     // To access the information of the currently shown datasets, the Json export function is used.
     // The current URL is expanded with the parameter export=json and returns thus a Json representation
     // of the current datasets.
-    var url = '/adressbuchv2/app/export';
+    var url = '/app/export';
     url = url + (window.location.search ? "&" : "?") + "exportAll=json";
     console.log(url);
 
@@ -275,7 +275,7 @@ function makePinPerAddress(addressArray, name, prof, id, isPerson) {
         if (addr.houseno_specification) addrFull += addr.houseno_specification;
         if (addr.address_specification_verbatim) addrFull += ", " + addr.address_specification_verbatim;
 
-        var link = "/adressbuchv2/";
+        var link = "/";
         link += isPerson ? "persons" : "companies";
         link += "/view/" + id;
 
