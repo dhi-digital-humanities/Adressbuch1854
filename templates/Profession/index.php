@@ -40,6 +40,7 @@ $uri = $this->request->getRequestTarget();
             <tbody>
                 
                 <?php foreach ($profession as $p): ?>   
+                    <?php if($p->profession_verbatim && $p->name && $p->norm && $p->ohab_ges && $p->OhdAB_01 != null): ?>
                 <tr>
                     <td><?= $this->Html->link($p->profession_verbatim, ['controller'=>'Profession', 'action'=>'view', $p->id]) ?></td>
                     <td><?= h($p->name) ?></td>
@@ -50,6 +51,7 @@ $uri = $this->request->getRequestTarget();
                     
               
                 </tr>
+                <?php endif; ?>
                 <?php endforeach; ?>
             </tbody>
         </table>
