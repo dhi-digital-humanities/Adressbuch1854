@@ -63,7 +63,7 @@
 	$ar_new = ['Alle','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20'];
 	$ar_old = ['Alle','1','2','3','4','5','6','7','8','9','10','11','12'];
 	$rank = ['Alle','Chevalier', 'Commandeur', 'Officier', 'Grand-Officier', 'Grand-Croix'];
-	$beruf = ['0'=>'Alle','1'=>'Adel','2'=>'Angestellte','3'=>'Beamte', '4'=>'Handel','5'=>'Handwerk','6'=>'Künstler','7'=>'Militär','8'=>'Rentner','9'=>'Selbständig','10'=>'Sonstiges','11'=>'unbekannt'];
+	$beruf = ['0'=>'Alle','1'=>'Adel','2'=>'Angestellte','3'=>'Beamte', '4'=>'Handel','5'=>'Handwerk','6'=>'Künstler','7'=>'Militär','8'=>'Rentner','9'=>'Selbstständig','10'=>'Sonstiges','11'=>'Unbekannt'];
 
 ?>
 <div class="container2">
