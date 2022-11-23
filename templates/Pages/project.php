@@ -39,15 +39,15 @@ Info Page Project
 			<h4><?= __('Hinzugefügte Angaben') ?></h4>
 
 			<p><?= __('Folgende Angaben wurden recherchiert und der Datenbank hinzugefügt:')?>
-			<li><?= __('Zur Strukturierung der Berufe "Berufskategorien" mit elf Auswahlmöglichkeiten: Adel, Arbeiter, Angestellte, Beamte, Handwerk, Handel, Künstler, Militär, Rentier, Rentner, Selbstständig, Sonstiges und keine Angaben. ')?></li>
+			<li><?= __('Zur Strukturierung der Berufe "Berufskategorien" mit elf Auswahlmöglichkeiten: Adel, Arbeiter, Angestellte, Beamte, Handwerk, Handel, Kunst/Erziehung, Militär, Rentier, Rentner, Selbstständig, Sonstiges und keine Angaben. ')?></li>
 			<li><?= __('Die Berufsangaben wurden außerdem mit der Ontologie historischer, deutschsprachiger Berufs- und Amtsbezeichnungen (OhdAB) angereichert (siehe Reiter "Dokumentation").') ?></li>
 			<li><?= __('Zur Identifikation der Straßen wurden sowohl das damalige und das aktuelle Arrondissement als auch der aktuelle Name der Straße mitangegeben (2). ')?></li>
 			<li><?= __('Vermerkt wurde bei den Einträgen ebenfalls, ob es sich um einen Mann, eine Frau oder um einen Betrieb handelt.')?></li>
 			</p>
 
-			<p><?= __('Die Zuweisung der Berufe zu den Kategorien war nicht immer eindeutig. Ist als Beruf z.B. "Uhren" angegeben, so kann diese Person gleichermaßen dem Handel und dem Handwerk (Produktion) zugewiesen werden. Einige Personen gehören sowohl der Kategorie Adel als auch den Kategorien Militär oder Beamte an. Ein "ehemaliger Arzt" kann zu den Selbständigen oder zu den Rentnern gerechnet werden. Diese Kategorien dienen nur einer ersten groben Orientierung. Die eigene Überprüfung im Einzelfall können sie nicht ersetzen.') ?></p>
+			<p><?= __('Die Zuweisung der Berufe zu den Kategorien war nicht immer eindeutig. Ist als Beruf z.B. "Uhren" angegeben, so kann diese Person gleichermaßen dem Handel und dem Handwerk (Produktion) zugewiesen werden. Einige Personen gehören sowohl der Kategorie Adel als auch den Kategorien Militär oder Beamte an. Berufe mit der Bezeichnung "ehemalig" wurden nicht zu den Rentnern gerechnet, sondern analog wie die noch aktiv Tätigen dieser Kategorie. Diese Zuordnungen dienen nur einer ersten groben Orientierung. Die eigene Überprüfung im Einzelfall können sie nicht ersetzen. Die Berufsangaben der Ontologie (OhdAB) ist genauer.') ?></p>
 
-			<p><?= __('Das gilt auch für die Zuweisung des Geschlechts: Es war nicht immer eindeutig, ob Fr. die Abkürzung für Frau oder für einen männlichen Vornamen sein sollte. Beides kam vor. Einer Person wurde dann "weiblich" zugeordnet, wenn es eindeutig war, z.B. durch die Berufsbezeichnung (Bäckerin, Lehrerin o.ä.) bzw. wenn der Beruf es nahelegt (z.B. Weißzeug). Auch hier muss eine Prüfung im Einzelfall stattfinden.')?></p>
+			<p><?= __('Nicht immer eindeutig ist ebenso die Zuweisung des Geschlechts: Fr. kann die Abkürzung für Frau oder für einen männlichen Vornamen sein. Beides kam vor. Einer Person wurde dann "weiblich" zugeordnet, wenn es eindeutig war, z.B. durch die Berufsbezeichnung (Bäckerin, Lehrerin o.ä.) bzw. wenn der Beruf es nahelegt (z.B. Weißzeug). Auch hier muss eine Prüfung im Einzelfall stattfinden.')?></p>
 
 			<p><?= __('Manche Straßen konnten nicht identifiziert werden, in manchen Fällen konnte das Arrondissement nicht klar ermittelt werden, z.B. wenn eine Straße zwei Arrondissements voneinander trennt. In diesem Fall sind alle angrenzenden Arrondissements erwähnt. Ggf. muss anhand der Hausnummer in den "Calepins de Cadastre" (periodische Häuserbestandsaufnahmen) in den Archives de Paris die Zugehörigkeit ermittelt werden. Existiert eine Straße nicht mehr, so ist dies vermerkt. Konnte der neue Name nicht ermittelt werden oder wurde sie in zu viele neue Straßen aufgeteilt und eine Zuordnung war nicht möglich, so steht ein "?".')?></p>
 
@@ -93,7 +93,7 @@ Info Page Project
 			
 			<p> <?= __('Für die Visualisierung der Adressen wurde ein farbiger Stadtplan von Paris aus dem Bestand des französischen Generalstabs von 1820-1866 verwendet (1) und über eine aktuelle Karte und die heutigen Daten gelegt. ') ?></p>
 			<p><?= __('Ein Klick auf die Karte zeigt alle Adressen aus dem Adressbuch. Zur Anzeige ausgewählt werden können Personen, Unternehmen oder beides. Beim Klick auf den Marker öffnet sich ein Popup mit den Angaben aus dem Adressbuch.') ?></p>
-			<p><?= __('Die Marker auf der Karte geben nicht die exakte Hausnummer an, da dies eine aufwändige Recherche nach der Haunummerierung von 1854 erfordert hätte. Stattdessen zeigen sie auf die Straßenmitte.') ?></p>
+			<p><?= __('Die Marker auf der Karte geben nicht immer die exakte Hausnummer an, da die Daten nicht für alle Adressen zur Verfügung standen. In rund der Hälfte der Fälle zeigen die Marker daher auf die Straßenmitte.') ?></p>
 			<p><?= __('Einzelergebnisse und Ergebnislisten nach der Suche können ebenfalls auf der Karte angezeigt werden, per Klick auf „Karte“ oben links neben dem Namen. Bei Ergebnislisten in der Suche werden jeweils nur die ersten 20 Resultate angezeigt.')?></p>
 			<p><?= __('Über die Auswahl auf der rechten Seite können die verschiedenen Schichten der Karten (historischer und moderner Plan, Grenzen der Arrondissements) ein- oder ausgeschaltet werden.')?></p>
 			<br>
@@ -185,7 +185,7 @@ Info Page Project
 			Paris Open Data, <a href="https://opendata.paris.fr/explore/dataset/arrondissements/map/?disjunctive.c_ar&disjunctive.c_arinsee&disjunctive.l_ar&basemap=jawg.dark&location=12,48.85889,2.34692">https://opendata.paris.fr/explore/dataset/arrondissements/</a>
 			</td>
 		</tr>
-    <tr>
+		<tr>
 			<td>
 			Ontologie historischer, deutschsprachiger Berufs- und Amtsbezeichnungen (OhdAB), <a href="https://www.geschichte.uni-halle.de/struktur/hist-data/ontologie/">https://www.geschichte.uni-halle.de/struktur/hist-data/ontologie/</a>
 			</td>
