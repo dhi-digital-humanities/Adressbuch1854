@@ -156,7 +156,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         
     </main>
     <footer>
-        <div class="contact">
+        <div class="contact2">
         <a target="_blank" href="https://dh.phil-fak.uni-koeln.de/">
             <?=$this->Html->image('/webroot/scans/IDH.jpg', ['class' => 'wrapper-item', 'id' => 'idh-logo', 'alt' => 'Logo IDH', 'style'=>'width:70px;padding-right:4px;'])?>
         </a>
@@ -165,7 +165,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 Albertus-Magnus-Platz<br>
                 D-50931 Köln<br></p>
         </div>
-        <div class="contact">
+        <div class="contact3">
 		<a target="_blank" href="https://www.dhi-paris.fr/">
 			<?=$this->Html->image('/webroot/scans/logo.png', ['class' => 'wrapper-item', 'id' => 'dhi-logo', 'alt' => 'Logo DHIP', 'style' =>'width:70px;padding-right:4px;'])?>
 		</a>
@@ -177,9 +177,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
             Fax+33 1 42715643<br>
             E-Mail: <a style="color: white;"href="mailto:info@dhi-paris.fr">info@dhi-paris.fr</a></p>
         </div>
-         <a target="_blank" href="https://www.maxweberstiftung.de/startseite.html">
+         <div class="contact">
+             <a target="_blank" href="https://www.maxweberstiftung.de/startseite.html">
             <?=$this->Html->image('/webroot/scans/MWS.svg', ['class' => 'wrapper-item', 'id' => 'idh-logo', 'alt' => 'Logo Max Weber stifung', 'width' => '125px', 'style'=>'padding:10px'])?>
         </a>
+        </div>
     </footer>
 
     
