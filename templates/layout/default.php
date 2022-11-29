@@ -70,21 +70,23 @@ $description = 'Adressbuch 1854';
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
     
-    <!-- mamoto js -->
- <script>
-         var _paq = window._paq = window._paq || [];
+
+
+<!-- Matomo -->
+<script>
+  var _paq = window._paq = window._paq || [];
   /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
   _paq.push(['trackPageView']);
   _paq.push(['enableLinkTracking']);
   (function() {
-    var u="//ruegen.ihap.local/mamoto/";
+    var u="https://visits.maxweberstiftung.de/";
     _paq.push(['setTrackerUrl', u+'matomo.php']);
-    _paq.push(['setSiteId', '1']);
+    _paq.push(['setSiteId', '5']);
     var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
     g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
   })();
-  </script>
-  <!-- end mamoto -->
+</script>
+<!-- End Matomo Code -->
 
 </head>
 <body>
