@@ -4,7 +4,8 @@
  * @var \App\Model\Entity\Person[]|\Cake\Collection\CollectionInterface $persons
  */
 
- 
+
+
 $params = $this->request->getQueryParams();
 unset($params['Persons[page]']);
 unset($params['Companies[page]']);

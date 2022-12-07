@@ -23,6 +23,6 @@ $this->Html->css('cite', ['block' => true]);
 <div class="citation content">
 	<span><?= __('Zitierhinweis').': ' ?></span>
 	<?= __('Eintrag').' "'.$title.'" (ID '.$idno.'), '.__('in', 'Zitierhinweis, in: Edition').': '.
-		$bookeditor.' ('.__('Hg.').'), '.$booktitle.', '.__('Elektronische Edition').', DHI Paris 2020, URL: '.
+		$bookeditor.' ('.__('Hg.').'), '.$booktitle.', '.__('Elektronische Edition').', DHI Paris 2023, URL: '.
 		$url.' ('.__('Zugriff am ').$date.').'?>
 </div>

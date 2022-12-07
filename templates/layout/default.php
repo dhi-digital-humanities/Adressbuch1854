@@ -70,11 +70,9 @@ $description = 'Adressbuch 1854';
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
     
-
-
-<!-- Matomo -->
-<script>
-  var _paq = window._paq = window._paq || [];
+    <!-- mamoto js -->
+ <script>
+         var _paq = window._paq = window._paq || [];
   /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
   _paq.push(['trackPageView']);
   _paq.push(['enableLinkTracking']);
@@ -85,8 +83,8 @@ $description = 'Adressbuch 1854';
     var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
     g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
   })();
-</script>
-<!-- End Matomo Code -->
+  </script>
+  <!-- end mamoto -->
 
 </head>
 <body>
@@ -179,11 +177,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
             Fax+33 1 42715643<br>
             E-Mail: <a style="color: white;"href="mailto:info@dhi-paris.fr">info@dhi-paris.fr</a></p>
         </div>
-         <div class="contact">
-             <a target="_blank" href="https://www.maxweberstiftung.de/startseite.html">
+        <div class="contact">
+         <a target="_blank" href="https://www.maxweberstiftung.de/startseite.html">
             <?=$this->Html->image('/webroot/scans/MWS.svg', ['class' => 'wrapper-item', 'id' => 'idh-logo', 'alt' => 'Logo Max Weber stifung', 'width' => '125px', 'style'=>'padding:10px'])?>
         </a>
-        </div>
+</div>
     </footer>
 
     

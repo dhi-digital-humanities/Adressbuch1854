@@ -68,8 +68,8 @@ class ArrondissementsController extends AppController
                 'SocialStatuses',
                 'OccupationStatuses',
                 'ProfCategories',
-                'Addresses.Streets'],
-                    );
+                'Addresses.Streets']
+            );
 
         $persons
             ->leftJoinWith('Addresses.Streets.Arrondissements')

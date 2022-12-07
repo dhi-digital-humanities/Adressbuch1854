@@ -23,9 +23,9 @@
 							$gender='Weiblich';
 						} else {
 							
-							$gender='Nicht bekannt';
+							$gender='unbekannt';
 						};
-					$ldh=isset($person->ldh_rank['rank']) ? ($person->ldh_rank['rank']) : 'nicht bekannt';	
+					$ldh=isset($person->ldh_rank['rank']) ? ($person->ldh_rank['rank']) : 'unbekannt';	
 
 
 					
@@ -50,10 +50,11 @@
 
 					foreach($addr as $nummer){
 
-						$addr3=isset($nummer['houseno']) ? ($nummer['houseno']) : 'Der nummer ist unbekannt' ;
+						$addr3=isset($nummer['houseno']) ? ($nummer['houseno']) : ' ' ;
 					}
 
 					$houseno=$addr3;
+					//$bhvp = $person->original_references[0]['scan_no'];
 					
 
 
