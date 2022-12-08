@@ -201,8 +201,8 @@
 				<!-- endif; ?>-->
 				<br>
 			     <div class="csl-bib-body" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">
-				<div class="csl-entry">Zitierhinweis: <?php echo $name ?>, in: Adressbuch der Deutschen in Paris für das Jahr 1854, hg. v. F.A. Kronauge, Paris, S.<?php echo $begP ?>, Elektronische Edition, DHI Paris 2022, <a target="_blank" href='<?php  $this->request->getUri() ?>'><?php echo $this->request->getUri() ?></a>, CC-BY 4.0.</div>
-				<?php print zoteroperson($name, $precision, $precision2, $military_status, $social_status,$occupation_status, $gender, $ldh, $houseno, $addr_name, $addr_new, $begP);?>
+				<div class="csl-entry">Zitierhinweis: <?php echo $name ?>, in: Adressbuch der Deutschen in Paris für das Jahr 1854, hg. v. F.A. Kronauge, Paris, S.<?php echo $begP ?>, Elektronische Edition, DHI Paris 2023, <a target="_blank" href='<?php  $this->request->getUri() ?>'><?php echo $this->request->getUri() ?></a>, CC-BY 4.0.</div>
+				<?php print zoteroperson($name, $precision2, $military_status, $social_status,$occupation_status, $gender, $ldh, $houseno, $addr_name, $begP);?>
 			</div>
 		</div>
 	</div>
@@ -236,7 +236,7 @@
 		"postalCode":"F-75",
 		"streetAddress":"<?php echo $houseno. ' ' . $addr_name. ' ('. $addr_new. ')'?>"
 	},
-	"image":"<?php echo 'http://adressbuch1854.dh.uni-koeln.de/scans/HD/BHVP_703983'. $begP .'.jpg'?>",
+	"image":"<?php echo 'https://adressbuch1854.dh.uni-koeln.de/webroot/scans/HD/BHVP_703983_'. $begP .'.jpg'?>",
 	"jobTitle":"<?php echo $precision2 ?>",
 	"name":"<?php echo $name ?>",
 	"url":"<?php echo $this->request->getUri() ?>"

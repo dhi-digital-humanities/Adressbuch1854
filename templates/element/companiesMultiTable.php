@@ -35,6 +35,8 @@ $this->Html->css('multiTable.css');
 		<?php
 		$countNo = 1 + $offset;
 		foreach ($companies as $company): ?>
+		<?php require_once(__DIR__.'/../functions/functions.php');
+	require(__DIR__.'/../functions/varscomp.php'); ?>
 		<?php
 			$cats = [];
 			if($company->has('prof_category')){
@@ -72,6 +74,23 @@ $this->Html->css('multiTable.css');
 			<td><a href="/pages/panier_export?action=ajout&amp;l=<?= $company->id ?>&amp;n=<?= $company->name?>&amp;p=<?= $company->profession_verbatim?>&amp;u=<?= $this->request->getUri() ?>" onclick="window.open(this.href, '', 
 		'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=800, height=350'); return false;"><img src="/webroot/scans/icon-download.png" title="<?= __('Speichern') ?>" style="width: 20px"></a><td>
 		</tr>
+		<?php print zoterocomp($nachname, $prof_category, $profession, $addr_no, $addr_old, $company->original_references[0]['scan_no']);?>
+		<script type="application/ld+json">
+	{
+	"@context":"https://schema.org",
+	"@type": "Organization",
+	"address":{
+		"@type": "PostalAddress",
+		"addressLocality":"Paris",
+		"addressRegion": "France",
+		"postalCode":"F-75",
+		"streetAddress":"<?php if(!empty($company->addresses[0]['street']['name_old_clean'])) echo $company->addresses[0]['houseno'].' '.$company->addresses[0]['street']['name_old_clean'] ?>"
+	},
+	"jobTitle":"<?php if(!empty($company->profession->profession_verbatim)) echo $company->profession->profession_verbatim ?>",
+	"name":"<?php echo $company->name ?>",
+	"url":"<?php echo 'https://adressbuch1854.dh.uni-koeln.de/companies/view/'.$company->id ?>"
+}
+</script>
 		<?php
 			$countNo++;
 			endforeach;

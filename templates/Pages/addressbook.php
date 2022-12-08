@@ -74,11 +74,18 @@ Info Page Addressbook
 			
 
 				
-					<p><?= __('Das Buch ist in fünf Abschnitte unterteilt: Zuerst wird eine kurze Übersicht über Sehenswürdigkeiten von Paris und Wohnungen der Gesandten gegeben. Danach sind die Adressen abgedruckt, geordnet nach Zugehörigkeit zu einem Geschäftsbereich, nach Namen und nach Straßen. Am Ende des Buchs folgt eine dreiseitige "Geschäftsliste für In- und Ausland" sowie vier Seiten "Geschäftsempfehlungen". ') ?>
+					<p><?= __('Das Buch ist in sieben Abschnitte unterteilt:<ol>')?>
+					<?= __('<ul>1)	Verzeichnis der Sehenswürdigkeiten (S. 6-7)</ul>')?>
+					<?= __('<ul>2)	Gesandtschaften (S. 8)</ul>') ?>
+					<?= __('<ul>3)	"Geschäftsliste": Alphabetisches Verzeichnis geordnet nach Geschäftszweig (S. 9-18)</ul>')?>
+					<?= __('<ul>4)	"Adreßliste": Alphabetisches Verzeichnis geordnet nach Nachnamen (S. 19-162 inkl. Paginierungsfehler)</ul>') ?>
+					<?= __('<ul>5)	"Straßenliste": Alphabetisches Verzeichnis geordnet nach Straßen (S. 163-245)</ul>')?>
+					<?= __('<ul>6)	"Geschäftsliste für In- und Ausland" (S. 246-248)</ul>')?>
+					<?= __('<ul>7) "Geschäftsempfehlungen" (S. 249-252).</ul> ') ?>
 					</p>
 
 				
-					<p><?= __('Im Adressbuch sind Name, teilweise Vorname (häufig abgekürzt), Beruf, Straße(n) und Hausnummer(n) einer Person bzw. eines Betriebs vermerkt. Fettgedruckte Namen weisen darauf hin, dass gleichzeitig eine Anzeige im Adressbuch geschaltet wurde. Ebenso ist vermerkt, wenn die Personen in der Ehrenlegion oder Mitglied des Institut de France waren oder zu den "Notable commerçant" gehörten (siehe dazu die Hinweise bei "Datenbank").')?>
+					<p><?= __('Im Adressbuch sind Name, teilweise Vorname (häufig abgekürzt), Beruf, Straße(n) und Hausnummer(n) einer Person bzw. eines Betriebs vermerkt. Fettgedruckte Namen weisen darauf hin, dass gleichzeitig eine Anzeige im Adressbuch geschaltet wurde. Ebenso ist vermerkt, wenn die Personen in der Ehrenlegion oder Mitglied des Institut de France waren oder zu den "Notable commerçant" gehörten, was im Adressbuch mit der Abkürzung NC in eckigen Klammern vermerkt ist. Als NC werden die Kaufleute bezeichnet, die die Mitglieder der Handelsgerichte wählten')?>
 					</p>
 
 				
@@ -105,7 +112,15 @@ Info Page Addressbook
 				<div class="column-responsive column-80">
 					<div class="content5">
 						<br>
-						<p><?= __('F. A. Kronauge gründete 1852 ein Spracheninstitut, das "Institut polyglotte", bei dem man laut Werbeseite Unterricht in "allen Sprachen" nehmen und Übersetzungen anfertigen lassen konnte. Das Institut lag im 2. Arrondissement, 57, rue de Richelieu, und hatte laut Bottin du Commerce zu einem späteren Zeitpunkt die Adresse 222, ancienne rue de Rivoli. Über dieses Institut lief die Veröffentlichung des Adressbuchs und die darin enthaltenen Anzeigen. Weitere Informationen über den Herausgeber konnten nicht gefunden werden. Vermutlich handelt es sich um ein Pseudonym.') ?></p>
+						<p><?= __('Über den Herausgeber des Adressbuchs der Deutschen in Paris von 1854, F. A. Kronauge, ist wenig zu finden. Eine Suche im Bottin du Commerce von Paris ergab, dass er dort ab 1850 gelistet war als "Professeur de la littérature anglaise et allemande", mit der Adresse 244, St-Honoré. In der Bottin-Ausgabe von 1852 ist er mit der Adresse 28, boulevard des Italiens verzeichnet, 1853 mit der Adresse 57, rue de Richlieu. In der Ausgabe von 1853 taucht das erste Mal das "Institut polyglotte" auf, das er laut Werbeblatt, das im Adressbuch eingelegt war, 1852 gegründet hat (1). Ein gewisser Adamson ist ebenfalls unter der Adresse und dem Institut polyglotte genannt. Aus dem Werbeblatt geht weiter hervor, dass man dort Unterricht in "allen Sprachen" nehmen und Übersetzungen anfertigen lassen konnte. Über dieses Institut lief die Veröffentlichung des Adressbuchs und die darin enthaltenen Anzeigen. Eine Erklärung für die zahlreichen Adressen der Deutschen in Paris im 1. und im 2. Arrondissement könnte sein, dass Kronauge sich in diesen Vierteln am besten auskannte, liegen doch seine Wohnadressen ebenfalls dort.') ?></p>
+						<p><?= __('Im Adressbuch der Deutschen in Paris von 1854 hat sich Kronauge als "membre de l’université de Gottingue" eingetragen. 
+						In der Ausgabe des Bottin du Commerce ein Jahr später von 1855 ist er mit einer neuen Adresse genannt: 10 bis, Rivoli. 1856 wie auch in den beiden Folgejahren unter 212, Rivoli. 1859 taucht er nicht mehr im Bottin auf.') ?></p>
+						<p><?= __('Nachforschungen im Pariser Stadtarchiv zum Institut polyglotte blieben genauso erfolglos wie im Landesarchiv Speyer. Dort wurden Akten vermutet, da für das Adressbuch der Deutschen in Paris zwar der Verlagsort Paris angegeben war, es aber in Kommission bei I. I. Tascher in Kaiserslautern vertrieben wurde und das eingelegte Werbeblatt den Hinweis "Gedruckt bei bei L. Vatter in Kaiserslautern" enthält.') ?></p><br>
+						<em>
+						<ul>
+							<?= __('(1) Das Werbeblatt ist unter der Signatur BHVP_703983_extra_002.jpg zu finden.') ?>
+						</ul>
+						</em>
 					</div>
 				</div>
 			</div>
@@ -116,7 +131,7 @@ Info Page Addressbook
 					<div class="content5">
 						<br>
 						<p><?= __('Die Bedeutung des Adressbuchs liegt in der großen Anzahl der darin enthaltenen Adressen. In der Volkszählung von 1851 wurden in Paris 12.245 Deutsche und Österreicher gezählt. Wenn beide Zahlen stimmen, so sind im Adressbuch fast 40% der deutschsprachigen Bevölkerung von Paris aus dem Jahr 1854 erfasst (1). Darüber hinaus stammt das Adressbuch aus einer - was die deutsche Einwanderung betrifft - bisher wenig erforschten Periode und stellt als umfassende nominative Quelle einen Ausgangspunkt für weitere Forschungen dar. ') ?></p>
-						<p><?= __('Zu den bekannten Personen im Adressbuch gehören der Dichter Heinrich Heine, der Architekt Jakob Ignaz Hittorff (u.a. Gare du Nord), der Buchhändler Klincksieck, einige Mitglieder der Familien Rothschild und Oppenheim sowie nicht-deutsche Personen wie der polnische Dichter Adam Mickiewics und der französische Komponist Jean-Madeleine Schneitzhoeffer.')?></p>
+						<p><?= __('Zu den bekannten Personen im Adressbuch gehören der Dichter Heinrich Heine, der Architekt Jakob Ignaz Hittorff (u.a. Gare du Nord), die Fotografen Charles Reutlinger und Sigismund Gerothwohl, der Sprachpädagoge Heinrich Ottfried Ollendorff, der Paläograph Karl Benedikt Hase, der Buchhändler Klincksieck, einige Mitglieder der Familien Rothschild und Oppenheim sowie nicht-deutsche Personen wie der polnische Dichter Adam Mickiewics und der französische Komponist Jean-Madeleine Schneitzhoeffer.')?></p>
 						<p><?= __('Die Datenbank dient als Ausgangspunkt für prosopographische Recherchen, da für die Suche nach Einzelpersonen in anderen Quellen des Pariser Stadtarchivs wie Geburts-, Tauf-, Heirats- und Todesregister die Adresse bekannt sein muss. Auch können Personen in den jährlichen Ausgaben des "Bottin du commerce" gesucht werden, um Um- und Wegzüge nachzuvollziehen. Interessant ist außerdem ein Abgleich mit den "calepins du cadastre" in den Archives de Paris: periodische Gebäudeaufnahmen, die jedes einzelne Haus der Stadt mit seinen Wohnungen und Werkstätten beschreibt und darin Mieter und Mietpreise verzeichnet.')?> </p><br>
 
 						<em>

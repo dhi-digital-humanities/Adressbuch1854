@@ -4,7 +4,7 @@
 //$street_name and $street_new are two variables to save name_old_clean and name_new on zotero with zoterostreets's function. 
 
 				$street_name=$street->name_old_clean;
-				$street_new=isset($street->name_new) ? ($street->name_new) : "Die name ist unbekannt oder nicht existiert mehr";
+				$street_new=isset($street->name_new) ? ($street->name_new) : $street_name;
 				
 				
 				$no_old=[];

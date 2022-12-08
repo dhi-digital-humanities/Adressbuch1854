@@ -18,9 +18,9 @@
 	$arrsNew = [];
 	foreach($street->arrondissements as $arr){
 		if($arr->type === 'pre1860'){
-			array_push($arrsOld, $this->Html->link($arr->no, ['controller' => 'Arrondissements', 'action' => 'view', $arr->id]));
+			array_push($arrsOld, '<abbr title="'.$arr->type.'">'.$arr->no.'</abbr>');
 		} else {
-			array_push($arrsNew, $this->Html->link($arr->no, ['controller' => 'Arrondissements', 'action' => 'view', $arr->id]));
+			array_push($arrsNew,'<abbr title="'.$arr->type.'">'.$arr->no.'</abbr>');
 		}
 	}
 	
@@ -47,19 +47,19 @@ $uri = $this->request->getRequestTarget();
 		<div class="row">
     		<div class="column-responsive column-80">
         		<div class="streets view content">
-            		<h3><?= strtolower(h($street->name_old_clean)) ?></h3>
+            		<h3><?= h($street->name_old_clean) ?></h3>
             		<table>
                 		<tr>
                     		<th><?= __('Name alt') ?></th>
-                    		<td><?= strtolower(h($street->name_old_clean)) ?></td>
+                    		<td><?= h($street->name_old_clean) ?></td>
                			</tr>
                 		<tr>
                     		<th><?= __('Schreibweisen im Buch') ?></th>
-                    		<td><?= strtolower(implode(', ', $varieties)) ?></td>
+                    		<td><?= implode(', ', $varieties) ?></td>
                 		</tr>
                 		<tr>
                     		<th><?= __('Name heute') ?></th>
-                    		<td><?= strtolower(h($street->name_new)) ?></td>
+                    		<td><?= h($street->name_new) ?></td>
                 		</tr>
 						<tr>
                     		<th><?= __('Arrondissements') ?></th>
@@ -105,7 +105,7 @@ $uri = $this->request->getRequestTarget();
 					<?php endif; ?>
 					<br>
 					<div class="csl-bib-body" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">
-				<div class="csl-entry">Zitierhinweis: <?php echo $street_name ?>, in: Adressbuch der Deutschen in Paris für das Jahr 1854, hg. v. F.A. Kronauge, Paris. Elektronische Edition, DHI Paris 2022, <a target="_blank" href='<?php  $this->request->getUri() ?>'><?php echo $this->request->getUri() ?></a>, CC-BY 4.0.</div><?php print zoterostreets($street_name, $no_old, $no_new, $street_new)?> </div>
+				<div class="csl-entry">Zitierhinweis: <?php echo $street_name ?>, in: Adressbuch der Deutschen in Paris für das Jahr 1854, hg. v. F.A. Kronauge, Paris. Elektronische Edition, DHI Paris 2023, <a target="_blank" href='<?php  $this->request->getUri() ?>'><?php echo $this->request->getUri() ?></a>, CC-BY 4.0.</div><?php print zoterostreets($street_name, $no_old, $no_new, $street_new)?> </div>
 				</div>
 			</div>
 		</div>
@@ -136,6 +136,8 @@ $uri = $this->request->getRequestTarget();
 			"latitude": "<?php echo $street->geo_lat ?>",
 			"longitude": "<?php echo $street->geo_long ?>"
 		},
-		"name": "<?php echo $street_name .' ('. $street_new.')' ?>"
+		"name": "<?php echo $street_name .' ('. $street_new.')' ?>",
+		"url":"https://adressbuch1854.dh.uni-koeln.de/streets/view/<?php echo $street->id ?>"
+							
 	}
 </script>

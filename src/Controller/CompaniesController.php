@@ -36,7 +36,8 @@ class CompaniesController extends AppController
             $this->paginate = [
                 'contain' => [
                     'ProfCategories',
-                    'Addresses.Streets'
+                    'Addresses.Streets',
+                    'OriginalReferences'
                 ]
             ];
 
@@ -44,12 +45,14 @@ class CompaniesController extends AppController
         } else{
             $companies = $this->Companies->find()
             ->contain(['ProfCategories',
+            'OriginalReferences',
                 'Addresses.Streets'])
             ->limit(20);
         }
          $companies = $this->paginate($this->Companies->find(
          'all', array('order'=>array('Companies.name ASC')))
          ->contain(['ProfCategories',
+         'OriginalReferences',
                     'Addresses.Streets',
                     'Profession'])
          ->limit(20));
