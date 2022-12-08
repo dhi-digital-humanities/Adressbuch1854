@@ -39,15 +39,15 @@ Info Page Project
 			<h4><?= __('Hinzugefügte Angaben') ?></h4>
 
 			<p><?= __('Folgende Angaben wurden recherchiert und der Datenbank hinzugefügt:')?>
-			<li><?= __('Zur Strukturierung der Berufe "Berufskategorien" mit elf Auswahlmöglichkeiten: Adel, Arbeiter, Angestellte, Beamte, Handwerk, Handel, Künstler, Militär, Rentier, Rentner, Selbstständig, Sonstiges und keine Angaben. ')?></li>
+			<li><?= __('Zur Strukturierung der Berufe "Berufskategorien" mit elf Auswahlmöglichkeiten: Adel, Arbeiter, Angestellte, Beamte, Handwerk, Handel, Kunst/Erziehung, Militär, Rentier, Rentner, Selbstständig, Sonstiges und keine Angaben. ')?></li>
 			<li><?= __('Die Berufsangaben wurden außerdem mit der Ontologie historischer, deutschsprachiger Berufs- und Amtsbezeichnungen (OhdAB) angereichert (siehe Reiter "Dokumentation").') ?></li>
 			<li><?= __('Zur Identifikation der Straßen wurden sowohl das damalige und das aktuelle Arrondissement als auch der aktuelle Name der Straße mitangegeben (2). ')?></li>
 			<li><?= __('Vermerkt wurde bei den Einträgen ebenfalls, ob es sich um einen Mann, eine Frau oder um einen Betrieb handelt.')?></li>
 			</p>
 
-			<p><?= __('Die Zuweisung der Berufe zu den Kategorien war nicht immer eindeutig. Ist als Beruf z.B. "Uhren" angegeben, so kann diese Person gleichermaßen dem Handel und dem Handwerk (Produktion) zugewiesen werden. Einige Personen gehören sowohl der Kategorie Adel als auch den Kategorien Militär oder Beamte an. Ein "ehemaliger Arzt" kann zu den Selbständigen oder zu den Rentnern gerechnet werden. Diese Kategorien dienen nur einer ersten groben Orientierung. Die eigene Überprüfung im Einzelfall können sie nicht ersetzen.') ?></p>
+			<p><?= __('Die Zuweisung der Berufe zu den Kategorien war nicht immer eindeutig. Ist als Beruf z.B. "Uhren" angegeben, so kann diese Person gleichermaßen dem Handel und dem Handwerk (Produktion) zugewiesen werden. Einige Personen gehören sowohl der Kategorie Adel als auch den Kategorien Militär oder Beamte an. Berufe mit der Bezeichnung "ehemalig" wurden nicht zu den Rentnern gerechnet, sondern analog wie die noch aktiv Tätigen dieser Kategorie. Diese Zuordnungen dienen nur einer ersten groben Orientierung. Die eigene Überprüfung im Einzelfall können sie nicht ersetzen. Die Berufsangaben der Ontologie (OhdAB) ist genauer.') ?></p>
 
-			<p><?= __('Das gilt auch für die Zuweisung des Geschlechts: Es war nicht immer eindeutig, ob Fr. die Abkürzung für Frau oder für einen männlichen Vornamen sein sollte. Beides kam vor. Einer Person wurde dann "weiblich" zugeordnet, wenn es eindeutig war, z.B. durch die Berufsbezeichnung (Bäckerin, Lehrerin o.ä.) bzw. wenn der Beruf es nahelegt (z.B. Weißzeug). Auch hier muss eine Prüfung im Einzelfall stattfinden.')?></p>
+			<p><?= __('Nicht immer eindeutig ist ebenso die Zuweisung des Geschlechts: Fr. kann die Abkürzung für Frau oder für einen männlichen Vornamen sein. Beides kam vor. Einer Person wurde dann "weiblich" zugeordnet, wenn es eindeutig war, z.B. durch die Berufsbezeichnung (Bäckerin, Lehrerin o.ä.) bzw. wenn der Beruf es nahelegt (z.B. Weißzeug). Auch hier muss eine Prüfung im Einzelfall stattfinden.')?></p>
 
 			<p><?= __('Manche Straßen konnten nicht identifiziert werden, in manchen Fällen konnte das Arrondissement nicht klar ermittelt werden, z.B. wenn eine Straße zwei Arrondissements voneinander trennt. In diesem Fall sind alle angrenzenden Arrondissements erwähnt. Ggf. muss anhand der Hausnummer in den "Calepins de Cadastre" (periodische Häuserbestandsaufnahmen) in den Archives de Paris die Zugehörigkeit ermittelt werden. Existiert eine Straße nicht mehr, so ist dies vermerkt. Konnte der neue Name nicht ermittelt werden oder wurde sie in zu viele neue Straßen aufgeteilt und eine Zuordnung war nicht möglich, so steht ein "?".')?></p>
 
@@ -58,16 +58,16 @@ Info Page Project
 			<h5><?= __('Geändert wurde') ?></h5>
 			<li><?= __('Die Groß- und Kleinschreibung bei Straßennamen wurde vereinheitlicht: rue, boulevard, cour etc. immer klein geschrieben, die eigentlichen Straßennamen sind groß geschrieben, z.B. "rue d\'Austerlitz".') ?></li>
 			<li><?= __(' Abkürzungen in Straßennamen wurden ergänzt, z.B. Nve = Neuve.') ?></li>
-			<li><?= __('Fehlte bei den Straßennamen der Zusatz "rue de" oder "place de" so wurde dieser in eckigen Klammern ergänzt hinzugefügt.') ?></li>
+			<li><?= __('Fehlte bei den Straßennamen der Zusatz "rue de" oder "place de" so wurde dieser hinzugefügt.') ?></li>
 
 			<h5><?= __('Nicht geändert wurde') ?></h5>
 			<li><?= __('Die alte Schreibweise der Berufe wurde beibehalten. Offensichtliche Tippfehler wurden korrigiert, die verschiedenen Benennungen aber nicht vereinheitlicht, z.B. Schuh-Händler und Schuhhändler.') ?></li>
 			<li><?= __('Die Verwendung von "und", "u." oder "&"  ist im Buch und damit auch in der Datenbank unheitlich. Das gilt auch für Witwe, abgekürzt mit  "Wwe.", "Wtw.",  "Wtwe."') ?></li>
-			<li><?= __('Der Zusatz [NC] wurde anders als im Buch ohne die eckigen Klammern aufgenommen.') ?></li>
+			
 			<li><?= __('Leere Felder bedeuten, dass keine Angabe gemacht wurden.') ?></li>
 
 
-			<h4><?= __('Erste Version der Datenbank') ?></h4>
+			<h4><?= __('Erste Version der Datenbank 2006') ?></h4>
 
 			<p><?= __('An der 2006 veröffentlichten ersten Version der Datenbank haben neben der Projektleiterin Dr. Mareike König folgende Personen mitgewirkt: Gaël Cheptou (Wissenschaftliche Mitarbeit, Datenerfassung), Gaëtan Langhade und Sebastian Hamel (Technische Mitarbeit). Das Projekt wurde damals unterstützt durch die Gerda Henkel Stiftung (Düsseldorf) und die Gesellschaft der Freunde des DHIP.') ?></p>
 			<br>
@@ -93,7 +93,7 @@ Info Page Project
 			
 			<p> <?= __('Für die Visualisierung der Adressen wurde ein farbiger Stadtplan von Paris aus dem Bestand des französischen Generalstabs von 1820-1866 verwendet (1) und über eine aktuelle Karte und die heutigen Daten gelegt. ') ?></p>
 			<p><?= __('Ein Klick auf die Karte zeigt alle Adressen aus dem Adressbuch. Zur Anzeige ausgewählt werden können Personen, Unternehmen oder beides. Beim Klick auf den Marker öffnet sich ein Popup mit den Angaben aus dem Adressbuch.') ?></p>
-			<p><?= __('Die Marker auf der Karte geben nicht die exakte Hausnummer an, da dies eine aufwändige Recherche nach der Haunummerierung von 1854 erfordert hätte. Stattdessen zeigen sie auf die Straßenmitte.') ?></p>
+			<p><?= __('Die Marker auf der Karte geben nicht immer die exakte Hausnummer an, da die Daten nicht für alle Adressen zur Verfügung standen. In rund der Hälfte der Fälle zeigen die Marker daher auf die Straßenmitte.') ?></p>
 			<p><?= __('Einzelergebnisse und Ergebnislisten nach der Suche können ebenfalls auf der Karte angezeigt werden, per Klick auf „Karte“ oben links neben dem Namen. Bei Ergebnislisten in der Suche werden jeweils nur die ersten 20 Resultate angezeigt.')?></p>
 			<p><?= __('Über die Auswahl auf der rechten Seite können die verschiedenen Schichten der Karten (historischer und moderner Plan, Grenzen der Arrondissements) ein- oder ausgeschaltet werden.')?></p>
 			<br>
@@ -119,12 +119,14 @@ Info Page Project
 			<p><?= __('Das Bereinigen und Anreichern der Daten wurde mit der Open-Source-Software OpenRefine durchgeführt, die zugleich den Export in zahlreiche Formate ermöglicht, darunter SQL, was beim Einfügen von Daten in die Datenbank sehr nützlich war. Die ursprünglichen Daten wurden als CSV-Datei mit UTF-8 aus FileMaker extrahiert, um sie anschließend ohne proprietäre Software weiterverarbeiten zu können. Der UTF-8-Standard ermöglicht die Erkennung aller in der CSV-Datei enthaltenen Sonderzeichen und ist auch mit anderen Standards wie dem ASCII-Standard rückwärtskompatibel. Die Daten wurden mithilfe von regulären Ausdrücken der Sprache GREL bereinigt. Schließlich wurden die Straßennamen mit Wikidata angereichert. ')?></p>
 			<h4><?= __('Die Karte') ?></h4>
 			<p><?= __('Die Karte wurde mit der Open-Source-Software Leaflet erstellt. Diese ermöglicht es, eine interaktive Karte zu entwickeln und die im Adressbuch aufgeführten Personen zugleich auf einer historischen und modernen Karte zu lokalisieren. Mit dem Plugin Opacity-Controls können historische und moderne Karten übereinandergelegt werden und zeigen so die Veränderungen an. Die Daten werden von mehreren Vektordateien dargestellt wie den alten (vor 1860) und aktuellen Arrondissements sowie den Stadtvierteln von Paris, sie sind mit dem Plugin Leaflet-Shapefile implementiert.')?></p>
-			<p><?= __('Die Daten zu den Straßen und den alten Arrondissements stammen aus dem ALPAGE-Projekt des LAMOP der Universität Paris 1 Panthéon Sorbonne. Die Daten zu den neuen Arrondissements stammen aus Paris OpenData. Die historische Karte stammt aus dem Katalog von Géoportail. Es handelt sich um eine Karte des französischen Generalstabs aus der Zeit zwischen 1820 und 1866. Die Marker zeigen auf die Straßenmitte.') ?></p>
+			<p><?= __('Die Daten zu den Straßen und den alten Arrondissements stammen aus dem ALPAGE-Projekt des LAMOP der Universität Paris 1 Panthéon Sorbonne. Die Daten zu den neuen Arrondissements stammen aus Paris OpenData. Die historische Karte stammt aus dem Katalog von Géoportail. Es handelt sich um eine Karte des französischen Generalstabs aus der Zeit zwischen 1820 und 1866. Die Marker zeigen, sofern die Geo-Daten vorlagen, direkt auf die jeweilige Hausnummer, ansonsten zeigen sie auf die Straßenmitte.') ?></p>
 			<h4><?= __('Klassifizierung der Berufe') ?></h4>
 			<p><?= __('Die Angaben zu den Berufen wurden angereichert mit Normdaten aus der <a target="blank" href="https://www.geschichte.uni-halle.de/struktur/hist-data/ontologie/">Ontologie historischer, deutschsprachiger Berufs- und Amtsbezeichnungen (OhdAB)</a>, die am Historischen Datenzentrum der Martin-Luther-Universität Halle-Wittenberg unter Leitung von Dr. Katrin Moeller entsteht. Basis dafür ist die <a target="blank" href="https://de.wikipedia.org/wiki/Klassifikation_der_Berufe_2010">Klassifizierung der Berufe (KldB)</a> der Bundesagentur für Arbeit und des Statistischen Bundesamtes aus dem Jahr 2010, der wiederum die International Standard Classification of Occupations (ISCO) des International Labour Office zugrunde liegt (ILO 2008). Die KldB wurde am Historischen Datenzentrum in Halle überarbeitet und in Teilen erweitert und damit für die Klassifizierung historischer Berufe nutzbar gemacht. Insgesamt werden mit OhdAB bisher mehr als 44.000 historische Berufe taxonomisch geordnet und können in Berufsbereiche, Berufshauptgruppen oder unterschiedlich differenzierten Berufsgruppen geordnet werden. Die Nummern umfassen jeweils drei Bestandteile: den Buchstaben A (keine Amts- oder Berufsbezeichnung im engeren Sinne, sondern Besitzer, Schüler etc.) oder B (Amts- oder Berufsbezeichnung), dann folgt fünfstellig die Taxonomie (siehe dazu die Gliederung im <a target="blank" href="https://de.wikipedia.org/wiki/Klassifikation_der_Berufe_2010">Wikipedia-Eintrag zur KldB</a>) und dann die Individualnummer. Die erste Zahl im fünfstelligen Code zeigt den Berufsbereich an. Die letzte Zahl in der Taxonomie gibt das Anforderungsniveau an, etwa Helfer- und Anlerntätigkeit bis hin zu komplexen Spezialistentätigkeiten. Wir geben in der Datenbank neben der OhdAB-Gesamtnummer als Verbatim-Eintrag den Berufsbereich (Einsteller) und das Anforderungsniveau an (1). Anhand der Gesamtnummer kann den Bezeichnungen ein normierter Berufsgattungsname zugewiesen werden. ') ?></p>
-			<h4><?= __('Weiterführende Literatur') ?></h4>
+			<h5><?= __('Weiterführende Literatur OhdAB') ?></h5>
 			<p><?= __('Katrin Moeller: Standards für die Geschichtswissenschaft! Zu differenzierten Funktionen von Normdaten, Standards und Klassifikationen für die Geisteswissenschaften am Beispiel von Berufsklassifikationen, in: Jana Kittelmann und Anne Purschwitz (Hg.), Aufklärungsforschung digital. Konzepte, Methoden, Perspektiven, Halle 2019, S. 17-43.') ?></p>
 			<p><?= __('Katrin Moeller und Jan Michael Goldberg: Automatisierte Identifikation und Lemmatisierung historischer Berufsbezeichnungen in deutschsprachigen Datenbeständen, in: Zeitschrift für digitale Geisteswissenschaften, Wolfenbüttel 2022, DOI: <a target="blank" href="https://zfdg.de/2022_002">10.17175/2022_002</a>.')?></p>
+			<h4><?= __('JSON-LD und Zotero') ?></h4>
+			<p><?= __('Die Metadaten des Projekts sind im JSON-LD-Format ausgezeichnet und sind mithilfe des html-Tags "script" in den Quellcode der Anwendung geschrieben. Darüber können sie und ihre Verknüpfungen von Anwendungen wie dem OpenLink Structured Data Sniffer genauso ausgelesen werden wie von Suchmaschinen. Dies ermöglicht eine bessere Interoperabilität der Daten mit anderen Anwendungen und ein besseres Ranking in Suchmaschinen. Die Projektdaten können ebenso mit Zotero gespeichert werden. Html-Tags "span" werden mit einem PHP-Skript erstellt, damit die Projektdaten mit Zotero auffindbar und interoperabel sind.')?></p>
 			<h4><?= __('Die Website') ?></h4>
 			<p><?= __('Die Website ist mit der Open-Source-Software CakePHP programmiert.') ?></p>
 			
@@ -185,7 +187,7 @@ Info Page Project
 			Paris Open Data, <a href="https://opendata.paris.fr/explore/dataset/arrondissements/map/?disjunctive.c_ar&disjunctive.c_arinsee&disjunctive.l_ar&basemap=jawg.dark&location=12,48.85889,2.34692">https://opendata.paris.fr/explore/dataset/arrondissements/</a>
 			</td>
 		</tr>
-    <tr>
+		<tr>
 			<td>
 			Ontologie historischer, deutschsprachiger Berufs- und Amtsbezeichnungen (OhdAB), <a href="https://www.geschichte.uni-halle.de/struktur/hist-data/ontologie/">https://www.geschichte.uni-halle.de/struktur/hist-data/ontologie/</a>
 			</td>
@@ -221,12 +223,22 @@ Info Page Project
   			<span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=book&amp;rft.btitle=Paris%20de%20parcelles%20en%20pixels.%20Analyse%20g%C3%A9omatique%20de%20l'espace%20parisien%20m%C3%A9di%C3%A9val%20et%20moderne&amp;rft.place=Paris&amp;rft.publisher=Presses%20universitaires%20de%20Vincennes%20-%20Comit%C3%A9%20d'histoire%20de%20la%20ville%20de%20Paris&amp;rft.aufirst=H%C3%A9l%C3%A8ne&amp;rft.aulast=Noizet&amp;rft.au=H%C3%A9l%C3%A8ne%20Noizet&amp;rft.au=Boris%20Bove&amp;rft.au=Laura%20(dir.)%20Costa&amp;rft.date=2013"></span></div>
 		</td>
 	</tr>
+	<tr>
+		<td>
+			Nomenclature officielle des voies de Paris, <a target="blank" href="https://capgeo.sig.paris.fr/Apps/NomenclatureVoies/">https://capgeo.sig.paris.fr/Apps/NomenclatureVoies/</a> .
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<?= __('Siehe auch die Angaben zu den Datenlieferanten sowie weitere Hinweise auf der Seite "Dokumentation".') ?>
+		</td>
+	<tr>
 </table>
 <h5><?= __('Publikationen zum Projekt') ?></h5>
 <table>
 <tr>
 	<td>
-		<?= __('Mareike König, Evan Virevialle: Datenbank "Adressbuch der Deutschen in Paris von 1854" - Database "Directory of German Migrants living in Paris in 1854". Zenodo, 2.10.2022. <a target="blank" href="https://doi.org/10.5281/zenodo.7134960">https://doi.org/10.5281/zenodo.7134960</a>.') ?>
+		<?= __('König, Mareike, Virevialle, Evan: Datenbank "Adressbuch der Deutschen in Paris von 1854" - Database "Directory of German Migrants living in Paris in 1854". Zenodo, 2.10.2022. <a target="blank" href="https://doi.org/10.5281/zenodo.7134960">https://doi.org/10.5281/zenodo.7134960</a>.') ?>
 	</td>
 </tr>
 <tr>

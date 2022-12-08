@@ -39,6 +39,10 @@ $this->Html->css('multiTable.css');
 		<?php
 		$countNo = 1 + $offset;
 		foreach ($persons as $person) : ?>
+		
+	<?php require_once(__DIR__.'/../functions/functions.php');
+	require(__DIR__.'/../functions/varspersons.php'); ?>
+	
 		<?php
 			$name = '';
 			/*if(!empty($person->zusatz)){
@@ -109,8 +113,25 @@ $this->Html->css('multiTable.css');
 			<td>
 		</tr>
 		<?php
-		$countNo++;
-		endforeach; ?>
+		$countNo++; ?>
+		<?php print zoteroperson($name, $precision2, $military_status, $social_status,$occupation_status, $gender, $ldh, $houseno, $addr_name, $person->original_references[0]['scan_no']);?>
+		<script type="application/ld+json">
+	{
+	"@context":"https://schema.org",
+	"@type": "Person",
+	"address":{
+		"@type": "PostalAddress",
+		"addressLocality":"Paris",
+		"addressRegion": "France",
+		"postalCode":"F-75",
+		"streetAddress":"<?php if(!empty($person->addresses[0]['street']['name_old_clean'])) echo $person->addresses[0]['houseno'].' '.$person->addresses[0]['street']['name_old_clean'] ?>"
+	},
+	"jobTitle":"<?php if(!empty($person->profession->profession_verbatim)) echo $person->profession->profession_verbatim ?>",
+	"name":"<?php echo $name ?>",
+	"url":"<?php echo 'https://adressbuch1854.dh.uni-koeln.de/persons/view/'.$person->id ?>"
+}
+</script>
+	<?php endforeach; ?>
 	</table>
 <?php ?>
 </div>

@@ -52,6 +52,19 @@ $uri = $this->request->getRequestTarget();
               
                 </tr>
                 <?php endif; ?>
+                <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Occupation",
+      "name": "<?php echo $p->profession_verbatim ?>",
+      "occupationalCategory": {
+        "@type":"Category",
+        "Category":"<?php echo $p->name ?>",
+        "url":"https://adressbuch1854.dh.uni-koeln.de/profession/view/<?php echo $p->id ?>"
+      }
+      
+    }
+    </script>
                 <?php endforeach; ?>
             </tbody>
         </table>

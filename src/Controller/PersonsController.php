@@ -44,6 +44,7 @@ class PersonsController extends AppController
                     'ProfCategories',
                     'Profession',
                     'Addresses.Streets',
+                    'OriginalReferences',
 
                     
                 ]
@@ -61,6 +62,7 @@ class PersonsController extends AppController
                 'ProfCategories',
                 'Profession',
                 'Addresses.Streets',
+                'OriginalReferences',
                 
             ])
             ->limit(20);
@@ -76,6 +78,7 @@ class PersonsController extends AppController
             'OccupationStatuses',
             'ProfCategories',
             'Profession',
+            'OriginalReferences',
         ])
         ->limit(20)
          );

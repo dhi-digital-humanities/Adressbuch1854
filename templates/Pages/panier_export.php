@@ -103,7 +103,7 @@ if (!$erreur){
              //On va exporter en JSON ou en XML en reprenant l'URI et l'identifiant.
 
              echo "<td><a href='{$_SESSION['panier_export']['uri'][$i]}/view/{$_SESSION['panier_export']['Identifiant'][$i]}?export=json'>JSON</a></td>";
-             echo "<td><a href='/persons/view/{$_SESSION['panier_export']['Identifiant'][$i]}?export=xml'>XML</a></td>";
+             echo "<td><a href='{$_SESSION['panier_export']['uri'][$i]}/view/{$_SESSION['panier_export']['Identifiant'][$i]}?export=xml'>XML</a></td>";
              echo "</tr>";
 
 

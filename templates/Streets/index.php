@@ -42,14 +42,16 @@ $uri = $this->request->getRequestTarget();
 						<?php
 						$countNo = 1 + (($this->Paginator->current('Streets')-1) * $this->Paginator->param('perPage'));
 						foreach ($streets as $street): ?>
+						<?php require_once(__DIR__.'/../functions/functions.php');
+	require(__DIR__.'/../functions/varsstreets.php'); ?>
 						<?php
 							$arrsOld = [];
 							$arrsNew = [];
 							foreach($street->arrondissements as $arr){
 								if($arr->type === 'pre1860'){
-									array_push($arrsOld, $this->Html->link($arr->no, ['controller' => 'Arrondissements', 'action' => 'view', $arr->id]));
+									array_push($arrsOld, '<abbr title="'.$arr->type.'">'.$arr->no.'</abbr>');
 								} else {
-									array_push($arrsNew, $this->Html->link($arr->no, ['controller' => 'Arrondissements', 'action' => 'view', $arr->id]));
+									array_push($arrsNew, '<abbr title="'.$arr->type.'">'.$arr->no.'</abbr>');
 								}
 							}
 						?>
@@ -65,11 +67,27 @@ $uri = $this->request->getRequestTarget();
 									</tr>
 									<tr>
 										<th><?= implode(', ', $arrsOld) ?></th>
-										<th><?= implode(', ', $arrsNew) ?></th>
+										<th><?= implode(', ', $arrsNew);
+										if($arrsNew === 33) echo 'communes annexées de Paris' ?></th>
 									</tr>
 								</table>
 							</td>
 						</tr>
+						<?php print(zoterostreets($street_name, $street_new, $no_old, $no_new)) ?>
+						<script type="application/ld+json">
+							{
+							"@context":"https://schema.org",
+							"@type": "Place",
+							"geo":{
+								"@type":"GeoCoordinates",
+								"latitude": "<?php echo $street->geo_lat ?>",
+								"longitude": "<?php echo $street->geo_long ?>"
+							},
+							"name": "<?php echo $street->name_old_clean;
+							if(!empty($street->name_new)) echo ' ('.$street->name_new.')' ?>",
+							"url":"https://adressbuch1854.dh.uni-koeln.de/streets/view/<?php echo $street->id ?>"
+							}
+						</script>
 						<?php
 						$countNo++;
 						endforeach; ?>

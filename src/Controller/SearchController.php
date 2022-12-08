@@ -243,6 +243,7 @@ class SearchController extends AppController
 		$arrNew = $this->request->getQuery('arr_new');
 		$bold = $this->request->getQuery('bold');
 		$advert = $this->request->getQuery('advert');
+        $nc = $this->request->getQuery('notable_commercant');
 
         // Get param values for fields existing only in persons
 		$firstName = $this->request->getQuery('first_name');
@@ -255,7 +256,7 @@ class SearchController extends AppController
 
         // Checking if all values for company or person are empty and either empty the query object
         // for companies or return without modifying the query objects
-		if(empty($name.$street.$prof.$profCat.$arrOld.$arrNew) && $bold === null && $advert === null){
+		if(empty($name.$street.$prof.$profCat.$arrOld.$arrNew) && $bold === null && $advert === null && $nc === null){
             if(empty($firstName.$soc.$mil.$occup.$ldh) && $dlI === null && $gender === null) return;
             $companies->where(['Companies.id' => 0]);
         }
@@ -344,6 +345,14 @@ class SearchController extends AppController
 		} elseif($bold === '0'){
 			$persons->where(['Persons.bold' => false]);
 			$companies->where(['Companies.bold' => false]);
+		}
+
+        if($nc === '1'){
+			$persons->where(['Persons.notable_commercant' => true]);
+			$companies->where(['Companies.notable_commercant' => true]);
+		} elseif($nc === '0'){
+			$persons->where(['Persons.notable_commercant' => false]);
+			$companies->where(['Companies.notable_commercant' => false]);
 		}
 
         // Query for $advert (the fact, that a person's/company's name appears in the entreprise list of

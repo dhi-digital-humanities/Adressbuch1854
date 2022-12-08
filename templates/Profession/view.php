@@ -47,7 +47,21 @@ $uri = $this->request->getRequestTarget();
                     <th><?= __('OhdAB_01') ?></th>
                     <td><?= h($profession->OhdAB_01) ?></td>
                 </tr>
-				
+				<script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Occupation",
+      "name": "<?php echo $profession->profession_verbatim ?>",
+      "occupationalCategory": {
+        "@type":"Category",
+        "Category":"<?php echo $profession->name ?>",
+		"OhdAB":"<?php echo $profession->norm ?>",
+		"OhdAB_01":"<?php echo $profession->OhdAB_01 ?>",
+		"url":"https://adressbuch1854.dh.uni-koeln.de/profession/view/<?php echo $profession->id ?>"
+      }
+      
+    }
+    </script>
             </table>
             <?php if(!$persons->isEmpty()): ?>
 				<div class="related">
