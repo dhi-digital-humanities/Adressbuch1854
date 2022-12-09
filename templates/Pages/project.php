@@ -258,7 +258,7 @@ Info Page Project
 	<tr>
 		<td>
 			<div class="csl-bib-body" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">
-  			<div class="csl-entry">König, Mareike: Georg Kibler, Möbelbauer, Rue de Charonne 39: Adreßbuch der Deutschen in Paris für das Jahr 1854, in: Francia. Forschungen zur westeuropäischen Geschichte 30/3 (2003), S. 143‑156, <a target='blank' href='https://francia.digitale-sammlungen.de//Blatt_bsb00016434,00157.html'>https://francia.digitale-sammlungen.de//Blatt_bsb00016434,00157.html</a>.</div>
+  			<div class="csl-entry">König, Mareike: Georg Kibler, Möbelbauer, Rue de Charonne 39: Adreßbuch der Deutschen in Paris für das Jahr 1854, in: Francia. Forschungen zur westeuropäischen Geschichte 30/3 (2003), S. 143‑156, <a target='blank' href='https://doi.org/10.11588/fr.2003.3.45497'>https://doi.org/10.11588/fr.2003.3.45497</a>.</div>
   			<span class="Z3988" title="url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=Georg%20Kibler%2C%20M%C3%B6belbauer%2C%20Rue%20de%20Charonne%2039%3A%20Adre%C3%9Fbuch%20der%20Deutschen%20in%20Paris%20f%C3%BCr%20das%20Jahr%201854&amp;rft.jtitle=Francia%2030%2F3%20(2003)&amp;rft.aufirst=Mareike&amp;rft.aulast=K%C3%B6nig&amp;rft.au=Mareike%20K%C3%B6nig&amp;rft.date=2004&amp;rft.pages=143-156&amp;rft.spage=143&amp;rft.epage=156&amp;rft.language=fr"></span></div>
 		</td>
 	</tr>
