@@ -136,7 +136,7 @@ Info Page Addressbook
 
 						<em>
 						<ul>
-							<?= __('1. König, Mareike: Georg Kibler, Möbelbauer, Rue de Charonne 39: Adreßbuch der Deutschen in Paris für das Jahr 1854, in: Francia. Forschungen zur westeuropäischen Geschichte 30/3 (2003), S. 143-156.') ?>
+							<?= __('1. König, Mareike: Georg Kibler, Möbelbauer, Rue de Charonne 39: Adreßbuch der Deutschen in Paris für das Jahr 1854, in: Francia. Forschungen zur westeuropäischen Geschichte 30/3 (2003), S. 143-156.') ?> <a target='blank' href='https://doi.org/10.11588/fr.2003.3.45497'>https://doi.org/10.11588/fr.2003.3.45497</a>
 						</ul>
 						</em>
 					</div>
