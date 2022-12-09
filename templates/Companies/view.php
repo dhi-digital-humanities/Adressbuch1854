@@ -61,7 +61,10 @@ $uri = $this->request->getRequestTarget();
 									<?php print scan_zotero($begP); ?>
 									<?php print text('/webroot/Ocerisations/','BHVP_703983_',$begP); ?>
             	   					</td> 
-            				</tr>
+            						<td><a href="/pages/panier_export?action=ajout&amp;l=<?= $company->id ?>&amp;n=<?= $company->name ?>&amp;p=<?= $company->profession_verbatim?>&amp;u=<?= $this->request->getUri(); ?>" onclick="window.open(this.href, '', 
+				'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=800, height=350'); return false;"><img src="/webroot/scans/icon-download.png" title="<?= __('Speichern') ?>" style="width: 20px"></a>
+			<td>
+	</tr>
             				<tr>
             					<th><?= __('Volltexterkennung')?></th>
             						<td>
