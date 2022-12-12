@@ -14,9 +14,9 @@ hilfe
 
 				
 				<p><?=__('In alphabetischer Form finden sich hier Informationen über die wichtigsten Aspekte der Nutzung der Datenbank. Allgemeine Informationen zu ihrem Aufbau und ihren Inhalten finden sich im Reiter "Datenbank" und "Dokumentation"')?></p>
-				<p><strong><?= __('Berufe: ') ?></strong><?= __('Für die Klassifizierung der Berufe wird die <a href="https://www.geschichte.uni-halle.de/struktur/hist-data/ontologie/" target="blank">Ontologie historischer, deutschsprachiger Berufs- und Amtsbezeichnungen</a> (OhdAB) verwendet, die am Historischen Datenzentrum der Martin-Luther-Universität Halle-Wittenberg unter der Leitung von Dr. Katrin Moeller entsteht. In der ersten Projektphase 2003-2006 waren bereits zur Klassifizierung elf Berufskategorien eingeführt worden, die weiterhin angezeigt werden (siehe die Seite "Dokumentation" im Reiter "Datenbank").') ?></p>
+				<p><strong><?= __('Berufe: ') ?></strong><?= __('Für die Klassifizierung der Berufe wird die <a href="https://www.geschichte.uni-halle.de/struktur/hist-data/ontologie/" target="blank">Ontologie historischer, deutschsprachiger Berufs- und Amtsbezeichnungen</a> (OhdAB) verwendet, die am Historischen Datenzentrum der Martin-Luther-Universität Halle-Wittenberg unter der Leitung von Dr. Katrin Moeller entsteht. In der ersten Projektphase des Adressbuchs von 1854 in den Jahren 2003-2006 waren bereits zur Klassifizierung elf Berufskategorien eingeführt worden, die weiterhin angezeigt werden (siehe die Seite "Dokumentation" im Reiter "Datenbank").') ?></p>
 				<p><strong><?= __('Datenmodell: ')?></strong><?= __('Zum Datenmodell siehe die Seite "Dokumentation" im Reiter "Datenbank".')?></p>
-				<p><strong><?= __('Datenschutz: ')?></strong><?= __('Die Datenschutzseite befindet sich unten im Footer auf der Website.')?></p>
+				<p><strong><?= __('Datenschutz: ')?></strong><?= __('Die Datenschutzseite befindet sich unten im Footer auf der Website. Über das Pluszeichen oben links auf der Website kann das Speichern von Cookies abgewählt werden.')?></p>
 				
 				<p><strong><?= __('Digitalisate: ')?></strong><?= __('Das Adressbuch ist vollständig digitalisiert (330 dpi) und die einzelnen Seiten können über den Reiter "Digitalisate" eingesehen werden. Die Scans sind mit OCR erfasst. Die Digitalisate sind gemeinfrei.')?></p>
 
