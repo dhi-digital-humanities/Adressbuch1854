@@ -20,7 +20,7 @@ Info Page Project
     <div class="column-responsive column-80">
 		<div class="content4">
 			<br>
-			<p><?= __('Dies ist die zwischen 2020 und 2022 vollständig überarbeitete Datenbank „Adressbuch der Deutschen in Paris von 1854“. Eine erste Version war 2006 online gestellt worden (siehe unten). Die Neufassung zielte auf die <em>FAIRification</em> der Daten, die Digitalisierung des Druckexemplars, den Relaunch der Website sowie die Visualisierung der Daten auf einer historischen Karte. Für alle Anwendungen wurden Open Source-Produkte verwendet. Der Code ist bei GitHub hinterlegt (siehe Dokumentation). Ein Export der Daten ist in den Formaten CSV, XML und JSON möglich. Der vollständige Datensatz kann unter <a target="blank" href="https://creativecommons.org/licenses/by/4.0/deed.fr">CC-BY 4.0</a> bei Zenodo heruntergeladen werden: <a target="blank" href="https://doi.org/10.5281/zenodo.5524880"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.5524880.svg" alt="DOI"></a>') ?></p>
+			<p><?= __('Dies ist die zwischen 2020 und 2022 vollständig überarbeitete Datenbank „Adressbuch der Deutschen in Paris von 1854“. Eine erste Version war 2006 online gestellt worden (siehe unten). Die Neufassung zielte auf die <em>FAIRification</em> der Daten, die Digitalisierung des Druckexemplars, den Relaunch der Website sowie die Visualisierung der Daten auf einer historischen Karte. Für alle Anwendungen wurde Open Source-Software eingesetzt. Der Code ist bei GitHub hinterlegt (siehe Dokumentation). Ein Export der Daten ist in den Formaten SQL, CSV, XML und JSON möglich. Der vollständige Datensatz kann auf der Website unter dem Download-Icon und unter <a target="blank" href="https://creativecommons.org/licenses/by/4.0/deed.fr">CC-BY 4.0</a> bei Zenodo heruntergeladen werden: <a target="blank" href="https://doi.org/10.5281/zenodo.5524880"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.5524880.svg" alt="DOI"></a>') ?></p>
 
 			<h4><?= __('Angaben aus dem Adressbuch') ?></h4>
 			<p><?= __('Die Datenbank enthält alle Angaben aus dem "Adressbuch der Deutschen in Paris" von 1854: Name, Vorname (sofern vorhanden), Straße, Hausnummer und Beruf.')?></p>
@@ -49,7 +49,7 @@ Info Page Project
 
 			<p><?= __('Nicht immer eindeutig ist ebenso die Zuweisung des Geschlechts: Fr. kann die Abkürzung für Frau oder für einen männlichen Vornamen sein. Beides kam vor. Einer Person wurde dann "weiblich" zugeordnet, wenn es eindeutig war, z.B. durch die Berufsbezeichnung (Bäckerin, Lehrerin o.ä.) bzw. wenn der Beruf es nahelegt (z.B. Weißzeug). Auch hier muss eine Prüfung im Einzelfall stattfinden.')?></p>
 
-			<p><?= __('Manche Straßen konnten nicht identifiziert werden, in manchen Fällen konnte das Arrondissement nicht klar ermittelt werden, z.B. wenn eine Straße zwei Arrondissements voneinander trennt. In diesem Fall sind alle angrenzenden Arrondissements erwähnt. Ggf. muss anhand der Hausnummer in den "Calepins de Cadastre" (periodische Häuserbestandsaufnahmen) in den Archives de Paris die Zugehörigkeit ermittelt werden. Existiert eine Straße nicht mehr, so ist dies vermerkt. Konnte der neue Name nicht ermittelt werden oder wurde sie in zu viele neue Straßen aufgeteilt und eine Zuordnung war nicht möglich, so steht ein "?".')?></p>
+			<p><?= __('Manche Straßen konnten nicht identifiziert werden, in manchen Fällen konnte das Arrondissement nicht klar ermittelt werden, z.B. wenn eine Straße zwei Arrondissements voneinander trennt. In diesem Fall sind alle angrenzenden Arrondissements genannt. Ggf. muss anhand der Hausnummer in den "Calepins de Cadastre" (periodische Häuserbestandsaufnahmen) in den Archives de Paris die Zugehörigkeit ermittelt werden. Existiert eine Straße nicht mehr, so ist dies vermerkt. Konnte der neue Name nicht ermittelt werden oder wurde sie in zu viele neue Straßen aufgeteilt und eine Zuordnung war nicht möglich, so steht ein "?".')?></p>
 
 
 			<h4><?= __('Editionsgrundsätze') ?></h4>
@@ -61,7 +61,7 @@ Info Page Project
 			<li><?= __('Fehlte bei den Straßennamen der Zusatz "rue de" oder "place de" so wurde dieser hinzugefügt.') ?></li>
 
 			<h5><?= __('Nicht geändert wurde') ?></h5>
-			<li><?= __('Die alte Schreibweise der Berufe wurde beibehalten. Offensichtliche Tippfehler wurden korrigiert, die verschiedenen Benennungen aber nicht vereinheitlicht, z.B. Schuh-Händler und Schuhhändler.') ?></li>
+			<li><?= __('Die alte Schreibweise der Berufe wurde beibehalten (z.B. Eigenthümer). Offensichtliche Tippfehler wurden korrigiert, die verschiedenen Benennungen aber nicht vereinheitlicht, z.B. Schuh-Händler und Schuhhändler.') ?></li>
 			<li><?= __('Die Verwendung von "und", "u." oder "&"  ist im Buch und damit auch in der Datenbank unheitlich. Das gilt auch für Witwe, abgekürzt mit  "Wwe.", "Wtw.",  "Wtwe."') ?></li>
 			
 			<li><?= __('Leere Felder bedeuten, dass keine Angabe gemacht wurden.') ?></li>
