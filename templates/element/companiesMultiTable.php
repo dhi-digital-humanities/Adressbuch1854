@@ -61,10 +61,14 @@ $this->Html->css('multiTable.css');
 			<td><?= $this->Html->link(h($company->name), ['controller' => 'Companies', 'action' => 'view', $company->id]) ?></td>
 			<td><?php if(!empty($company->profession->profession_verbatim)){
 				echo $this->Html->link($company->profession->profession_verbatim, ['controller'=>'Profession','action'=>'view', $company->profession->id]);
-				}?></td>
+				}else{
+					echo __('Unbekannt');
+				} ?></td>
 			<td><?php
-				if (!empty($company->addresses)){
+				if ($company->addresses[0]['street_id']!= 1032){
 					echo htmlspecialchars_decode($this->element('addressList', ['addresses' => $company->addresses, 'list' => $addrAsList]));
+				}else{
+					echo __('Unbekannt');
 				}
 			?></td>
 			<td class="middle-width"><?= implode(', ', $cats)?></td>

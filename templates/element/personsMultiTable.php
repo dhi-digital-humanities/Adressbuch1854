@@ -96,12 +96,16 @@ $this->Html->css('multiTable.css');
 			
 			<td><?php if(!empty($person->profession->profession_verbatim)){
 				echo $this->Html->link($person->profession->profession_verbatim, ['controller'=>'Profession', 'action'=>'view', $person->profession->id]);
-			} ?></td>
-			</td>
+			}else{
+				echo __('Unbekannt');
+			}
+			 ?></td>
 			<td><?php
-				if (!empty($person->addresses)){
+				if ($person->addresses[0]['street_id'] != 1032){
 					echo htmlspecialchars_decode($this->element('addressList', ['addresses' => $person->addresses, 'list' => $addrAsList]));
-				} 
+				}else{
+					echo __('Unbekannt');
+				}
 			?></td>
 			<td class="middle-width"><?= implode(', ', $plus)?></td>
 			<td class="middle-width"><?= implode(', ', $cats)?></td>

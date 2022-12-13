@@ -131,12 +131,12 @@ Info Page Addressbook
 					<div class="content5">
 						<br>
 						<p><?= __('Die Bedeutung des Adressbuchs liegt in der großen Anzahl der darin enthaltenen Adressen. In der Volkszählung von 1851 wurden in Paris 12.245 Deutsche und Österreicher gezählt. Wenn beide Zahlen stimmen, so sind im Adressbuch fast 40% der deutschsprachigen Bevölkerung von Paris aus dem Jahr 1854 erfasst (1). Darüber hinaus stammt das Adressbuch aus einer - was die deutsche Einwanderung betrifft - bisher wenig erforschten Periode und stellt als umfassende nominative Quelle einen Ausgangspunkt für weitere Forschungen dar. ') ?></p>
-						<p><?= __('Zu den bekannten Personen im Adressbuch gehören der Dichter Heinrich Heine, der Architekt Jakob Ignaz Hittorff (u.a. Gare du Nord), die Fotografen Charles Reutlinger und Sigismund Gerothwohl, der Sprachpädagoge Heinrich Ottfried Ollendorff, der Paläograph Karl Benedikt Hase, der Buchhändler Klincksieck, einige Mitglieder der Familien Rothschild und Oppenheim sowie nicht-deutsche Personen wie der polnische Dichter Adam Mickiewics und der französische Komponist Jean-Madeleine Schneitzhoeffer.')?></p>
+						<p><?= __('Zu den bekannten Personen im Adressbuch gehören der Dichter Heinrich Heine, der Architekt Jakob Ignaz Hittorff (u.a. Gare du Nord), die Fotografen Charles Reutlinger und Sigismund Gerothwohl, der Sprachpädagoge Heinrich Ottfried Ollendorff, der Paläograph Karl Benedikt Hase, der Orientalist Julius Mohl, der Buchhändler Klincksieck, einige Mitglieder der Familien Rothschild und Oppenheim sowie nicht-deutsche Personen wie der polnische Dichter Adam Mickiewics und der französische Komponist Jean-Madeleine Schneitzhoeffer.')?></p>
 						<p><?= __('Die Datenbank dient als Ausgangspunkt für prosopographische Recherchen, da für die Suche nach Einzelpersonen in anderen Quellen des Pariser Stadtarchivs wie Geburts-, Tauf-, Heirats- und Todesregister die Adresse bekannt sein muss. Auch können Personen in den jährlichen Ausgaben des "Bottin du commerce" gesucht werden, um Um- und Wegzüge nachzuvollziehen. Interessant ist außerdem ein Abgleich mit den "calepins du cadastre" in den Archives de Paris: periodische Gebäudeaufnahmen, die jedes einzelne Haus der Stadt mit seinen Wohnungen und Werkstätten beschreibt und darin Mieter und Mietpreise verzeichnet.')?> </p><br>
 
 						<em>
 						<ul>
-							<?= __('1. König, Mareike: Georg Kibler, Möbelbauer, Rue de Charonne 39: Adreßbuch der Deutschen in Paris für das Jahr 1854, in: Francia. Forschungen zur westeuropäischen Geschichte 30/3 (2003), S. 143-156.') ?>
+							<?= __('1. König, Mareike: Georg Kibler, Möbelbauer, Rue de Charonne 39: Adreßbuch der Deutschen in Paris für das Jahr 1854, in: Francia. Forschungen zur westeuropäischen Geschichte 30/3 (2003), S. 143-156.') ?> <a target='blank' href='https://doi.org/10.11588/fr.2003.3.45497'>https://doi.org/10.11588/fr.2003.3.45497</a>
 						</ul>
 						</em>
 					</div>

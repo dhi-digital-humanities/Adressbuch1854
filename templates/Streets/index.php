@@ -42,6 +42,7 @@ $uri = $this->request->getRequestTarget();
 						<?php
 						$countNo = 1 + (($this->Paginator->current('Streets')-1) * $this->Paginator->param('perPage'));
 						foreach ($streets as $street): ?>
+						<?php if($street->id != 1032): ?>
 						<?php require_once(__DIR__.'/../functions/functions.php');
 	require(__DIR__.'/../functions/varsstreets.php'); ?>
 						<?php
@@ -49,9 +50,9 @@ $uri = $this->request->getRequestTarget();
 							$arrsNew = [];
 							foreach($street->arrondissements as $arr){
 								if($arr->type === 'pre1860'){
-									array_push($arrsOld, '<abbr title="'.$arr->type.'">'.$arr->no.'</abbr>');
+									array_push($arrsOld, $arr->no);
 								} else {
-									array_push($arrsNew, '<abbr title="'.$arr->type.'">'.$arr->no.'</abbr>');
+									array_push($arrsNew, $arr->no);
 								}
 							}
 						?>
@@ -67,8 +68,7 @@ $uri = $this->request->getRequestTarget();
 									</tr>
 									<tr>
 										<th><?= implode(', ', $arrsOld) ?></th>
-										<th><?= implode(', ', $arrsNew);
-										if($arrsNew === 33) echo 'communes annexées de Paris' ?></th>
+										<th><?= implode(', ', $arrsNew) ?></th>
 									</tr>
 								</table>
 							</td>
@@ -88,6 +88,7 @@ $uri = $this->request->getRequestTarget();
 							"url":"https://adressbuch1854.dh.uni-koeln.de/streets/view/<?php echo $street->id ?>"
 							}
 						</script>
+						<?php endif; ?>
 						<?php
 						$countNo++;
 						endforeach; ?>
