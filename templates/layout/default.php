@@ -24,8 +24,7 @@ $description = 'Adressbuch 1854';
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <title>
-        <?= $description ?>:
-        <?= $this->fetch('title') ?>
+        <?= $description ?>
     </title>
 
     <?= $this->Html->meta('icon') ?>
