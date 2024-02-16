@@ -85,7 +85,7 @@ Info Page Addressbook
 					</p>
 
 				
-					<p><?= __('Im Adressbuch sind Name, teilweise Vorname (häufig abgekürzt), Beruf, Straße(n) und Hausnummer(n) einer Person bzw. eines Betriebs vermerkt. Fettgedruckte Namen weisen darauf hin, dass gleichzeitig eine Anzeige im Adressbuch geschaltet wurde. Ebenso ist vermerkt, wenn die Personen in der Ehrenlegion oder Mitglied des Institut de France waren oder zu den "Notable commerçant" gehörten, was im Adressbuch mit der Abkürzung NC in eckigen Klammern vermerkt ist. Als NC werden die Kaufleute bezeichnet, die die Mitglieder der Handelsgerichte wählten')?>
+					<p><?= __('Im Adressbuch sind Name, teilweise Vorname (häufig abgekürzt), Beruf, Straße(n) und Hausnummer(n) einer Person bzw. eines Betriebs vermerkt. Fettgedruckte Namen weisen darauf hin, dass gleichzeitig eine Anzeige im Adressbuch geschaltet wurde. Ebenso ist vermerkt, wenn die Personen in der Ehrenlegion oder Mitglied des Institut de France waren oder zu den "Notable commerçant" gehörten, was im Adressbuch mit der Abkürzung NC in eckigen Klammern vermerkt ist. Als NC werden die Kaufleute bezeichnet, die die Mitglieder der Handelsgerichte wählten.')?>
 					</p>
 
 				
