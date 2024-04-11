@@ -67,6 +67,11 @@ Info Pages related Partner und Mitarbeiter
 					<tr>
 						<td>
 							<?= __('Dennis Demmmer (Administration)') ?>
+                        </td>
+					</tr>
+					<tr>
+						<td>
+							<?= __('Philip Schildkamp (Administration)') ?>
 						</td>
 					</tr>
 				</table>
