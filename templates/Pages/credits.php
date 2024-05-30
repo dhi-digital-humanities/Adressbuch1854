@@ -39,7 +39,7 @@ Credits
 			<p><?= __('Mareike König') ?></p>
 			<br>
 
-			<p><?= __('Letzte Änderung: 11.04.2024') ?></p>
+			<p><?= __('Letzte Änderung: 30.05.2024') ?></p>
 
 		</div>
 	</div>
