@@ -26,7 +26,7 @@ hilfe
 				<p><strong><?= __('Nutzung: ')?></strong><?= __('Die Datenbank kann entweder integral oder nach einem oder mehreren Suchbegriffen (Name, Vorname, Beruf und Straße) durchsucht werden. Es ist ebenso möglich,  Ergebnislisten nach Kategorie (z.B. alle Eigentümer) oder nach Geschlecht (z.B. alle Frauen) anzuzeigen oder diese zu kombinieren (z.B. Adel, Frauen und ein bestimmtes Arrondissement). ')?></p>
 				<p><strong><?= __('Suche: ') ?></strong><?= __('Probieren Sie verschiedene Schreibweisen von Personen- und Straßennamen aus (mit und ohne Umlaute z.B.) und suchen Sie zunächst ohne Vornamen, da diese häufig nicht vorhanden oder abgekürzt sind. Es erfolgt eine automatische Trunkierung der Suchbegriffe am Ende, die Eingabe von Platzhaltern wie "?" oder "*" ist nicht notwendig. Eine Suche nach dem Begriff "Fruchthändler" findet zugleich auch "Fruchthändlerin". Eine Trunkierung in der Mitte eines Wortes ist nicht möglich.')?></p>
 				<p><strong><?= __('Zitierhinweis: ')?></strong><?= __('Adressbuch der Deutschen in Paris für das Jahr 1854, hg. v. F.A. Kronauge, Paris, Elektronische Edition, DHI Paris 2024, <a href="http://adressbuch1854.dhi-paris.fr/" target="blank">http://adressbuch1854.dhi-paris.fr/</a>, CC-BY 4.0.') ?></p>
-				<p><?= __('Falls Sie Schwierigkeiten bei der Nutzung haben, einen Fehler entdecken oder sonst einen Hinweis haben, schreiben Sie uns gerne ein Mail an: ')?><a href="mailto:adressbuch1854@dhi-paris.fr">adressbuch1854@dhi-paris.fr</a></p>
+				<p><?= __('Falls Sie Schwierigkeiten bei der Nutzung haben, einen Fehler entdecken oder sonst einen Hinweis haben, schreiben Sie uns gerne ein Mail an: ')?><a href="mailto:dh@dhi-paris.fr">dh@dhi-paris.fr</a></p>
 				<br>
 			</div>
 		</div>
